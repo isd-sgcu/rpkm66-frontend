@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -26,7 +27,15 @@
     "typescript": "5.1.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.0",
     "prettier": "2.8.8"
+  },
+  "commitlint": {
+      "extends": [
+          "@commitlint/config-conventional"
+      ]
   }
 }
