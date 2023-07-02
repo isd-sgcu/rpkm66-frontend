@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "next lint --fix",
+    "format": "prettier --write .",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -40,11 +40,9 @@
     ]
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,md}": [
-      "pnpm format"
-    ],
     "*.{js,jsx,ts,tsx}": [
-      "pnpm lint"
+      "eslint --fix",
+      "prettier --write"
     ]
   }
 }
