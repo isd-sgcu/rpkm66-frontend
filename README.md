@@ -1,4 +1,4 @@
-# RPKM 66
+# RPKM66
 
 Frontend interface for the RubPuenKaoMai 2023 website.
 
