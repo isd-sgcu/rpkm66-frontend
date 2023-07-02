@@ -31,11 +31,20 @@
     "@commitlint/config-conventional": "^17.6.6",
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.0",
+    "lint-staged": "^13.2.3",
     "prettier": "2.8.8"
   },
   "commitlint": {
-      "extends": [
-          "@commitlint/config-conventional"
-      ]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md}": [
+      "pnpm format"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm lint"
+    ]
   }
 }
