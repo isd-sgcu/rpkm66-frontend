@@ -1,41 +1,48 @@
 {
-  "name": "rpkm66-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
-  },
-  "dependencies": {
-    "@heroicons/react": "^2.0.18",
-    "@types/node": "20.3.2",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.7",
-    "framer-motion": "^10.12.17",
-    "next": "13.4.7",
-    "postcss": "8.4.24",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.1.5"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "eslint-config-prettier": "^8.8.0",
-    "husky": "^8.0.0",
-    "prettier": "2.8.8"
-  },
-  "commitlint": {
-      "extends": [
-          "@commitlint/config-conventional"
-      ]
-  }
+    "name": "rpkm66-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint --fix",
+        "format": "prettier --write .",
+        "prepare": "husky install"
+    },
+    "dependencies": {
+        "@heroicons/react": "^2.0.18",
+        "@types/node": "20.3.2",
+        "@types/react": "18.2.14",
+        "@types/react-dom": "18.2.6",
+        "autoprefixer": "10.4.14",
+        "eslint": "8.43.0",
+        "eslint-config-next": "13.4.7",
+        "framer-motion": "^10.12.17",
+        "next": "13.4.7",
+        "postcss": "8.4.24",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "tailwindcss": "3.3.2",
+        "typescript": "5.1.5"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.6",
+        "@commitlint/config-conventional": "^17.6.6",
+        "eslint-config-prettier": "^8.8.0",
+        "husky": "^8.0.0",
+        "lint-staged": "^13.2.3",
+        "prettier": "2.8.8"
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ]
+    }
 }
