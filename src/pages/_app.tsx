@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { IBM_Plex_Sans_Thai } from 'next/font/google';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
-    subsets: ['latin', 'thai'],
+    subsets: ['latin'],
     weight: ['500', '600', '700'],
     display: 'swap',
     variable: '--font-ibm',

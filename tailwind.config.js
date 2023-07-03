@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+// @ts-check
+
+/** @satisfies {import('tailwindcss').Config} */
+const config = {
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,7 +19,16 @@ module.exports = {
             fontFamily: {
                 ibm: ['var(--font-ibm)'],
             },
+            backgroundImage: {
+                'background-desktop': "url('/images/background-desktop.png')",
+                'background-mobile': "url('/images/background-mobile.png')",
+            },
+            ringWidth: {
+                16: '16px',
+            },
         },
     },
     plugins: [],
 };
+
+module.exports = config;

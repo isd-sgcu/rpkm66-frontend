@@ -2,6 +2,11 @@
     "name": "rpkm66-frontend",
     "version": "0.1.0",
     "private": true,
+    "packageManager": "pnpm@8.6.5",
+    "engines": {
+        "node": "^18.12",
+        "pnpm": "^8"
+    },
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -11,28 +16,29 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@heroicons/react": "^2.0.18",
-        "@types/node": "20.3.2",
-        "@types/react": "18.2.14",
-        "@types/react-dom": "18.2.6",
+        "@heroicons/react": "2.0.18",
         "autoprefixer": "10.4.14",
-        "eslint": "8.43.0",
-        "eslint-config-next": "13.4.7",
-        "framer-motion": "^10.12.17",
+        "framer-motion": "10.12.18",
         "next": "13.4.7",
         "postcss": "8.4.24",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "tailwindcss": "3.3.2",
-        "typescript": "5.1.5"
+        "tailwindcss": "3.3.2"
     },
     "devDependencies": {
-        "@commitlint/cli": "^17.6.6",
-        "@commitlint/config-conventional": "^17.6.6",
-        "eslint-config-prettier": "^8.8.0",
-        "husky": "^8.0.0",
-        "lint-staged": "^13.2.3",
-        "prettier": "2.8.8"
+        "@commitlint/cli": "17.6.6",
+        "@commitlint/config-conventional": "17.6.6",
+        "@types/node": "18.16.19",
+        "@types/react": "18.2.14",
+        "@types/react-dom": "18.2.6",
+        "eslint": "8.44.0",
+        "eslint-config-next": "13.4.7",
+        "eslint-config-prettier": "8.8.0",
+        "eslint-plugin-prettier": "4.2.1",
+        "husky": "8.0.3",
+        "lint-staged": "13.2.3",
+        "prettier": "2.8.8",
+        "typescript": "5.1.6"
     },
     "commitlint": {
         "extends": [
