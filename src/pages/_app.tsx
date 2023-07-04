@@ -1,4 +1,3 @@
-import Background from '@/components/Background';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { IBM_Plex_Sans_Thai } from 'next/font/google';
@@ -14,7 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <main className={`${ibmPlexSansThai.variable} font-sans`}>
             <Component {...pageProps} />
-            <Background />
         </main>
     );
 }
