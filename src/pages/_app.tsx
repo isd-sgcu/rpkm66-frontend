@@ -1,3 +1,4 @@
+import AuthProvider from '@/context/AuthContext';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { IBM_Plex_Sans_Thai } from 'next/font/google';
@@ -11,8 +12,10 @@ const ibmPlexSansThai = IBM_Plex_Sans_Thai({
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <main className={`${ibmPlexSansThai.variable} font-sans`}>
-            <Component {...pageProps} />
-        </main>
+        <AuthProvider>
+            <main className={`${ibmPlexSansThai.variable} font-sans`}>
+                <Component {...pageProps} />
+            </main>
+        </AuthProvider>
     );
 }
