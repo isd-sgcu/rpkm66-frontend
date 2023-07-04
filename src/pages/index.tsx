@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import Rocket from '@/public/images/rocket.svg';
-import RocketSmoke from '@/public/images/rocket-smoke-2.svg';
+import RocketSmoke from '@/public/images/rocket-smoke.svg';
 
 const Home = () => {
     return (
