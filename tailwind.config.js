@@ -15,6 +15,8 @@ const config = {
                 yellow: '#FFC32A',
                 green: '#46B9AD',
                 orange: '#E36131',
+                'input-gray': '#F3F3F3',
+                'input-gray-dark': 'rgba(51, 51, 51, 0.30)',
             },
             fontFamily: {
                 ibm: ['var(--font-ibm)'],
@@ -25,6 +27,10 @@ const config = {
             },
             ringWidth: {
                 16: '16px',
+            },
+            boxShadow: {
+                regisSubmit:
+                    '0px 0px 2.124147891998291px 9.027628898620605px rgba(233, 86, 130, 0.25)',
             },
         },
     },
