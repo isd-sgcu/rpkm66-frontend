@@ -18,15 +18,12 @@ apiClient.interceptors.request.use(
             headers: { ...config.headers, Authorization: accessToken },
         };
     },
-    // TODO: Handle other error
     (err: AxiosError) => Promise.reject(err)
 );
 
 apiClient.interceptors.response.use(
     (res: AxiosResponse) => res,
     (err: AxiosError) => {
-        // TODO: Handle other error
-
         // Handle if token is not yet expired but invalid
         if (err.response && err.response.status === 401) {
             localStorage.clear();

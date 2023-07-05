@@ -62,8 +62,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
 
         isFetching.current = false;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [router.locale]);
 
     useEffect(() => {
         const initializeContext = async () => {
