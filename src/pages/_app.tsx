@@ -1,3 +1,4 @@
+import Background from '@/components/Background';
 import AuthProvider from '@/context/AuthContext';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <AuthProvider>
             <main className={`${ibmPlexSansThai.variable} font-sans`}>
                 <Component {...pageProps} />
+                <Background />
             </main>
         </AuthProvider>
     );
