@@ -4,7 +4,6 @@ import Rocket from '@/public/images/rocket.svg';
 import RocketSmoke from '@/public/images/rocket-smoke.svg';
 import { useAuth } from '@/context/AuthContext';
 import { shimmer, toBase64 } from '@/utils/shimmer';
-import Footer from '@/components/Footer';
 
 const Home = () => {
     const { login } = useAuth();
@@ -44,8 +43,6 @@ const Home = () => {
                     เข้าสู่ระบบด้วย Chula SSO
                 </button>
             </div>
-
-            <Footer />
         </>
     );
 };
