@@ -25,6 +25,12 @@ const config = {
             },
             ringWidth: {
                 16: '16px',
+            },            
+            boxShadow: {
+                'custom': '0px 4px 4px 51px rgba(70, 44, 113, 0.25)',
+            },
+            shadowCustom: {
+                'box-shadow': '0px 1px 1px 14px rgba(25, 25, 74, 0.25)',
             },
         },
     },
