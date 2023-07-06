@@ -5,11 +5,11 @@ const Register = () => {
     const inputStyle =
         'w-full bg-input-gray border-input-gray rounded-full p-2 px-3 mb-4';
     return (
-        <div className="w-screen min-h-screen pt-40 font-ibm bg-background-mobile lg:bg-background-desktop bg-no-repeat bg-cover bg-center text-white text-center  z-0 overflow-clip select-none">
-            <form className=" bg-white w-full rounded-t-[20px] flex flex-col justify-start items-center text-purple">
+        <div className="w-screen min-h-screen pt-40 lg:pt-0 font-ibm bg-background-mobile lg:bg-background-desktop bg-no-repeat bg-cover bg-center text-white text-center  z-0 overflow-clip select-none">
+            <form className=" bg-white w-full lg:w-2/3 rounded-t-[20px] lg:rounded-l-[20px] flex flex-col justify-start items-center text-purple">
                 <h1 className="text-3xl font-bold mt-12 mb-2">ลงทะเบียน</h1>
-                <div className="flex flex-col justify-start items-center w-10/12 ">
-                    <div className="w-1/2 my-6">
+                <div className="flex flex-col justify-start items-center w-10/12 pt-6 lg:flex-row-reverse lg:justify-between">
+                    <div className="w-1/2 mb-6 lg:w-1/4">
                         <div className="flex flex-row justify-between items-center">
                             <div>อัปโหลดรูป</div>
                             <button className="bg-[#E36130] flex flex-row justify-center items-center py-1 px-3 rounded-full">
@@ -31,7 +31,7 @@ const Register = () => {
                             />
                         </div>
                     </div>
-                    <div className="w-full flex flex-col justify-start items-start">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-start items-start">
                         <label htmlFor="" className="mb-1">
                             คำนำหน้าชื่อ
                         </label>
