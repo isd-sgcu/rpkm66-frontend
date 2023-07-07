@@ -17,7 +17,7 @@ const Register = () => {
     return (
         <div className="flex lg:justify-end">
             <form
-                className="bg-white w-full lg:w-2/3 mt-40 lg:mt-0 rounded-t-3xl lg:rounded-tr-none flex flex-col justify-start items-center text-purple font-ibm"
+                className="bg-white w-full lg:w-2/3 mt-40 lg:mt-0 rounded-t-3xl lg:rounded-tr-none flex flex-col justify-start items-center text-purple"
                 onSubmit={handleSubmit}
             >
                 <h1 className="text-3xl font-bold mt-12 mb-2">ลงทะเบียน</h1>
@@ -29,10 +29,8 @@ const Register = () => {
                         <div className="flex flex-row justify-between items-center">
                             <div>อัปโหลดรูป</div>
                             <div className="bg-orange flex flex-row justify-center items-center py-1 px-3 rounded-full">
-                                <PencilSquareIcon className="text-white w-4 h-4" />
-                                <span className="text-white text-xs">
-                                    แก้ไข
-                                </span>
+                                <PencilSquareIcon className="w-4 h-4" />
+                                <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
                         <input
@@ -233,7 +231,7 @@ const Register = () => {
                 </div>
                 <button
                     type="submit"
-                    className="text-xl text-white font-bold bg-pink rounded-full py-2 px-14 my-10 mb-16 ring-pink/30 ring-8 hover:bg-pink/80"
+                    className="text-xl font-bold bg-pink-400 rounded-full py-2 px-14 my-10 mb-16 ring-pink-400/30 ring-8 hover:bg-pink-400/80"
                 >
                     ลงทะเบียน
                 </button>

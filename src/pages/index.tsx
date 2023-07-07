@@ -8,7 +8,7 @@ import { shimmer, toBase64 } from '@/utils/shimmer';
 const Home = () => {
     const { login } = useAuth();
     return (
-        <div className="w-full min-h-screen flex flex-col justify-center items-center font-ibm text-white text-center relative z-0 overflow-clip">
+        <div className="w-full min-h-screen flex flex-col justify-center items-center text-center relative z-0 overflow-clip">
             <h1 className="text-5xl lg:text-9xl font-bold relative z-0 leading-none select-none">
                 รับเพื่อนก้าวใหม่
                 <Image
@@ -36,7 +36,7 @@ const Home = () => {
                 2023
             </h2>
             <button
-                className="bg-pink font-bold text-lg px-6 z-0 py-1 mt-3 lg:text-5xl lg:px-20 lg:py-4 lg:mt-16 focus:outline-none ring-8 lg:ring-16 ring-pink/30 rounded-3xl select-none"
+                className="bg-pink-400 font-bold text-lg px-6 z-0 py-1 mt-3 lg:text-5xl lg:px-20 lg:py-4 lg:mt-16 focus:outline-none ring-8 lg:ring-16 ring-pink-400/30 rounded-3xl select-none"
                 onClick={login}
             >
                 เข้าสู่ระบบด้วย Chula SSO
