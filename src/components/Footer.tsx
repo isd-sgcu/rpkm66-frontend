@@ -7,7 +7,7 @@ import Instagram from '@/public/images/instagram.svg';
 const Footer = () => {
     return (
         <footer className="w-full relative lg:fixed bottom-0 left-0">
-            <div className="w-full bg-[#101223] relative m-0 lg:p-4 pt-3 ">
+            <div className="w-full bg-gray-900 relative m-0 lg:p-4 pt-3 ">
                 <div className="flex flex-col lg:flex-row lg:ml-3 justify-center items-center lg:justify-between relative">
                     <div className="flex flex-col lg:flex-row ">
                         <div className=" mt-3 lg:mr-4 lg:px-3 flex justify-center shrink-0">
@@ -66,12 +66,12 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-black w-full p-3 flex justify-center items-center">
-                <a
+                <Link
                     className="text-gray-200 font-light text-xs underline underline-offset-2 font-ibm"
                     href="https://gmail.com"
                 >
                     ข้อตกลงและเงื่อนไขการใช้งาน
-                </a>
+                </Link>
             </div>
         </footer>
     );
