@@ -19,18 +19,17 @@ const config = {
             fontFamily: {
                 ibm: ['var(--font-ibm)'],
             },
-            backgroundImage: {
-                'background-desktop': "url('/images/background-desktop.png')",
-                'background-mobile': "url('/images/background-mobile.png')",
-            },
             ringWidth: {
                 16: '16px',
-            },            
+            },
             boxShadow: {
-                'custom': '0px 4px 4px 51px rgba(70, 44, 113, 0.25)',
+                custom: '0px 4px 4px 51px rgba(70, 44, 113, 0.25)',
             },
             shadowCustom: {
                 'box-shadow': '0px 1px 1px 14px rgba(25, 25, 74, 0.25)',
+            },
+            aspectRatio: {
+                '3/4': '3 / 4',
             },
         },
     },
