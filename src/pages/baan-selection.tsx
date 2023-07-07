@@ -1,32 +1,30 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Rocket from '@/public/images/Rocket-y.svg';
+
+import Rocket from '@/public/images/rocket.svg';
 
 const WaitForBaanselection: NextPage = () => {
     return (
-        <div className="flex relative items-center h-screen overflow-hidden max-w-100vw">
-            <div className="pl-32 relative flex m-[10%] items-center w-2/3 h-2/5 min-w-fit min-h-fit px-14 py-20 bbg-gradient-to-br from-purple-700 to-purple-200 rounded-3xl shadow-custom text-white font-ibm overflow-visible">
-                <div className="w-fit mr-16 mt-12">
-                    <div className="font-bold text-8xl mb-3 w-max h-max">
-                        กรุณารอการเลือกบ้าน
-                    </div>
-                    <div className="leading-loose font-medium text-4xl block w-max h-max">
-                        <p>การลงทะเบียนของคุณเสร็จสิ้นเรียบร้อย</p>
-                        <p>กรุณาลงทะเบียนเลือกบ้านวันที่ 24 กรกฎาคม 2565</p>
-                        <p>สามารถสอบถามข้อมูลเพิ่มเติมได้ที่ CU for Freshmen</p>
-                    </div>
+        <div className="flex relative items-center min-h-screen w-full overflow-x-hidden bg-gray-800/30 backdrop-filter backdrop-blur-sm px-8">
+            <div className="relative mx-auto flex flex-col w-full gap-8 px-5 pt-10 pb-8 lg:pl-16 lg:pt-24 lg:pb-16 lg:pr-52 text-center lg:text-left lg:w-auto bg-gradient-to-bl from-purple to-pink-800/20 rounded-3xl lg:rounded-6xl ring-16 lg:ring-32 ring-purple/30">
+                <h1 className="font-bold text-2xl lg:text-8xl">
+                    กรุณารอการเลือกบ้าน
+                </h1>
+                <div className="flex flex-col gap-1 lg:gap-4 text-xs lg:text-4xl">
+                    <p>การลงทะเบียนของคุณเสร็จสิ้นเรียบร้อย</p>
+                    <p>กรุณาลงทะเบียนเลือกบ้านวันที่ 17 กรกฎาคม 2566</p>
+                    <p>สามารถสอบถามข้อมูลเพิ่มเติมได้ที่ CU for Freshmen</p>
                 </div>
-                <div className="absolute border-2 h-full w-full items-center justify-end right-0 transform translate-x-3/4 -translate-y-32">
+                <div className="absolute right-1/2 translate-x-1/2 -translate-y-full aspect-3/4 w-1/3 lg:right-0 lg:top-1/3 lg:-translate-y-1/3 ">
                     <Image
                         src={Rocket}
                         alt=""
-                        className="relative m-0 w-50vw"
+                        fill
                         loading="lazy"
+                        className="rotate-45"
                     />
                 </div>
             </div>
-
-            <div className="fixed top-0 left-0 h-screen w-full bg-gray-800 bg-opacity-30 backdrop-filter backdrop-blur-sm -z-40" />
         </div>
     );
 };

@@ -11,7 +11,10 @@ const config = {
         extend: {
             colors: {
                 purple: '#393061',
-                pink: '#E95682',
+                pink: {
+                    400: '#E95682',
+                    800: '#A45BD0',
+                },
                 yellow: '#FFC32A',
                 green: '#46B9AD',
                 orange: '#E36131',
@@ -21,15 +24,15 @@ const config = {
             },
             ringWidth: {
                 16: '16px',
-            },
-            boxShadow: {
-                custom: '0px 4px 4px 51px rgba(70, 44, 113, 0.25)',
-            },
-            shadowCustom: {
-                'box-shadow': '0px 1px 1px 14px rgba(25, 25, 74, 0.25)',
+                32: '32px',
             },
             aspectRatio: {
                 '3/4': '3 / 4',
+            },
+            borderRadius: {
+                '4xl': '2rem',
+                '5xl': '3rem',
+                '6xl': '4.5rem',
             },
         },
     },
