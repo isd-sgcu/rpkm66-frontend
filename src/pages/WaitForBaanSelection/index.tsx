@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Rocket from 'public/images/Rocket-y.svg';
+import Rocket from '@/public/images/Rocket-y.svg';
 
 const WaitForBaanselection: NextPage = () => {
     return (
