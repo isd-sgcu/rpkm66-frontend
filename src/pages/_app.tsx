@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { IBM_Plex_Sans_Thai } from 'next/font/google';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
     subsets: ['latin'],
@@ -18,24 +19,25 @@ export default function App({ Component, pageProps }: AppProps) {
             <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
                 <Component {...pageProps} />
                 <Background />
+            </main>
 
-                <Script
-                    async
-                    src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
-                />
-                <Script
-                    id="google-analytics"
-                    dangerouslySetInnerHTML={{
-                        __html: `
+            <Analytics />
+            <Script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
+            />
+            <Script
+                id="google-analytics"
+                dangerouslySetInnerHTML={{
+                    __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
               gtag('config', 'G-0ZFDD1EKVW');
           `,
-                    }}
-                />
-            </main>
+                }}
+            />
         </AuthProvider>
     );
 }
