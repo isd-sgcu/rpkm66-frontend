@@ -1,30 +1,25 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { PencilSquareIcon } from '@heroicons/react/24/solid';
+import ProfilePlaceholder from '@/public/images/pfp-placeholder.svg';
 
 const Register = () => {
-    const inputStyle =
-        'w-full bg-input-gray border-input-gray rounded-full p-2 px-3 mb-4';
     return (
         <div className="flex lg:justify-end">
-            <form className=" bg-white w-full lg:w-2/3 mt-40 lg:mt-0 rounded-t-[20px] lg:rounded-none lg:rounded-l-[20px] flex flex-col justify-start items-center text-purple font-ibm">
+            <form className=" bg-white w-full lg:w-2/3 mt-40 lgß:mt-0 rounded-tl-3xl lg:rounded-none lg:rounded-l-3xl flex flex-col justify-start items-center text-purple font-ibm">
                 <h1 className="text-3xl font-bold mt-12 mb-2">ลงทะเบียน</h1>
                 <div className="flex flex-col justify-start items-center w-10/12 pt-6 lg:flex-row-reverse lg:justify-between">
-                    <div className="w-1/2 mb-6 lg:w-1/4">
+                    <div className="w-40 mb-6 lg:w-1/4">
                         <div className="flex flex-row justify-between items-center">
                             <div>อัปโหลดรูป</div>
-                            <button className="bg-[#E36130] flex flex-row justify-center items-center py-1 px-3 rounded-full">
-                                <Image
-                                    src="/images/heroicons-solid/pencil-square.svg"
-                                    alt=""
-                                    height={16}
-                                    width={16}
-                                />
+                            <button className="bg-orange flex flex-row justify-center items-center py-1 px-3 rounded-full">
+                                <PencilSquareIcon className="text-white w-4 h-4" />
                                 <p className="text-white text-xs">แก้ไข</p>
                             </button>
                         </div>
-                        <div className="w-full h-52 relative rounded-2xl overflow-hidden  my-4">
+                        <div className=" w-full h-48 relative rounded-2xl overflow-hidden  my-4 shadow-lg">
                             <Image
-                                src="/images/pfp-placeholder.png"
+                                src={ProfilePlaceholder}
                                 alt=""
                                 fill
                                 style={{ objectFit: 'contain' }}
@@ -32,13 +27,13 @@ const Register = () => {
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2 flex flex-col justify-start items-start">
-                        <label htmlFor="" className="mb-1">
+                        <label htmlFor="title" className="mb-1">
                             คำนำหน้าชื่อ
                         </label>
                         <select
                             name="title"
                             id="title"
-                            className=" w-28 bg-input-gray border-input-gray rounded-full p-2 px-3 mb-4"
+                            className=" w-28 bg-gray-100 border-gray-100 rounded-full p-2 px-3 mb-4"
                             required
                         >
                             <option value=""></option>
@@ -46,129 +41,129 @@ const Register = () => {
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <label htmlFor="" className="mb-1">
+                        <label htmlFor="name" className="mb-1">
                             ชื่อ (หากมีชื่อกลางให้ใส่ในช่องนี้)
                         </label>
                         <input
                             type="text"
                             name="name"
                             id="name"
-                            className={inputStyle}
+                            className="input"
                             required
                         />
-                        <label htmlFor="" className="mb-1">
+                        <label htmlFor="surname" className="mb-1">
                             นามสกุล
                         </label>
                         <input
                             type="text"
                             name="surname"
                             id="surname"
-                            className={inputStyle}
+                            className="input"
                             required
                         />
-                        <label htmlFor="" className="mb-1">
+                        <label htmlFor="nickname" className="mb-1">
                             ชื่อเล่น
                         </label>
                         <input
                             type="text"
                             name="nickname"
                             id="nickname"
-                            className={inputStyle}
+                            className="input"
                             required
                         />
                     </div>
                 </div>
                 <hr className="w-10/12 h-1 mt-3 mb-5" />
                 <div className=" w-10/12 flex flex-col justify-start items-start">
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="phone" className="mb-1">
                         หมายเลขโทรศัพท์
                     </label>
                     <input
                         type="text"
                         name="phone"
                         id="phone"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="email" className="mb-1">
                         Email
                     </label>
                     <input
                         type="email"
                         name="email"
                         id="email"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="lindId" className="mb-1">
                         LINE ID
                     </label>
                     <input
                         type="text"
                         name="lineId"
                         id="lineId"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="diseases" className="mb-1">
                         โรคประจำตัว (ไม่มีให้ใส่ -)
                     </label>
                     <input
                         type="text"
                         name="diseases"
                         id="diseases"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="drugAllergy" className="mb-1">
                         ยาที่แพ้ (ไม่มีให้ใส่ -)
                     </label>
                     <input
                         type="text"
                         name="drugAllergy"
                         id="drugAllergy"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="foodAllergy" className="mb-1">
                         อาหารที่แพ้ (ไม่มีให้ใส่ -)
                     </label>
                     <input
                         type="text"
                         name="foodAllergy"
                         id="foodAllergy"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="foodRestriction" className="mb-1">
                         ข้อจำกัดทางอาหาร (ไม่มีให้ใส่ -)
                     </label>
                     <input
                         type="text"
                         name="foodRestriction"
                         id="foodRestriction"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
                     <hr className="w-full h-1 mt-3 mb-5" />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="emergencyNo" className="mb-1">
                         เบอร์ติดต่อฉุกเฉิน
                     </label>
                     <input
                         type="text"
                         name="emergencyNo"
                         id="emergencyNo"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
-                    <label htmlFor="" className="mb-1">
+                    <label htmlFor="emergencyRel" className="mb-1">
                         ความสัมพันธ์กับตนเอง
                     </label>
                     <input
                         type="text"
                         name="emergencyRel"
                         id="emergencyRel"
-                        className={inputStyle}
+                        className="input"
                         required
                     />
                 </div>
@@ -177,7 +172,7 @@ const Register = () => {
                         type="checkbox"
                         name="flask"
                         id="flask"
-                        className=" bg-input-gray border-none w-7 h-7 mr-3"
+                        className=" bg-gray-100 border-none w-7 h-7 mr-3"
                     />
                     <label htmlFor="flask" className="text-left w-3/4">
                         รับกระติกน้ำ Zero waste ที่โต๊ะลงทะเบียนในวันที่ 5
@@ -188,7 +183,7 @@ const Register = () => {
                         type="checkbox"
                         name="tc"
                         id="tc"
-                        className=" bg-input-gray border-none w-7 h-7 mr-3"
+                        className=" bg-gray-100 border-none w-7 h-7 mr-3"
                     />
                     <label htmlFor="tc" className="text-left ">
                         ยอมรับ{' '}
@@ -199,7 +194,7 @@ const Register = () => {
                 </div>
                 <button
                     type="submit"
-                    className="text-xl text-white font-bold bg-[#E95682] rounded-full py-2 px-14 my-10 mb-16 shadow-regisSubmit"
+                    className="text-xl text-white font-bold bg-pink rounded-full py-2 px-14 my-10 mb-16 ring-pink/30 ring-8 hover:bg-pink/80"
                 >
                     ลงทะเบียน
                 </button>

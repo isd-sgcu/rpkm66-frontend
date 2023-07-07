@@ -15,8 +15,6 @@ const config = {
                 yellow: '#FFC32A',
                 green: '#46B9AD',
                 orange: '#E36131',
-                'input-gray': '#F3F3F3',
-                'input-gray-dark': 'rgba(51, 51, 51, 0.30)',
             },
             fontFamily: {
                 ibm: ['var(--font-ibm)'],
