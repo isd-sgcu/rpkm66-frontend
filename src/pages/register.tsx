@@ -1,31 +1,69 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
-import ProfilePlaceholder from '@/public/images/pfp-placeholder.svg';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
+const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const [previewImage, setPreviewImage] = useState<string>(
+        profilePicPlaceholderURL
+    );
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    };
+
     return (
         <div className="flex lg:justify-end">
-            <form className=" bg-white w-full lg:w-2/3 mt-40 lgß:mt-0 rounded-tl-3xl lg:rounded-none lg:rounded-l-3xl flex flex-col justify-start items-center text-purple font-ibm">
+            <form
+                className="bg-white w-full lg:w-2/3 mt-40 lg:mt-0 rounded-t-3xl lg:rounded-tr-none flex flex-col justify-start items-center text-purple font-ibm"
+                onSubmit={handleSubmit}
+            >
                 <h1 className="text-3xl font-bold mt-12 mb-2">ลงทะเบียน</h1>
                 <div className="flex flex-col justify-start items-center w-10/12 pt-6 lg:flex-row-reverse lg:justify-between">
-                    <div className="w-40 mb-6 lg:w-1/4">
+                    <label
+                        htmlFor="image"
+                        className="w-40 mb-6 lg:w-1/4 cursor-pointer"
+                    >
                         <div className="flex flex-row justify-between items-center">
                             <div>อัปโหลดรูป</div>
-                            <button className="bg-orange flex flex-row justify-center items-center py-1 px-3 rounded-full">
+                            <div className="bg-orange flex flex-row justify-center items-center py-1 px-3 rounded-full">
                                 <PencilSquareIcon className="text-white w-4 h-4" />
-                                <p className="text-white text-xs">แก้ไข</p>
-                            </button>
+                                <span className="text-white text-xs">
+                                    แก้ไข
+                                </span>
+                            </div>
                         </div>
-                        <div className="w-full h-48 relative rounded-2xl overflow-hidden my-4 shadow-lg">
-                            <Image
-                                src={ProfilePlaceholder}
-                                alt=""
-                                fill
-                                style={{ objectFit: 'contain' }}
-                            />
-                        </div>
-                    </div>
+                        <input
+                            id="image"
+                            name="image"
+                            type="file"
+                            accept="images/*"
+                            className="hidden"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                if (!e.target.files || !e.target.files[0])
+                                    return;
+
+                                const file = e.target.files[0];
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                    setPreviewImage(reader.result as string);
+                                };
+                                reader.readAsDataURL(file);
+                            }}
+                        />
+                        {previewImage && (
+                            <div className="w-full aspect-3/4 relative my-4">
+                                <Image
+                                    src={previewImage}
+                                    alt="preview"
+                                    fill
+                                    className="object-cover object-center shadow-lg"
+                                />
+                            </div>
+                        )}
+                    </label>
                     <div className="w-full lg:w-1/2 flex flex-col justify-start items-start">
                         <label htmlFor="title" className="mb-1">
                             คำนำหน้าชื่อ
@@ -74,7 +112,7 @@ const Register = () => {
                     </div>
                 </div>
                 <hr className="w-10/12 h-1 mt-3 mb-5" />
-                <div className=" w-10/12 flex flex-col justify-start items-start">
+                <div className="w-10/12 flex flex-col justify-start items-start">
                     <label htmlFor="phone" className="mb-1">
                         หมายเลขโทรศัพท์
                     </label>
@@ -172,7 +210,7 @@ const Register = () => {
                         type="checkbox"
                         name="flask"
                         id="flask"
-                        className=" bg-gray-100 border-none w-7 h-7 mr-3"
+                        className="bg-gray-100 border-none w-7 h-7 mr-3"
                     />
                     <label htmlFor="flask" className="text-left w-3/4">
                         รับกระติกน้ำ Zero waste ที่โต๊ะลงทะเบียนในวันที่ 5
@@ -183,11 +221,12 @@ const Register = () => {
                         type="checkbox"
                         name="tc"
                         id="tc"
-                        className=" bg-gray-100 border-none w-7 h-7 mr-3"
+                        className="bg-gray-100 border-none w-7 h-7 mr-3"
+                        required
                     />
-                    <label htmlFor="tc" className="text-left ">
+                    <label htmlFor="tc" className="text-left">
                         ยอมรับ{' '}
-                        <Link href={''} className=" underline">
+                        <Link href={''} className="underline">
                             ข้อตกลงและเงื่อนไขการใช้งาน
                         </Link>
                     </label>

@@ -19,12 +19,11 @@ const config = {
             fontFamily: {
                 ibm: ['var(--font-ibm)'],
             },
-            backgroundImage: {
-                'background-desktop': "url('/images/background-desktop.png')",
-                'background-mobile': "url('/images/background-mobile.png')",
-            },
             ringWidth: {
                 16: '16px',
+            },
+            aspectRatio: {
+                '3/4': '3 / 4',
             },
         },
     },
