@@ -12,7 +12,7 @@ function Navbar() {
                     className="object-contain"
                 />
             </div>
-            <button className="bg-orange lg:px-6 px-3 font-ibm lg:py-2 py-1 rounded-2xl text-white lg:text-lg text-xs">
+            <button className="bg-orange lg:px-6 px-3 lg:py-2 py-1 rounded-2xl lg:text-lg text-xs">
                 เข้าสู่ระบบ
             </button>
         </nav>

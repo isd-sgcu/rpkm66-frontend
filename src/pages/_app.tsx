@@ -14,7 +14,7 @@ const ibmPlexSansThai = IBM_Plex_Sans_Thai({
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <AuthProvider>
-            <main className={`${ibmPlexSansThai.variable} font-sans`}>
+            <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
                 <Component {...pageProps} />
                 <Background />
             </main>

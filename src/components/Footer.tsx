@@ -18,7 +18,7 @@ const Footer = () => {
                                 height={79}
                             />
                         </div>
-                        <div className="text-white font-semibold font-ibm  text-xs items-end lg:mt-5">
+                        <div className="font-semibold text-xs items-end lg:mt-5">
                             <h6 className="flex justify-center leading-snug lg:justify-start text-xl font-normal my-1 items-center">
                                 รับเพื่อนก้าวใหม่ 2023
                             </h6>
@@ -67,7 +67,7 @@ const Footer = () => {
             </div>
             <div className="bg-black w-full p-3 flex justify-center items-center">
                 <Link
-                    className="text-gray-200 font-light text-xs underline underline-offset-2 font-ibm"
+                    className="text-gray-200 font-light text-xs underline underline-offset-2"
                     href="https://gmail.com"
                 >
                     ข้อตกลงและเงื่อนไขการใช้งาน
