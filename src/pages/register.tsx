@@ -17,7 +17,7 @@ const Register = () => {
                                 <p className="text-white text-xs">แก้ไข</p>
                             </button>
                         </div>
-                        <div className=" w-full h-48 relative rounded-2xl overflow-hidden  my-4 shadow-lg">
+                        <div className="w-full h-48 relative rounded-2xl overflow-hidden my-4 shadow-lg">
                             <Image
                                 src={ProfilePlaceholder}
                                 alt=""
@@ -33,7 +33,7 @@ const Register = () => {
                         <select
                             name="title"
                             id="title"
-                            className=" w-28 bg-gray-100 border-gray-100 rounded-full p-2 px-3 mb-4"
+                            className="w-28 bg-gray-100 border-gray-100 rounded-full p-2 px-3 mb-4"
                             required
                         >
                             <option value=""></option>
