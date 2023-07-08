@@ -21,6 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Background />
             </main>
 
+            <title>รับเพื่อนก้าวใหม่ 2023</title>
+            <meta content="รับเพื่อนก้าวใหม่ 2023" name="description" />
+
             <Analytics />
             <Script
                 async
