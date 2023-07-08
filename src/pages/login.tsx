@@ -54,7 +54,7 @@ const Login = () => {
     }, [query, replace, handleLogin, isReady]);
 
     return (
-        <div className="w-screen h-screen flex flex-col items-center justify-center">
+        <div className="flex h-screen w-screen flex-col items-center justify-center">
             <p>{message}</p>
         </div>
     );
