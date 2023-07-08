@@ -4,33 +4,35 @@ import Favicon from '@/public/images/favicon.svg';
 import Footer from '@/components/Footer';
 import { ChangeEvent, ReactNode, useState } from 'react';
 
-const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
+const picTest1 = '/images/pfp-placeholder.svg';
+const picTest2 = '/images/rocket.svg';
+const picTest3 = '/images/background-mobile.svg';
 interface testBaanObj {
     name: string;
     size: string;
     imgUrl: string;
 }
 const testBaanData: testBaanObj[] = [
-    { name: 'บ้่านทรายทอง', size: 'S', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้านนี้มีรัก', size: 'S', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้านและสวน', size: 'S', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้านนอก', size: 'M', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้านของใคร', size: 'M', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้านอะไรก็ไม่รู้', size: 'M', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้านบ้าน', size: 'L', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้าน Pure', size: 'L', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้าน Dota', size: 'L', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้าน LOL', size: 'XL', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้าน ROV', size: 'XL', imgUrl: profilePicPlaceholderURL },
-    { name: 'บ้าน ggez', size: 'XL', imgUrl: profilePicPlaceholderURL },
+    { name: 'บ้่านทรายทอง', size: 'S', imgUrl: picTest1 },
+    { name: 'บ้านนี้มีรัก', size: 'S', imgUrl: picTest1 },
+    { name: 'บ้านและสวน', size: 'S', imgUrl: picTest1 },
+    { name: 'บ้านนอก', size: 'M', imgUrl: picTest3 },
+    { name: 'บ้านของใคร', size: 'M', imgUrl: picTest1 },
+    { name: 'บ้านอะไรก็ไม่รู้', size: 'M', imgUrl: picTest1 },
+    { name: 'บ้านบ้าน', size: 'L', imgUrl: picTest1 },
+    { name: 'บ้าน Pure', size: 'L', imgUrl: picTest1 },
+    { name: 'บ้าน Dota', size: 'L', imgUrl: picTest2 },
+    { name: 'บ้าน LOL', size: 'XL', imgUrl: picTest1 },
+    { name: 'บ้าน ROV', size: 'XL', imgUrl: picTest1 },
+    { name: 'บ้าน ggez', size: 'XL', imgUrl: picTest1 },
 ];
 
 const BaanChoosing = () => {
-    const bgStyle: string = 'mt-3 mb-1 mr-none p-auto py-8 px-12';
+    const bgStyle: string = 'lg:mb-none mb-6 p-auto py-8 px-8';
     const bottonStyle: string =
-        'lg:mx-8 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
+        'lg:mx-4 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
     const textStyle: string =
-        'bg-pink-400 w-fit lg:px-4 px-2 mr-6 lg:py-2 py-1 mb-12 rounded-lg lg:text-sm text-xs ring-8 ring-pink-400/30';
+        'bg-pink-400 w-fit lg:px-4 px-2 mr-6 lg:py-2 py-1 rounded-lg lg:text-sm text-xs ring-8 ring-pink-400/30';
     const [input, setInput] = useState<string>('');
     interface selectedBaan {
         imageURL: string;
@@ -40,19 +42,19 @@ const BaanChoosing = () => {
     }
     const images: selectedBaan[] = [
         {
-            imageURL: profilePicPlaceholderURL,
-            name: '',
-            size: '',
+            imageURL: picTest2,
+            name: 'บ้าน Dota',
+            size: 'L',
             num: 1,
         },
         {
-            imageURL: profilePicPlaceholderURL,
-            name: '',
-            size: '',
+            imageURL: picTest3,
+            name: 'บ้านนอก',
+            size: 'M',
             num: 2,
         },
         {
-            imageURL: profilePicPlaceholderURL,
+            imageURL: picTest1,
             name: '',
             size: '',
             num: 3,
@@ -79,7 +81,7 @@ const BaanChoosing = () => {
             </div>
         );
     });
-    const listAllBaan: ReactNode = testBaanData
+    const listBaan: ReactNode = testBaanData
         .filter((e) => e.name.includes(input))
         .map((e: testBaanObj) => {
             return (
@@ -105,23 +107,21 @@ const BaanChoosing = () => {
     return (
         <>
             <Navbar />
-            <div className="w-screen h-screen">
-                <div className="text-xl font-ibm flex lg:flex-row flex-col text-white relative z-0 overflow-clip translate-y-20">
-                    <div className="lg:ml-auto lg:mr-4">
-                        <div
-                            className={`${bgStyle} bg-white text-black rounded-3xl`}
-                        >
-                            <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
-                                เลือกบ้าน
-                            </h1>
-                            <h2 className="text-xl lg:text-l my-3 relative z-0 leading-none select-none">
-                                เลือก 3 บ้านที่สนใจมากที่สุด
-                            </h2>
-                            <div className="flex lg:flex-col justify-center items-center">
-                                {usedSelectedBaan}
-                            </div>
+            <div className="w-screen h-screen grid h-screen place-items-center overflow-scroll">
+                <div className="text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white relative overflow-clip -translate-y-[2.5rem]">
+                    <div
+                        className={`lg:ml-auto lg:mr-4 ${bgStyle} bg-white text-black rounded-3xl`}
+                    >
+                        <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
+                            เลือกบ้าน
+                        </h1>
+                        <h2 className="text-xl lg:text-l my-3 relative z-0 leading-none select-none">
+                            เลือก 3 บ้านที่สนใจมากที่สุด
+                        </h2>
+                        <div className="flex lg:flex-col justify-center items-center">
+                            {usedSelectedBaan}
                         </div>
-                        <div className="lg:text-xl text-base flex my-2 items-center justify-center text-center">
+                        <div className="mt-3 mb-1 text-white flex justify-center items-center">
                             <button
                                 className={`${bottonStyle} bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
                                 onClick={() => console.log('Pink was clicked')}
@@ -137,7 +137,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} bg-black/20  rounded-3xl lg:mr-auto h-[32rem] lg:w-[52rem] overflow-scroll border`}
+                        className={`${bgStyle} lg:mr-auto bg-black/20 rounded-3xl h-[32rem] w-3/5 overflow-scroll border`}
                     >
                         <div className="flex items-center">
                             <div>
@@ -164,7 +164,7 @@ const BaanChoosing = () => {
                             </form>
                         </div>
                         <div
-                            className={`flex flex-row mt-12 lg:px-4 lg:py-4 h-auto lg:overflow-scroll`}
+                            className={`flex mt-12 lg:px-4 lg:py-4 h-auto lg:overflow-scroll`}
                         >
                             <div className={textStyle}>
                                 <button
@@ -195,8 +195,8 @@ const BaanChoosing = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex flex-col lg:flex-row lg:px-4 lg:py-4 h-auto flex-wrap">
-                            {listAllBaan}
+                        <div className="flex flex-col lg:flex-row justify-center items-center lg:px-4 lg:py-4 h-auto flex-wrap">
+                            {listBaan}
                         </div>
                     </div>
                 </div>
