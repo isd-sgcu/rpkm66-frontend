@@ -26,8 +26,7 @@ const testBaanData: testBaanObj[] = [
 ];
 
 const BaanChoosing = () => {
-    const bgStyle: string =
-        'bg-black/20 backdrop-blur-sm mt-3 mb-1 mr-none p-auto py-8 px-12';
+    const bgStyle: string = 'mt-3 mb-1 mr-none p-auto py-8 px-12';
     const bottonStyle: string =
         'lg:mx-8 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
     const textStyle: string =
@@ -59,7 +58,7 @@ const BaanChoosing = () => {
             num: 3,
         },
     ];
-    const useSelectedBaan: ReactNode = images.map((e: selectedBaan) => {
+    const usedSelectedBaan: ReactNode = images.map((e: selectedBaan) => {
         return (
             <div
                 key={e.num}
@@ -104,7 +103,9 @@ const BaanChoosing = () => {
             <div className="w-screen h-screen">
                 <div className="text-xl font-ibm flex lg:flex-row flex-col text-white relative z-0 overflow-clip translate-y-20">
                     <div className="lg:ml-auto lg:mr-4">
-                        <div className={`${bgStyle} rounded-3xl`}>
+                        <div
+                            className={`${bgStyle} bg-white text-black rounded-3xl`}
+                        >
                             <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                                 เลือกบ้าน
                             </h1>
@@ -112,10 +113,10 @@ const BaanChoosing = () => {
                                 เลือก 3 บ้านที่สนใจมากที่สุด
                             </h2>
                             <div className="flex lg:flex-col justify-center items-center">
-                                {useSelectedBaan}
+                                {usedSelectedBaan}
                             </div>
                         </div>
-                        <div className="lg:text-xl text-base flex items-center justify-center text-center">
+                        <div className="lg:text-xl text-base flex my-2 items-center justify-center text-center">
                             <button
                                 className={`${bottonStyle} bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
                                 onClick={() => console.log('Pink was clicked')}
@@ -131,7 +132,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} rounded-3xl lg:mr-auto h-[32rem] lg:w-[52rem] overflow-scroll`}
+                        className={`${bgStyle} bg-black/20  rounded-3xl lg:mr-auto h-[32rem] lg:w-[52rem] overflow-scroll border`}
                     >
                         <div className="flex items-center">
                             <div>
@@ -141,7 +142,7 @@ const BaanChoosing = () => {
                                     className="object-contain w-8 h-8 lg:w-12 lg:h-12 mr-4"
                                 />
                             </div>
-                            <form className="lg:w-full overflow-hidden w-full">
+                            <form className="lg:w-full w-full text-black">
                                 <input
                                     type="text"
                                     name="search"
@@ -153,7 +154,7 @@ const BaanChoosing = () => {
                                     ) => {
                                         setInput(e.target.value);
                                     }}
-                                    className="px-4 py-1 text-sm bg-pink-800 placeholder-white w-full rounded-xl lg:text-2xl"
+                                    className="px-4 py-1 text-sm bg-white placeholder-black w-full rounded-2xl lg:text-xl ring-8 ring-white/20"
                                 />
                             </form>
                         </div>
