@@ -13,7 +13,7 @@ interface testBaanObj {
     imgUrl: string;
 }
 const testBaanData: testBaanObj[] = [
-    { name: 'บ้่านทรายทอง', size: 'S', imgUrl: picTest1 },
+    { name: 'บ้านทรายทอง', size: 'S', imgUrl: picTest1 },
     { name: 'บ้านนี้มีรัก', size: 'S', imgUrl: picTest1 },
     { name: 'บ้านและสวน', size: 'S', imgUrl: picTest1 },
     { name: 'บ้านนอก', size: 'M', imgUrl: picTest3 },
@@ -108,7 +108,7 @@ const BaanChoosing = () => {
         <>
             <Navbar />
             <div className="w-screen h-screen grid h-screen place-items-center overflow-scroll">
-                <div className="text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white relative overflow-clip -translate-y-[2.5rem]">
+                <div className="w-screen text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white relative overflow-clip -translate-y-[2.5rem]">
                     <div
                         className={`lg:ml-auto lg:mr-4 ${bgStyle} bg-white text-black rounded-3xl`}
                     >
@@ -137,7 +137,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} lg:mr-auto bg-black/20 rounded-3xl h-[32rem] w-3/5 overflow-scroll border`}
+                        className={`${bgStyle} lg:mr-auto bg-black/50 rounded-3xl h-[32rem] w-3/5 overflow-scroll border`}
                     >
                         <div className="flex items-center">
                             <div>
@@ -195,7 +195,7 @@ const BaanChoosing = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex flex-col lg:flex-row justify-center items-center lg:px-4 lg:py-4 h-auto flex-wrap">
+                        <div className="flex flex-col lg:flex-row justify-center items-center lg:px-4 lg:py-4 h-auto     flex-wrap">
                             {listBaan}
                         </div>
                     </div>
