@@ -15,7 +15,10 @@ apiClient.interceptors.request.use(
         }
         return {
             ...config,
-            headers: { ...config.headers, Authorization: accessToken },
+            headers: {
+                ...config.headers,
+                Authorization: `Bearer ${accessToken}`,
+            },
         };
     },
     (err: AxiosError) => Promise.reject(err)
@@ -27,7 +30,7 @@ apiClient.interceptors.response.use(
         // Handle if token is not yet expired but invalid
         if (err.response && err.response.status === 401) {
             localStorage.clear();
-            window.location.href = '/login';
+            window.location.href = '/';
         }
         return Promise.reject(err);
     }
