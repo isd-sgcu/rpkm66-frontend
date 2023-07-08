@@ -1,4 +1,3 @@
-import { useAuth } from '@/context/AuthContext';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,9 +13,6 @@ const Register = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     };
-
-    const { user } = useAuth();
-    console.log({ user });
 
     return (
         <div className="flex lg:justify-end">
