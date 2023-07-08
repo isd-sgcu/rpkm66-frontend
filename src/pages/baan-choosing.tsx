@@ -72,8 +72,8 @@ const BaanChoosing = () => {
                     <Image
                         src={e.imageURL}
                         alt={e.name}
-                        width={window.screen.width >= 1024 ? 20 : 16}
-                        height={window.screen.width >= 1024 ? 20 : 16}
+                        width={20}
+                        height={20}
                         className="fill"
                     />
                 </div>
@@ -95,8 +95,8 @@ const BaanChoosing = () => {
                         <Image
                             src={e.imgUrl}
                             alt={e.name}
-                            width={window.screen.width >= 1024 ? 48 : 36}
-                            height={window.screen.width >= 1024 ? 48 : 36}
+                            width={36}
+                            height={36}
                             className="fill"
                         />
                     </div>
@@ -137,7 +137,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} lg:mr-auto lg:ml:none bg-black/50 rounded-3xl lg:[32rem] 2xl:h-3/4 h-auto lg:w-3/5 mx-12 border`}
+                        className={`${bgStyle} lg:mr-auto lg:ml:none bg-black/50 rounded-3xl lg:[32rem] min-[1600px]:h-3/4 h-auto lg:w-3/5 mx-12 border`}
                     >
                         <div className="flex items-center">
                             <div>
@@ -159,7 +159,7 @@ const BaanChoosing = () => {
                                     ) => {
                                         setInput(e.target.value);
                                     }}
-                                    className="px-4 py-1 text-sm bg-white placeholder-black w-full rounded-2xl lg:text-xl ring-8 ring-white/20"
+                                    className="px-4 py-1 text-sm bg-white placeholder-black w-full rounded-3xl lg:text-xl ring-8 ring-white/20"
                                 />
                             </form>
                         </div>
@@ -195,7 +195,7 @@ const BaanChoosing = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex justify-center items-center lg:py-4 lg:h-[19rem] 2xl:h-5/6 lg:overflow-scroll flex-wrap">
+                        <div className="flex justify-center items-center lg:py-4 lg:h-[19rem] min-[1600px]:h-5/6 lg:overflow-scroll flex-wrap">
                             {listBaan}
                         </div>
                     </div>
