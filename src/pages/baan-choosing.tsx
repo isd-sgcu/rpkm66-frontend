@@ -79,24 +79,29 @@ const BaanChoosing = () => {
             </div>
         );
     });
-    const listAllBaan: ReactNode = testBaanData.map((e: testBaanObj) => {
-        return (
-            <div key={e.name} className="flex flex-col text-sm items-center">
+    const listAllBaan: ReactNode = testBaanData
+        .filter((e) => e.name.includes(input))
+        .map((e: testBaanObj) => {
+            return (
                 <div
-                    className={`h-48 w-48 bg-white my-4 mx-4 flex items-center justify-center rounded-xl`}
+                    key={e.name}
+                    className="flex flex-col text-sm items-center"
                 >
-                    <Image
-                        src={e.imgUrl}
-                        alt={e.name}
-                        width={48}
-                        height={48}
-                        className="fill"
-                    />
+                    <div
+                        className={`h-48 w-48 bg-white my-4 mx-4 flex items-center justify-center rounded-xl`}
+                    >
+                        <Image
+                            src={e.imgUrl}
+                            alt={e.name}
+                            width={48}
+                            height={48}
+                            className="fill"
+                        />
+                    </div>
+                    <p>{`${e.size}: ${e.name}`}</p>
                 </div>
-                <p>{`${e.size}: ${e.name}`}</p>
-            </div>
-        );
-    });
+            );
+        });
     return (
         <>
             <Navbar />
