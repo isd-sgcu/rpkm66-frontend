@@ -67,13 +67,13 @@ const BaanChoosing = () => {
                 className="flex flex-col lg:flex-row text-sm items-center"
             >
                 <div
-                    className={`h-20 w-20 bg-white my-3 mx-4 flex items-center justify-center ring-4 ring-pink-400`}
+                    className={`lg:h-20 lg:w-20 h-16 w-16 bg-white my-3 mx-4 flex items-center justify-center ring-4 ring-pink-400`}
                 >
                     <Image
                         src={e.imageURL}
                         alt={e.name}
-                        width={20}
-                        height={20}
+                        width={window.screen.width >= 1024 ? 20 : 16}
+                        height={window.screen.width >= 1024 ? 20 : 16}
                         className="fill"
                     />
                 </div>
@@ -90,13 +90,13 @@ const BaanChoosing = () => {
                     className="flex flex-col text-sm items-center"
                 >
                     <div
-                        className={`h-48 w-48 bg-white my-4 mx-4 flex items-center justify-center rounded-xl`}
+                        className={`lg:h-48 lg:w-48 h-36 w-36 bg-white my-4 mx-4 flex items-center justify-center rounded-xl`}
                     >
                         <Image
                             src={e.imgUrl}
                             alt={e.name}
-                            width={48}
-                            height={48}
+                            width={window.screen.width >= 1024 ? 48 : 36}
+                            height={window.screen.width >= 1024 ? 48 : 36}
                             className="fill"
                         />
                     </div>
@@ -107,10 +107,10 @@ const BaanChoosing = () => {
     return (
         <>
             <Navbar />
-            <div className="w-screen h-screen grid h-screen place-items-center overflow-scroll">
-                <div className="w-screen text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white relative overflow-clip -translate-y-[2.5rem]">
+            <div className="w-screen lg:h-screen grid place-items-center">
+                <div className="w-screen lg:h-full text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
                     <div
-                        className={`lg:ml-auto lg:mr-4 ${bgStyle} bg-white text-black rounded-3xl`}
+                        className={`${bgStyle} lg:ml-auto lg:mr-4 bg-white text-black rounded-3xl`}
                     >
                         <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                             เลือกบ้าน
@@ -137,7 +137,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} lg:mr-auto bg-black/50 rounded-3xl h-[32rem] w-3/5 overflow-scroll border`}
+                        className={`${bgStyle} lg:mr-auto lg:ml:none bg-black/50 rounded-3xl lg:[32rem] 2xl:h-3/4 h-auto lg:w-3/5 mx-12 border`}
                     >
                         <div className="flex items-center">
                             <div>
@@ -164,7 +164,7 @@ const BaanChoosing = () => {
                             </form>
                         </div>
                         <div
-                            className={`flex mt-12 lg:px-4 lg:py-4 h-auto lg:overflow-scroll`}
+                            className={`flex mt-8 lg:px-4 lg:py-4 overflow-scroll`}
                         >
                             <div className={textStyle}>
                                 <button
@@ -195,13 +195,15 @@ const BaanChoosing = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex flex-col lg:flex-row justify-center items-center lg:px-4 lg:py-4 h-auto     flex-wrap">
+                        <div className="flex justify-center items-center lg:py-4 lg:h-[19rem] 2xl:h-5/6 lg:overflow-scroll flex-wrap">
                             {listBaan}
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer />
+            <div className="lg:translate-y-0 translate-y-24">
+                <Footer />
+            </div>
         </>
     );
 };
