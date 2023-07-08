@@ -1,3 +1,5 @@
+import { RegisterDTO } from '@/dto/registerDTO';
+import { httpPatch } from '@/utils/axios';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,8 +12,38 @@ const Register = () => {
         profilePicPlaceholderURL
     );
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const body = {
+            allergy_food: e.currentTarget.foodAllergy.value as string,
+            allergy_medicine: e.currentTarget.drugAllergy.value as string,
+            disease: e.currentTarget.diseases.value as string,
+            email: e.currentTarget.email.value as string,
+            emer_phone: e.currentTarget.emergencyNo.value as string,
+            emer_relation: e.currentTarget.emergencyRel.value as string,
+            // @ts-expect-error bruh
+            firstname: e.currentTarget.name.value as string,
+            food_restriction: e.currentTarget.foodRestriction.value as string,
+            line_id: e.currentTarget.lineId.value as string,
+            lastname: e.currentTarget.surname.value as string,
+            nickname: e.currentTarget.nickname.value as string,
+            phone: e.currentTarget.phone.value as string,
+            // @ts-expect-error bruh
+            title: e.currentTarget.title.value as string,
+            want_bottle: e.currentTarget.flask.checked as boolean,
+            id: 'TODO',
+        } satisfies RegisterDTO;
+
+        console.log(e.currentTarget);
+        console.log({ body });
+
+        const res = await httpPatch(
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/user`,
+            body
+        );
+
+        console.log({ res });
     };
 
     return (
