@@ -48,7 +48,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
             const userProfile = await getUserProfile();
             if (!userProfile) {
                 localStorage.clear();
-                window.location.href = '/login';
+                window.location.href = '/';
                 return;
             }
 
