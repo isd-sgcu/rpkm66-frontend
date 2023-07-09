@@ -28,7 +28,7 @@ const testBaanData: testBaanObj[] = [
 ];
 
 const BaanChoosing = () => {
-    const bgStyle: string = 'lg:mb-none mb-6 p-auto py-8 px-8';
+    const bgStyle: string = 'lg:mb-none mb-6 p-auto py-8 px-8 border';
     const bottonStyle: string =
         'lg:mx-4 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
     const textStyle: string =
@@ -107,10 +107,10 @@ const BaanChoosing = () => {
     return (
         <>
             <Navbar />
-            <div className="w-screen lg:h-screen grid place-items-center">
+            <div className="w-screen lg:h-screen">
                 <div className="w-screen lg:h-full text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
                     <div
-                        className={`${bgStyle} lg:h-[30rem] lg:ml-auto lg:mr-4 bg-white text-black rounded-3xl`}
+                        className={`${bgStyle} flex flex-col justify-center lg:h-[30rem] lg:ml-auto bg-white text-black lg:rounded-s-3xl min-[1600px]:h-3/4`}
                     >
                         <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                             เลือกบ้าน
@@ -137,7 +137,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} lg:mr-auto lg:ml:none bg-black/50 rounded-3xl lg:h-[30rem] min-[1600px]:h-3/4 h-auto lg:w-3/5 mx-12 border`}
+                        className={`${bgStyle} lg:mr-auto bg-black/50 lg:rounded-e-3xl lg:h-[30rem] min-[1600px]:h-3/4 h-auto lg:w-3/5 lg:mx-0 mx-12 border`}
                     >
                         <div className="flex items-center">
                             <div>
