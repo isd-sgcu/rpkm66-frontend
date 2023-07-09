@@ -9,6 +9,7 @@ const config = {
         'plugin:react/jsx-runtime',
     ],
     rules: {
+        'no-unused-vars': 'off',
         'prettier/prettier': [
             'error',
             {

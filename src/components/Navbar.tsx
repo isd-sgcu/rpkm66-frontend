@@ -9,12 +9,14 @@ function Navbar() {
     return (
         <nav className="sticky top-0 z-50 flex h-11 w-full items-center justify-between bg-black/50 px-2 py-2 backdrop-blur-sm md:px-5 lg:h-20 lg:px-10 lg:py-4">
             <div className="relative h-full w-12">
-                <Image
-                    src={Favicon}
-                    alt="icon"
-                    fill
-                    className="object-contain"
-                />
+                <Link href="/">
+                    <Image
+                        src={Favicon}
+                        alt="icon"
+                        fill
+                        className="object-contain"
+                    />
+                </Link>
             </div>
             <div className="flex items-center gap-2 text-xs lg:gap-8 lg:text-lg">
                 <Link
