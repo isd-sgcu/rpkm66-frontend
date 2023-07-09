@@ -1,6 +1,6 @@
 export interface UserDTO {
     id: string;
-    studentID: string;
+    student_id: string;
     faculty: string;
     year: string;
     title?: 'Mr.' | 'Mrs.' | 'Ms.';
@@ -9,15 +9,15 @@ export interface UserDTO {
     nickname?: string;
     email?: string;
     phone?: string;
-    lineID?: string;
+    line_id?: string;
     disease?: string;
-    allergyFood?: string;
-    allergyMedicine?: string;
-    foodRestriction?: string;
-    imageUrl?: string;
-    canSelectBaan?: boolean;
-    isVerify?: boolean;
-    groupId?: string;
-    baanId?: string;
-    isGotTicket?: boolean;
+    allergy_food?: string;
+    allergy_medicine?: string;
+    food_restriction?: string;
+    image_url?: string;
+    can_select_baan?: boolean;
+    is_verify?: boolean;
+    group_id?: string;
+    baan_id?: string;
+    is_got_ticket?: boolean;
 }

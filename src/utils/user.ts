@@ -5,7 +5,7 @@ import { UserDTO } from '@/dto/userDTO';
 
 const transformUserDTOtoIUser = (user: UserDTO) => ({
     id: user.id,
-    studentID: user.studentID,
+    studentID: user.student_id,
     faculty: user.faculty,
     year: user.year,
     title: user.title || 'Mr.',
@@ -14,17 +14,17 @@ const transformUserDTOtoIUser = (user: UserDTO) => ({
     nickname: user.nickname ?? '',
     email: user.email ?? '',
     phone: user.phone ?? '',
-    lineID: user.lineID ?? '',
+    lineID: user.line_id ?? '',
     disease: user.disease ?? '',
-    allergyFood: user.allergyFood ?? '',
-    allergyMedicine: user.allergyMedicine ?? '',
-    foodRestriction: user.foodRestriction ?? '',
-    imageUrl: user.imageUrl ?? '',
-    canSelectBaan: user.canSelectBaan ?? false,
-    isVerify: user.isVerify ?? false,
-    groupId: user.groupId ?? '',
-    baanId: user.baanId,
-    isGotTicket: user.isGotTicket ?? false,
+    allergyFood: user.allergy_food ?? '',
+    allergyMedicine: user.allergy_medicine ?? '',
+    foodRestriction: user.food_restriction ?? '',
+    imageUrl: user.image_url ?? '',
+    canSelectBaan: user.can_select_baan ?? false,
+    isVerify: user.is_verify ?? false,
+    groupId: user.group_id ?? '',
+    baanId: user.baan_id,
+    isGotTicket: user.is_got_ticket ?? false,
 });
 
 const getUserProfile = async (): Promise<IUser | null> => {
