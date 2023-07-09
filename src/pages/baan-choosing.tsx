@@ -110,7 +110,7 @@ const BaanChoosing = () => {
             <Navbar />
 
             <div className="w-screen h-screen lg:flex lg:flex-row justify-center items-center lg:text-white overflow-scroll lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
-                <div className="w-fit lg:mb-none mb-6 p-auto py-8 px-8 border lg:h-[30rem] mx-auto lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-s-3xl min-[1600px]:h-3/4">
+                <div className="w-fit lg:mb-none mb-6 p-auto py-8 px-8 border lg:h-[30rem] mx-auto lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-s-3xl min-[1600px]:h-3/5">
                     <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                         เลือกบ้าน
                     </h1>
@@ -135,7 +135,7 @@ const BaanChoosing = () => {
                         </button>
                     </div>
                 </div>
-                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-e-3xl lg:h-[30rem] min-[1600px]:h-3/4 h-auto lg:w-3/5 lg:mx-0 mx-12 border">
+                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-e-3xl lg:h-[30rem] min-[1600px]:h-3/5 h-auto lg:w-3/5 lg:mx-0 mx-12">
                     <div className="flex items-center">
                         <div>
                             <Image
@@ -182,7 +182,7 @@ const BaanChoosing = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-5/6 lg:overflow-scroll flex-wrap">
+                    <div className="flex justify-center items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-4/5 lg:overflow-scroll flex-wrap">
                         {listBaan}
                     </div>
                 </div>
