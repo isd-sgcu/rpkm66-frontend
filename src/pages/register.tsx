@@ -1,16 +1,42 @@
 import { RegisterDTO } from '@/dto/registerDTO';
-import { httpPatch } from '@/utils/axios';
+import { httpPatch, httpPost } from '@/utils/axios';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '@/context/AuthContext';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const router = useRouter();
+
+    const { user, refreshContext } = useAuth();
+
     const [previewImage, setPreviewImage] = useState<string>(
         profilePicPlaceholderURL
     );
+
+    async function handleImageUpload(file: File) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('tag', '1');
+        formData.append('type', '1');
+
+        try {
+            const { data } = await httpPost<
+                FormData,
+                {
+                    url: string;
+                }
+            >('/file/upload', formData);
+
+            setPreviewImage(data.url);
+        } catch (error) {
+            // todo handle error
+        }
+    }
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -31,19 +57,17 @@ const Register = () => {
             phone: e.currentTarget.phone.value as string,
             // @ts-expect-error bruh
             title: e.currentTarget.title.value as string,
-            want_bottle: e.currentTarget.flask.checked as boolean,
-            id: 'TODO',
+            want_bottle: false,
+            id: user?.id ?? '',
         } satisfies RegisterDTO;
 
-        console.log(e.currentTarget);
-        console.log({ body });
-
-        const res = await httpPatch(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL}/user`,
-            body
-        );
-
-        console.log({ res });
+        try {
+            await httpPatch(`/user`, body);
+            await refreshContext();
+            router.push('/baan-selection');
+        } catch (error) {
+            // TODO handle error
+        }
     };
 
     return (
@@ -71,16 +95,13 @@ const Register = () => {
                             type="file"
                             accept="images/*"
                             className="hidden"
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                            onChange={async (
+                                e: ChangeEvent<HTMLInputElement>
+                            ) => {
                                 if (!e.target.files || !e.target.files[0])
                                     return;
 
-                                const file = e.target.files[0];
-                                const reader = new FileReader();
-                                reader.onloadend = () => {
-                                    setPreviewImage(reader.result as string);
-                                };
-                                reader.readAsDataURL(file);
+                                await handleImageUpload(e.target.files[0]);
                             }}
                         />
                         {previewImage && (
