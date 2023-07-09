@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import {
     ReactNode,
     createContext,
+    use,
     useCallback,
     useContext,
     useEffect,
@@ -63,6 +64,41 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         isFetching.current = false;
     }, [router.locale]);
+
+    useEffect(() => {
+        console.log('router.pathname', router.pathname, isAuthenticated, user);
+
+        if (user && isAuthenticated && router.pathname === '/') {
+            router.push('/baan-selection');
+        }
+
+        if (user && router.pathname === '/login') {
+            router.push('/baan-selection');
+        }
+
+        if (user && router.pathname === '/register') {
+            router.push('/baan-selection');
+        }
+
+        if (!user && router.pathname === '/baan-selection') {
+            router.push('/');
+        }
+
+        if (!isAuthenticated && router.pathname === '/register') {
+            router.push('/');
+        }
+
+        if (
+            (!isAuthenticated || !user) &&
+            router.pathname === '/baan-selection'
+        ) {
+            router.push('/');
+        }
+
+        if (isAuthenticated && !user && router.pathname !== '/login') {
+            router.push('/register');
+        }
+    }, [router.pathname, user, isAuthenticated]);
 
     useEffect(() => {
         const initializeContext = async () => {
