@@ -8,12 +8,21 @@ const BaanProfile = () => {
     const bgStyle: string = 'lg:mb-none mb-6 p-auto py-8 px-8';
     const bottonStyle: string =
         'lg:mx-4 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
-
+    interface GroupMember {
+        name: string;
+        imgUrl: string;
+        role: string;
+    }
+    const group: GroupMember[] = [
+        { name: 'Dalai Joti Salikorn', imgUrl: profilePic, role: 'leader' },
+        { name: 'แจฮยอน คงแก่การเรียน', imgUrl: profilePic, role: 'member' },
+        { name: '', imgUrl: profilePic, role: '' },
+    ];
     return (
         <>
             <Navbar />
             <div className="w-screen lg:h-screen grid place-items-center">
-                <div className="w-4/5 lg:h-full text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24 mx-auto">
+                <div className="w-4/5 lg:h-full text-md lg:text-4xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24 mx-auto">
                     <div
                         className={`${bgStyle} w-1/5 h-3/5 grid bg-white rounded-l-lg place-items-center`}
                     >
@@ -24,7 +33,7 @@ const BaanProfile = () => {
                             height={367}
                             alt="profile pic"
                         />
-                        <h1 className=" text-purple font-bold text-3xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                        <h1 className=" text-purple font-bold relative z-0 leading-none select-none py-4 text-center">
                             <p>
                                 แจฮยอน
                                 <br />
@@ -55,48 +64,24 @@ const BaanProfile = () => {
                                 <div className="text-purple text-center mb-4">
                                     <b>สมาชิกในกลุ่ม(2/3)</b>{' '}
                                 </div>
+
                                 <div className="flex space-x-8 justify-center">
-                                    <div className="">
-                                        <Image
-                                            className="border-2 rounded-lg"
-                                            src={profilePic}
-                                            width={100}
-                                            height={50}
-                                            alt="profile pic1"
-                                        />
-                                        <h1 className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
-                                            <p>
-                                                แจฮยอน
-                                                <br />
-                                                คงแก่การเรียน
-                                            </p>
-                                        </h1>
-                                    </div>
-                                    <div className="">
-                                        <Image
-                                            className="border-2 rounded-lg"
-                                            src={profilePic}
-                                            width={100}
-                                            height={367}
-                                            alt="profile pic2"
-                                        />
-                                        <h1 className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
-                                            <p>
-                                                สว่าง
-                                                <br />
-                                                ใจสะอาด
-                                            </p>
-                                        </h1>
-                                    </div>
-                                    <div className="">
-                                        <Image
-                                            className="border-2 rounded-lg"
-                                            src={profilePic}
-                                            width={100}
-                                            height={367}
-                                            alt="profile pic3"
-                                        />
-                                    </div>
+                                    {group.map((data: GroupMember) => {
+                                        return (
+                                            <div className="" key={data.name}>
+                                                <Image
+                                                    className="border-2 rounded-lg"
+                                                    src={data.imgUrl}
+                                                    width={100}
+                                                    height={50}
+                                                    alt={data.name}
+                                                />
+                                                <h1 className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                                    <p>{data.name}</p>
+                                                </h1>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                                 <div className="flex justify-center">
                                     <button
