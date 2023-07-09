@@ -1,18 +1,13 @@
-import { RegisterDTO } from '@/dto/registerDTO';
-import { httpPatch, httpPost } from '@/utils/axios';
+import { httpPost } from '@/utils/axios';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useAuth } from '@/context/AuthContext';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
-    const router = useRouter();
-
-    const { user, refreshContext } = useAuth();
+    const [bottleModal, setBottleModal] = useState(false);
 
     const [previewImage, setPreviewImage] = useState<string>(
         profilePicPlaceholderURL
@@ -38,43 +33,70 @@ const Register = () => {
         }
     }
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const onFormDone = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const body = {
-            allergy_food: e.currentTarget.foodAllergy.value as string,
-            allergy_medicine: e.currentTarget.drugAllergy.value as string,
-            disease: e.currentTarget.diseases.value as string,
-            email: e.currentTarget.email.value as string,
-            emer_phone: e.currentTarget.emergencyNo.value as string,
-            emer_relation: e.currentTarget.emergencyRel.value as string,
-            // @ts-expect-error bruh
-            firstname: e.currentTarget.name.value as string,
-            food_restriction: e.currentTarget.foodRestriction.value as string,
-            line_id: e.currentTarget.lineId.value as string,
-            lastname: e.currentTarget.surname.value as string,
-            nickname: e.currentTarget.nickname.value as string,
-            phone: e.currentTarget.phone.value as string,
-            // @ts-expect-error bruh
-            title: e.currentTarget.title.value as string,
-            want_bottle: false,
-            id: user?.id ?? '',
-        } satisfies RegisterDTO;
+        setBottleModal(true);
+    };
 
-        try {
-            await httpPatch(`/user`, body);
-            await refreshContext();
-            router.push('/baan-selection');
-        } catch (error) {
-            // TODO handle error
-        }
+    const handleSubmit = async (
+        // e: FormEvent<HTMLFormElement>,
+        wantBottle: boolean
+    ) => {
+        // const body = {
+        //     allergy_food: e.currentTarget.foodAllergy.value as string,
+        //     allergy_medicine: e.currentTarget.drugAllergy.value as string,
+        //     disease: e.currentTarget.diseases.value as string,
+        //     email: e.currentTarget.email.value as string,
+        //     emer_phone: e.currentTarget.emergencyNo.value as string,
+        //     emer_relation: e.currentTarget.emergencyRel.value as string,
+        //     // @ts-expect-error bruh
+        //     firstname: e.currentTarget.name.value as string,
+        //     food_restriction: e.currentTarget.foodRestriction.value as string,
+        //     line_id: e.currentTarget.lineId.value as string,
+        //     lastname: e.currentTarget.surname.value as string,
+        //     nickname: e.currentTarget.nickname.value as string,
+        //     phone: e.currentTarget.phone.value as string,
+        //     // @ts-expect-error bruh
+        //     title: e.currentTarget.title.value as string,
+        //     want_bottle: wantBottle,
+        //     id: user?.id ?? '',
+        // } satisfies RegisterDTO;
+        // try {
+        //     await httpPatch(`/user`, body);
+        //     await refreshContext();
+        //     router.push('/baan-selection');
+        // } catch (error) {
+        //     // TODO handle error
+        // }
+        return wantBottle;
     };
 
     return (
-        <div className="flex lg:justify-end">
+        <div className="relative flex lg:justify-end">
+            {bottleModal && (
+                <>
+                    <div className="fixed left-1/2 top-1/2 z-[99] flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-lg bg-white px-16 py-24 shadow-md">
+                        <h1 className="text-center text-xl font-bold text-purple">
+                            รับกระติกน้ำด้วยไหมค้าบ
+                        </h1>
+                        <button
+                            onClick={() => {
+                                handleSubmit(true);
+                            }}
+                            className="my-10 mb-16 rounded-full bg-pink-400 px-14 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
+                        >
+                            ค้าบบบ
+                        </button>
+                    </div>
+                    <div className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/25 backdrop-blur-md"></div>
+                </>
+            )}
+
             <form
                 className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3 lg:rounded-tr-none"
-                onSubmit={handleSubmit}
+                onSubmit={onFormDone}
+                noValidate={true}
             >
                 <h1 className="mb-2 mt-12 text-3xl font-bold">ลงทะเบียน</h1>
                 <div className="flex w-10/12 flex-col items-center justify-start pt-6 lg:flex-row-reverse lg:justify-between">
