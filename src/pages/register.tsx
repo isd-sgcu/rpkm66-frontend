@@ -444,14 +444,14 @@ const Register = () => {
                     >
                         ยอมรับ{' '}
                         <Link
-                            href={''}
+                            href={'/terms-conditions'}
                             className="underline hover:no-underline"
                         >
                             เงื่อนไขการใช้งาน
                         </Link>{' '}
                         และ{' '}
                         <Link
-                            href={''}
+                            href={'/privacy-policy'}
                             className="underline hover:no-underline"
                         >
                             นโยบายความเป็นส่วนตัว
