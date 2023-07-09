@@ -66,24 +66,32 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, [router.locale]);
 
     useEffect(() => {
-        console.log('router.pathname', router.pathname, isAuthenticated, user);
-
-        if (user && router.pathname === '/') {
-            router.push('/baan-selection');
+        const alreadyRegistered = user && user.email && user.email !== '';
+        switch (router.pathname) {
+            case '/':
+                if (user) {
+                    if (alreadyRegistered) router.push('/baan-selection');
+                    else router.push('/register');
+                }
+                break;
+            case '/register':
+                if (!user) {
+                    router.push('/');
+                } else if (alreadyRegistered) {
+                    router.push('/baan-selection');
+                }
+                break;
+            case '/baan-selection':
+                if (!user) {
+                    router.push('/');
+                } else if (!alreadyRegistered) {
+                    router.push('/register');
+                }
+                break;
+            default:
+                break;
         }
-
-        if (user && router.pathname === '/login') {
-            router.push('/baan-selection');
-        }
-
-        if (user && router.pathname === '/register') {
-            router.push('/baan-selection');
-        }
-
-        if (isAuthenticated && !user && router.pathname !== '/login') {
-            router.push('/register');
-        }
-    }, [router.pathname, user, isAuthenticated]);
+    }, [isAuthenticated, router, user]);
 
     useEffect(() => {
         const initializeContext = async () => {
