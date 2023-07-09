@@ -65,12 +65,19 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex w-full items-center justify-center bg-black p-3">
+            <div className="flex w-full items-center justify-center gap-4 bg-black p-3">
                 <Link
-                    className="text-xs font-light text-gray-200 underline underline-offset-2"
-                    href="https://gmail.com"
+                    className="text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    href="/terms-conditions"
                 >
-                    ข้อตกลงและเงื่อนไขการใช้งาน
+                    เงื่อนไขการใช้งาน
+                </Link>
+
+                <Link
+                    className="text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    href="/privacy-policy"
+                >
+                    นโยบายความเป็นส่วนตัว
                 </Link>
             </div>
         </footer>
