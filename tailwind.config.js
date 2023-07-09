@@ -11,7 +11,10 @@ const config = {
         extend: {
             colors: {
                 purple: '#393061',
-                pink: '#E95682',
+                pink: {
+                    400: '#E95682',
+                    800: '#A45BD0',
+                },
                 yellow: '#FFC32A',
                 green: '#46B9AD',
                 orange: '#E36131',
@@ -19,12 +22,18 @@ const config = {
             fontFamily: {
                 ibm: ['var(--font-ibm)'],
             },
-            backgroundImage: {
-                'background-desktop': "url('/images/background-desktop.png')",
-                'background-mobile': "url('/images/background-mobile.png')",
-            },
             ringWidth: {
                 16: '16px',
+                24: '24px',
+                32: '32px',
+            },
+            aspectRatio: {
+                '3/4': '3 / 4',
+            },
+            borderRadius: {
+                '4xl': '2rem',
+                '5xl': '3rem',
+                '6xl': '4.5rem',
             },
         },
     },
