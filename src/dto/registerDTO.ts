@@ -1,3 +1,4 @@
+/** Args for PATCH /user */
 export interface RegisterDTO {
     allergy_food: string;
     allergy_medicine: string;
