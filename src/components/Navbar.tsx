@@ -7,7 +7,7 @@ function Navbar() {
     const { user, logout, login } = useAuth();
 
     return (
-        <nav className="sticky top-0 z-50 flex h-11 w-full items-center justify-between bg-black/50 px-2 py-2 backdrop-blur-sm lg:h-20 lg:px-10 lg:py-4">
+        <nav className="sticky top-0 z-50 flex h-11 w-full items-center justify-between bg-black/50 px-2 py-2 backdrop-blur-sm md:px-5 lg:h-20 lg:px-10 lg:py-4">
             <div className="relative h-full w-12">
                 <Image
                     src={Favicon}
@@ -16,7 +16,7 @@ function Navbar() {
                     className="object-contain"
                 />
             </div>
-            <div className="flex items-center gap-2 lg:gap-8">
+            <div className="flex items-center gap-2 text-xs lg:gap-8 lg:text-lg">
                 <Link
                     href="https://airtable.com/appNLAPRBVMZBgGV9/shr7FWOUnTsw53DxV"
                     className="underline hover:no-underline"
