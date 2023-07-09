@@ -68,7 +68,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         console.log('router.pathname', router.pathname, isAuthenticated, user);
 
-        if (user && router.pathname === '/') {
+        if (user && isAuthenticated && router.pathname === '/') {
             router.push('/baan-selection');
         }
 
@@ -78,6 +78,21 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         if (user && router.pathname === '/register') {
             router.push('/baan-selection');
+        }
+
+        if (!user && router.pathname === '/baan-selection') {
+            router.push('/');
+        }
+
+        if (!isAuthenticated && router.pathname === '/register') {
+            router.push('/');
+        }
+
+        if (
+            (!isAuthenticated || !user) &&
+            router.pathname === '/baan-selection'
+        ) {
+            router.push('/');
         }
 
         if (isAuthenticated && !user && router.pathname !== '/login') {
