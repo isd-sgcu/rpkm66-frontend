@@ -47,9 +47,16 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         const token = localStorage.getItem('token');
         if (token) {
             const userProfile = await getUserProfile();
+            console.log('Hey!');
             if (!userProfile) {
                 localStorage.clear();
                 window.location.href = '/';
+                return;
+            }
+            console.log(userProfile);
+            if (!userProfile.studentID.startsWith('66')) {
+                localStorage.clear();
+                window.location.href = '/only-107';
                 return;
             }
 
@@ -63,42 +70,35 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
 
         isFetching.current = false;
-    }, [router.locale]);
+    }, [router]);
 
     useEffect(() => {
-        console.log('router.pathname', router.pathname, isAuthenticated, user);
-
-        if (user && isAuthenticated && router.pathname === '/') {
-            router.push('/baan-selection');
+        const alreadyRegistered = user && user.email && user.email !== '';
+        switch (router.pathname) {
+            case '/':
+                if (user) {
+                    if (alreadyRegistered) router.push('/baan-selection');
+                    else router.push('/register');
+                }
+                break;
+            case '/register':
+                if (!user) {
+                    router.push('/');
+                } else if (alreadyRegistered) {
+                    router.push('/baan-selection');
+                }
+                break;
+            case '/baan-selection':
+                if (!user) {
+                    router.push('/');
+                } else if (!alreadyRegistered) {
+                    router.push('/register');
+                }
+                break;
+            default:
+                break;
         }
-
-        if (user && router.pathname === '/login') {
-            router.push('/baan-selection');
-        }
-
-        if (user && router.pathname === '/register') {
-            router.push('/baan-selection');
-        }
-
-        if (!user && router.pathname === '/baan-selection') {
-            router.push('/');
-        }
-
-        if (!isAuthenticated && router.pathname === '/register') {
-            router.push('/');
-        }
-
-        if (
-            (!isAuthenticated || !user) &&
-            router.pathname === '/baan-selection'
-        ) {
-            router.push('/');
-        }
-
-        if (isAuthenticated && !user && router.pathname !== '/login') {
-            router.push('/register');
-        }
-    }, [router.pathname, user, isAuthenticated]);
+    }, [isAuthenticated, router, user]);
 
     useEffect(() => {
         const initializeContext = async () => {
