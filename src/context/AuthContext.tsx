@@ -47,9 +47,16 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         const token = localStorage.getItem('token');
         if (token) {
             const userProfile = await getUserProfile();
+            console.log('Hey!');
             if (!userProfile) {
                 localStorage.clear();
                 window.location.href = '/';
+                return;
+            }
+            console.log(userProfile);
+            if (!userProfile.studentID.startsWith('66')) {
+                localStorage.clear();
+                window.location.href = '/only-107';
                 return;
             }
 
@@ -63,7 +70,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
 
         isFetching.current = false;
-    }, [router.locale]);
+    }, [router]);
 
     useEffect(() => {
         const alreadyRegistered = user && user.email && user.email !== '';
