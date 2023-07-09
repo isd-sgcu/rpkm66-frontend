@@ -3,8 +3,8 @@ import Favicon from '@/public/images/favicon.svg';
 
 function Navbar() {
     return (
-        <nav className="bg-black/50 w-full lg:h-20 h-11 flex lg:py-4 py-2 justify-between lg:px-10 px-2 fixed top-0 left-0 z-50 items-center">
-            <div className="w-12 h-full relative">
+        <nav className="sticky top-0 z-50 flex h-11 w-full items-center justify-between bg-black/50 px-2 py-2 backdrop-blur-sm lg:h-20 lg:px-10 lg:py-4">
+            <div className="relative h-full w-12">
                 <Image
                     src={Favicon}
                     alt="icon"
@@ -12,7 +12,7 @@ function Navbar() {
                     className="object-contain"
                 />
             </div>
-            <button className="bg-orange lg:px-6 px-3 lg:py-2 py-1 rounded-2xl lg:text-lg text-xs">
+            <button className="rounded-2xl bg-orange px-3 py-1 text-xs ring-8 ring-orange/30 transition-all duration-500 hover:scale-105 lg:px-6 lg:py-2 lg:text-lg">
                 เข้าสู่ระบบ
             </button>
         </nav>

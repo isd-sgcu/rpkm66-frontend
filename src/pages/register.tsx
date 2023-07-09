@@ -49,19 +49,19 @@ const Register = () => {
     return (
         <div className="flex lg:justify-end">
             <form
-                className="bg-white w-full lg:w-2/3 mt-40 lg:mt-0 rounded-t-3xl lg:rounded-tr-none flex flex-col justify-start items-center text-purple"
+                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3 lg:rounded-tr-none"
                 onSubmit={handleSubmit}
             >
-                <h1 className="text-3xl font-bold mt-12 mb-2">ลงทะเบียน</h1>
-                <div className="flex flex-col justify-start items-center w-10/12 pt-6 lg:flex-row-reverse lg:justify-between">
+                <h1 className="mb-2 mt-12 text-3xl font-bold">ลงทะเบียน</h1>
+                <div className="flex w-10/12 flex-col items-center justify-start pt-6 lg:flex-row-reverse lg:justify-between">
                     <label
                         htmlFor="image"
-                        className="w-40 mb-6 lg:w-1/4 cursor-pointer"
+                        className="mb-6 w-40 cursor-pointer lg:w-1/4"
                     >
-                        <div className="flex flex-row justify-between items-center">
+                        <div className="flex flex-row items-center justify-between">
                             <div>อัปโหลดรูป</div>
-                            <div className="bg-orange flex flex-row justify-center items-center py-1 px-3 rounded-full">
-                                <PencilSquareIcon className="w-4 h-4" />
+                            <div className="flex flex-row items-center justify-center rounded-full bg-orange px-3 py-1 text-white">
+                                <PencilSquareIcon className="h-4 w-4" />
                                 <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ const Register = () => {
                             }}
                         />
                         {previewImage && (
-                            <div className="w-full aspect-3/4 relative my-4">
+                            <div className="relative my-4 aspect-3/4 w-full">
                                 <Image
                                     src={previewImage}
                                     alt="preview"
@@ -94,17 +94,17 @@ const Register = () => {
                             </div>
                         )}
                     </label>
-                    <div className="w-full lg:w-1/2 flex flex-col justify-start items-start">
+                    <div className="flex w-full flex-col items-start justify-start lg:w-1/2">
                         <label htmlFor="title" className="mb-1">
                             คำนำหน้าชื่อ
                         </label>
                         <select
                             name="title"
                             id="title"
-                            className="w-28 bg-gray-100 border-gray-100 rounded-full p-2 px-3 mb-4"
+                            className="mb-4 w-28 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
                             required
                         >
-                            <option value=""></option>
+                            <option value="">เลือกคำนำหน้าชื่อ</option>
                             <option value="นาย">นาย</option>
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
@@ -118,6 +118,7 @@ const Register = () => {
                             id="name"
                             className="input"
                             required
+                            placeholder="ชื่อ"
                         />
                         <label htmlFor="surname" className="mb-1">
                             นามสกุล
@@ -127,6 +128,7 @@ const Register = () => {
                             name="surname"
                             id="surname"
                             className="input"
+                            placeholder="นามสกุล"
                             required
                         />
                         <label htmlFor="nickname" className="mb-1">
@@ -137,12 +139,13 @@ const Register = () => {
                             name="nickname"
                             id="nickname"
                             className="input"
+                            placeholder="ชื่อเล่น"
                             required
                         />
                     </div>
                 </div>
-                <hr className="w-10/12 h-1 mt-3 mb-5" />
-                <div className="w-10/12 flex flex-col justify-start items-start">
+                <hr className="mb-5 mt-3 h-1 w-10/12" />
+                <div className="flex w-10/12 flex-col items-start justify-start">
                     <label htmlFor="phone" className="mb-1">
                         หมายเลขโทรศัพท์
                     </label>
@@ -151,6 +154,7 @@ const Register = () => {
                         name="phone"
                         id="phone"
                         className="input"
+                        placeholder="08xxxxxxxx"
                         required
                     />
                     <label htmlFor="email" className="mb-1">
@@ -161,6 +165,7 @@ const Register = () => {
                         name="email"
                         id="email"
                         className="input"
+                        placeholder="example@email.com"
                         required
                     />
                     <label htmlFor="lindId" className="mb-1">
@@ -171,49 +176,54 @@ const Register = () => {
                         name="lineId"
                         id="lineId"
                         className="input"
+                        placeholder="LINE ID"
                         required
                     />
                     <label htmlFor="diseases" className="mb-1">
-                        โรคประจำตัว (ไม่มีให้ใส่ -)
+                        โรคประจำตัว
                     </label>
                     <input
                         type="text"
                         name="diseases"
                         id="diseases"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
                     <label htmlFor="drugAllergy" className="mb-1">
-                        ยาที่แพ้ (ไม่มีให้ใส่ -)
+                        ยาที่แพ้
                     </label>
                     <input
                         type="text"
                         name="drugAllergy"
                         id="drugAllergy"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
                     <label htmlFor="foodAllergy" className="mb-1">
-                        อาหารที่แพ้ (ไม่มีให้ใส่ -)
+                        อาหารที่แพ้
                     </label>
                     <input
                         type="text"
                         name="foodAllergy"
                         id="foodAllergy"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
                     <label htmlFor="foodRestriction" className="mb-1">
-                        ข้อจำกัดทางอาหาร (ไม่มีให้ใส่ -)
+                        ข้อจำกัดทางอาหาร
                     </label>
                     <input
                         type="text"
                         name="foodRestriction"
                         id="foodRestriction"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
-                    <hr className="w-full h-1 mt-3 mb-5" />
+                    <hr className="mb-5 mt-3 h-1 w-full" />
                     <label htmlFor="emergencyNo" className="mb-1">
                         เบอร์ติดต่อฉุกเฉิน
                     </label>
@@ -222,6 +232,7 @@ const Register = () => {
                         name="emergencyNo"
                         id="emergencyNo"
                         className="input"
+                        placeholder="08xxxxxxxx"
                         required
                     />
                     <label htmlFor="emergencyRel" className="mb-1">
@@ -232,38 +243,57 @@ const Register = () => {
                         name="emergencyRel"
                         id="emergencyRel"
                         className="input"
+                        placeholder="มารดา"
                         required
                     />
                 </div>
-                <div className="w-10/12 flex flex-row justify-start items-start mt-8 mb-2">
-                    <input
-                        type="checkbox"
-                        name="flask"
-                        id="flask"
-                        className="bg-gray-100 border-none w-7 h-7 mr-3"
-                    />
-                    <label htmlFor="flask" className="text-left w-3/4">
-                        รับกระติกน้ำ Zero waste ที่โต๊ะลงทะเบียนในวันที่ 5
-                    </label>
-                </div>
-                <div className="w-10/12 flex flex-row justify-start items-start mt-3 mb-5">
+
+                <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
                     <input
                         type="checkbox"
                         name="tc"
                         id="tc"
-                        className="bg-gray-100 border-none w-7 h-7 mr-3"
+                        className="col-span-1 h-7 w-7 border-none bg-gray-100"
                         required
                     />
-                    <label htmlFor="tc" className="text-left">
+                    <label
+                        htmlFor="tc"
+                        className="text-full col-span-11 text-left"
+                    >
                         ยอมรับ{' '}
-                        <Link href={''} className="underline">
+                        <Link
+                            href={''}
+                            className="underline hover:no-underline"
+                        >
                             ข้อตกลงและเงื่อนไขการใช้งาน
+                        </Link>{' '}
+                        และ{' '}
+                        <Link
+                            href={''}
+                            className="underline hover:no-underline"
+                        >
+                            นโยบายความเป็นส่วนตัว
                         </Link>
                     </label>
                 </div>
+
+                <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
+                    <input
+                        type="checkbox"
+                        name="pp"
+                        id="pp"
+                        className="col-span-1 h-7 w-7 border-none bg-gray-100"
+                        required
+                    />
+                    <label htmlFor="pp" className="col-span-11 text-left">
+                        ข้าพเจ้ายินยอมให้ส่งต่อข้อมูลให้คณะผู้จัดงานและบ้านรับเพื่อนเพื่อนำข้อมูลดังกล่าวไปใช้สำหรับเตรียมอาหาร
+                        ยาและเครื่องมือปฐมพยาบาลเบื้องต้นสำหรับนิสิตที่เข้าร่วมกิจกรรม
+                    </label>
+                </div>
+
                 <button
                     type="submit"
-                    className="text-xl font-bold bg-pink-400 rounded-full py-2 px-14 my-10 mb-16 ring-pink-400/30 ring-8 hover:bg-pink-400/80"
+                    className="my-10 mb-16 rounded-full bg-pink-400 px-14 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
                 >
                     ลงทะเบียน
                 </button>

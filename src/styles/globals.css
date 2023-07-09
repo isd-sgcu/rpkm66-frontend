@@ -4,6 +4,6 @@
 
 @layer components {
     .input {
-        @apply w-full bg-gray-100 border-gray-100 rounded-full p-2 px-3 mb-4;
+        @apply mb-4 w-full rounded-full border-gray-100 bg-gray-100 p-2 px-3;
     }
 }
