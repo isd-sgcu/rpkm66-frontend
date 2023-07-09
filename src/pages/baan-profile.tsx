@@ -38,16 +38,16 @@ const BaanProfile = () => {
     const baan: SelectedBaan[] = [
         { name: 'บ้านนอก', imgUrl: profilePic, size: 'M', num: 1 },
         { name: 'บ้านโดต้าทู', imgUrl: profilePic, size: 'XL', num: 2 },
-        { name: 'บ้านพ่องดองเขียน', imgUrl: profilePic, size: 'XXL', num: 3 },
+        { name: 'บ้านพ่องดองเขียน', imgUrl: profilePic, size: 'XL', num: 3 },
     ];
 
     return (
         <>
             <Navbar />
             <div className="w-screen lg:h-screen grid place-items-center lg:mx-5">
-                <div className="lg:w-full w-11/12 lg:h-full mx-4 text-xl lg:text-4xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
+                <div className="lg:w-full lg:h-full text-xl lg:text-4xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
                     <div
-                        className={`${bgStyle} lg:w-auto w-full lg:h-3/5 lg:grid flex justify-center bg-white lg:rounded-l-2xl rounded-t-2xl place-items-center lg:space-x-0 space-x-10`}
+                        className={`${bgStyle} lg:w-auto w-full lg:h-3/5 lg:grid flex justify-center bg-white lg:rounded-l-2xl lg:rounded-tr-none rounded-t-2xl place-items-center lg:space-x-0 space-x-10`}
                     >
                         <Image
                             className="border-2 rounded-lg"
@@ -73,7 +73,7 @@ const BaanProfile = () => {
                     </div>
 
                     <div
-                        className={`${bgStyle} lg:w-auto w-full lg:mr-5 lg:mb-0 mb-3 lg:h-3/5 grid-rows-2 bg-black lg:rounded-r-2xl rounded-b-2xl bg-opacity-50 justify-center items-center`}
+                        className={`${bgStyle} lg:w-auto w-full lg:mr-5 lg:mb-0 mb-10 lg:h-3/5 grid-rows-2 bg-black lg:rounded-r-2xl lg:rounded-bl-none rounded-b-2xl bg-opacity-50 justify-center items-center`}
                     >
                         <div className="p-3 text-2xl text-white w-full justify-center mb-5">
                             <form method="post">
@@ -112,7 +112,7 @@ const BaanProfile = () => {
                                                             height={100}
                                                             alt={data.name}
                                                         />
-                                                        <div className=" text-purple text-xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                                        <div className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
                                                             <p>
                                                                 {data.name}
                                                                 <br />
@@ -157,7 +157,7 @@ const BaanProfile = () => {
                                                                 alt={data.name}
                                                             />
                                                         </div>
-                                                        <div className=" text-purple text-xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                                        <div className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
                                                             <p>
                                                                 {`${data.size} : ${data.name}`}
                                                                 <br />
@@ -181,9 +181,7 @@ const BaanProfile = () => {
                     </div>
                 </div>
             </div>
-            <div className="lg:translate-y-0 translate-y-24">
-                <Footer />
-            </div>
+            <Footer />
         </>
     );
 };
