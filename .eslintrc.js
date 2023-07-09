@@ -8,6 +8,15 @@ const config = {
         'plugin:prettier/recommended',
         'plugin:react/jsx-runtime',
     ],
+    rules: {
+        'no-unused-vars': 'off',
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto',
+            },
+        ],
+    },
 };
 
 module.exports = config;
