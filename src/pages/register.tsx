@@ -1,17 +1,23 @@
-import { httpPost } from '@/utils/axios';
+import { useAuth } from '@/context/AuthContext';
+import { RegisterDTO } from '@/dto/registerDTO';
+import { httpPatch, httpPost } from '@/utils/axios';
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const { user, refreshContext } = useAuth();
+    const router = useRouter();
     const [bottleModal, setBottleModal] = useState(false);
-
     const [previewImage, setPreviewImage] = useState<string>(
         profilePicPlaceholderURL
     );
+    const [error, setError] = useState<string[]>([]);
 
     async function handleImageUpload(file: File) {
         const formData = new FormData();
@@ -36,67 +42,200 @@ const Register = () => {
     const onFormDone = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        setBottleModal(true);
+        setError([]);
+
+        // validate form
+        if (!e.currentTarget.image.files[0]) {
+            setError((prev) => [...prev, 'กรุณาอัพโหลดรูปภาพ']);
+        }
+        if (
+            !e.currentTarget.nametitle.value ||
+            e.currentTarget.nametitle.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณาเลือกคำนำหน้าชื่อ']);
+        }
+        if (
+            !e.currentTarget.firstname.value ||
+            e.currentTarget.firstname.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกชื่อ']);
+        }
+        if (
+            !e.currentTarget.surname.value ||
+            e.currentTarget.surname.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกนามสกุล']);
+        }
+        if (
+            !e.currentTarget.nickname.value ||
+            e.currentTarget.nickname.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกชื่อเล่น']);
+        }
+        if (
+            !e.currentTarget.phone.value ||
+            e.currentTarget.phone.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกหมายเลขโทรศัพท์']);
+        } else if (!e.currentTarget.phone.value.match(/^[0-9]{10}$/)) {
+            setError((prev) => [
+                ...prev,
+                'หมายเลขโทรศัพท์ต้องประกอบด้วยตัวเลข 10 หลัก เช่น 0912345678',
+            ]);
+        }
+        if (
+            !e.currentTarget.email.value ||
+            e.currentTarget.email.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอก Email']);
+        } else if (
+            !e.currentTarget.email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอก Email ให้ถูกต้อง']);
+        }
+        if (
+            !e.currentTarget.lineId.value ||
+            e.currentTarget.lineId.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอก LINE ID']);
+        }
+        if (
+            !e.currentTarget.diseases.value ||
+            e.currentTarget.diseases.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกโรคประจำตัว']);
+        }
+        if (
+            !e.currentTarget.foodAllergy.value ||
+            e.currentTarget.foodAllergy.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกอาหารที่แพ้']);
+        }
+        if (
+            !e.currentTarget.drugAllergy.value ||
+            e.currentTarget.drugAllergy.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกยาที่แพ้']);
+        }
+        if (
+            !e.currentTarget.foodRestriction.value ||
+            e.currentTarget.foodRestriction.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกข้อจำกัดทางอาหาร']);
+        }
+        if (
+            !e.currentTarget.emergencyNo.value ||
+            e.currentTarget.emergencyNo.value === ''
+        ) {
+            setError((prev) => [...prev, 'กรุณากรอกเบอร์ติดต่อฉุกเฉิน']);
+        } else if (!e.currentTarget.emergencyNo.value.match(/^[0-9]{10}$/)) {
+            setError((prev) => [
+                ...prev,
+                'หมายเลขโทรศัพท์ติดต่อฉุกเฉินต้องประกอบด้วยตัวเลข 10 หลัก เช่น 0912345678',
+            ]);
+        }
+        if (
+            !e.currentTarget.emergencyRel.value ||
+            e.currentTarget.emergencyRel.value === ''
+        ) {
+            setError((prev) => [
+                ...prev,
+                'กรุณากรอกความสัมพันธ์กับผู้ติดต่อฉุกเฉิน',
+            ]);
+        }
+        if (!e.currentTarget.tc.checked) {
+            setError((prev) => [
+                ...prev,
+                'กรุณายอมรับเงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว',
+            ]);
+        }
+        if (!e.currentTarget.pp.checked) {
+            setError((prev) => [...prev, 'กรุณายอมรับข้อตกลง']);
+        }
+
+        setBottleModal(error.length === 0);
     };
 
     const handleSubmit = async (
         // e: FormEvent<HTMLFormElement>,
         wantBottle: boolean
     ) => {
-        // const body = {
-        //     allergy_food: e.currentTarget.foodAllergy.value as string,
-        //     allergy_medicine: e.currentTarget.drugAllergy.value as string,
-        //     disease: e.currentTarget.diseases.value as string,
-        //     email: e.currentTarget.email.value as string,
-        //     emer_phone: e.currentTarget.emergencyNo.value as string,
-        //     emer_relation: e.currentTarget.emergencyRel.value as string,
-        //     // @ts-expect-error bruh
-        //     firstname: e.currentTarget.name.value as string,
-        //     food_restriction: e.currentTarget.foodRestriction.value as string,
-        //     line_id: e.currentTarget.lineId.value as string,
-        //     lastname: e.currentTarget.surname.value as string,
-        //     nickname: e.currentTarget.nickname.value as string,
-        //     phone: e.currentTarget.phone.value as string,
-        //     // @ts-expect-error bruh
-        //     title: e.currentTarget.title.value as string,
-        //     want_bottle: wantBottle,
-        //     id: user?.id ?? '',
-        // } satisfies RegisterDTO;
-        // try {
-        //     await httpPatch(`/user`, body);
-        //     await refreshContext();
-        //     router.push('/baan-selection');
-        // } catch (error) {
-        //     // TODO handle error
-        // }
-        return wantBottle;
+        const form = document.getElementById(
+            'register-form'
+        ) as HTMLFormElement;
+
+        const body = {
+            allergy_food: form.foodAllergy.value as string,
+            allergy_medicine: form.drugAllergy.value as string,
+            disease: form.diseases.value as string,
+            email: form.email.value as string,
+            emer_phone: form.emergencyNo.value as string,
+            emer_relation: form.emergencyRel.value as string,
+            firstname: form.firstname.value as string,
+            food_restriction: form.foodRestriction.value as string,
+            line_id: form.lineId.value as string,
+            lastname: form.surname.value as string,
+            nickname: form.nickname.value as string,
+            phone: form.phone.value as string,
+            title: form.nametitle.value as string,
+            want_bottle: wantBottle,
+            id: user?.id ?? '',
+        } satisfies RegisterDTO;
+        try {
+            await httpPatch(`/user`, body);
+            await refreshContext();
+            router.push('/baan-selection');
+        } catch (error) {
+            // TODO handle error
+        }
     };
 
     return (
         <div className="relative flex lg:justify-end">
             {bottleModal && (
-                <>
-                    <div className="fixed left-1/2 top-1/2 z-[99] flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-lg bg-white px-16 py-24 shadow-md">
-                        <h1 className="text-center text-xl font-bold text-purple">
-                            รับกระติกน้ำด้วยไหมค้าบ
+                <AnimatePresence>
+                    <motion.div
+                        className="fixed left-1/2 top-1/2 z-[99] flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-lg bg-white px-16 py-16 shadow-md"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        key="water-bottle-modal"
+                    >
+                        <h1 className="text-center text-2xl font-bold text-purple">
+                            ต้องการรับกระบอกน้ำ <br />
+                            Chula Zero Waste <br />
+                            ในงานรับเพื่อนก้าวใหม่หรือไม่
                         </h1>
-                        <button
-                            onClick={() => {
-                                handleSubmit(true);
-                            }}
-                            className="my-10 mb-16 rounded-full bg-pink-400 px-14 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
-                        >
-                            ค้าบบบ
-                        </button>
-                    </div>
+                        <div className="mt-10 flex w-full flex-row items-center justify-center gap-8">
+                            <button
+                                onClick={() => {
+                                    setBottleModal(false);
+                                    handleSubmit(false);
+                                }}
+                                className="w-full rounded-full border-pink-400 px-5 py-2 text-xl font-bold text-pink-400 ring-8 ring-pink-400/30 hover:ring-pink-400/50"
+                            >
+                                ไม่ต้องการ
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setBottleModal(false);
+                                    handleSubmit(true);
+                                }}
+                                className="w-full rounded-full bg-pink-400 px-5 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
+                            >
+                                ต้องการ
+                            </button>
+                        </div>
+                    </motion.div>
                     <div className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/25 backdrop-blur-md"></div>
-                </>
+                </AnimatePresence>
             )}
 
             <form
                 className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3 lg:rounded-tr-none"
                 onSubmit={onFormDone}
                 noValidate={true}
+                id="register-form"
             >
                 <h1 className="mb-2 mt-12 text-3xl font-bold">ลงทะเบียน</h1>
                 <div className="flex w-10/12 flex-col items-center justify-start pt-6 lg:flex-row-reverse lg:justify-between">
@@ -138,12 +277,12 @@ const Register = () => {
                         )}
                     </label>
                     <div className="flex w-full flex-col items-start justify-start lg:w-1/2">
-                        <label htmlFor="title" className="mb-1">
+                        <label htmlFor="nametitle" className="mb-1">
                             คำนำหน้าชื่อ
                         </label>
                         <select
-                            name="title"
-                            id="title"
+                            name="nametitle"
+                            id="nametitle"
                             className="mb-4 w-28 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
                             required
                         >
@@ -152,13 +291,13 @@ const Register = () => {
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <label htmlFor="name" className="mb-1">
+                        <label htmlFor="firstname" className="mb-1">
                             ชื่อ (หากมีชื่อกลางให้ใส่ในช่องนี้)
                         </label>
                         <input
                             type="text"
-                            name="name"
-                            id="name"
+                            name="firstname"
+                            id="firstname"
                             className="input"
                             required
                             placeholder="ชื่อ"
@@ -308,7 +447,7 @@ const Register = () => {
                             href={''}
                             className="underline hover:no-underline"
                         >
-                            ข้อตกลงและเงื่อนไขการใช้งาน
+                            เงื่อนไขการใช้งาน
                         </Link>{' '}
                         และ{' '}
                         <Link
@@ -333,6 +472,14 @@ const Register = () => {
                         ยาและเครื่องมือปฐมพยาบาลเบื้องต้นสำหรับนิสิตที่เข้าร่วมกิจกรรม
                     </label>
                 </div>
+
+                {error.length > 0 && (
+                    <div className="mb-5 mt-3 w-10/12 origin-top text-red-400">
+                        {error.map((err, index) => (
+                            <p key={index}>{err}</p>
+                        ))}
+                    </div>
+                )}
 
                 <button
                     type="submit"

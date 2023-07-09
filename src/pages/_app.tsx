@@ -6,6 +6,8 @@ import { IBM_Plex_Sans_Thai } from 'next/font/google';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
     subsets: ['latin'],
@@ -63,8 +65,10 @@ export default function App({ Component, pageProps }: AppProps) {
             <MetaData />
 
             <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
+                <Navbar />
                 <Component {...pageProps} />
                 <Background />
+                <Footer />
             </main>
 
             <Analytics />

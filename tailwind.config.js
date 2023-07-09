@@ -24,6 +24,7 @@ const config = {
             },
             ringWidth: {
                 16: '16px',
+                24: '24px',
                 32: '32px',
             },
             aspectRatio: {
