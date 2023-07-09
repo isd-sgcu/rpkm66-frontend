@@ -5,7 +5,7 @@ import Image from 'next/image';
 const profilePic = '/images/pfp-placeholder.svg';
 
 const BaanProfile = () => {
-    const bgStyle: string = 'lg:mb-none mb-6 p-auto py-8 px-8';
+    const bgStyle: string = 'lg:mb-none lg:mb-6 p-auto py-8 px-8';
     const bottonStyle: string =
         'lg:mx-4 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
     interface GroupMember {
@@ -44,41 +44,45 @@ const BaanProfile = () => {
     return (
         <>
             <Navbar />
-            <div className="w-screen lg:h-screen grid place-items-center mx-5 ">
-                <div className="w-full lg:h-full text-md lg:text-4xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
+            <div className="w-screen lg:h-screen grid place-items-center lg:mx-5">
+                <div className="lg:w-full w-11/12 lg:h-full mx-4 text-xl lg:text-4xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
                     <div
-                        className={`${bgStyle} h-3/5 grid bg-white rounded-l-2xl place-items-center`}
+                        className={`${bgStyle} lg:w-auto w-full lg:h-3/5 lg:grid flex justify-center bg-white lg:rounded-l-2xl rounded-t-2xl place-items-center lg:space-x-0 space-x-10`}
                     >
                         <Image
                             className="border-2 rounded-lg"
                             src={profilePic}
-                            width={150}
+                            width={175}
                             height={367}
                             alt="profile pic"
                         />
-                        <h1 className=" text-purple font-bold relative z-0 leading-none select-none py-4 text-center">
-                            <p>
-                                แจฮยอน
-                                <br />
-                                คงแก่การเรียน
-                            </p>
-                        </h1>
-                        <button className={`${bottonStyle} bg-purple`}>
-                            แก้ไขข้อมูล
-                        </button>
+                        <div className="flex flex-col ">
+                            <div className=" text-purple font-bold relative z-0 leading-none select-none py-4 text-center lg:text-auto text-3xl">
+                                <p>
+                                    แจฮยอน
+                                    <br />
+                                    คงแก่การเรียน
+                                </p>
+                            </div>
+                            <button
+                                className={`${bottonStyle} bg-purple text-xl `}
+                            >
+                                แก้ไขข้อมูล
+                            </button>
+                        </div>
                     </div>
 
                     <div
-                        className={`${bgStyle} mr-5 h-3/5 grid-rows-2 place-items-center bg-black rounded-r-2xl bg-opacity-50 justify-center items-center`}
+                        className={`${bgStyle} lg:w-auto w-full lg:mr-5 lg:mb-0 mb-3 lg:h-3/5 grid-rows-2 bg-black lg:rounded-r-2xl rounded-b-2xl bg-opacity-50 justify-center items-center`}
                     >
                         <div className="p-3 text-2xl text-white w-full justify-center mb-5">
                             <form method="post">
-                                <div className="flex">
-                                    <label className="pr-5 flex">
+                                <div className="flex flex-row items-center">
+                                    <label className="pr-5 lg:text-2xl text-xl">
                                         Invite Link
                                     </label>
                                     <input
-                                        className="rounded-full w-5/6 px-3"
+                                        className="rounded-full w-5/6"
                                         type="text"
                                         id="first"
                                         name="first"
@@ -86,13 +90,13 @@ const BaanProfile = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className="flex w-full h-4/5 justify-center items-stretch">
-                            <div className="w-1/2 flex flex-col bg-white rounded-lg mr-5 p-4">
-                                <div className="text-purple text-center mb-4">
-                                    <b>สมาชิกในกลุ่ม(2/3)</b>{' '}
+                        <div className="lg:flex-row flex flex-col w-full justify-center items-stretch">
+                            <div className="flex flex-col bg-white rounded-xl p-3 lg:mr-3 lg:mb-0 mb-5">
+                                <div className="text-purple text-center mb-4 lg:text-auto text-3xl">
+                                    <b>สมาชิกในกลุ่ม(2/3)</b>
                                 </div>
 
-                                <div className="flex w-full h-ful justify-center items-center">
+                                <div className="flex w-full h-full justify-center items-center">
                                     {group.map((data: GroupMember) => {
                                         return (
                                             <div
@@ -104,11 +108,11 @@ const BaanProfile = () => {
                                                         <Image
                                                             className="border-2 rounded-lg "
                                                             src={data.imgUrl}
-                                                            width={125}
+                                                            width={100}
                                                             height={100}
                                                             alt={data.name}
                                                         />
-                                                        <div className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                                        <div className=" text-purple text-xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
                                                             <p>
                                                                 {data.name}
                                                                 <br />
@@ -121,16 +125,16 @@ const BaanProfile = () => {
                                         );
                                     })}
                                 </div>
-                                <div className="flex justify-center mt-auto mb-5">
+                                <div className="flex justify-center mt-8">
                                     <button
-                                        className={`${bottonStyle} text-bold bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
+                                        className={`${bottonStyle} text-bold text-xl mt-3 bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
                                     >
                                         ออกจากกลุ่ม
                                     </button>
                                 </div>
                             </div>
-                            <div className="w-1/2 flex flex-col bg-white rounded-lg mr-5 p-4">
-                                <div className="text-purple text-center mb-4">
+                            <div className="flex flex-col bg-white rounded-xl p-4">
+                                <div className="text-purple text-center mb-4 lg:text-auto text-3xl">
                                     <b>บ้านรับเพื่อนที่เลือก</b>
                                 </div>
                                 <div className="flex w-full h-full justify-center items-center">
@@ -153,8 +157,11 @@ const BaanProfile = () => {
                                                                 alt={data.name}
                                                             />
                                                         </div>
-                                                        <div className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
-                                                            <p>{`${data.size} : ${data.name}`}</p>
+                                                        <div className=" text-purple text-xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                                            <p>
+                                                                {`${data.size} : ${data.name}`}
+                                                                <br />
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,9 +169,9 @@ const BaanProfile = () => {
                                         );
                                     })}
                                 </div>
-                                <div className="flex justify-center mt-auto mb-5">
+                                <div className="flex justify-center mt-8">
                                     <button
-                                        className={`${bottonStyle} text-bold bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
+                                        className={`${bottonStyle} text-bold text-xl mt-3 bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
                                     >
                                         เปลี่ยนอันดับ
                                     </button>
@@ -174,8 +181,9 @@ const BaanProfile = () => {
                     </div>
                 </div>
             </div>
-
-            <Footer />
+            <div className="lg:translate-y-0 translate-y-24">
+                <Footer />
+            </div>
         </>
     );
 };
