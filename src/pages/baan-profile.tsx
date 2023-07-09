@@ -12,10 +12,10 @@ const BaanProfile = () => {
     return (
         <>
             <Navbar />
-            <div className="flex justify-center items-center w-screen h-screen">
-                <div className="flex">
+            <div className="w-screen lg:h-screen grid place-items-center">
+                <div className="w-4/5 lg:h-full text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24 mx-auto">
                     <div
-                        className={`${bgStyle} grid bg-white rounded-l-lg place-items-center`}
+                        className={`${bgStyle} w-1/5 h-3/5 grid bg-white rounded-l-lg place-items-center`}
                     >
                         <Image
                             className="border-2 rounded-lg"
@@ -24,7 +24,7 @@ const BaanProfile = () => {
                             height={367}
                             alt="profile pic"
                         />
-                        <h1 className=" text-black font-bold text-3xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                        <h1 className=" text-purple font-bold text-3xl lg:text2xl relative z-0 leading-none select-none py-4 text-center">
                             <p>
                                 แจฮยอน
                                 <br />
@@ -37,9 +37,9 @@ const BaanProfile = () => {
                     </div>
 
                     <div
-                        className={`${bgStyle} grid-rows-2 place-items-center bg-black rounded-r-lg bg-opacity-50 justify-center items-center`}
+                        className={`${bgStyle} w-4/5 h-3/5 grid-rows-2 place-items-center bg-black rounded-r-lg bg-opacity-50 justify-center items-center`}
                     >
-                        <div className="p-3 text-white w-full justify-center">
+                        <div className="p-3 text-white w-full justify-center m-auto">
                             <form method="post">
                                 <label className="pr-5">Invite Link</label>
                                 <input
@@ -50,84 +50,111 @@ const BaanProfile = () => {
                                 />
                             </form>
                         </div>
-                        <div className="flex mx-3 w-full justify-center">
-                            <div className="grid-rows-2 place-items-center bg-white rounded-lg justify-center items-center mr-auto p-4">
-                                <h2 className="text-black text-center">
-                                    <b>สมาชิกในกลุ่ม(1/3)</b>{' '}
-                                </h2>
-                                <div className="flex space-x-4">
+                        <div className="flex mx-3 w-full h-4/5 justify-center items-stretch">
+                            <div className="w-1/2 grid-rows-3 place-items-center bg-white rounded-lg mr-5 p-4">
+                                <div className="text-purple text-center mb-4">
+                                    <b>สมาชิกในกลุ่ม(2/3)</b>{' '}
+                                </div>
+                                <div className="flex space-x-8 justify-center">
                                     <div className="">
                                         <Image
                                             className="border-2 rounded-lg"
                                             src={profilePic}
-                                            width={50}
+                                            width={100}
                                             height={50}
                                             alt="profile pic1"
                                         />
+                                        <h1 className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                            <p>
+                                                แจฮยอน
+                                                <br />
+                                                คงแก่การเรียน
+                                            </p>
+                                        </h1>
                                     </div>
                                     <div className="">
                                         <Image
                                             className="border-2 rounded-lg"
                                             src={profilePic}
-                                            width={50}
+                                            width={100}
                                             height={367}
                                             alt="profile pic2"
                                         />
+                                        <h1 className=" text-purple text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                            <p>
+                                                สว่าง
+                                                <br />
+                                                ใจสะอาด
+                                            </p>
+                                        </h1>
                                     </div>
                                     <div className="">
                                         <Image
                                             className="border-2 rounded-lg"
                                             src={profilePic}
-                                            width={50}
+                                            width={100}
                                             height={367}
                                             alt="profile pic3"
                                         />
                                     </div>
                                 </div>
-                                <button
-                                    className={`${bottonStyle} text-bold bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
-                                >
-                                    ออกจากกลุ่ม
-                                </button>
+                                <div className="flex justify-center">
+                                    <button
+                                        className={`${bottonStyle} text-bold bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
+                                    >
+                                        ออกจากกลุ่ม
+                                    </button>
+                                </div>
                             </div>
-                            <div className="grid-rows-2 place-items-center bg-white rounded-lg justify-center items-center mr-auto p-4">
-                                <h2 className="text-black text-center">
-                                    <b>บ้านรับเพื่อนที่เลือก</b>{' '}
-                                </h2>
-                                <div className="flex space-x-4">
+                            <div className="w-1/2 grid-rows-3 place-items-center bg-white rounded-lg justify-center items-center mr-auto p-4">
+                                <div className="text-purple text-center mb-4">
+                                    <b>บ้านรับเพื่อนที่เลือก</b>
+                                </div>
+                                <div className="flex space-x-4 justify-center">
                                     <div className="">
                                         <Image
-                                            className="border-2 rounded-lg"
+                                            className="border-4 border-purple rounded-lg"
                                             src={profilePic}
-                                            width={50}
+                                            width={100}
                                             height={50}
                                             alt="profile pic"
                                         />
+                                        <h1 className=" text-black text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                            <p>S : บ้านทรายทอง</p>
+                                        </h1>
                                     </div>
                                     <div className="">
                                         <Image
-                                            className="border-2 rounded-lg"
+                                            className="border-4 border-purple rounded-lg"
                                             src={profilePic}
-                                            width={50}
+                                            width={100}
                                             height={367}
                                             alt="profile pic"
                                         />
+                                        <h1 className=" text-black text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                            <p>S : บ้านทรายทอง</p>
+                                        </h1>
                                     </div>
                                     <div className="">
                                         <Image
-                                            className="border-2 rounded-lg"
+                                            className="border-4 border-purple rounded-lg"
                                             src={profilePic}
-                                            width={50}
+                                            width={100}
                                             height={367}
                                             alt="profile pic"
                                         />
+                                        <h1 className=" text-black text-lg lg:text2xl relative z-0 leading-none select-none py-4 text-center">
+                                            <p>S : บ้านทรายทอง</p>
+                                        </h1>
                                     </div>
                                 </div>
-                                <button
-                                    className={`${bottonStyle} text-bold bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
-                                >
-                                    เปลี่ยนอันดับ
-                                </button>
+                                <div className="flex justify-center mt-auto">
+                                    <button
+                                        className={`${bottonStyle} text-bold bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
+                                    >
+                                        เปลี่ยนอันดับ
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
