@@ -110,7 +110,7 @@ const BaanChoosing = () => {
             <div className="w-screen lg:h-screen grid place-items-center">
                 <div className="w-screen lg:h-full text-xl font-ibm flex lg:flex-row justify-center items-center flex-col text-white overflow-clip lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
                     <div
-                        className={`${bgStyle} lg:ml-auto lg:mr-4 bg-white text-black rounded-3xl`}
+                        className={`${bgStyle} lg:h-[30rem] lg:ml-auto lg:mr-4 bg-white text-black rounded-3xl`}
                     >
                         <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                             เลือกบ้าน
@@ -118,12 +118,12 @@ const BaanChoosing = () => {
                         <h2 className="text-xl lg:text-l my-3 relative z-0 leading-none select-none">
                             เลือก 3 บ้านที่สนใจมากที่สุด
                         </h2>
-                        <div className="flex lg:flex-col justify-center items-center">
+                        <div className="flex lg:flex-col justify-center items-center flex-wrap">
                             {usedSelectedBaan}
                         </div>
-                        <div className="mt-3 mb-1 text-white flex justify-center items-center">
+                        <div className="mt-1 mb-1 text-white flex justify-center items-center">
                             <button
-                                className={`${bottonStyle} bg-pink-400 ring-pink-400/40 bg-gradient-to-bl from-pink-400 to-pink-800/20`}
+                                className={`${bottonStyle} bg-pink-400 ring-pink-400/40`}
                                 onClick={() => console.log('Pink was clicked')}
                             >
                                 ตกลง
@@ -137,7 +137,7 @@ const BaanChoosing = () => {
                         </div>
                     </div>
                     <div
-                        className={`${bgStyle} lg:mr-auto lg:ml:none bg-black/50 rounded-3xl lg:[32rem] min-[1600px]:h-3/4 h-auto lg:w-3/5 mx-12 border`}
+                        className={`${bgStyle} lg:mr-auto lg:ml:none bg-black/50 rounded-3xl lg:h-[30rem] min-[1600px]:h-3/4 h-auto lg:w-3/5 mx-12 border`}
                     >
                         <div className="flex items-center">
                             <div>
@@ -195,7 +195,7 @@ const BaanChoosing = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex justify-center items-center lg:py-4 lg:h-[19rem] min-[1600px]:h-5/6 lg:overflow-scroll flex-wrap">
+                        <div className="flex justify-center items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-5/6 lg:overflow-scroll flex-wrap">
                             {listBaan}
                         </div>
                     </div>
