@@ -182,7 +182,7 @@ const BaanChoosing = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-4/5 lg:overflow-scroll flex-wrap">
+                    <div className="flex justify-center items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-4/6 lg:overflow-scroll flex-wrap">
                         {listBaan}
                     </div>
                 </div>
