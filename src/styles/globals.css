@@ -6,4 +6,7 @@
     .input {
         @apply mb-4 w-full rounded-full border-gray-100 bg-gray-100 p-2 px-3;
     }
+    .selectSizeButton {
+        @apply bg-pink-400 w-fit lg:px-4 px-2 mr-6 lg:py-2 py-1 rounded-lg lg:text-sm text-xs ring-8 ring-pink-400/30;
+    }
 }
