@@ -65,10 +65,10 @@ const BaanChoosing = () => {
         return (
             <div
                 key={e.num}
-                className="flex flex-col lg:flex-row text-sm items-center"
+                className="flex flex-col items-center text-sm lg:flex-row"
             >
                 <div
-                    className={`lg:h-20 lg:w-20 h-16 w-16 bg-white my-3 mx-4 flex items-center justify-center ring-4 ring-pink-400`}
+                    className={`mx-4 my-3 flex h-16 w-16 items-center justify-center bg-white ring-4 ring-pink-400 lg:h-20 lg:w-20`}
                 >
                     <Image
                         src={e.imageURL}
@@ -88,10 +88,10 @@ const BaanChoosing = () => {
             return (
                 <div
                     key={e.name}
-                    className="flex flex-col text-sm items-center"
+                    className="flex flex-col items-center text-sm"
                 >
                     <div
-                        className={`lg:h-48 lg:w-48 h-36 w-36 bg-white my-4 mx-4 flex items-center justify-center rounded-xl`}
+                        className={`mx-4 my-4 flex h-36 w-36 items-center justify-center rounded-xl bg-white lg:h-48 lg:w-48`}
                     >
                         <Image
                             src={e.imgUrl}
@@ -107,20 +107,18 @@ const BaanChoosing = () => {
         });
     return (
         <>
-            <Navbar />
-
-            <div className="w-screen h-screen lg:flex lg:flex-row justify-center items-center lg:text-white overflow-scroll lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
-                <div className="lg:w-fit flex flex-col justify-center lg:items-start items-center lg:mb-none lg:mx-0 mx-12 lg:mb-6 p-auto py-10 px-8 border lg:h-[30rem] lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-l-3xl max-lg:rounded-t-3xl min-[1600px]:h-3/5">
-                    <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
+            <div className="h-screen w-screen translate-y-24 items-center justify-center lg:z-50 lg:flex lg:-translate-y-[2.5rem] lg:flex-row lg:text-white">
+                <div className="lg:mb-none p-auto mx-12 flex flex-col items-center justify-center border bg-white px-8 py-10 text-black max-lg:rounded-t-3xl lg:mx-0 lg:mb-6 lg:ml-auto lg:mr-0 lg:h-[30rem] lg:w-fit lg:items-start lg:rounded-l-3xl min-[1600px]:h-3/5">
+                    <h1 className="relative z-0 select-none text-3xl font-bold leading-none lg:text-4xl">
                         เลือกบ้าน
                     </h1>
-                    <h2 className="text-xl lg:text-l my-3 relative z-0 leading-none select-none">
+                    <h2 className="lg:text-l relative z-0 my-3 select-none text-xl leading-none">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="flex lg:flex-col h-full mx-auto justify-evenly items-center flex-wrap">
+                    <div className="mx-auto flex h-full flex-wrap items-center justify-evenly lg:flex-col">
                         {usedSelectedBaan}
                     </div>
-                    <div className="min-[1600px]:mt-auto lg:mt-3 mt-5 mb-1 text-white flex justify-center items-center">
+                    <div className="mb-1 mt-5 flex items-center justify-center text-white lg:mt-3 min-[1600px]:mt-auto">
                         <button
                             className={`${bottonStyle} bg-pink-400 ring-pink-400/40`}
                             onClick={() => console.log('Pink was clicked')}
@@ -135,16 +133,16 @@ const BaanChoosing = () => {
                         </button>
                     </div>
                 </div>
-                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-r-3xl max-lg:rounded-b-3xl lg:h-[30rem] min-[1600px]:h-3/5 h-auto lg:w-3/5 lg:mx-0 mx-12">
+                <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[30rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-3/5">
                     <div className="flex items-center">
                         <div>
                             <Image
                                 src={Favicon}
                                 alt="logo"
-                                className="object-contain w-8 h-8 lg:w-12 lg:h-12 mr-4"
+                                className="mr-4 h-8 w-8 object-contain lg:h-12 lg:w-12"
                             />
                         </div>
-                        <form className="lg:w-full w-full text-black">
+                        <form className="w-full text-black lg:w-full">
                             <input
                                 type="text"
                                 name="search"
@@ -156,11 +154,11 @@ const BaanChoosing = () => {
                                 ) => {
                                     setInput(e.target.value);
                                 }}
-                                className="px-4 py-1 text-sm bg-white placeholder-black w-full rounded-3xl lg:text-xl ring-8 ring-white/20"
+                                className="w-full rounded-3xl bg-white px-4 py-1 text-sm placeholder-black ring-8 ring-white/20 lg:text-xl"
                             />
                         </form>
                     </div>
-                    <div className="flex mt-8 lg:px-4 lg:py-4 overflow-scroll">
+                    <div className="mt-8 flex max-lg:overflow-scroll lg:px-4 lg:py-4">
                         <div className={textStyle}>
                             <button onClick={() => console.log('S clicked')}>
                                 บ้านขนาดเล็ก (S)
@@ -182,13 +180,10 @@ const BaanChoosing = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex justify-evenly items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-4/6 lg:overflow-scroll flex-wrap">
+                    <div className="flex flex-wrap items-center justify-evenly lg:h-[17rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-4/6">
                         {listBaan}
                     </div>
                 </div>
-            </div>
-            <div className="lg:translate-y-0 translate-y-24">
-                <Footer />
             </div>
         </>
     );
