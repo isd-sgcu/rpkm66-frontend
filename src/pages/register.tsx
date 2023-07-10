@@ -201,6 +201,14 @@ const Register = () => {
                         key="water-bottle-modal"
                     >
                         <div className="relative px-16 py-16">
+                            <Image
+                                src="/images/czw.jpg"
+                                className="mx-auto mb-4"
+                                width={200}
+                                height={500}
+                                alt="Bottle"
+                            />
+
                             <h1 className="text-center text-2xl font-bold text-purple">
                                 ต้องการรับกระบอกน้ำ <br />
                                 Chula Zero Waste <br />
@@ -211,7 +219,7 @@ const Register = () => {
                                     <XMarkIcon className="h-6 w-6 text-black" />
                                 </button>
                             </div>
-                            <div className="mt-10 flex w-full flex-col items-center justify-center gap-4">
+                            <div className="mt-4 flex w-full flex-col items-center justify-center gap-4">
                                 <button
                                     onClick={() => {
                                         setBottleModal(false);
