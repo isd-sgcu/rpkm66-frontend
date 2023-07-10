@@ -1,8 +1,6 @@
 import { ChangeEvent, ReactNode, useState } from 'react';
 import Image from 'next/image';
-import Navbar from '@/components/Navbar';
 import Favicon from '@/public/images/favicon.svg';
-import Footer from '@/components/Footer';
 
 interface TestBaanObj {
     name: string;
@@ -30,10 +28,6 @@ const testBaanData: TestBaanObj[] = [
 ];
 
 const BaanChoosing = () => {
-    const bottonStyle: string =
-        'lg:mx-4 mx-8 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
-    const textStyle: string =
-        'bg-pink-400 w-fit lg:px-4 px-2 mr-6 lg:py-2 py-1 rounded-lg lg:text-sm text-xs ring-8 ring-pink-400/30';
     const [input, setInput] = useState<string>('');
     interface SelectedBaan {
         imageURL: string;
@@ -65,7 +59,7 @@ const BaanChoosing = () => {
         return (
             <div
                 key={e.num}
-                className="flex flex-col items-center text-sm lg:flex-row"
+                className="text-md flex flex-col items-center lg:flex-row"
             >
                 <div
                     className={`mx-4 my-3 flex h-16 w-16 items-center justify-center bg-white ring-4 ring-pink-400 lg:h-20 lg:w-20`}
@@ -78,7 +72,7 @@ const BaanChoosing = () => {
                         className="fill"
                     />
                 </div>
-                <p>{e.name == '' ? 'จงเลือกบ้าน' : `${e.size}: ${e.name}`}</p>
+                <p>{e.name == '' ? 'จงเลือกบ้าน' : `${e.size} : ${e.name}`}</p>
             </div>
         );
     });
@@ -88,10 +82,10 @@ const BaanChoosing = () => {
             return (
                 <div
                     key={e.name}
-                    className="flex flex-col items-center text-sm"
+                    className="text-md flex flex-col items-center"
                 >
                     <div
-                        className={`mx-4 my-4 flex h-36 w-36 items-center justify-center rounded-xl bg-white lg:h-48 lg:w-48`}
+                        className={`mx-4 my-4 flex h-40 w-40 items-center justify-center rounded-xl bg-white lg:h-56 lg:w-56 min-[1600px]:h-64 min-[1600px]:w-64`}
                     >
                         <Image
                             src={e.imgUrl}
@@ -101,39 +95,35 @@ const BaanChoosing = () => {
                             className="fill"
                         />
                     </div>
-                    <p>{`${e.size}: ${e.name}`}</p>
+                    <p>{`${e.size} : ${e.name}`}</p>
                 </div>
             );
         });
     return (
         <>
-            <div className="h-screen w-screen translate-y-24 items-center justify-center lg:z-50 lg:flex lg:-translate-y-[2.5rem] lg:flex-row lg:text-white">
-                <div className="lg:mb-none p-auto mx-12 flex flex-col items-center justify-center border bg-white px-8 py-10 text-black max-lg:rounded-t-3xl lg:mx-0 lg:mb-6 lg:ml-auto lg:mr-0 lg:h-[30rem] lg:w-fit lg:items-start lg:rounded-l-3xl min-[1600px]:h-3/5">
-                    <h1 className="relative z-0 select-none text-3xl font-bold leading-none lg:text-4xl">
+            <div className="min-h-screen w-screen translate-y-24 items-center justify-center lg:z-50 lg:flex lg:-translate-y-[2.5rem] lg:flex-row lg:text-white">
+                <div className="lg:mb-none mx-12 flex flex-col items-center justify-center border bg-white px-8 py-10 text-black max-lg:rounded-t-3xl lg:mx-0 lg:mb-6 lg:ml-auto lg:mr-0 lg:h-[34rem] lg:w-fit lg:items-start lg:rounded-l-3xl min-[1600px]:h-[44rem]">
+                    <h1 className="relative z-0 select-none text-3xl font-bold leading-none lg:mt-8 lg:text-4xl ">
                         เลือกบ้าน
                     </h1>
                     <h2 className="lg:text-l relative z-0 my-3 select-none text-xl leading-none">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="mx-auto flex h-full flex-wrap items-center justify-evenly lg:flex-col">
+                    <div className="mx-auto flex h-full flex-wrap items-center justify-evenly max-[450px]:flex-col lg:flex-col">
                         {usedSelectedBaan}
                     </div>
-                    <div className="mb-1 mt-5 flex items-center justify-center text-white lg:mt-3 min-[1600px]:mt-auto">
+                    <div className="mx-auto mb-1 mt-5 flex items-center justify-center text-white lg:mt-6">
                         <button
-                            className={`${bottonStyle} bg-pink-400 ring-pink-400/40`}
+                            className={
+                                'rounded-lg bg-pink-400 px-3 py-2 text-sm ring-4 ring-pink-400/40 lg:px-6'
+                            }
                             onClick={() => console.log('Pink was clicked')}
                         >
-                            ตกลง
-                        </button>
-                        <button
-                            className={`${bottonStyle} bg-red-500 ring-red-500/40`}
-                            onClick={() => console.log('Red was clicked')}
-                        >
-                            ยกเลิก
+                            บันทึก
                         </button>
                     </div>
                 </div>
-                <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[30rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-3/5">
+                <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
                     <div className="flex items-center">
                         <div>
                             <Image
@@ -158,29 +148,41 @@ const BaanChoosing = () => {
                             />
                         </form>
                     </div>
-                    <div className="mt-8 flex max-lg:overflow-scroll lg:px-4 lg:py-4">
-                        <div className={textStyle}>
-                            <button onClick={() => console.log('S clicked')}>
+                    <div className="mt-8 flex overflow-scroll px-2 py-2  lg:px-4 lg:py-4">
+                        <div className="selectSizeButton">
+                            <button
+                                className="max-lg:whitespace-nowrap"
+                                onClick={() => console.log('S clicked')}
+                            >
                                 บ้านขนาดเล็ก (S)
                             </button>
                         </div>
-                        <div className={textStyle}>
-                            <button onClick={() => console.log('M clicked')}>
+                        <div className="selectSizeButton">
+                            <button
+                                className="max-lg:whitespace-nowrap"
+                                onClick={() => console.log('M clicked')}
+                            >
                                 บ้านขนาดกลาง (M)
                             </button>
                         </div>
-                        <div className={textStyle}>
-                            <button onClick={() => console.log('L clicked')}>
+                        <div className="selectSizeButton">
+                            <button
+                                className="max-lg:whitespace-nowrap"
+                                onClick={() => console.log('L clicked')}
+                            >
                                 บ้านขนาดใหญ่ (L)
                             </button>
                         </div>
-                        <div className={textStyle}>
-                            <button onClick={() => console.log('XL clicked')}>
+                        <div className="selectSizeButton">
+                            <button
+                                className="max-lg:whitespace-nowrap"
+                                onClick={() => console.log('XL clicked')}
+                            >
                                 บ้านขนาดใหญ่พิเศษ (XL)
                             </button>
                         </div>
                     </div>
-                    <div className="flex flex-wrap items-center justify-evenly lg:h-[17rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-4/6">
+                    <div className="mb-20 flex flex-wrap items-center justify-evenly lg:mb-0 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
                         {listBaan}
                     </div>
                 </div>
