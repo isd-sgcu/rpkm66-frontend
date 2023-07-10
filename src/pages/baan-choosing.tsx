@@ -10,9 +10,9 @@ interface TestBaanObj {
     imgUrl: string;
 }
 
-const picTest1 = '/images/pfp-placeholder.svg';
-const picTest2 = '/images/rocket.svg';
-const picTest3 = '/images/background-mobile.svg';
+const picTest1: string = '/images/pfp-placeholder.svg';
+const picTest2: string = '/images/rocket.svg';
+const picTest3: string = '/images/background-mobile.svg';
 
 const testBaanData: TestBaanObj[] = [
     { name: 'บ้านทรายทอง', size: 'S', imgUrl: picTest1 },
@@ -31,7 +31,7 @@ const testBaanData: TestBaanObj[] = [
 
 const BaanChoosing = () => {
     const bottonStyle: string =
-        'lg:mx-4 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
+        'lg:mx-4 mx-8 lg:px-6 text-sm py-2 mx-auto px-3 rounded-lg ring-4';
     const textStyle: string =
         'bg-pink-400 w-fit lg:px-4 px-2 mr-6 lg:py-2 py-1 rounded-lg lg:text-sm text-xs ring-8 ring-pink-400/30';
     const [input, setInput] = useState<string>('');
@@ -110,17 +110,17 @@ const BaanChoosing = () => {
             <Navbar />
 
             <div className="w-screen h-screen lg:flex lg:flex-row justify-center items-center lg:text-white overflow-scroll lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
-                <div className="w-fit lg:mb-none mb-6 p-auto py-8 px-8 border lg:h-[30rem] mx-auto lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-s-3xl min-[1600px]:h-3/5">
+                <div className="lg:w-fit flex flex-col justify-center lg:items-start items-center lg:mb-none lg:mx-0 mx-12 lg:mb-6 p-auto py-10 px-8 border lg:h-[30rem] lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-s-3xl rounded-t-3xl min-[1600px]:h-3/5">
                     <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                         เลือกบ้าน
                     </h1>
                     <h2 className="text-xl lg:text-l my-3 relative z-0 leading-none select-none">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="flex lg:flex-col justify-center items-center flex-wrap">
+                    <div className="flex lg:flex-col h-full mx-auto justify-evenly items-center flex-wrap">
                         {usedSelectedBaan}
                     </div>
-                    <div className="mt-1 mb-1 text-white flex justify-center items-center">
+                    <div className="min-[1600px]:mt-auto lg:mt-3 mt-5 mb-1 text-white flex justify-center items-center">
                         <button
                             className={`${bottonStyle} bg-pink-400 ring-pink-400/40`}
                             onClick={() => console.log('Pink was clicked')}
@@ -135,7 +135,7 @@ const BaanChoosing = () => {
                         </button>
                     </div>
                 </div>
-                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-e-3xl lg:h-[30rem] min-[1600px]:h-3/5 h-auto lg:w-3/5 lg:mx-0 mx-12">
+                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-e-3xl rounded-b-3xl lg:h-[30rem] min-[1600px]:h-3/5 h-auto lg:w-3/5 lg:mx-0 mx-12">
                     <div className="flex items-center">
                         <div>
                             <Image
@@ -182,7 +182,7 @@ const BaanChoosing = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-4/6 lg:overflow-scroll flex-wrap">
+                    <div className="flex justify-evenly items-center lg:py-4 lg:h-[17rem] min-[1600px]:h-4/6 lg:overflow-scroll flex-wrap">
                         {listBaan}
                     </div>
                 </div>
