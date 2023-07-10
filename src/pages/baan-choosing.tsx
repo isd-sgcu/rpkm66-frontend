@@ -110,7 +110,7 @@ const BaanChoosing = () => {
             <Navbar />
 
             <div className="w-screen h-screen lg:flex lg:flex-row justify-center items-center lg:text-white overflow-scroll lg:z-50 lg:-translate-y-[2.5rem] translate-y-24">
-                <div className="lg:w-fit flex flex-col justify-center lg:items-start items-center lg:mb-none lg:mx-0 mx-12 lg:mb-6 p-auto py-10 px-8 border lg:h-[30rem] lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-s-3xl rounded-t-3xl min-[1600px]:h-3/5">
+                <div className="lg:w-fit flex flex-col justify-center lg:items-start items-center lg:mb-none lg:mx-0 mx-12 lg:mb-6 p-auto py-10 px-8 border lg:h-[30rem] lg:mr-0 lg:ml-auto bg-white text-black lg:rounded-l-3xl max-lg:rounded-t-3xl min-[1600px]:h-3/5">
                     <h1 className="text-3xl lg:text-4xl font-bold relative z-0 leading-none select-none">
                         เลือกบ้าน
                     </h1>
@@ -135,7 +135,7 @@ const BaanChoosing = () => {
                         </button>
                     </div>
                 </div>
-                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-e-3xl rounded-b-3xl lg:h-[30rem] min-[1600px]:h-3/5 h-auto lg:w-3/5 lg:mx-0 mx-12">
+                <div className="lg:mb-none mb-6 p-auto py-8 px-8 border lg:mr-auto bg-black/50 lg:rounded-r-3xl max-lg:rounded-b-3xl lg:h-[30rem] min-[1600px]:h-3/5 h-auto lg:w-3/5 lg:mx-0 mx-12">
                     <div className="flex items-center">
                         <div>
                             <Image
