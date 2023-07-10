@@ -85,7 +85,7 @@ const BaanChoosing = () => {
                     className="text-md flex flex-col items-center"
                 >
                     <div
-                        className={`mx-4 my-4 flex h-40 w-40 items-center justify-center rounded-xl bg-white lg:h-56 lg:w-56 min-[1600px]:h-64 min-[1600px]:w-64`}
+                        className={`mx-4 my-4 flex h-40 w-40 items-center justify-center rounded-xl bg-white lg:h-[12.5rem] lg:w-[12.5rem] min-[1600px]:h-64 min-[1600px]:w-64`}
                     >
                         <Image
                             src={e.imgUrl}
@@ -148,7 +148,7 @@ const BaanChoosing = () => {
                             />
                         </form>
                     </div>
-                    <div className="mt-8 flex overflow-scroll px-2 py-2  lg:px-4 lg:py-4">
+                    <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll  lg:px-4 lg:py-4">
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
