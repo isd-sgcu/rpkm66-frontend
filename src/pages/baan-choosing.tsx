@@ -154,7 +154,7 @@ const BaanChoosing = () => {
                                 ) => {
                                     setInput(e.target.value);
                                 }}
-                                className="w-full rounded-3xl bg-white px-4 py-1 text-sm placeholder-black ring-8 ring-white/20 lg:text-xl"
+                                className="w-full rounded-3xl bg-white px-4 py-1 text-sm placeholder-gray-500 ring-8 ring-white/20 lg:text-xl"
                             />
                         </form>
                     </div>
