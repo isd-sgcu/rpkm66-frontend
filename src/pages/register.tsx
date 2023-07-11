@@ -5,12 +5,15 @@ import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useToast } from '@/components/Toast';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const toast = useToast();
+
     const { user, refreshContext } = useAuth();
     const router = useRouter();
     const [bottleModal, setBottleModal] = useState(false);
@@ -21,7 +24,10 @@ const Register = () => {
 
     async function handleImageUpload(file: File) {
         const formData = new FormData();
-        formData.append('file', file);
+        const filename = `${Date.now()}.${file.name.split('.').pop()}${
+            user?.studentID
+        }`;
+        formData.append('file', file, filename);
         formData.append('tag', '1');
         formData.append('type', '1');
 
@@ -35,7 +41,7 @@ const Register = () => {
 
             setPreviewImage(data.url);
         } catch (error) {
-            // todo handle error
+            toast?.setToast('error', 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
         }
     }
 
@@ -300,7 +306,7 @@ const Register = () => {
                         <select
                             name="nametitle"
                             id="nametitle"
-                            className="mb-4 w-28 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
+                            className="mb-4 w-36 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
                             required
                         >
                             <option value="">เลือกคำนำหน้าชื่อ</option>
