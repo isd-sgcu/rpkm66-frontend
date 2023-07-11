@@ -72,6 +72,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const alreadyRegistered = user && user.email && user.email !== '';
+
+        if (isFetching.current) {
+            return;
+        }
+
         switch (router.pathname) {
             case '/':
                 if (user) {

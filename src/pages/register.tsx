@@ -300,7 +300,7 @@ const Register = () => {
                         <select
                             name="nametitle"
                             id="nametitle"
-                            className="mb-4 w-28 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
+                            className="mb-4 w-36 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
                             required
                         >
                             <option value="">เลือกคำนำหน้าชื่อ</option>
