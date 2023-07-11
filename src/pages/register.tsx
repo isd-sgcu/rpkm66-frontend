@@ -21,7 +21,10 @@ const Register = () => {
 
     async function handleImageUpload(file: File) {
         const formData = new FormData();
-        formData.append('file', file);
+        const filename = `${Date.now()}.${file.name.split('.').pop()}${
+            user?.studentID
+        }`;
+        formData.append('file', file, filename);
         formData.append('tag', '1');
         formData.append('type', '1');
 
@@ -35,7 +38,7 @@ const Register = () => {
 
             setPreviewImage(data.url);
         } catch (error) {
-            // todo handle error
+            alert('เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
         }
     }
 
