@@ -31,6 +31,13 @@ const Register = () => {
         formData.append('tag', '1');
         formData.append('type', '1');
 
+        // if file larger than 10mb
+        const TEN_MB = 10 * 1024 * 1024;
+        if (file.size > TEN_MB) {
+            toast?.setToast('error', 'ไฟล์มีขนาดใหญ่เกิน 10 MB');
+            return;
+        }
+
         try {
             const { data } = await httpPost<
                 FormData,
