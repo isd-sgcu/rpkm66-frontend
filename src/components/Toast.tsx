@@ -1,10 +1,11 @@
 // toast provider
+import clsx from 'clsx';
 
 import {
     CheckCircleIcon,
     ExclamationCircleIcon,
 } from '@heroicons/react/24/solid';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
