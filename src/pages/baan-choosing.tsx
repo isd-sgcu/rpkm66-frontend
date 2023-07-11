@@ -61,10 +61,10 @@ const BaanChoosing = () => {
         return (
             <div
                 key={e.num}
-                className="text-md flex flex-col items-center lg:flex-row"
+                className="flex flex-col items-center text-sm lg:flex-row"
             >
                 <div
-                    className={`mx-4 my-3 flex h-16 w-16 items-center justify-center bg-white ring-4 ring-pink-400 lg:h-20 lg:w-20`}
+                    className={`mx-4 my-3 flex h-16 w-16 items-center justify-center rounded-lg bg-white ring-2 ring-purple lg:h-20 lg:w-20`}
                 >
                     <Image
                         src={e.imageURL}
@@ -74,7 +74,7 @@ const BaanChoosing = () => {
                         className="fill"
                     />
                 </div>
-                <p>{e.name == '' ? 'จงเลือกบ้าน' : `${e.size} : ${e.name}`}</p>
+                <p>{e.name == '' ? 'จงเลือกบ้าน' : `${e.name} (${e.size})`}</p>
             </div>
         );
     });
@@ -87,17 +87,17 @@ const BaanChoosing = () => {
                     className="text-md flex flex-col items-center"
                 >
                     <div
-                        className={`mx-4 my-4 flex h-40 w-40 items-center justify-center rounded-xl bg-white lg:h-[12.5rem] lg:w-[12.5rem] min-[1600px]:h-64 min-[1600px]:w-64`}
+                        className={`mx-4 my-4 flex h-32 w-32 items-center justify-center rounded-xl bg-white ring-4 ring-purple lg:h-40 lg:w-40 min-[1600px]:h-56 min-[1600px]:w-56`}
                     >
                         <Image
                             src={e.imgUrl}
                             alt={e.name}
-                            width={36}
-                            height={36}
+                            width={40}
+                            height={40}
                             className="fill"
                         />
                     </div>
-                    <p>{`${e.size} : ${e.name}`}</p>
+                    <p>{`${e.name} (${e.size})`}</p>
                 </div>
             );
         });
@@ -109,10 +109,10 @@ const BaanChoosing = () => {
         <>
             <div className="min-h-screen w-screen translate-y-24 items-center justify-center lg:z-50 lg:flex lg:-translate-y-[2.5rem] lg:flex-row lg:text-white">
                 <div className="lg:mb-none mx-12 flex flex-col items-center justify-center border bg-white px-8 py-10 text-black max-lg:rounded-t-3xl lg:mx-0 lg:mb-6 lg:ml-auto lg:mr-0 lg:h-[34rem] lg:w-fit lg:items-start lg:rounded-l-3xl min-[1600px]:h-[44rem]">
-                    <h1 className="relative z-0 select-none text-3xl font-bold leading-none lg:mt-8 lg:text-4xl ">
+                    <h1 className="relative z-0 select-none text-3xl font-bold leading-none tracking-wider lg:mt-8 lg:text-5xl">
                         เลือกบ้าน
                     </h1>
-                    <h2 className="lg:text-l relative z-0 my-3 select-none text-xl leading-none">
+                    <h2 className="lg:text-l relative z-0 my-3 select-none text-xl">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
                     <div className="mx-auto flex h-full flex-wrap items-center justify-evenly max-[450px]:flex-col lg:flex-col">
@@ -188,7 +188,7 @@ const BaanChoosing = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="mb-20 flex flex-wrap items-center justify-evenly lg:mb-0 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
+                    <div className="mx-4 mb-20 mt-6 flex flex-wrap items-center justify-evenly rounded-3xl bg-white text-black ring-8 ring-white/40 lg:mb-0 lg:mt-3 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
                         {listBaan}
                     </div>
                 </div>
