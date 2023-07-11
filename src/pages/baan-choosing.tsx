@@ -29,6 +29,8 @@ const testBaanData: TestBaanObj[] = [
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>('');
+    const [fill, setFill] = useState<boolean>(true);
+    const [baan, setBaan] = useState<TestBaanObj[]>(testBaanData);
     interface SelectedBaan {
         imageURL: string;
         size: string;
@@ -76,7 +78,7 @@ const BaanChoosing = () => {
             </div>
         );
     });
-    const listBaan: ReactNode = testBaanData
+    const listBaan: ReactNode = baan
         .filter((e) => e.name.includes(input))
         .map((e: TestBaanObj) => {
             return (
@@ -99,6 +101,30 @@ const BaanChoosing = () => {
                 </div>
             );
         });
+    const filterBaanS = () => {
+        fill
+            ? setBaan(baan.filter((e) => e.size == 'S'))
+            : setBaan(testBaanData);
+        setFill(!fill);
+    };
+    const filterBaanM = () => {
+        fill
+            ? setBaan(baan.filter((e) => e.size == 'M'))
+            : setBaan(testBaanData);
+        setFill(!fill);
+    };
+    const filterBaanL = () => {
+        fill
+            ? setBaan(baan.filter((e) => e.size == 'L'))
+            : setBaan(testBaanData);
+        setFill(!fill);
+    };
+    const filterBaanXL = () => {
+        fill
+            ? setBaan(baan.filter((e) => e.size == 'XL'))
+            : setBaan(testBaanData);
+        setFill(!fill);
+    };
     return (
         <>
             <div className="min-h-screen w-screen translate-y-24 items-center justify-center lg:z-50 lg:flex lg:-translate-y-[2.5rem] lg:flex-row lg:text-white">
@@ -152,7 +178,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={() => console.log('S clicked')}
+                                onClick={filterBaanS}
                             >
                                 บ้านขนาดเล็ก (S)
                             </button>
@@ -160,7 +186,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={() => console.log('M clicked')}
+                                onClick={filterBaanM}
                             >
                                 บ้านขนาดกลาง (M)
                             </button>
@@ -168,7 +194,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={() => console.log('L clicked')}
+                                onClick={filterBaanL}
                             >
                                 บ้านขนาดใหญ่ (L)
                             </button>
@@ -176,7 +202,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={() => console.log('XL clicked')}
+                                onClick={filterBaanXL}
                             >
                                 บ้านขนาดใหญ่พิเศษ (XL)
                             </button>
