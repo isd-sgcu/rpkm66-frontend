@@ -8,6 +8,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { ToastProvider } from '@/components/Toast';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
     subsets: ['latin'],
@@ -62,32 +63,36 @@ function MetaData() {
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <AuthProvider>
-            <MetaData />
+            <ToastProvider>
+                <MetaData />
 
-            <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
-                <Navbar />
-                <Component {...pageProps} />
-                <Background />
-                <Footer />
-            </main>
+                <main
+                    className={`${ibmPlexSansThai.variable} font-ibm text-white`}
+                >
+                    <Navbar />
+                    <Component {...pageProps} />
+                    <Background />
+                    <Footer />
+                </main>
 
-            <Analytics />
-            <Script
-                async
-                src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
-            />
-            <Script
-                id="google-analytics"
-                dangerouslySetInnerHTML={{
-                    __html: `
+                <Analytics />
+                <Script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
+                />
+                <Script
+                    id="google-analytics"
+                    dangerouslySetInnerHTML={{
+                        __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
             
               gtag('config', 'G-0ZFDD1EKVW');
           `,
-                }}
-            />
+                    }}
+                />
+            </ToastProvider>
         </AuthProvider>
     );
 }
