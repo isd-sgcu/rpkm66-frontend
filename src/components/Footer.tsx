@@ -6,11 +6,11 @@ import Instagram from '@/public/images/instagram.svg';
 
 const Footer = () => {
     return (
-        <footer className="w-full relative lg:fixed bottom-0 left-0">
-            <div className="w-full bg-gray-900 relative m-0 lg:p-4 pt-3">
-                <div className="flex flex-col lg:flex-row lg:ml-3 justify-center items-center lg:justify-between relative">
+        <footer className="relative w-full">
+            <div className="relative m-0 w-full bg-gray-900 pt-3 lg:p-4">
+                <div className="relative flex flex-col items-center justify-center lg:ml-3 lg:flex-row lg:justify-between">
                     <div className="flex flex-col lg:flex-row">
-                        <div className="mt-3 lg:mr-4 lg:px-3 flex justify-center shrink-0">
+                        <div className="mt-3 flex shrink-0 justify-center lg:mr-4 lg:px-3">
                             <Image
                                 src={SGCU}
                                 alt="SGCU"
@@ -18,8 +18,8 @@ const Footer = () => {
                                 height={79}
                             />
                         </div>
-                        <div className="font-semibold text-xs items-end lg:mt-5">
-                            <h6 className="flex justify-center leading-snug lg:justify-start text-xl font-normal my-1 items-center">
+                        <div className="items-end text-xs font-semibold lg:mt-5">
+                            <h6 className="my-1 flex items-center justify-center text-xl font-normal leading-snug lg:justify-start">
                                 รับเพื่อนก้าวใหม่ 2023
                             </h6>
                             <p className="flex justify-center font-normal leading-snug lg:justify-start">
@@ -30,19 +30,19 @@ const Footer = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center mb-2 lg:mt-5 p-4 lg:p-3 justify-center">
+                    <div className="mb-2 flex items-center justify-center p-4 lg:mt-5 lg:p-3">
                         <div>
                             <Link
                                 href="https://www.facebook.com/chulafreshmen"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <button className="px-3 shrink-0">
+                                <button className="shrink-0 px-3">
                                     <Image
                                         src={Facebook}
                                         alt="Facebook"
-                                        width={50}
-                                        height={50}
+                                        width={40}
+                                        height={40}
                                     />
                                 </button>
                             </Link>
@@ -52,12 +52,12 @@ const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <button className="px-3 shrink-0">
+                                <button className="shrink-0 px-3">
                                     <Image
                                         src={Instagram}
                                         alt="Instagram"
-                                        width={50}
-                                        height={50}
+                                        width={40}
+                                        height={40}
                                     />
                                 </button>
                             </Link>
@@ -65,12 +65,19 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-black w-full p-3 flex justify-center items-center">
+            <div className="flex w-full items-center justify-center gap-4 bg-black p-3">
                 <Link
-                    className="text-gray-200 font-light text-xs underline underline-offset-2"
-                    href="https://gmail.com"
+                    className="text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    href="/terms-conditions"
                 >
-                    ข้อตกลงและเงื่อนไขการใช้งาน
+                    เงื่อนไขการใช้งาน
+                </Link>
+
+                <Link
+                    className="text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    href="/privacy-policy"
+                >
+                    นโยบายความเป็นส่วนตัว
                 </Link>
             </div>
         </footer>

@@ -1,0 +1,19 @@
+import Link from 'next/link';
+
+const Only107 = () => {
+    return (
+        <div className="flex min-h-screen w-full flex-col items-center justify-center  px-8">
+            <div className="flex w-full flex-col items-center justify-center rounded-xl bg-pink-400/50 px-4 py-12 text-center text-2xl text-white backdrop-blur-md">
+                <h1 className="text-4xl font-bold">ขออภัย!</h1>
+                <p className="mt-4">
+                    กิจกรรมนี้สามารถลงทะเบียนได้เฉพาะนิสิตรหัส 66 เท่านั้น
+                </p>
+                <Link href="/" className="mt-12 underline">
+                    กลับหน้าหลัก
+                </Link>
+            </div>
+        </div>
+    );
+};
+
+export default Only107;

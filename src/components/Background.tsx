@@ -16,7 +16,7 @@ const Background = () => {
                 blurDataURL={`data:image/svg+xml;base64, ${toBase64(
                     shimmer(1024, 1024)
                 )}`}
-                className="hidden lg:block fixed w-full h-full -z-50 select-none pointer-events-none top-0 left-0 object-cover object-top"
+                className="pointer-events-none fixed left-0 top-0 -z-50 hidden h-full w-full select-none object-cover object-top lg:block"
             />
             <Image
                 src={BackgroundMobile}
@@ -27,7 +27,7 @@ const Background = () => {
                 blurDataURL={`data:image/svg+xml;base64, ${toBase64(
                     shimmer(1024, 1024)
                 )}`}
-                className="block lg:hidden fixed w-full h-full -z-50 select-none pointer-events-none top-0 left-0 object-cover"
+                className="pointer-events-none fixed left-0 top-0 -z-50 block h-full w-full select-none object-cover lg:hidden"
             />
         </>
     );

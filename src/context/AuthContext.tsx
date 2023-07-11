@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import {
     ReactNode,
     createContext,
+    use,
     useCallback,
     useContext,
     useEffect,
@@ -48,7 +49,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
             const userProfile = await getUserProfile();
             if (!userProfile) {
                 localStorage.clear();
-                window.location.href = '/login';
+                window.location.href = '/';
+                return;
+            }
+            if (!userProfile.studentID.startsWith('66')) {
+                localStorage.clear();
+                window.location.href = '/only-107';
                 return;
             }
 
@@ -62,7 +68,40 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
 
         isFetching.current = false;
-    }, [router.locale]);
+    }, [router]);
+
+    useEffect(() => {
+        const alreadyRegistered = user && user.email && user.email !== '';
+
+        if (isFetching.current) {
+            return;
+        }
+
+        switch (router.pathname) {
+            case '/':
+                if (user) {
+                    if (alreadyRegistered) router.push('/baan-selection');
+                    else router.push('/register');
+                }
+                break;
+            case '/register':
+                if (!user) {
+                    router.push('/');
+                } else if (alreadyRegistered) {
+                    router.push('/baan-selection');
+                }
+                break;
+            case '/baan-selection':
+                if (!user) {
+                    router.push('/');
+                } else if (!alreadyRegistered) {
+                    router.push('/register');
+                }
+                break;
+            default:
+                break;
+        }
+    }, [isAuthenticated, router, user]);
 
     useEffect(() => {
         const initializeContext = async () => {

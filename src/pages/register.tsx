@@ -1,35 +1,275 @@
-import { PencilSquareIcon } from '@heroicons/react/24/solid';
+import { useAuth } from '@/context/AuthContext';
+import { RegisterDTO } from '@/dto/registerDTO';
+import { httpPatch, httpPost } from '@/utils/axios';
+import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useToast } from '@/components/Toast';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const toast = useToast();
+
+    const { user, refreshContext } = useAuth();
+    const router = useRouter();
+    const [bottleModal, setBottleModal] = useState(false);
     const [previewImage, setPreviewImage] = useState<string>(
         profilePicPlaceholderURL
     );
+    const [error, setError] = useState<string[]>([]);
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    async function handleImageUpload(file: File) {
+        const formData = new FormData();
+        const filename = `${Date.now()}.${file.name.split('.').pop()}${
+            user?.studentID
+        }`;
+        formData.append('file', file, filename);
+        formData.append('tag', '1');
+        formData.append('type', '1');
+
+        try {
+            const { data } = await httpPost<
+                FormData,
+                {
+                    url: string;
+                }
+            >('/file/upload', formData);
+
+            setPreviewImage(data.url);
+        } catch (error) {
+            toast?.setToast('error', 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
+        }
+    }
+
+    const onFormDone = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const _error = [];
+
+        // validate form
+        if (!e.currentTarget.image.files[0]) {
+            _error.push('กรุณาอัปโหลดรูปภาพ');
+        }
+        if (
+            !e.currentTarget.nametitle.value ||
+            e.currentTarget.nametitle.value === ''
+        ) {
+            _error.push('กรุณาเลือกคำนำหน้าชื่อ');
+        }
+        if (
+            !e.currentTarget.firstname.value ||
+            e.currentTarget.firstname.value === ''
+        ) {
+            _error.push('กรุณากรอกชื่อ');
+        }
+        if (
+            !e.currentTarget.surname.value ||
+            e.currentTarget.surname.value === ''
+        ) {
+            _error.push('กรุณากรอกนามสกุล');
+        }
+        if (
+            !e.currentTarget.nickname.value ||
+            e.currentTarget.nickname.value === ''
+        ) {
+            _error.push('กรุณากรอกชื่อเล่น');
+        }
+        if (
+            !e.currentTarget.phone.value ||
+            e.currentTarget.phone.value === ''
+        ) {
+            _error.push('กรุณากรอกหมายเลขโทรศัพท์');
+        } else if (!e.currentTarget.phone.value.match(/^[0-9]{10}$/)) {
+            _error.push(
+                'หมายเลขโทรศัพท์ต้องประกอบด้วยตัวเลข 10 หลัก เช่น 0912345678'
+            );
+        }
+        if (
+            !e.currentTarget.email.value ||
+            e.currentTarget.email.value === ''
+        ) {
+            _error.push('กรุณากรอก Email');
+        } else if (
+            !e.currentTarget.email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+        ) {
+            _error.push('กรุณากรอก Email ให้ถูกต้อง');
+        }
+        if (
+            !e.currentTarget.lineId.value ||
+            e.currentTarget.lineId.value === ''
+        ) {
+            _error.push('กรุณากรอก LINE ID');
+        }
+        if (
+            !e.currentTarget.diseases.value ||
+            e.currentTarget.diseases.value === ''
+        ) {
+            _error.push('กรุณากรอกโรคประจำตัว');
+        }
+        if (
+            !e.currentTarget.foodAllergy.value ||
+            e.currentTarget.foodAllergy.value === ''
+        ) {
+            _error.push('กรุณากรอกอาหารที่แพ้');
+        }
+        if (
+            !e.currentTarget.drugAllergy.value ||
+            e.currentTarget.drugAllergy.value === ''
+        ) {
+            _error.push('กรุณากรอกยาที่แพ้');
+        }
+        if (
+            !e.currentTarget.foodRestriction.value ||
+            e.currentTarget.foodRestriction.value === ''
+        ) {
+            _error.push('กรุณากรอกข้อจำกัดทางอาหาร');
+        }
+        if (
+            !e.currentTarget.emergencyNo.value ||
+            e.currentTarget.emergencyNo.value === ''
+        ) {
+            _error.push('กรุณากรอกเบอร์ติดต่อฉุกเฉิน');
+        } else if (!e.currentTarget.emergencyNo.value.match(/^[0-9]{10}$/)) {
+            _error.push(
+                'หมายเลขโทรศัพท์ติดต่อฉุกเฉินต้องประกอบด้วยตัวเลข 10 หลัก เช่น 0912345678'
+            );
+        }
+        if (
+            !e.currentTarget.emergencyRel.value ||
+            e.currentTarget.emergencyRel.value === ''
+        ) {
+            _error.push('กรุณากรอกความสัมพันธ์กับผู้ติดต่อฉุกเฉิน');
+        }
+        if (!e.currentTarget.tc.checked) {
+            _error.push('กรุณายอมรับเงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว');
+        }
+        if (!e.currentTarget.pp.checked) {
+            _error.push('กรุณายอมรับข้อตกลง');
+        }
+
+        setError(_error);
+
+        if (_error.length === 0) {
+            setBottleModal(true);
+        }
+    };
+
+    const handleSubmit = async (
+        // e: FormEvent<HTMLFormElement>,
+        wantBottle: boolean
+    ) => {
+        const form = document.getElementById(
+            'register-form'
+        ) as HTMLFormElement;
+
+        const body = {
+            allergy_food: form.foodAllergy.value as string,
+            allergy_medicine: form.drugAllergy.value as string,
+            disease: form.diseases.value as string,
+            email: form.email.value as string,
+            emer_phone: form.emergencyNo.value as string,
+            emer_relation: form.emergencyRel.value as string,
+            firstname: form.firstname.value as string,
+            food_restriction: form.foodRestriction.value as string,
+            line_id: form.lineId.value as string,
+            lastname: form.surname.value as string,
+            nickname: form.nickname.value as string,
+            phone: form.phone.value as string,
+            title: form.nametitle.value as string,
+            want_bottle: wantBottle,
+            id: user?.id ?? '',
+        } satisfies RegisterDTO;
+        try {
+            await httpPatch(`/user`, body);
+            await refreshContext();
+            router.push('/baan-selection');
+        } catch (_error: any) {
+            // TODO handle error
+            setBottleModal(false);
+            console.error(_error);
+            setError([_error]);
+        }
     };
 
     return (
-        <div className="flex lg:justify-end">
+        <div className="relative flex pt-8 lg:justify-center">
+            {bottleModal && (
+                <AnimatePresence>
+                    <motion.div
+                        className="fixed left-1/2 top-1/2 z-[99] flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-lg bg-white shadow-md"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        key="water-bottle-modal"
+                    >
+                        <div className="relative px-16 py-16">
+                            <Image
+                                src="/images/czw.jpg"
+                                className="mx-auto mb-4"
+                                width={200}
+                                height={500}
+                                alt="Bottle"
+                            />
+
+                            <h1 className="text-center text-2xl font-bold text-purple">
+                                ต้องการรับกระบอกน้ำ <br />
+                                Chula Zero Waste <br />
+                                ในงานรับเพื่อนก้าวใหม่หรือไม่
+                            </h1>
+                            <div className="absolute right-2 top-4">
+                                <button onClick={() => setBottleModal(false)}>
+                                    <XMarkIcon className="h-6 w-6 text-black" />
+                                </button>
+                            </div>
+                            <div className="mt-4 flex w-full flex-col items-center justify-center gap-4">
+                                <button
+                                    onClick={() => {
+                                        setBottleModal(false);
+                                        handleSubmit(false);
+                                    }}
+                                    className="w-full rounded-full border-pink-400 px-5 py-2 text-xl font-bold text-pink-400 ring-2 ring-pink-400/30 transition-all duration-500 hover:ring-8 hover:ring-pink-400/50"
+                                >
+                                    ไม่ต้องการ
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setBottleModal(false);
+                                        handleSubmit(true);
+                                    }}
+                                    className="w-full rounded-full bg-pink-400 px-5 py-2 text-xl font-bold text-white ring-2 ring-pink-400/30 transition-all duration-500 hover:bg-pink-400/80 hover:ring-8"
+                                >
+                                    ต้องการ
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                    <div
+                        onClick={() => setBottleModal(false)}
+                        className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/25 backdrop-blur-md"
+                    ></div>
+                </AnimatePresence>
+            )}
+
             <form
-                className="bg-white w-full lg:w-2/3 mt-40 lg:mt-0 rounded-t-3xl lg:rounded-tr-none flex flex-col justify-start items-center text-purple"
-                onSubmit={handleSubmit}
+                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3"
+                onSubmit={onFormDone}
+                noValidate={true}
+                id="register-form"
             >
-                <h1 className="text-3xl font-bold mt-12 mb-2">ลงทะเบียน</h1>
-                <div className="flex flex-col justify-start items-center w-10/12 pt-6 lg:flex-row-reverse lg:justify-between">
+                <h1 className="mb-2 mt-12 text-3xl font-bold">ลงทะเบียน</h1>
+                <div className="flex w-10/12 flex-col items-center justify-start pt-6 lg:flex-row-reverse lg:justify-between">
                     <label
                         htmlFor="image"
-                        className="w-40 mb-6 lg:w-1/4 cursor-pointer"
+                        className="mb-6 w-40 cursor-pointer lg:w-1/4"
                     >
-                        <div className="flex flex-row justify-between items-center">
+                        <div className="flex flex-row items-center justify-between">
                             <div>อัปโหลดรูป</div>
-                            <div className="bg-orange flex flex-row justify-center items-center py-1 px-3 rounded-full">
-                                <PencilSquareIcon className="w-4 h-4" />
+                            <div className="flex flex-row items-center justify-center rounded-full bg-orange px-3 py-1 text-white">
+                                <PencilSquareIcon className="h-4 w-4" />
                                 <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
@@ -37,22 +277,19 @@ const Register = () => {
                             id="image"
                             name="image"
                             type="file"
-                            accept="images/*"
+                            accept="image/*"
                             className="hidden"
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                            onChange={async (
+                                e: ChangeEvent<HTMLInputElement>
+                            ) => {
                                 if (!e.target.files || !e.target.files[0])
                                     return;
 
-                                const file = e.target.files[0];
-                                const reader = new FileReader();
-                                reader.onloadend = () => {
-                                    setPreviewImage(reader.result as string);
-                                };
-                                reader.readAsDataURL(file);
+                                await handleImageUpload(e.target.files[0]);
                             }}
                         />
                         {previewImage && (
-                            <div className="w-full aspect-3/4 relative my-4">
+                            <div className="relative my-4 aspect-3/4 w-full">
                                 <Image
                                     src={previewImage}
                                     alt="preview"
@@ -62,30 +299,31 @@ const Register = () => {
                             </div>
                         )}
                     </label>
-                    <div className="w-full lg:w-1/2 flex flex-col justify-start items-start">
-                        <label htmlFor="title" className="mb-1">
+                    <div className="flex w-full flex-col items-start justify-start lg:w-1/2">
+                        <label htmlFor="nametitle" className="mb-1">
                             คำนำหน้าชื่อ
                         </label>
                         <select
-                            name="title"
-                            id="title"
-                            className="w-28 bg-gray-100 border-gray-100 rounded-full p-2 px-3 mb-4"
+                            name="nametitle"
+                            id="nametitle"
+                            className="mb-4 w-36 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
                             required
                         >
-                            <option value=""></option>
+                            <option value="">เลือกคำนำหน้าชื่อ</option>
                             <option value="นาย">นาย</option>
                             <option value="นางสาว">นางสาว</option>
                             <option value="นาง">นาง</option>
                         </select>
-                        <label htmlFor="name" className="mb-1">
+                        <label htmlFor="firstname" className="mb-1">
                             ชื่อ (หากมีชื่อกลางให้ใส่ในช่องนี้)
                         </label>
                         <input
                             type="text"
-                            name="name"
-                            id="name"
+                            name="firstname"
+                            id="firstname"
                             className="input"
                             required
+                            placeholder="ชื่อ"
                         />
                         <label htmlFor="surname" className="mb-1">
                             นามสกุล
@@ -95,6 +333,7 @@ const Register = () => {
                             name="surname"
                             id="surname"
                             className="input"
+                            placeholder="นามสกุล"
                             required
                         />
                         <label htmlFor="nickname" className="mb-1">
@@ -105,12 +344,13 @@ const Register = () => {
                             name="nickname"
                             id="nickname"
                             className="input"
+                            placeholder="ชื่อเล่น"
                             required
                         />
                     </div>
                 </div>
-                <hr className="w-10/12 h-1 mt-3 mb-5" />
-                <div className="w-10/12 flex flex-col justify-start items-start">
+                <hr className="mb-5 mt-3 h-1 w-10/12" />
+                <div className="flex w-10/12 flex-col items-start justify-start">
                     <label htmlFor="phone" className="mb-1">
                         หมายเลขโทรศัพท์
                     </label>
@@ -119,6 +359,7 @@ const Register = () => {
                         name="phone"
                         id="phone"
                         className="input"
+                        placeholder="08xxxxxxxx"
                         required
                     />
                     <label htmlFor="email" className="mb-1">
@@ -129,6 +370,7 @@ const Register = () => {
                         name="email"
                         id="email"
                         className="input"
+                        placeholder="example@email.com"
                         required
                     />
                     <label htmlFor="lindId" className="mb-1">
@@ -139,49 +381,54 @@ const Register = () => {
                         name="lineId"
                         id="lineId"
                         className="input"
+                        placeholder="LINE ID"
                         required
                     />
                     <label htmlFor="diseases" className="mb-1">
-                        โรคประจำตัว (ไม่มีให้ใส่ -)
+                        โรคประจำตัว
                     </label>
                     <input
                         type="text"
                         name="diseases"
                         id="diseases"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
                     <label htmlFor="drugAllergy" className="mb-1">
-                        ยาที่แพ้ (ไม่มีให้ใส่ -)
+                        ยาที่แพ้
                     </label>
                     <input
                         type="text"
                         name="drugAllergy"
                         id="drugAllergy"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
                     <label htmlFor="foodAllergy" className="mb-1">
-                        อาหารที่แพ้ (ไม่มีให้ใส่ -)
+                        อาหารที่แพ้
                     </label>
                     <input
                         type="text"
                         name="foodAllergy"
                         id="foodAllergy"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
                     <label htmlFor="foodRestriction" className="mb-1">
-                        ข้อจำกัดทางอาหาร (ไม่มีให้ใส่ -)
+                        ข้อจำกัดทางอาหาร
                     </label>
                     <input
                         type="text"
                         name="foodRestriction"
                         id="foodRestriction"
                         className="input"
+                        placeholder="ไม่มีให้ใส่ -"
                         required
                     />
-                    <hr className="w-full h-1 mt-3 mb-5" />
+                    <hr className="mb-5 mt-3 h-1 w-full" />
                     <label htmlFor="emergencyNo" className="mb-1">
                         เบอร์ติดต่อฉุกเฉิน
                     </label>
@@ -190,6 +437,7 @@ const Register = () => {
                         name="emergencyNo"
                         id="emergencyNo"
                         className="input"
+                        placeholder="08xxxxxxxx"
                         required
                     />
                     <label htmlFor="emergencyRel" className="mb-1">
@@ -200,38 +448,65 @@ const Register = () => {
                         name="emergencyRel"
                         id="emergencyRel"
                         className="input"
+                        placeholder="มารดา"
                         required
                     />
                 </div>
-                <div className="w-10/12 flex flex-row justify-start items-start mt-8 mb-2">
-                    <input
-                        type="checkbox"
-                        name="flask"
-                        id="flask"
-                        className="bg-gray-100 border-none w-7 h-7 mr-3"
-                    />
-                    <label htmlFor="flask" className="text-left w-3/4">
-                        รับกระติกน้ำ Zero waste ที่โต๊ะลงทะเบียนในวันที่ 5
-                    </label>
-                </div>
-                <div className="w-10/12 flex flex-row justify-start items-start mt-3 mb-5">
+
+                <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
                     <input
                         type="checkbox"
                         name="tc"
                         id="tc"
-                        className="bg-gray-100 border-none w-7 h-7 mr-3"
+                        className="col-span-1 h-7 w-7 border-none bg-gray-100"
                         required
                     />
-                    <label htmlFor="tc" className="text-left">
+                    <label
+                        htmlFor="tc"
+                        className="text-full col-span-11 text-left"
+                    >
                         ยอมรับ{' '}
-                        <Link href={''} className="underline">
-                            ข้อตกลงและเงื่อนไขการใช้งาน
+                        <Link
+                            href={'/terms-conditions'}
+                            className="underline hover:no-underline"
+                        >
+                            เงื่อนไขการใช้งาน
+                        </Link>{' '}
+                        และ{' '}
+                        <Link
+                            href={'/privacy-policy'}
+                            className="underline hover:no-underline"
+                        >
+                            นโยบายความเป็นส่วนตัว
                         </Link>
                     </label>
                 </div>
+
+                <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
+                    <input
+                        type="checkbox"
+                        name="pp"
+                        id="pp"
+                        className="col-span-1 h-7 w-7 border-none bg-gray-100"
+                        required
+                    />
+                    <label htmlFor="pp" className="col-span-11 text-left">
+                        ข้าพเจ้ายินยอมให้ส่งต่อข้อมูลให้คณะผู้จัดงานและบ้านรับเพื่อนเพื่อนำข้อมูลดังกล่าวไปใช้สำหรับเตรียมอาหาร
+                        ยาและเครื่องมือปฐมพยาบาลเบื้องต้นสำหรับนิสิตที่เข้าร่วมกิจกรรม
+                    </label>
+                </div>
+
+                {error.length > 0 && (
+                    <div className="mb-5 mt-3 w-10/12 origin-top text-red-400">
+                        {error.map((err, index) => (
+                            <p key={index}>{err}</p>
+                        ))}
+                    </div>
+                )}
+
                 <button
                     type="submit"
-                    className="text-xl font-bold bg-pink-400 rounded-full py-2 px-14 my-10 mb-16 ring-pink-400/30 ring-8 hover:bg-pink-400/80"
+                    className="my-10 mb-16 rounded-full bg-pink-400 px-14 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
                 >
                     ลงทะเบียน
                 </button>

@@ -18,10 +18,10 @@ const exchangeTicketForToken = async (
     }
 
     const expiresOn = new Date();
-    expiresOn.setSeconds(expiresOn.getSeconds() + res.data.expiresIn);
+    expiresOn.setSeconds(expiresOn.getSeconds() + res.data.expires_in);
     return {
-        accessToken: res.data.accessToken,
-        refreshToken: res.data.refreshToken,
+        accessToken: res.data.access_token,
+        refreshToken: res.data.refresh_token,
         expiresOn,
     };
 };
