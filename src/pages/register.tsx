@@ -190,7 +190,7 @@ const Register = () => {
     };
 
     return (
-        <div className="relative flex lg:justify-end">
+        <div className="relative flex pt-8 lg:justify-center">
             {bottleModal && (
                 <AnimatePresence>
                     <motion.div
@@ -249,7 +249,7 @@ const Register = () => {
             )}
 
             <form
-                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3 lg:rounded-tr-none"
+                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3"
                 onSubmit={onFormDone}
                 noValidate={true}
                 id="register-form"
@@ -271,7 +271,7 @@ const Register = () => {
                             id="image"
                             name="image"
                             type="file"
-                            accept="images/*"
+                            accept="image/*"
                             className="hidden"
                             onChange={async (
                                 e: ChangeEvent<HTMLInputElement>
