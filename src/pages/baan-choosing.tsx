@@ -2,15 +2,15 @@ import { ChangeEvent, ReactNode, useState } from 'react';
 import Image from 'next/image';
 import Favicon from '@/public/images/favicon.svg';
 
+const picTest1: string = '/images/pfp-placeholder.svg';
+const picTest2: string = '/images/rocket.svg';
+const picTest3: string = '/images/background-mobile.svg';
+
 interface TestBaanObj {
     name: string;
     size: string;
     imgUrl: string;
 }
-
-const picTest1: string = '/images/pfp-placeholder.svg';
-const picTest2: string = '/images/rocket.svg';
-const picTest3: string = '/images/background-mobile.svg';
 
 const testBaanData: TestBaanObj[] = [
     { name: 'บ้านทรายทอง', size: 'S', imgUrl: picTest1 },
