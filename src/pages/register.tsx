@@ -280,6 +280,9 @@ const Register = () => {
                                 <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
+                        <span className="text-center text-sm font-extralight text-purple/50">
+                            รูปภาพจะต้องมีขนาดไม่เกิน 10MB
+                        </span>
                         <input
                             id="image"
                             name="image"
