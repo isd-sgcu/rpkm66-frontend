@@ -101,28 +101,8 @@ const BaanChoosing = () => {
                 </div>
             );
         });
-    const filterBaanS = () => {
-        fill
-            ? setBaan(baan.filter((e) => e.size == 'S'))
-            : setBaan(testBaanData);
-        setFill(!fill);
-    };
-    const filterBaanM = () => {
-        fill
-            ? setBaan(baan.filter((e) => e.size == 'M'))
-            : setBaan(testBaanData);
-        setFill(!fill);
-    };
-    const filterBaanL = () => {
-        fill
-            ? setBaan(baan.filter((e) => e.size == 'L'))
-            : setBaan(testBaanData);
-        setFill(!fill);
-    };
-    const filterBaanXL = () => {
-        fill
-            ? setBaan(baan.filter((e) => e.size == 'XL'))
-            : setBaan(testBaanData);
+    const filterBaan = (f: string) => {
+        fill ? setBaan(baan.filter((e) => e.size == f)) : setBaan(testBaanData);
         setFill(!fill);
     };
     return (
@@ -174,11 +154,11 @@ const BaanChoosing = () => {
                             />
                         </form>
                     </div>
-                    <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll  lg:px-4 lg:py-4">
+                    <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll lg:px-4 lg:py-4">
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={filterBaanS}
+                                onClick={() => filterBaan('S')}
                             >
                                 บ้านขนาดเล็ก (S)
                             </button>
@@ -186,7 +166,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={filterBaanM}
+                                onClick={() => filterBaan('M')}
                             >
                                 บ้านขนาดกลาง (M)
                             </button>
@@ -194,7 +174,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={filterBaanL}
+                                onClick={() => filterBaan('L')}
                             >
                                 บ้านขนาดใหญ่ (L)
                             </button>
@@ -202,7 +182,7 @@ const BaanChoosing = () => {
                         <div className="selectSizeButton">
                             <button
                                 className="max-lg:whitespace-nowrap"
-                                onClick={filterBaanXL}
+                                onClick={() => filterBaan('XL')}
                             >
                                 บ้านขนาดใหญ่พิเศษ (XL)
                             </button>
