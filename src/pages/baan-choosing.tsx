@@ -1,6 +1,8 @@
 import { ChangeEvent, ReactNode, useState } from 'react';
 import Image from 'next/image';
-import Favicon from '@/public/images/favicon.svg';
+import Delete from '@/public/images/delete.svg';
+import Search from '@/public/images/search.svg';
+import Home from '@/public/images/home.svg';
 
 const picTest1: string = '/images/pfp-placeholder.svg';
 const picTest2: string = '/images/rocket.svg';
@@ -74,7 +76,23 @@ const BaanChoosing = () => {
                         className="fill"
                     />
                 </div>
-                <p>{e.name == '' ? 'จงเลือกบ้าน' : `${e.name} (${e.size})`}</p>
+                {e.name == '' ? (
+                    <div className="mx-3 w-24">
+                        <p>จงเลือกบ้าน</p>
+                    </div>
+                ) : (
+                    <div className="flex">
+                        <p className="mx-3 w-24">{`${e.name} (${e.size})`}</p>
+                        <button>
+                            <Image
+                                src={Delete}
+                                width={20}
+                                height={20}
+                                alt="delete-button"
+                            />
+                        </button>
+                    </div>
+                )}
             </div>
         );
     });
@@ -115,7 +133,7 @@ const BaanChoosing = () => {
                     <h2 className="lg:text-l relative z-0 my-3 select-none text-xl">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="mx-auto flex h-full flex-wrap items-center justify-evenly max-[450px]:flex-col lg:flex-col">
+                    <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[450px]:flex-col lg:flex-col">
                         {usedSelectedBaan}
                     </div>
                     <div className="mx-auto mb-1 mt-5 flex items-center justify-center text-white lg:mt-6">
@@ -131,14 +149,19 @@ const BaanChoosing = () => {
                 </div>
                 <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
                     <div className="flex items-center">
-                        <div>
-                            <Image
-                                src={Favicon}
-                                alt="logo"
-                                className="mr-4 h-8 w-8 object-contain lg:h-12 lg:w-12"
-                            />
+                        <div className="mr-2 flex w-32 items-center justify-center">
+                            <h1 className="text-2xl">ค้นหาบ้าน</h1>
                         </div>
                         <form className="w-full text-black lg:w-full">
+                            <label htmlFor="search">
+                                <Image
+                                    src={Search}
+                                    alt="search-icon"
+                                    width={24}
+                                    height={24}
+                                    className="absolute translate-x-3 translate-y-1"
+                                />
+                            </label>
                             <input
                                 type="text"
                                 name="search"
@@ -150,8 +173,17 @@ const BaanChoosing = () => {
                                 ) => {
                                     setInput(e.target.value);
                                 }}
-                                className="w-full rounded-3xl bg-white px-4 py-1 text-sm placeholder-gray-500 ring-8 ring-white/20 lg:text-xl"
+                                className="w-full rounded-3xl bg-white py-1 pl-11 pr-4 text-sm placeholder-gray-500 ring-8 ring-white/20 lg:text-lg"
                             />
+                            <button>
+                                <Image
+                                    src={Home}
+                                    alt="Home-icon"
+                                    width={30}
+                                    height={30}
+                                    className="absolute -translate-x-11 -translate-y-5"
+                                />
+                            </button>
                         </form>
                     </div>
                     <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll lg:px-4 lg:py-4">
