@@ -68,7 +68,7 @@ const BaanChoosing = () => {
                 <div
                     className={`mx-4 my-3 flex h-20 w-20 items-center justify-center rounded-lg bg-white ring-2 ring-purple lg:h-24 lg:w-24`}
                 >
-                    <div className="absolute flex h-7 w-7 -translate-x-9 -translate-y-9 items-center justify-center rounded-md bg-purple text-white">
+                    <div className="absolute flex h-5 w-5 -translate-x-8 -translate-y-8 items-center justify-center rounded-md bg-purple text-white lg:h-7 lg:w-7 lg:-translate-x-9 lg:-translate-y-9">
                         <p>{e.num}</p>
                     </div>
                     <Image
