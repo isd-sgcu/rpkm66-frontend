@@ -31,7 +31,7 @@ const testBaanData: TestBaanObj[] = [
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>('');
-    const [fill, setFill] = useState<boolean>(true);
+    const [fill, setFill] = useState<string>('');
     const [baan, setBaan] = useState<TestBaanObj[]>(testBaanData);
     interface SelectedBaan {
         imageURL: string;
@@ -120,8 +120,12 @@ const BaanChoosing = () => {
             );
         });
     const filterBaan = (f: string) => {
-        fill ? setBaan(baan.filter((e) => e.size == f)) : setBaan(testBaanData);
-        setFill(!fill);
+        setBaan(testBaanData);
+        if (fill == f) setFill('');
+        else {
+            setFill(f);
+            setBaan(testBaanData.filter((e: TestBaanObj) => e.size == f));
+        }
     };
     return (
         <>
