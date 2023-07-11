@@ -31,6 +31,13 @@ const Register = () => {
         formData.append('tag', '1');
         formData.append('type', '1');
 
+        // if file larger than 10mb
+        const TEN_MB = 10 * 1024 * 1024;
+        if (file.size > TEN_MB) {
+            toast?.setToast('error', 'ไฟล์มีขนาดใหญ่เกิน 10 MB');
+            return;
+        }
+
         try {
             const { data } = await httpPost<
                 FormData,
@@ -273,6 +280,9 @@ const Register = () => {
                                 <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
+                        <span className="text-center text-sm font-extralight text-purple/50">
+                            รูปภาพจะต้องมีขนาดไม่เกิน 10MB
+                        </span>
                         <input
                             id="image"
                             name="image"
