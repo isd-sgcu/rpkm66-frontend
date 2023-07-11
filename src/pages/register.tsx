@@ -5,12 +5,15 @@ import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useToast } from '@/components/Toast';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const toast = useToast();
+
     const { user, refreshContext } = useAuth();
     const router = useRouter();
     const [bottleModal, setBottleModal] = useState(false);
@@ -38,7 +41,7 @@ const Register = () => {
 
             setPreviewImage(data.url);
         } catch (error) {
-            alert('เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
+            toast?.setToast('error', 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
         }
     }
 
