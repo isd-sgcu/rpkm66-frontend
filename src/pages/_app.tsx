@@ -62,37 +62,35 @@ function MetaData() {
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <AuthProvider>
+        <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
             <ToastProvider>
-                <MetaData />
+                <AuthProvider>
+                    <MetaData />
 
-                <main
-                    className={`${ibmPlexSansThai.variable} font-ibm text-white`}
-                >
                     <Navbar />
                     <Component {...pageProps} />
                     <Background />
                     <Footer />
-                </main>
-
-                <Analytics />
-                <Script
-                    async
-                    src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
-                />
-                <Script
-                    id="google-analytics"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', 'G-0ZFDD1EKVW');
-          `,
-                    }}
-                />
+                </AuthProvider>
             </ToastProvider>
-        </AuthProvider>
+
+            <Analytics />
+            <Script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
+            />
+            <Script
+                id="google-analytics"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      
+                      gtag('config', 'G-0ZFDD1EKVW');
+                      `,
+                }}
+            />
+        </main>
     );
 }
