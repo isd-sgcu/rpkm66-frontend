@@ -4,9 +4,9 @@ import Delete from '@/public/images/delete.svg';
 import Search from '@/public/images/search.svg';
 import Home from '@/public/images/home.svg';
 
-const picTest1: string = '/images/pfp-placeholder.svg';
+const picTest1: string = '/images/rocket.svg';
 const picTest2: string = '/images/rocket.svg';
-const picTest3: string = '/images/background-mobile.svg';
+const picTest3: string = '/images/home.svg';
 
 interface TestBaanObj {
     name: string;
@@ -74,9 +74,9 @@ const BaanChoosing = () => {
                     <Image
                         src={e.imageURL}
                         alt={e.name}
-                        width={20}
-                        height={20}
-                        className="fill"
+                        width={100}
+                        height={100}
+                        className="rounded-lg bg-black object-contain"
                     />
                 </div>
                 {e.name == '' ? (
@@ -113,9 +113,9 @@ const BaanChoosing = () => {
                         <Image
                             src={e.imgUrl}
                             alt={e.name}
-                            width={40}
-                            height={40}
-                            className="fill"
+                            width={300}
+                            height={300}
+                            className="rounded-xl bg-black object-contain"
                         />
                     </div>
                     <p>{`${e.name} (${e.size})`}</p>
