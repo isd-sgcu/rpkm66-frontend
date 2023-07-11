@@ -66,7 +66,7 @@ const BaanChoosing = () => {
                 className="flex flex-col items-center text-sm lg:flex-row"
             >
                 <div
-                    className={`mx-4 my-3 flex h-16 w-16 items-center justify-center rounded-lg bg-white ring-2 ring-purple lg:h-20 lg:w-20`}
+                    className={`mx-4 my-3 flex h-20 w-20 items-center justify-center rounded-lg bg-white ring-2 ring-purple lg:h-24 lg:w-24`}
                 >
                     <Image
                         src={e.imageURL}
@@ -77,12 +77,12 @@ const BaanChoosing = () => {
                     />
                 </div>
                 {e.name == '' ? (
-                    <div className="mx-3 w-24">
+                    <div className="flex w-24 flex-col items-center lg:mx-3 lg:flex-row">
                         <p>จงเลือกบ้าน</p>
                     </div>
                 ) : (
-                    <div className="flex">
-                        <p className="mx-3 w-24">{`${e.name} (${e.size})`}</p>
+                    <div className="flex flex-col items-center lg:flex-row">
+                        <p className="mx-3 mb-3 lg:mb-0 lg:w-24">{`${e.name} (${e.size})`}</p>
                         <button>
                             <Image
                                 src={Delete}
@@ -133,18 +133,8 @@ const BaanChoosing = () => {
                     <h2 className="lg:text-l relative z-0 my-3 select-none text-xl">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[450px]:flex-col lg:flex-col">
+                    <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[498px]:flex-col lg:flex-col">
                         {usedSelectedBaan}
-                    </div>
-                    <div className="mx-auto mb-1 mt-5 flex items-center justify-center text-white lg:mt-6">
-                        <button
-                            className={
-                                'rounded-lg bg-pink-400 px-3 py-2 text-sm ring-4 ring-pink-400/40 lg:px-6'
-                            }
-                            onClick={() => console.log('Pink was clicked')}
-                        >
-                            บันทึก
-                        </button>
                     </div>
                 </div>
                 <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
@@ -159,7 +149,7 @@ const BaanChoosing = () => {
                                     alt="search-icon"
                                     width={24}
                                     height={24}
-                                    className="absolute translate-x-3 translate-y-1"
+                                    className="absolute translate-x-3 lg:translate-y-1"
                                 />
                             </label>
                             <input
