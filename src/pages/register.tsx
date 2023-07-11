@@ -271,7 +271,7 @@ const Register = () => {
                             id="image"
                             name="image"
                             type="file"
-                            accept="images/*"
+                            accept="image/*"
                             className="hidden"
                             onChange={async (
                                 e: ChangeEvent<HTMLInputElement>
