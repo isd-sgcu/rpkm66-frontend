@@ -4,6 +4,7 @@ import Delete from '@/public/images/delete.svg';
 import Search from '@/public/images/search.svg';
 import Home from '@/public/images/home.svg';
 
+const defaultImageTest: string = '/images/pfp-placeholder.svg';
 const picTest1: string = '/images/rocket.svg';
 const picTest2: string = '/images/rocket.svg';
 const picTest3: string = '/images/home.svg';
@@ -39,7 +40,7 @@ const BaanChoosing = () => {
         name: string;
         num: number;
     }
-    const images: SelectedBaan[] = [
+    const [selectedBaan, setSelectedBaan] = useState<SelectedBaan[]>([
         {
             imageURL: picTest2,
             name: 'บ้าน Dota',
@@ -53,13 +54,13 @@ const BaanChoosing = () => {
             num: 2,
         },
         {
-            imageURL: picTest1,
+            imageURL: defaultImageTest,
             name: '',
             size: '',
             num: 3,
         },
-    ];
-    const usedSelectedBaan: ReactNode = images.map((e: SelectedBaan) => {
+    ]);
+    const usedSelectedBaan: ReactNode = selectedBaan.map((e: SelectedBaan) => {
         return (
             <div
                 key={e.num}
@@ -86,7 +87,20 @@ const BaanChoosing = () => {
                 ) : (
                     <div className="flex flex-col items-center lg:flex-row">
                         <p className="mx-3 mb-3 lg:mb-0 lg:w-24">{`${e.name} (${e.size})`}</p>
-                        <button>
+                        <button
+                            onClick={() => {
+                                const resetBaan: SelectedBaan[] = [
+                                    ...selectedBaan,
+                                ];
+                                resetBaan[e.num - 1] = {
+                                    ...resetBaan[e.num - 1],
+                                    name: '',
+                                    size: '',
+                                    imageURL: defaultImageTest,
+                                };
+                                setSelectedBaan(resetBaan);
+                            }}
+                        >
                             <Image
                                 src={Delete}
                                 width={20}
