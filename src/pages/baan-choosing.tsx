@@ -6,11 +6,12 @@ import Delete from '@/public/images/delete.svg';
 import Search from '@/public/images/search.svg';
 import Home from '@/public/images/home.svg';
 
-const picTest1: string = '/images/rocket.svg';
+const picTest1: string = '/images/rocket.svg'; //Pictures for testing...
 const picTest2: string = '/images/rocket.svg';
 const picTest3: string = '/images/home.svg';
 
 const testBaanData: IBaan[] = [
+    //Test Data
     {
         id: 0,
         name: 'บ้านทรายทอง',
@@ -179,17 +180,19 @@ const testBaanData: IBaan[] = [
 ];
 
 const BaanChoosing = () => {
-    const [input, setInput] = useState<string>('');
-    const [fill, setFill] = useState<BaanSize>(BaanSize._);
+    const [input, setInput] = useState<string>(''); //Input in search-baan bar
+    const [fill, setFill] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
     const [toggleColor, setToggleColor] = useState<string[]>([
+        //Set the style of the filter button
         'unClickedSizeButton',
         'unClickedSizeButton',
         'unClickedSizeButton',
         'unClickedSizeButton',
         'unClickedSizeButton',
     ]);
-    const [baan, setBaan] = useState<IBaan[]>(testBaanData);
+    const [baan, setBaan] = useState<IBaan[]>(testBaanData); //The list of every baans in RPKM...
     const convertSize: Map<BaanSize, string> = new Map<BaanSize, string>([
+        //Convert Baansize type to string (Hope there are better ways)
         [BaanSize.Small, 'S'],
         [BaanSize.Medium, 'M'],
         [BaanSize.Large, 'L'],
@@ -197,6 +200,7 @@ const BaanChoosing = () => {
         [BaanSize.ExtraExtraLarge, 'XXL'],
     ]);
     interface SelectedBaan {
+        //Interface for selected baans (3 baans)
         id: number;
         imageUrl: string;
         size: BaanSize;
@@ -204,6 +208,7 @@ const BaanChoosing = () => {
         num: number;
     }
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaan[]>([
+        //Baans that the user chooses
         {
             id: -1,
             imageUrl: '',
@@ -227,11 +232,12 @@ const BaanChoosing = () => {
         },
     ]);
     const usedSelectedBaan: ReactNode = selectedBaan.map((e: SelectedBaan) => {
+        //Convert chosen baans to TSX (a bit messy, sry)
         return (
             <div
                 key={e.num}
                 className="flex flex-col items-center text-sm lg:flex-row"
-                onDrop={(f) => handleDrop(f, e.num)}
+                onDrop={(f) => handleDrop(f, e.num)} //Handle the event that user drag new Baan to the div => Go to line 349...
                 onDragOver={(e) => e.preventDefault()}
             >
                 <div
@@ -240,7 +246,7 @@ const BaanChoosing = () => {
                     <div className="absolute flex h-5 w-5 -translate-x-8 -translate-y-8 items-center justify-center rounded-md bg-purple text-white lg:h-7 lg:w-7 lg:-translate-x-9 lg:-translate-y-9">
                         <p>{e.num}</p>
                     </div>
-                    {e.name === '' ? (
+                    {e.id === -1 ? (
                         <p className="text-gray-500">Null</p>
                     ) : (
                         <Image
@@ -252,7 +258,7 @@ const BaanChoosing = () => {
                         />
                     )}
                 </div>
-                {e.name === '' ? (
+                {e.id === -1 ? (
                     <div className="flex w-[8.25rem] flex-col items-center justify-center lg:mx-3 lg:flex-row">
                         <p>ท่านยังไม่ได้เลือกบ้าน</p>
                     </div>
@@ -261,12 +267,13 @@ const BaanChoosing = () => {
                         <p className="mx-3 mb-3 lg:mb-0 lg:w-28">{`${
                             e.name
                         } (${convertSize.get(e.size)})`}</p>
-                        <button
+                        <button //Event when clicking on the trash button
                             onClick={() => {
                                 const resetBaan: SelectedBaan[] = [
                                     ...selectedBaan,
-                                ];
+                                ]; //Copy the data from the selected-baan
                                 resetBaan[e.num - 1] = {
+                                    //Clear the data inside the index to default
                                     ...resetBaan[e.num - 1],
                                     name: '',
                                     size: BaanSize._,
@@ -288,8 +295,8 @@ const BaanChoosing = () => {
             </div>
         );
     });
-    const listBaan: ReactNode = baan
-        .filter((e) => e.name.includes(input))
+    const listBaan: ReactNode = baan //convert list of all Baans in RPKM to TSX
+        .filter((e) => e.name.includes(input)) //Filter when typing the search bar
         .map((e: IBaan) => {
             return (
                 <div
@@ -304,7 +311,7 @@ const BaanChoosing = () => {
                                 'Data',
                                 JSON.stringify(e)
                             )
-                        }
+                        } //Handle dragging event
                     >
                         <Image
                             src={e.imageUrl}
@@ -319,8 +326,10 @@ const BaanChoosing = () => {
             );
         });
     const filterBaan = (f: BaanSize, n: number) => {
-        setBaan(testBaanData);
+        //Handle when clicking on the filter button by size
+        setBaan(testBaanData); //Reset the data in Baan
         const toToggle: string[] = [
+            //Reset data in toggle
             'unClickedSizeButton',
             'unClickedSizeButton',
             'unClickedSizeButton',
@@ -328,17 +337,20 @@ const BaanChoosing = () => {
             'unClickedSizeButton',
         ];
         if (fill == f) setFill(BaanSize._);
+        //If clicking on the same button, reset to default filter (every baan)
         else {
             setFill(f);
-            setBaan(testBaanData.filter((e: IBaan) => e.size == f));
+            setBaan(testBaanData.filter((e: IBaan) => e.size == f)); //Filter baan by size button and change the button color
             toToggle[n] =
                 'bg-red-500 ring-pink-200/30 transition-all duration-300';
         }
         setToggleColor(toToggle);
     };
     const handleDrop = (e: React.DragEvent, n: number) => {
-        if (selectedBaan[n - 1].name !== '') return;
+        //Handle event when dragging
+        if (selectedBaan[n - 1].id !== -1) return; //If there is already a data in the div (not null), exit function
         const widget: SelectedBaan = JSON.parse(
+            //Convert JSON string to SelectedBaan
             e.dataTransfer.getData('Data') as string
         );
         const data: SelectedBaan[] = [...selectedBaan];
