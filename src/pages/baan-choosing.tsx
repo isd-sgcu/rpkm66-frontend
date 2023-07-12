@@ -93,7 +93,7 @@ const BaanChoosing = () => {
                     )}
                 </div>
                 {e.name === '' ? (
-                    <div className="w-30 flex flex-col items-center justify-center lg:mx-3 lg:flex-row">
+                    <div className="flex w-[8.25rem] flex-col items-center justify-center lg:mx-3 lg:flex-row">
                         <p>ท่านยังไม่ได้เลือกบ้าน</p>
                     </div>
                 ) : (
@@ -196,7 +196,7 @@ const BaanChoosing = () => {
                     <h2 className="lg:text-l relative z-0 my-3 select-none text-xl">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[498px]:flex-col lg:flex-col">
+                    <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[570px]:flex-col lg:flex-col">
                         {usedSelectedBaan}
                     </div>
                 </div>
