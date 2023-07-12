@@ -198,38 +198,32 @@ const BaanChoosing = () => {
                         </form>
                     </div>
                     <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll lg:px-4 lg:py-4">
-                        <div className="selectSizeButton">
-                            <button
-                                className="max-lg:whitespace-nowrap"
-                                onClick={() => filterBaan('S')}
-                            >
-                                บ้านขนาดเล็ก (S)
-                            </button>
-                        </div>
-                        <div className="selectSizeButton">
-                            <button
-                                className="max-lg:whitespace-nowrap"
-                                onClick={() => filterBaan('M')}
-                            >
-                                บ้านขนาดกลาง (M)
-                            </button>
-                        </div>
-                        <div className="selectSizeButton">
-                            <button
-                                className="max-lg:whitespace-nowrap"
-                                onClick={() => filterBaan('L')}
-                            >
-                                บ้านขนาดใหญ่ (L)
-                            </button>
-                        </div>
-                        <div className="selectSizeButton">
-                            <button
-                                className="max-lg:whitespace-nowrap"
-                                onClick={() => filterBaan('XL')}
-                            >
-                                บ้านขนาดใหญ่พิเศษ (XL)
-                            </button>
-                        </div>
+                        <button
+                            className="selectSizeButton max-lg:whitespace-nowrap"
+                            onClick={() => filterBaan('S')}
+                        >
+                            บ้านขนาดเล็ก (S)
+                        </button>
+                        <button
+                            className="selectSizeButton max-lg:whitespace-nowrap"
+                            onClick={() => filterBaan('M')}
+                        >
+                            บ้านขนาดกลาง (M)
+                        </button>
+
+                        <button
+                            className="selectSizeButton max-lg:whitespace-nowrap"
+                            onClick={() => filterBaan('L')}
+                        >
+                            บ้านขนาดใหญ่ (L)
+                        </button>
+
+                        <button
+                            className="selectSizeButton max-lg:whitespace-nowrap"
+                            onClick={() => filterBaan('XL')}
+                        >
+                            บ้านขนาดใหญ่พิเศษ (XL)
+                        </button>
                     </div>
                     <div className="mx-4 mb-20 mt-6 flex flex-wrap items-center justify-evenly rounded-3xl bg-white text-black ring-8 ring-white/40 lg:mb-0 lg:mt-3 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
                         {listBaan}
