@@ -7,6 +7,9 @@
         @apply mb-4 w-full rounded-full border-gray-100 bg-gray-100 p-2 px-3;
     }
     .selectSizeButton {
-        @apply bg-pink-400 w-fit lg:px-4 px-2 mr-6 lg:py-2 py-1 rounded-lg lg:text-sm text-xs ring-8 ring-pink-400/30;
+        @apply mr-6 w-fit rounded-lg px-2 py-1 text-xs ring-8 lg:px-4 lg:py-2 lg:text-sm;
+    }
+    .unClickedSizeButton {
+        @apply bg-pink-400 ring-pink-400/30 transition-all duration-300;
     }
 }

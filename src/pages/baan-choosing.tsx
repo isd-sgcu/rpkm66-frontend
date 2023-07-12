@@ -33,6 +33,12 @@ const testBaanData: TestBaanObj[] = [
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>('');
     const [fill, setFill] = useState<string>('');
+    const [toggleColor, setToggleColor] = useState<string[]>([
+        'unClickedSizeButton',
+        'unClickedSizeButton',
+        'unClickedSizeButton',
+        'unClickedSizeButton',
+    ]);
     const [baan, setBaan] = useState<TestBaanObj[]>(testBaanData);
     interface SelectedBaan {
         imageURL: string;
@@ -136,12 +142,28 @@ const BaanChoosing = () => {
                 </div>
             );
         });
-    const filterBaan = (f: string) => {
+    const filterBaan = (f: string, n: number) => {
         setBaan(testBaanData);
-        if (fill == f) setFill('');
-        else {
+        if (fill == f) {
+            setFill('');
+            setToggleColor([
+                'unClickedSizeButton',
+                'unClickedSizeButton',
+                'unClickedSizeButton',
+                'unClickedSizeButton',
+            ]);
+        } else {
             setFill(f);
             setBaan(testBaanData.filter((e: TestBaanObj) => e.size == f));
+            const toToggle: string[] = [
+                'unClickedSizeButton',
+                'unClickedSizeButton',
+                'unClickedSizeButton',
+                'unClickedSizeButton',
+            ];
+            toToggle[n] =
+                'bg-red-500 ring-pink-200/30 transition-all duration-300';
+            setToggleColor(toToggle);
         }
     };
     return (
@@ -199,28 +221,26 @@ const BaanChoosing = () => {
                     </div>
                     <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll lg:px-4 lg:py-4">
                         <button
-                            className="selectSizeButton max-lg:whitespace-nowrap"
-                            onClick={() => filterBaan('S')}
+                            className={`${toggleColor[0]} selectSizeButton max-lg:whitespace-nowrap`}
+                            onClick={() => filterBaan('S', 0)}
                         >
                             บ้านขนาดเล็ก (S)
                         </button>
                         <button
-                            className="selectSizeButton max-lg:whitespace-nowrap"
-                            onClick={() => filterBaan('M')}
+                            className={`${toggleColor[1]} selectSizeButton max-lg:whitespace-nowrap`}
+                            onClick={() => filterBaan('M', 1)}
                         >
                             บ้านขนาดกลาง (M)
                         </button>
-
                         <button
-                            className="selectSizeButton max-lg:whitespace-nowrap"
-                            onClick={() => filterBaan('L')}
+                            className={`${toggleColor[2]} selectSizeButton max-lg:whitespace-nowrap`}
+                            onClick={() => filterBaan('L', 2)}
                         >
                             บ้านขนาดใหญ่ (L)
                         </button>
-
                         <button
-                            className="selectSizeButton max-lg:whitespace-nowrap"
-                            onClick={() => filterBaan('XL')}
+                            className={`${toggleColor[3]} selectSizeButton max-lg:whitespace-nowrap`}
+                            onClick={() => filterBaan('XL', 3)}
                         >
                             บ้านขนาดใหญ่พิเศษ (XL)
                         </button>
