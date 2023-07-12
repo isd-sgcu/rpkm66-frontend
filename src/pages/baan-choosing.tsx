@@ -1,10 +1,10 @@
 import { ChangeEvent, ReactNode, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Delete from '@/public/images/delete.svg';
 import Search from '@/public/images/search.svg';
 import Home from '@/public/images/home.svg';
 
-const defaultImageTest: string = '/images/pfp-placeholder.svg';
 const picTest1: string = '/images/rocket.svg';
 const picTest2: string = '/images/rocket.svg';
 const picTest3: string = '/images/home.svg';
@@ -12,22 +12,22 @@ const picTest3: string = '/images/home.svg';
 interface TestBaanObj {
     name: string;
     size: string;
-    imgUrl: string;
+    imgURL: string;
 }
 
 const testBaanData: TestBaanObj[] = [
-    { name: 'บ้านทรายทอง', size: 'S', imgUrl: picTest1 },
-    { name: 'บ้านนี้มีรัก', size: 'S', imgUrl: picTest1 },
-    { name: 'บ้านและสวน', size: 'S', imgUrl: picTest1 },
-    { name: 'บ้านนอก', size: 'M', imgUrl: picTest3 },
-    { name: 'บ้านของใคร', size: 'M', imgUrl: picTest1 },
-    { name: 'บ้านอะไรก็ไม่รู้', size: 'M', imgUrl: picTest1 },
-    { name: 'บ้านบ้าน', size: 'L', imgUrl: picTest1 },
-    { name: 'บ้าน Pure', size: 'L', imgUrl: picTest1 },
-    { name: 'บ้าน Dota', size: 'L', imgUrl: picTest2 },
-    { name: 'บ้าน LOL', size: 'XL', imgUrl: picTest1 },
-    { name: 'บ้าน ROV', size: 'XL', imgUrl: picTest1 },
-    { name: 'บ้าน ggez', size: 'XL', imgUrl: picTest1 },
+    { name: 'บ้านทรายทอง', size: 'S', imgURL: picTest1 },
+    { name: 'บ้านนี้มีรัก', size: 'S', imgURL: picTest1 },
+    { name: 'บ้านและสวน', size: 'S', imgURL: picTest1 },
+    { name: 'บ้านนอก', size: 'M', imgURL: picTest3 },
+    { name: 'บ้านของใคร', size: 'M', imgURL: picTest1 },
+    { name: 'บ้านอะไรก็ไม่รู้', size: 'M', imgURL: picTest1 },
+    { name: 'บ้านบ้าน', size: 'L', imgURL: picTest1 },
+    { name: 'บ้าน Pure', size: 'L', imgURL: picTest1 },
+    { name: 'บ้าน Dota', size: 'L', imgURL: picTest2 },
+    { name: 'บ้าน LOL', size: 'XL', imgURL: picTest1 },
+    { name: 'บ้าน ROV', size: 'XL', imgURL: picTest1 },
+    { name: 'บ้าน ggez', size: 'XL', imgURL: picTest1 },
 ];
 
 const BaanChoosing = () => {
@@ -41,26 +41,26 @@ const BaanChoosing = () => {
     ]);
     const [baan, setBaan] = useState<TestBaanObj[]>(testBaanData);
     interface SelectedBaan {
-        imageURL: string;
+        imgURL: string;
         size: string;
         name: string;
         num: number;
     }
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaan[]>([
         {
-            imageURL: picTest2,
-            name: 'บ้าน Dota',
-            size: 'L',
+            imgURL: '',
+            name: '',
+            size: '',
             num: 1,
         },
         {
-            imageURL: picTest3,
-            name: 'บ้านนอก',
-            size: 'M',
+            imgURL: '',
+            name: '',
+            size: '',
             num: 2,
         },
         {
-            imageURL: defaultImageTest,
+            imgURL: '',
             name: '',
             size: '',
             num: 3,
@@ -71,6 +71,8 @@ const BaanChoosing = () => {
             <div
                 key={e.num}
                 className="flex flex-col items-center text-sm lg:flex-row"
+                onDrop={(f) => handleDrop(f, e.num)}
+                onDragOver={(e) => e.preventDefault()}
             >
                 <div
                     className={`mx-4 my-3 flex h-20 w-20 items-center justify-center rounded-lg bg-white ring-2 ring-purple lg:h-24 lg:w-24`}
@@ -82,7 +84,7 @@ const BaanChoosing = () => {
                         <p className="text-gray-500">Null</p>
                     ) : (
                         <Image
-                            src={e.imageURL}
+                            src={e.imgURL}
                             alt={e.name}
                             width={100}
                             height={100}
@@ -96,7 +98,7 @@ const BaanChoosing = () => {
                     </div>
                 ) : (
                     <div className="flex flex-col items-center lg:flex-row">
-                        <p className="mx-3 mb-3 lg:mb-0 lg:w-24">{`${e.name} (${e.size})`}</p>
+                        <p className="mx-3 mb-3 lg:mb-0 lg:w-28">{`${e.name} (${e.size})`}</p>
                         <button
                             onClick={() => {
                                 const resetBaan: SelectedBaan[] = [
@@ -106,7 +108,7 @@ const BaanChoosing = () => {
                                     ...resetBaan[e.num - 1],
                                     name: '',
                                     size: '',
-                                    imageURL: defaultImageTest,
+                                    imgURL: '',
                                 };
                                 setSelectedBaan(resetBaan);
                             }}
@@ -133,9 +135,16 @@ const BaanChoosing = () => {
                 >
                     <div
                         className={`mx-4 my-4 flex h-32 w-32 items-center justify-center rounded-xl bg-white ring-4 ring-purple lg:h-40 lg:w-40 min-[1600px]:h-56 min-[1600px]:w-56`}
+                        draggable
+                        onDragStart={(event) =>
+                            event.dataTransfer.setData(
+                                'Data',
+                                JSON.stringify(e)
+                            )
+                        }
                     >
                         <Image
-                            src={e.imgUrl}
+                            src={e.imgURL}
                             alt={e.name}
                             width={300}
                             height={300}
@@ -162,6 +171,20 @@ const BaanChoosing = () => {
                 'bg-red-500 ring-pink-200/30 transition-all duration-300';
         }
         setToggleColor(toToggle);
+    };
+    const handleDrop = (e: React.DragEvent, n: number) => {
+        if (selectedBaan[n - 1].name !== '') return;
+        const widget: SelectedBaan = JSON.parse(
+            e.dataTransfer.getData('Data') as string
+        );
+        const data: SelectedBaan[] = [...selectedBaan];
+        data[n - 1] = {
+            ...data[n - 1],
+            name: widget.name,
+            size: widget.size,
+            imgURL: widget.imgURL,
+        };
+        setSelectedBaan(data);
     };
     return (
         <>
