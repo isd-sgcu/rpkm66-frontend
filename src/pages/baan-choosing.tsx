@@ -32,7 +32,7 @@ const testBaanData: TestBaanObj[] = [
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>('');
-    const [fill, setFill] = useState<string>('');
+    const [fill, setFill] = useState<string | null>(null);
     const [toggleColor, setToggleColor] = useState<string[]>([
         'unClickedSizeButton',
         'unClickedSizeButton',
@@ -78,17 +78,21 @@ const BaanChoosing = () => {
                     <div className="absolute flex h-5 w-5 -translate-x-8 -translate-y-8 items-center justify-center rounded-md bg-purple text-white lg:h-7 lg:w-7 lg:-translate-x-9 lg:-translate-y-9">
                         <p>{e.num}</p>
                     </div>
-                    <Image
-                        src={e.imageURL}
-                        alt={e.name}
-                        width={100}
-                        height={100}
-                        className="rounded-lg bg-black object-contain"
-                    />
+                    {e.name === '' ? (
+                        <p className="text-gray-500">Null</p>
+                    ) : (
+                        <Image
+                            src={e.imageURL}
+                            alt={e.name}
+                            width={100}
+                            height={100}
+                            className="rounded-lg bg-black object-contain"
+                        />
+                    )}
                 </div>
-                {e.name == '' ? (
-                    <div className="flex w-24 flex-col items-center lg:mx-3 lg:flex-row">
-                        <p>จงเลือกบ้าน</p>
+                {e.name === '' ? (
+                    <div className="w-30 flex flex-col items-center justify-center lg:mx-3 lg:flex-row">
+                        <p>ท่านยังไม่ได้เลือกบ้าน</p>
                     </div>
                 ) : (
                     <div className="flex flex-col items-center lg:flex-row">
@@ -144,27 +148,20 @@ const BaanChoosing = () => {
         });
     const filterBaan = (f: string, n: number) => {
         setBaan(testBaanData);
-        if (fill == f) {
-            setFill('');
-            setToggleColor([
-                'unClickedSizeButton',
-                'unClickedSizeButton',
-                'unClickedSizeButton',
-                'unClickedSizeButton',
-            ]);
-        } else {
+        const toToggle: string[] = [
+            'unClickedSizeButton',
+            'unClickedSizeButton',
+            'unClickedSizeButton',
+            'unClickedSizeButton',
+        ];
+        if (fill == f) setFill(null);
+        else {
             setFill(f);
             setBaan(testBaanData.filter((e: TestBaanObj) => e.size == f));
-            const toToggle: string[] = [
-                'unClickedSizeButton',
-                'unClickedSizeButton',
-                'unClickedSizeButton',
-                'unClickedSizeButton',
-            ];
             toToggle[n] =
                 'bg-red-500 ring-pink-200/30 transition-all duration-300';
-            setToggleColor(toToggle);
         }
+        setToggleColor(toToggle);
     };
     return (
         <>
@@ -183,7 +180,7 @@ const BaanChoosing = () => {
                 <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
                     <div className="flex items-center">
                         <div className="mr-2 flex w-32 items-center justify-center">
-                            <h1 className="text-2xl">ค้นหาบ้าน</h1>
+                            <h1 className="text-lg lg:text-2xl">ค้นหาบ้าน</h1>
                         </div>
                         <form className="w-full text-black lg:w-full">
                             <label htmlFor="search">
@@ -192,7 +189,7 @@ const BaanChoosing = () => {
                                     alt="search-icon"
                                     width={24}
                                     height={24}
-                                    className="absolute translate-x-3 lg:translate-y-1"
+                                    className="absolute translate-x-3 object-contain lg:translate-y-1"
                                 />
                             </label>
                             <input
@@ -206,7 +203,7 @@ const BaanChoosing = () => {
                                 ) => {
                                     setInput(e.target.value);
                                 }}
-                                className="w-full rounded-3xl bg-white py-1 pl-11 pr-4 text-sm placeholder-gray-500 ring-8 ring-white/20 lg:text-lg"
+                                className="w-full rounded-3xl bg-white py-1 pl-11 pr-4 text-sm ring-8 ring-white/20 max-[400px]:placeholder-white lg:text-lg"
                             />
                             <button>
                                 <Image
@@ -214,7 +211,7 @@ const BaanChoosing = () => {
                                     alt="Home-icon"
                                     width={30}
                                     height={30}
-                                    className="absolute -translate-x-11 -translate-y-5"
+                                    className="absolute -translate-x-11 -translate-y-5 object-contain"
                                 />
                             </button>
                         </form>
