@@ -1,4 +1,5 @@
 import { ChangeEvent, ReactNode, useState } from 'react';
+import { BaanSize, IBaan } from '@/types/baan';
 import React from 'react';
 import Image from 'next/image';
 import Delete from '@/public/images/delete.svg';
@@ -9,60 +10,219 @@ const picTest1: string = '/images/rocket.svg';
 const picTest2: string = '/images/rocket.svg';
 const picTest3: string = '/images/home.svg';
 
-interface TestBaanObj {
-    name: string;
-    size: string;
-    imgURL: string;
-}
-
-const testBaanData: TestBaanObj[] = [
-    { name: 'บ้านทรายทอง', size: 'S', imgURL: picTest1 },
-    { name: 'บ้านนี้มีรัก', size: 'S', imgURL: picTest1 },
-    { name: 'บ้านและสวน', size: 'S', imgURL: picTest1 },
-    { name: 'บ้านนอก', size: 'M', imgURL: picTest3 },
-    { name: 'บ้านของใคร', size: 'M', imgURL: picTest1 },
-    { name: 'บ้านอะไรก็ไม่รู้', size: 'M', imgURL: picTest1 },
-    { name: 'บ้านบ้าน', size: 'L', imgURL: picTest1 },
-    { name: 'บ้าน Pure', size: 'L', imgURL: picTest1 },
-    { name: 'บ้าน Dota', size: 'L', imgURL: picTest2 },
-    { name: 'บ้าน LOL', size: 'XL', imgURL: picTest1 },
-    { name: 'บ้าน ROV', size: 'XL', imgURL: picTest1 },
-    { name: 'บ้าน ggez', size: 'XL', imgURL: picTest1 },
+const testBaanData: IBaan[] = [
+    {
+        id: 0,
+        name: 'บ้านทรายทอง',
+        size: BaanSize.Small,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 1,
+        name: 'บ้านนี้มีรัก',
+        size: BaanSize.Small,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 2,
+        name: 'บ้านและสวน',
+        size: BaanSize.Small,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 3,
+        name: 'บ้านนอก',
+        size: BaanSize.Small,
+        imageUrl: picTest3,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 4,
+        name: 'บ้านของใคร',
+        size: BaanSize.Medium,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 5,
+        name: 'บ้านอะไรก็ไม่รู้',
+        size: BaanSize.Medium,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 6,
+        name: 'บ้านบ้าน',
+        size: BaanSize.Large,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 7,
+        name: 'บ้าน Pure',
+        size: BaanSize.Large,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 8,
+        name: 'บ้าน Dota',
+        size: BaanSize.Large,
+        imageUrl: picTest2,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 9,
+        name: 'บ้าน LOL',
+        size: BaanSize.ExtraLarge,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 10,
+        name: 'บ้าน ROV',
+        size: BaanSize.ExtraLarge,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 11,
+        name: 'บ้าน ggez',
+        size: BaanSize.ExtraLarge,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 12,
+        name: 'บ้าน HON',
+        size: BaanSize.ExtraExtraLarge,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 13,
+        name: 'บ้าน F',
+        size: BaanSize.ExtraExtraLarge,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
+    {
+        id: 14,
+        name: 'บ้าน U  ',
+        size: BaanSize.ExtraExtraLarge,
+        imageUrl: picTest1,
+        description: '',
+        facebook: '',
+        ig: '',
+        igUrl: '',
+        facebookUrl: '',
+    },
 ];
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>('');
-    const [fill, setFill] = useState<string | null>(null);
+    const [fill, setFill] = useState<BaanSize>(BaanSize._);
     const [toggleColor, setToggleColor] = useState<string[]>([
         'unClickedSizeButton',
         'unClickedSizeButton',
         'unClickedSizeButton',
         'unClickedSizeButton',
+        'unClickedSizeButton',
     ]);
-    const [baan, setBaan] = useState<TestBaanObj[]>(testBaanData);
+    const [baan, setBaan] = useState<IBaan[]>(testBaanData);
+    const convertSize: Map<BaanSize, string> = new Map<BaanSize, string>([
+        [BaanSize.Small, 'S'],
+        [BaanSize.Medium, 'M'],
+        [BaanSize.Large, 'L'],
+        [BaanSize.ExtraLarge, 'XL'],
+        [BaanSize.ExtraExtraLarge, 'XXL'],
+    ]);
     interface SelectedBaan {
-        imgURL: string;
-        size: string;
+        id: number;
+        imageUrl: string;
+        size: BaanSize;
         name: string;
         num: number;
     }
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaan[]>([
         {
-            imgURL: '',
+            id: -1,
+            imageUrl: '',
             name: '',
-            size: '',
+            size: BaanSize._,
             num: 1,
         },
         {
-            imgURL: '',
+            id: -1,
+            imageUrl: '',
             name: '',
-            size: '',
+            size: BaanSize._,
             num: 2,
         },
         {
-            imgURL: '',
+            id: -1,
+            imageUrl: '',
             name: '',
-            size: '',
+            size: BaanSize._,
             num: 3,
         },
     ]);
@@ -84,7 +244,7 @@ const BaanChoosing = () => {
                         <p className="text-gray-500">Null</p>
                     ) : (
                         <Image
-                            src={e.imgURL}
+                            src={e.imageUrl}
                             alt={e.name}
                             width={100}
                             height={100}
@@ -98,7 +258,9 @@ const BaanChoosing = () => {
                     </div>
                 ) : (
                     <div className="flex flex-col items-center lg:flex-row">
-                        <p className="mx-3 mb-3 lg:mb-0 lg:w-28">{`${e.name} (${e.size})`}</p>
+                        <p className="mx-3 mb-3 lg:mb-0 lg:w-28">{`${
+                            e.name
+                        } (${convertSize.get(e.size)})`}</p>
                         <button
                             onClick={() => {
                                 const resetBaan: SelectedBaan[] = [
@@ -107,8 +269,9 @@ const BaanChoosing = () => {
                                 resetBaan[e.num - 1] = {
                                     ...resetBaan[e.num - 1],
                                     name: '',
-                                    size: '',
-                                    imgURL: '',
+                                    size: BaanSize._,
+                                    imageUrl: '',
+                                    id: -1,
                                 };
                                 setSelectedBaan(resetBaan);
                             }}
@@ -127,7 +290,7 @@ const BaanChoosing = () => {
     });
     const listBaan: ReactNode = baan
         .filter((e) => e.name.includes(input))
-        .map((e: TestBaanObj) => {
+        .map((e: IBaan) => {
             return (
                 <div
                     key={e.name}
@@ -144,29 +307,30 @@ const BaanChoosing = () => {
                         }
                     >
                         <Image
-                            src={e.imgURL}
+                            src={e.imageUrl}
                             alt={e.name}
                             width={300}
                             height={300}
                             className="rounded-xl bg-black object-contain"
                         />
                     </div>
-                    <p>{`${e.name} (${e.size})`}</p>
+                    <p>{`${e.name} (${convertSize.get(e.size)})`}</p>
                 </div>
             );
         });
-    const filterBaan = (f: string, n: number) => {
+    const filterBaan = (f: BaanSize, n: number) => {
         setBaan(testBaanData);
         const toToggle: string[] = [
             'unClickedSizeButton',
             'unClickedSizeButton',
             'unClickedSizeButton',
             'unClickedSizeButton',
+            'unClickedSizeButton',
         ];
-        if (fill == f) setFill(null);
+        if (fill == f) setFill(BaanSize._);
         else {
             setFill(f);
-            setBaan(testBaanData.filter((e: TestBaanObj) => e.size == f));
+            setBaan(testBaanData.filter((e: IBaan) => e.size == f));
             toToggle[n] =
                 'bg-red-500 ring-pink-200/30 transition-all duration-300';
         }
@@ -182,7 +346,8 @@ const BaanChoosing = () => {
             ...data[n - 1],
             name: widget.name,
             size: widget.size,
-            imgURL: widget.imgURL,
+            imageUrl: widget.imageUrl,
+            id: widget.id,
         };
         setSelectedBaan(data);
     };
@@ -239,30 +404,38 @@ const BaanChoosing = () => {
                             </button>
                         </form>
                     </div>
-                    <div className="mt-8 flex px-2 py-2 max-lg:overflow-scroll lg:px-4 lg:py-4">
+                    <div className="mt-8 flex overflow-scroll px-2 py-2 lg:px-4 lg:py-4">
                         <button
-                            className={`${toggleColor[0]} selectSizeButton max-lg:whitespace-nowrap`}
-                            onClick={() => filterBaan('S', 0)}
+                            className={`${toggleColor[0]} selectSizeButton whitespace-nowrap`}
+                            onClick={() => filterBaan(BaanSize.Small, 0)}
                         >
                             บ้านขนาดเล็ก (S)
                         </button>
                         <button
-                            className={`${toggleColor[1]} selectSizeButton max-lg:whitespace-nowrap`}
-                            onClick={() => filterBaan('M', 1)}
+                            className={`${toggleColor[1]} selectSizeButton whitespace-nowrap`}
+                            onClick={() => filterBaan(BaanSize.Medium, 1)}
                         >
                             บ้านขนาดกลาง (M)
                         </button>
                         <button
-                            className={`${toggleColor[2]} selectSizeButton max-lg:whitespace-nowrap`}
-                            onClick={() => filterBaan('L', 2)}
+                            className={`${toggleColor[2]} selectSizeButton whitespace-nowrap`}
+                            onClick={() => filterBaan(BaanSize.Large, 2)}
                         >
                             บ้านขนาดใหญ่ (L)
                         </button>
                         <button
-                            className={`${toggleColor[3]} selectSizeButton max-lg:whitespace-nowrap`}
-                            onClick={() => filterBaan('XL', 3)}
+                            className={`${toggleColor[3]} selectSizeButton whitespace-nowrap`}
+                            onClick={() => filterBaan(BaanSize.ExtraLarge, 3)}
                         >
                             บ้านขนาดใหญ่พิเศษ (XL)
+                        </button>
+                        <button
+                            className={`${toggleColor[4]} selectSizeButton whitespace-nowrap`}
+                            onClick={() =>
+                                filterBaan(BaanSize.ExtraExtraLarge, 4)
+                            }
+                        >
+                            บ้านขนาดใหญ่พิเศษพิเศษ (XXL)
                         </button>
                     </div>
                     <div className="mx-4 mb-20 mt-6 flex flex-wrap items-center justify-evenly rounded-3xl bg-white text-black ring-8 ring-white/40 lg:mb-0 lg:mt-3 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
