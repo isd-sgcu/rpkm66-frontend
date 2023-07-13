@@ -295,8 +295,15 @@ const BaanChoosing = () => {
             </div>
         );
     });
+    const isAdded = (other: IBaan) => {
+        //Check if the baan is selected and will not visualize in Baan list
+        for (let i: number = 0; i < 3; i++) {
+            if (selectedBaan[i].id === other.id) return false;
+        }
+        return true;
+    };
     const listBaan: ReactNode = baan //convert list of all Baans in RPKM to TSX
-        .filter((e) => e.name.includes(input)) //Filter when typing the search bar
+        .filter((e) => e.name.includes(input) && isAdded(e)) //Filter when typing the search bar
         .map((e: IBaan) => {
             return (
                 <div
