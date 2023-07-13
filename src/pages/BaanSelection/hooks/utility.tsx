@@ -1,7 +1,7 @@
 import { BaanSize, IBaan } from '@/types/baan';
-import { SelectedBaan } from './types';
+import { SelectedBaanRank } from './types';
 
-export const isAdded = (selectedBaan: SelectedBaan[], other: IBaan) => {
+export const isAdded = (selectedBaan: SelectedBaanRank[], other: IBaan) => {
     //Check if the baan is selected and will not be visualized in Baan list
     for (let i: number = 0; i < 3; i++) {
         if (selectedBaan[i].id === other.id) return false;

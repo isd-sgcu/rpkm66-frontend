@@ -2,7 +2,7 @@ import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
 import { SelectedBaanRank } from '../hooks/types';
 import Image from 'next/image';
 import { BaanSize } from '@/types/baan';
-import { convertSize } from '../hooks/hooks';
+import { convertSize } from '../hooks/Utility';
 const SelectedBaan = (props: any) => {
     return props.baan.map((e: SelectedBaanRank) => {
         //Convert chosen baans to TSX (a bit messy, sry)

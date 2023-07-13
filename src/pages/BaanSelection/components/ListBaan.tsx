@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { convertSize, isAdded } from '../hooks/hooks';
+import { convertSize, isAdded } from '../hooks/Utility';
 import { IBaan } from '@/types/baan';
 const ListBaan = (props: any) => {
     return props.baan
