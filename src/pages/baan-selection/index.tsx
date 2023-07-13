@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useState } from 'react';
-import SelectedBaan from './components/SelectedBaan';
-import ListBaan from './components/ListBaan';
+import SelectedBaan from '@/components/baan-selection/SelectedBaan';
+import ListBaan from '@/components/baan-selection/ListBaan';
 import { BaanSize, IBaan } from '@/types/baan';
-import { SelectedBaanRank } from './utils/types';
-import { testBaanData } from './utils/testData';
-import FilterButton from './components/FilterButton';
-import SearchBar from './components/SearchBar';
+import { SelectedBaanRank } from '@/utils/baan-selection/types';
+import { testBaanData } from '@/utils/baan-selection/testData';
+import FilterButton from '@/components/baan-selection/FilterButton';
+import SearchBar from '@/components/baan-selection/SearchBar';
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>(''); //Input in search-baan bar

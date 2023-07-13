@@ -1,8 +1,8 @@
 import TrashIcon from '@heroicons/react/24/solid/TrashIcon';
-import { SelectedBaanRank } from '../utils/types';
+import { SelectedBaanRank } from '@/utils/baan-selection/types';
 import Image from 'next/image';
 import { BaanSize } from '@/types/baan';
-import { convertSize } from '../utils/utility';
+import { convertSize } from '@/utils/baan-selection/utility';
 const SelectedBaan = (props: any) => {
     return (
         <div
