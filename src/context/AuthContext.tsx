@@ -98,6 +98,13 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
                     router.push('/register');
                 }
                 break;
+            case '/baan-choosing':
+                if (!user) {
+                    router.push('/');
+                } else if (!alreadyRegistered) {
+                    router.push('/register');
+                }
+                break;
             default:
                 break;
         }
