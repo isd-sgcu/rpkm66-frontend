@@ -181,11 +181,11 @@ const BaanChoosing = () => {
     const [fill, setFill] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
     const [toggleColor, setToggleColor] = useState<string[]>([
         //Set the style of the filter button
-        'unClickedSizeButton',
-        'unClickedSizeButton',
-        'unClickedSizeButton',
-        'unClickedSizeButton',
-        'unClickedSizeButton',
+        'unclicked-size-button',
+        'unclicked-size-button',
+        'unclicked-size-button',
+        'unclicked-size-button',
+        'unclicked-size-button',
     ]);
     const [baan, setBaan] = useState<IBaan[]>(testBaanData); //The list of every baans in RPKM...
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>([
@@ -218,11 +218,11 @@ const BaanChoosing = () => {
         setBaan(testBaanData); //Reset the data in Baan
         const toToggle: string[] = [
             //Reset data in toggle
-            'unClickedSizeButton',
-            'unClickedSizeButton',
-            'unClickedSizeButton',
-            'unClickedSizeButton',
-            'unClickedSizeButton',
+            'unclicked-size-button',
+            'unclicked-size-button',
+            'unclicked-size-button',
+            'unclicked-size-button',
+            'unclicked-size-button',
         ];
         if (fill == f) setFill(BaanSize._);
         //If clicking on the same button, reset to default filter (every baan)
@@ -262,13 +262,21 @@ const BaanChoosing = () => {
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
                     <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[570px]:flex-col lg:flex-col">
-                        <SelectedBaan
-                            baan={selectedBaan}
-                            handleDrop={(e: React.DragEvent<Element>) =>
-                                handleDrop(e, 2)
+                        {selectedBaan.map(
+                            (e: SelectedBaanRank, index: number) => {
+                                return (
+                                    <SelectedBaan
+                                        key={e.num}
+                                        handleDrop={(
+                                            e: React.DragEvent<Element>
+                                        ) => handleDrop(e, index + 1)}
+                                        setSelectedBaan={setSelectedBaan}
+                                        {...e}
+                                        baan={selectedBaan}
+                                    />
+                                );
                             }
-                            setSelectedBaan={setSelectedBaan}
-                        />
+                        )}
                     </div>
                 </div>
                 <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
@@ -303,31 +311,31 @@ const BaanChoosing = () => {
                     </div>
                     <div className="mt-8 flex overflow-scroll px-2 py-2 lg:px-4 lg:py-4">
                         <button
-                            className={`${toggleColor[0]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[0]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.Small, 0)}
                         >
                             บ้านขนาดเล็ก (S)
                         </button>
                         <button
-                            className={`${toggleColor[1]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[1]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.Medium, 1)}
                         >
                             บ้านขนาดกลาง (M)
                         </button>
                         <button
-                            className={`${toggleColor[2]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[2]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.Large, 2)}
                         >
                             บ้านขนาดใหญ่ (L)
                         </button>
                         <button
-                            className={`${toggleColor[3]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[3]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.ExtraLarge, 3)}
                         >
                             บ้านขนาดใหญ่พิเศษ (XL)
                         </button>
                         <button
-                            className={`${toggleColor[4]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[4]} select-size-button whitespace-nowrap`}
                             onClick={() =>
                                 filterBaan(BaanSize.ExtraExtraLarge, 4)
                             }

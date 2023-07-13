@@ -184,11 +184,11 @@ const BaanChoosing = () => {
     const [fill, setFill] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
     const [toggleColor, setToggleColor] = useState<string[]>([
         //Set the style of the filter button
-        'unClickedSizeButton',
-        'unClickedSizeButton',
-        'unClickedSizeButton',
-        'unClickedSizeButton',
-        'unClickedSizeButton',
+        'unclicked-size-button',
+        'unclicked-size-button',
+        'unclicked-size-button',
+        'unclicked-size-button',
+        'unclicked-size-button',
     ]);
     const [baan, setBaan] = useState<IBaan[]>(testBaanData); //The list of every baans in RPKM...
     const convertSize: Map<BaanSize, string> = new Map<BaanSize, string>([
@@ -332,11 +332,11 @@ const BaanChoosing = () => {
         setBaan(testBaanData); //Reset the data in Baan
         const toToggle: string[] = [
             //Reset data in toggle
-            'unClickedSizeButton',
-            'unClickedSizeButton',
-            'unClickedSizeButton',
-            'unClickedSizeButton',
-            'unClickedSizeButton',
+            'unclicked-size-button',
+            'unclicked-size-button',
+            'unclicked-size-button',
+            'unclicked-size-button',
+            'unclicked-size-button',
         ];
         if (fill == f) setFill(BaanSize._);
         //If clicking on the same button, reset to default filter (every baan)
@@ -411,31 +411,31 @@ const BaanChoosing = () => {
                     </div>
                     <div className="mt-8 flex overflow-scroll px-2 py-2 lg:px-4 lg:py-4">
                         <button
-                            className={`${toggleColor[0]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[0]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.Small, 0)}
                         >
                             บ้านขนาดเล็ก (S)
                         </button>
                         <button
-                            className={`${toggleColor[1]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[1]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.Medium, 1)}
                         >
                             บ้านขนาดกลาง (M)
                         </button>
                         <button
-                            className={`${toggleColor[2]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[2]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.Large, 2)}
                         >
                             บ้านขนาดใหญ่ (L)
                         </button>
                         <button
-                            className={`${toggleColor[3]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[3]} select-size-button whitespace-nowrap`}
                             onClick={() => filterBaan(BaanSize.ExtraLarge, 3)}
                         >
                             บ้านขนาดใหญ่พิเศษ (XL)
                         </button>
                         <button
-                            className={`${toggleColor[4]} selectSizeButton whitespace-nowrap`}
+                            className={`${toggleColor[4]} select-size-button whitespace-nowrap`}
                             onClick={() =>
                                 filterBaan(BaanSize.ExtraExtraLarge, 4)
                             }
