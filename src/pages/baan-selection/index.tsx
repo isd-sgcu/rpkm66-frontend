@@ -2,8 +2,9 @@ import React, { ChangeEvent, useState } from 'react';
 import SelectedBaan from './components/SelectedBaan';
 import ListBaan from './components/ListBaan';
 import { BaanSize, IBaan } from '@/types/baan';
-import { HomeIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { SelectedBaanRank } from './hooks/types';
+import FilterButton from './components/FilterButton';
+import SearchBar from './components/SearchBar';
 
 const picTest1: string = '/images/rocket.svg'; //Pictures for testing...
 
@@ -284,65 +285,12 @@ const BaanChoosing = () => {
                         <div className="mr-2 flex w-32 items-center justify-center">
                             <h1 className="text-lg lg:text-2xl">ค้นหาบ้าน</h1>
                         </div>
-                        <form className="w-full text-black lg:w-full">
-                            <label htmlFor="search">
-                                <MagnifyingGlassIcon className="absolute h-5 w-5 translate-x-3 translate-y-[0.22rem] object-contain lg:h-6 lg:w-6 lg:translate-y-[0.35rem]" />
-                            </label>
-                            <input
-                                type="text"
-                                name="search"
-                                id="search"
-                                placeholder="ค้นหาบ้าน"
-                                value={input}
-                                onChange={(
-                                    e: ChangeEvent<HTMLInputElement>
-                                ) => {
-                                    setInput(e.target.value);
-                                }}
-                                className="w-full rounded-3xl bg-white py-1 pl-11 pr-4 text-sm ring-8 ring-white/20 max-[400px]:placeholder-white lg:text-lg"
-                            />
-                            <button>
-                                <HomeIcon
-                                    color="#E95682D6"
-                                    className="absolute -translate-x-8 -translate-y-[0.90rem] object-contain max-lg:h-5 max-lg:w-5 lg:-translate-x-11 lg:-translate-y-[1.3rem]"
-                                />
-                            </button>
-                        </form>
+                        <SearchBar input={input} setInput={setInput} />
                     </div>
-                    <div className="mt-8 flex overflow-scroll px-2 py-2 lg:px-4 lg:py-4">
-                        <button
-                            className={`${toggleColor[0]} select-size-button whitespace-nowrap`}
-                            onClick={() => filterBaan(BaanSize.Small, 0)}
-                        >
-                            บ้านขนาดเล็ก (S)
-                        </button>
-                        <button
-                            className={`${toggleColor[1]} select-size-button whitespace-nowrap`}
-                            onClick={() => filterBaan(BaanSize.Medium, 1)}
-                        >
-                            บ้านขนาดกลาง (M)
-                        </button>
-                        <button
-                            className={`${toggleColor[2]} select-size-button whitespace-nowrap`}
-                            onClick={() => filterBaan(BaanSize.Large, 2)}
-                        >
-                            บ้านขนาดใหญ่ (L)
-                        </button>
-                        <button
-                            className={`${toggleColor[3]} select-size-button whitespace-nowrap`}
-                            onClick={() => filterBaan(BaanSize.ExtraLarge, 3)}
-                        >
-                            บ้านขนาดใหญ่พิเศษ (XL)
-                        </button>
-                        <button
-                            className={`${toggleColor[4]} select-size-button whitespace-nowrap`}
-                            onClick={() =>
-                                filterBaan(BaanSize.ExtraExtraLarge, 4)
-                            }
-                        >
-                            บ้านขนาดใหญ่พิเศษพิเศษ (XXL)
-                        </button>
-                    </div>
+                    <FilterButton
+                        toggleColor={toggleColor}
+                        filterBaan={filterBaan}
+                    />
                     <div className="mx-4 mb-20 mt-6 flex flex-wrap items-center justify-evenly rounded-3xl bg-white text-black ring-8 ring-white/40 lg:mb-0 lg:mt-3 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
                         <ListBaan
                             baan={baan}
