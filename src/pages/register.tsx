@@ -180,7 +180,7 @@ const Register = () => {
         try {
             await httpPatch(`/user`, body);
             await refreshContext();
-            router.push('/baan-selection');
+            router.push('/wait-baan-selection');
         } catch (_error: any) {
             // TODO handle error
             setBottleModal(false);
