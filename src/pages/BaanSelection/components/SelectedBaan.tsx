@@ -53,7 +53,7 @@ const SelectedBaan = (props: any) => {
                                     imageUrl: '',
                                     id: -1,
                                 };
-                                props.setSelectedBaan;
+                                props.setSelectedBaan(resetBaan);
                                 // setSelectedBaan(resetBaan);
                             }}
                         >

@@ -264,7 +264,9 @@ const BaanChoosing = () => {
                     <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[570px]:flex-col lg:flex-col">
                         <SelectedBaan
                             baan={selectedBaan}
-                            handleDrop={handleDrop}
+                            handleDrop={(e: React.DragEvent<Element>) =>
+                                handleDrop(e, 2)
+                            }
                             setSelectedBaan={setSelectedBaan}
                         />
                     </div>
