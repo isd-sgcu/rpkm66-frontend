@@ -27,7 +27,7 @@ export interface SelectedBaan {
 const BaanSelection = () => {
     return (
         <>
-            <div className="grid w-screen place-items-center lg:mx-5 lg:h-screen ">
+            <div className="grid place-items-center lg:mx-5 lg:h-screen ">
                 <div className="my-5 flex flex-col items-center justify-center overflow-clip text-xl text-white lg:my-0 lg:h-full lg:w-full lg:flex-row lg:text-4xl">
                     <ProfileInfoPanel />
 
