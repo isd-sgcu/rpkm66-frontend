@@ -4,7 +4,6 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { IBM_Plex_Sans_Thai } from 'next/font/google';
 import Script from 'next/script';
-import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -74,7 +73,6 @@ export default function App({ Component, pageProps }: AppProps) {
                 </AuthProvider>
             </ToastProvider>
 
-            <Analytics />
             <Script
                 async
                 src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
