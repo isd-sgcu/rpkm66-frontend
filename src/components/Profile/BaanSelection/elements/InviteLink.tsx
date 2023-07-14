@@ -9,7 +9,7 @@ export default function InviteLink() {
                         Invite Link
                     </label>
                     <div className="flex w-full items-center">
-                        <div className="w-5/6 rounded-full bg-white px-5 py-2 text-sm text-black ring-8 ring-white ring-opacity-25">
+                        <div className="w-full rounded-full bg-white px-5 py-2 text-sm text-black ring-8 ring-white ring-opacity-25">
                             rpkm.sgcu.in.th/3D9EKB
                         </div>
                         <button className="-translate-x-8">

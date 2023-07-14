@@ -58,7 +58,7 @@ export default function BaanPanel() {
                     ระบบได้ทำการบันทึกเรียบร้อยแล้ว
                 </div>
                 <button
-                    className={`button-style w-fitr first-letter:text-bold mt-3 bg-pink-400 bg-gradient-to-bl from-pink-400 to-pink-800/20 text-xl ring-pink-400/40`}
+                    className={`button-style bg-pink-400 text-xl ring-2 ring-pink-400/30 transition-all duration-500 hover:ring-8`}
                 >
                     เปลี่ยนอันดับ
                 </button>
