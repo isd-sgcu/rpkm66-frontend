@@ -4,10 +4,10 @@ import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { IBM_Plex_Sans_Thai } from 'next/font/google';
 import Script from 'next/script';
-import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import { ToastProvider } from '@/components/Toast';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
     subsets: ['latin'],
@@ -61,17 +61,18 @@ function MetaData() {
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <AuthProvider>
-            <MetaData />
+        <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
+            <ToastProvider>
+                <AuthProvider>
+                    <MetaData />
 
-            <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
-                <Navbar />
-                <Component {...pageProps} />
-                <Background />
-                <Footer />
-            </main>
+                    <Navbar />
+                    <Component {...pageProps} />
+                    <Background />
+                    <Footer />
+                </AuthProvider>
+            </ToastProvider>
 
-            <Analytics />
             <Script
                 async
                 src="https://www.googletagmanager.com/gtag/js?id=G-0ZFDD1EKVW"
@@ -80,14 +81,14 @@ export default function App({ Component, pageProps }: AppProps) {
                 id="google-analytics"
                 dangerouslySetInnerHTML={{
                     __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
-              gtag('config', 'G-0ZFDD1EKVW');
-          `,
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      
+                      gtag('config', 'G-0ZFDD1EKVW');
+                      `,
                 }}
             />
-        </AuthProvider>
+        </main>
     );
 }

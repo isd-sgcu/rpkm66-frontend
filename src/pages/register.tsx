@@ -5,12 +5,15 @@ import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useToast } from '@/components/Toast';
 
 const profilePicPlaceholderURL = '/images/pfp-placeholder.svg';
 
 const Register = () => {
+    const toast = useToast();
+
     const { user, refreshContext } = useAuth();
     const router = useRouter();
     const [bottleModal, setBottleModal] = useState(false);
@@ -21,9 +24,19 @@ const Register = () => {
 
     async function handleImageUpload(file: File) {
         const formData = new FormData();
-        formData.append('file', file);
+        const filename = `${Date.now()}.${file.name.split('.').pop()}${
+            user?.studentID
+        }`;
+        formData.append('file', file, filename);
         formData.append('tag', '1');
         formData.append('type', '1');
+
+        // if file larger than 10mb
+        const TEN_MB = 10 * 1024 * 1024;
+        if (file.size > TEN_MB) {
+            toast?.setToast('error', 'ไฟล์มีขนาดใหญ่เกิน 10 MB');
+            return;
+        }
 
         try {
             const { data } = await httpPost<
@@ -35,7 +48,7 @@ const Register = () => {
 
             setPreviewImage(data.url);
         } catch (error) {
-            // todo handle error
+            toast?.setToast('error', 'เกิดข้อผิดพลาดในการอัปโหลดรูปภาพ');
         }
     }
 
@@ -190,7 +203,7 @@ const Register = () => {
     };
 
     return (
-        <div className="relative flex lg:justify-end">
+        <div className="relative flex pt-8 lg:justify-center">
             {bottleModal && (
                 <AnimatePresence>
                     <motion.div
@@ -201,6 +214,14 @@ const Register = () => {
                         key="water-bottle-modal"
                     >
                         <div className="relative px-16 py-16">
+                            <Image
+                                src="/images/czw.jpg"
+                                className="mx-auto mb-4"
+                                width={200}
+                                height={500}
+                                alt="Bottle"
+                            />
+
                             <h1 className="text-center text-2xl font-bold text-purple">
                                 ต้องการรับกระบอกน้ำ <br />
                                 Chula Zero Waste <br />
@@ -211,7 +232,7 @@ const Register = () => {
                                     <XMarkIcon className="h-6 w-6 text-black" />
                                 </button>
                             </div>
-                            <div className="mt-10 flex w-full flex-col items-center justify-center gap-4">
+                            <div className="mt-4 flex w-full flex-col items-center justify-center gap-4">
                                 <button
                                     onClick={() => {
                                         setBottleModal(false);
@@ -235,13 +256,13 @@ const Register = () => {
                     </motion.div>
                     <div
                         onClick={() => setBottleModal(false)}
-                        className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/25 backdrop-blur-md"
+                        className="fixed left-0 top-0 z-50 h-screen w-full bg-black/25 backdrop-blur-md"
                     ></div>
                 </AnimatePresence>
             )}
 
             <form
-                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3 lg:rounded-tr-none"
+                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3"
                 onSubmit={onFormDone}
                 noValidate={true}
                 id="register-form"
@@ -259,11 +280,14 @@ const Register = () => {
                                 <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
+                        <span className="text-center text-sm font-extralight text-purple/50">
+                            รูปภาพจะต้องมีขนาดไม่เกิน 10MB
+                        </span>
                         <input
                             id="image"
                             name="image"
                             type="file"
-                            accept="images/*"
+                            accept="image/*"
                             className="hidden"
                             onChange={async (
                                 e: ChangeEvent<HTMLInputElement>
@@ -292,7 +316,7 @@ const Register = () => {
                         <select
                             name="nametitle"
                             id="nametitle"
-                            className="mb-4 w-28 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
+                            className="mb-4 w-36 rounded-full border-r-8 border-transparent bg-gray-100 py-2 pl-3 pr-8 outline-4 outline-gray-100"
                             required
                         >
                             <option value="">เลือกคำนำหน้าชื่อ</option>
