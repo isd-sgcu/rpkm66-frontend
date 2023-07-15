@@ -80,7 +80,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         switch (router.pathname) {
             case '/':
                 if (user) {
-                    if (alreadyRegistered) router.push('/baan-selection');
+                    if (alreadyRegistered) router.push('/profile');
                     else router.push('/register');
                 }
                 break;
@@ -88,10 +88,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
                 if (!user) {
                     router.push('/');
                 } else if (alreadyRegistered) {
-                    router.push('/baan-selection');
+                    router.push('/profile');
                 }
                 break;
-            case '/baan-selection':
+            case '/profile':
                 if (!user) {
                     router.push('/');
                 } else if (!alreadyRegistered) {

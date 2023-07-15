@@ -2,9 +2,8 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import Rocket from '@/public/images/rocket.svg';
-import { useAuth } from '@/context/AuthContext';
 
-const WaitForBaanselection: NextPage = () => {
+const WaitForBaanselection = () => {
     return (
         <div className="relative flex min-h-screen w-full items-center overflow-x-hidden bg-gray-800/30 px-8 backdrop-blur-sm backdrop-filter">
             <div className="relative mx-auto flex w-full flex-col gap-8 rounded-3xl bg-gradient-to-bl from-purple to-pink-800/20 px-5 pb-8 pt-10 text-center ring-16 ring-purple/30 lg:w-auto lg:rounded-6xl lg:pb-16 lg:pl-16 lg:pr-52 lg:pt-24 lg:text-left lg:ring-32">
