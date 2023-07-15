@@ -256,7 +256,7 @@ const Register = () => {
                     </motion.div>
                     <div
                         onClick={() => setBottleModal(false)}
-                        className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/25 backdrop-blur-md"
+                        className="fixed left-0 top-0 z-50 h-screen w-full bg-black/25 backdrop-blur-md"
                     ></div>
                 </AnimatePresence>
             )}
