@@ -16,6 +16,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
+        "@headlessui/react": "1.7.15",
         "@heroicons/react": "2.0.18",
         "@vercel/analytics": "1.0.1",
         "autoprefixer": "10.4.14",
