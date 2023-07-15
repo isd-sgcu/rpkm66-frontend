@@ -14,14 +14,12 @@ export default function InviteLink() {
         navigator.clipboard.writeText(`${inviteLink}`);
     }
     return (
-        <div className="flex w-full flex-row items-center justify-center gap-4 text-white">
+        <div className="flex w-full flex-col items-center justify-center gap-4 text-white xl:flex-row">
             <label className="min-w-max text-xl lg:text-2xl">Invite Link</label>
-            <div className="relative flex w-full">
-                <div className="w-full rounded-full bg-white px-5 py-2 text-sm text-purple ring-8 ring-white/30">
-                    {inviteLink}
-                </div>
+            <div className="relative flex w-full overflow-x-auto rounded-full bg-white px-5 py-2 text-sm text-purple ring-8 ring-white/30">
+                {inviteLink}
                 <Square2StackIcon
-                    className="absolute right-2 top-1/2 w-7 -translate-y-1/2 cursor-pointer rounded-full bg-pink-400 p-1"
+                    className="absolute right-2 top-1/2 w-7 -translate-y-1/2 cursor-pointer rounded-full bg-pink-400 p-1 text-white"
                     onClick={handleLinkCopy}
                 />
             </div>

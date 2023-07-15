@@ -6,12 +6,4 @@
     .input {
         @apply mb-4 w-full rounded-full border-gray-100 bg-gray-100 p-2 px-3;
     }
-
-    .bg-style {
-        @apply px-8 py-8;
-    }
-
-    .button-style {
-        @apply mx-auto rounded-lg px-3 py-2 text-sm ring-4 ring-gray-300 lg:mx-4 lg:px-6;
-    }
 }
