@@ -140,7 +140,7 @@ const BaanChoosing = () => {
                         บันทึกการเลือก
                     </button>
                 </div>
-                <div className="flex h-full w-full flex-col border bg-black/50 p-8 backdrop-blur-sm max-xl:rounded-b-3xl xl:w-3/5 xl:rounded-r-3xl">
+                <div className="flex min-h-full w-full flex-col border bg-black/50 p-8 backdrop-blur-sm max-xl:rounded-b-3xl xl:w-3/5 xl:rounded-r-3xl">
                     <div className="flex items-center gap-2">
                         <h1 className="flex w-32 items-center justify-center text-lg lg:text-2xl">
                             ค้นหาบ้าน
@@ -148,7 +148,7 @@ const BaanChoosing = () => {
                         <SearchBar input={input} setInput={setInput} />
                     </div>
                     <FilterButton filter={filter} filterBaan={filterBaan} />
-                    <div className="grid w-full grid-flow-row auto-rows-auto grid-cols-1 gap-8 rounded-3xl bg-white p-4 text-purple-400 ring-8 ring-white/40 sm:grid-cols-2 md:grid-cols-4 xl:h-96 xl:overflow-y-auto">
+                    <div className="grid h-full w-full grid-flow-row auto-rows-auto grid-cols-1 gap-8 rounded-3xl bg-white p-4 text-purple-400 ring-8 ring-white/40 sm:grid-cols-2 md:grid-cols-4 xl:overflow-y-auto">
                         <ListBaan
                             baan={baan}
                             selectedBaan={selectedBaan}
