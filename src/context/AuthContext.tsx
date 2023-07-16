@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import {
     ReactNode,
     createContext,
-    use,
     useCallback,
     useContext,
     useEffect,
@@ -80,7 +79,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         switch (router.pathname) {
             case '/':
                 if (user) {
-                    if (alreadyRegistered) router.push('/wait-baan-selection');
+                    if (alreadyRegistered) router.push('/profile');
                     else router.push('/register');
                 }
                 break;
@@ -88,10 +87,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
                 if (!user) {
                     router.push('/');
                 } else if (alreadyRegistered) {
-                    router.push('/wait-baan-selection');
+                    router.push('/profile');
                 }
                 break;
             case '/wait-baan-selection':
+            case '/profile':
+            case '/baan-selection':
                 if (!user) {
                     router.push('/');
                 } else if (!alreadyRegistered) {

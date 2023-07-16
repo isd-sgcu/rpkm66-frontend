@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import SelectedBaan from '@/components/baan-selection/SelectedBaan';
 import ListBaan from '@/components/baan-selection/ListBaan';
 import { BaanSize, IBaan } from '@/types/baan';
@@ -9,15 +9,7 @@ import SearchBar from '@/components/baan-selection/SearchBar';
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>(''); //Input in search-baan bar
-    const [fill, setFill] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
-    const [toggleColor, setToggleColor] = useState<string[]>([
-        //Set the style of the filter button
-        'unclicked-size-button',
-        'unclicked-size-button',
-        'unclicked-size-button',
-        'unclicked-size-button',
-        'unclicked-size-button',
-    ]);
+    const [filter, setFilter] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
     const [baan, setBaan] = useState<IBaan[]>(testBaanData); //The list of every baans in RPKM...
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>([
         //Baans that the user chooses
@@ -45,31 +37,17 @@ const BaanChoosing = () => {
     ]);
 
     const filterBaan = (f: BaanSize, n: number) => {
-        //Handle when clicking on the filter button by size
-        setBaan(testBaanData); //Reset the data in Baan
-        const toToggle: string[] = [
-            //Reset data in toggle
-            'unclicked-size-button',
-            'unclicked-size-button',
-            'unclicked-size-button',
-            'unclicked-size-button',
-            'unclicked-size-button',
-        ];
-        if (fill == f) setFill(BaanSize._);
-        //If clicking on the same button, reset to default filter (every baan)
+        setBaan(testBaanData);
+        if (filter == f) setFilter(BaanSize._);
         else {
-            setFill(f);
-            setBaan(testBaanData.filter((e: IBaan) => e.size == f)); //Filter baan by size button and change the button color
-            toToggle[n] =
-                'bg-red-500 ring-pink-200/30 transition-all duration-300';
+            setFilter(f);
+            setBaan(testBaanData.filter((e: IBaan) => e.size == f));
         }
-        setToggleColor(toToggle);
     };
+
     const handleDrop = (e: React.DragEvent, n: number) => {
-        //Handle event when dragging
-        if (selectedBaan[n - 1].id !== -1) return; //If there is already a data in the div (not null), exit function
+        if (selectedBaan[n - 1].id !== -1) return;
         const widget: SelectedBaanRank = JSON.parse(
-            //Convert JSON string to SelectedBaanRank
             e.dataTransfer.getData('Data') as string
         );
         const data: SelectedBaanRank[] = [...selectedBaan];
@@ -82,17 +60,18 @@ const BaanChoosing = () => {
         };
         setSelectedBaan(data);
     };
+
     return (
-        <>
-            <div className="min-h-screen w-screen translate-y-24 items-center justify-center lg:z-50 lg:flex lg:-translate-y-[2.5rem] lg:flex-row lg:text-white">
-                <div className="lg:mb-none mx-12 flex flex-col items-center justify-center border bg-white px-8 py-10 text-black max-lg:rounded-t-3xl lg:mx-0 lg:mb-6 lg:ml-auto lg:mr-0 lg:h-[34rem] lg:w-fit lg:items-start lg:rounded-l-3xl min-[1600px]:h-[44rem]">
-                    <h1 className="relative z-0 select-none text-3xl font-bold leading-none tracking-wider lg:mt-8 lg:text-5xl">
+        <div className="flex min-h-screen w-full items-center justify-center px-6 py-24">
+            <div className="flex min-h-max w-full flex-col justify-center xl:flex-row">
+                <div className="flex w-full flex-col items-start gap-2 border bg-white px-8 py-10 text-purple max-xl:rounded-t-3xl xl:w-fit xl:items-start xl:justify-center xl:rounded-l-3xl">
+                    <h1 className="select-none text-3xl font-bold xl:text-5xl">
                         เลือกบ้าน
                     </h1>
-                    <h2 className="lg:text-l relative z-0 my-3 select-none text-xl">
+                    <h2 className="select-none text-xl">
                         เลือก 3 บ้านที่สนใจมากที่สุด
                     </h2>
-                    <div className="mx-auto flex h-full flex-wrap items-start justify-evenly max-[570px]:flex-col lg:flex-col">
+                    <div className="flex w-full flex-wrap justify-between gap-4 xl:flex-col">
                         {selectedBaan.map(
                             (e: SelectedBaanRank, index: number) => {
                                 return (
@@ -110,18 +89,15 @@ const BaanChoosing = () => {
                         )}
                     </div>
                 </div>
-                <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
-                    <div className="flex items-center">
-                        <div className="mr-2 flex w-32 items-center justify-center">
-                            <h1 className="text-lg lg:text-2xl">ค้นหาบ้าน</h1>
-                        </div>
+                <div className="flex h-full w-full flex-col border bg-black/50 p-8 backdrop-blur-sm max-xl:rounded-b-3xl xl:w-3/5 xl:rounded-r-3xl">
+                    <div className="flex items-center gap-2">
+                        <h1 className="flex w-32 items-center justify-center text-lg lg:text-2xl">
+                            ค้นหาบ้าน
+                        </h1>
                         <SearchBar input={input} setInput={setInput} />
                     </div>
-                    <FilterButton
-                        toggleColor={toggleColor}
-                        filterBaan={filterBaan}
-                    />
-                    <div className="mx-4 mb-20 mt-6 flex flex-wrap items-center justify-evenly rounded-3xl bg-white text-black ring-8 ring-white/40 lg:mb-0 lg:mt-3 lg:h-[20rem] lg:overflow-y-scroll lg:py-4 min-[1600px]:h-[30rem]">
+                    <FilterButton filter={filter} filterBaan={filterBaan} />
+                    <div className="grid w-full grid-flow-row auto-rows-auto grid-cols-1 gap-8 rounded-3xl bg-white p-4 text-purple ring-8 ring-white/40 sm:grid-cols-2 md:grid-cols-4 xl:h-96 xl:overflow-y-auto">
                         <ListBaan
                             baan={baan}
                             selectedBaan={selectedBaan}
@@ -130,7 +106,7 @@ const BaanChoosing = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
