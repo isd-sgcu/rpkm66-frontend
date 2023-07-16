@@ -5,7 +5,7 @@ import { BaanSize, IBaan } from '@/types/baan';
 import { SelectedBaanRank } from '@/utils/baan-selection/types';
 import FilterButton from '@/components/baan-selection/FilterButton';
 import SearchBar from '@/components/baan-selection/SearchBar';
-import { httpGet } from '@/utils/axios';
+import { httpGet, httpPut } from '@/utils/axios';
 import { BaanDTO } from '@/dto/baanDTO';
 import { transformBaanDTOtoIBaan } from '@/utils/baan';
 import { useRouter } from 'next/router';
@@ -34,6 +34,8 @@ function useAllBaans() {
 }
 
 const BaanChoosing = () => {
+    const router = useRouter();
+
     const [input, setInput] = useState<string>(''); //Input in search-baan bar
     const [fill, setFill] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
     const [toggleColor, setToggleColor] = useState<string[]>([
@@ -143,6 +145,22 @@ const BaanChoosing = () => {
                             }
                         )}
                     </div>
+
+                    <button
+                        className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                        onClick={async () => {
+                            const { status } = await httpPut('/group/select', {
+                                baans: selectedBaan.map((e) => e.id),
+                            });
+
+                            if (status === 200) {
+                                router.push('/profile');
+                            }
+                        }}
+                        disabled={selectedBaan.some((b) => b.id === -1)}
+                    >
+                        บันทึกการเลือก
+                    </button>
                 </div>
                 <div className="lg:mb-none p-auto mx-12 mb-6 h-auto border bg-black/50 px-8 py-8 backdrop-blur-sm max-lg:rounded-b-3xl lg:mx-0 lg:mr-auto lg:h-[34rem] lg:w-3/5 lg:rounded-r-3xl min-[1600px]:h-[44rem]">
                     <div className="flex items-center">
