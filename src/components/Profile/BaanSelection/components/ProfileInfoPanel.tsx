@@ -1,6 +1,7 @@
 import { useAuth } from '@/context/AuthContext';
 import { StarIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -23,7 +24,7 @@ export default function ProfileInfoPanel() {
                 </p>
 
                 <button className="mx-auto mt-8 w-36 rounded-lg bg-pink-400 py-2 text-xl ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
-                    แก้ไขข้อมูล
+                    <Link href="/edit">แก้ไขข้อมูล</Link>
                 </button>
             </div>
         </div>
