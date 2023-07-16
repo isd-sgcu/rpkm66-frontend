@@ -32,7 +32,7 @@ export default function GroupPanel() {
                             className="relative flex h-full w-full flex-col items-center gap-4 px-4"
                             key={data.name}
                         >
-                            <div className="border-purple relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 lg:w-28">
+                            <div className="relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 border-purple-400 lg:w-28">
                                 <Image src={data.imgUrl} fill alt={data.name} />
                             </div>
                             <div className="relative z-0 flex select-none flex-col text-center text-lg leading-none text-purple-400">
