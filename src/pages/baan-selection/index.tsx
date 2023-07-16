@@ -91,7 +91,7 @@ const BaanChoosing = () => {
         }))
     );
 
-    const filterBaan = (f: BaanSize, n: number) => {
+    const filterBaan = (f: BaanSize) => {
         setBaan(allBaans);
         if (filter == f) setFilter(BaanSize._);
         else {

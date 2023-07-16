@@ -1,15 +1,7 @@
-import Image from 'next/image';
-import React from 'react';
-import { StarIcon, XCircleIcon } from '@heroicons/react/24/solid';
-import { Square2StackIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
-import { IShortUser, IUser } from '@/types/user';
-import { IGroup, IGroupPublic } from '@/types/group';
 import InviteLink from './components/InviteLink';
 import GroupPanel from './components/GroupPanel';
 import BaanPanel from './components/BaanPanel';
 import ProfileInfoPanel from './components/ProfileInfoPanel';
-
-const profilePic = '/images/pfp-placeholder.svg';
 
 export interface GroupMember {
     name: string;
