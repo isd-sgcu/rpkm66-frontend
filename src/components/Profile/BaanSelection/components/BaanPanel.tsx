@@ -46,12 +46,12 @@ export default function BaanPanel() {
             <p className="mb-4 text-center text-xl font-bold text-purple-400 lg:text-3xl">
                 บ้านรับเพื่อนที่เลือก
             </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col gap-4 sm:flex-row">
                 {baans.map((data) => {
                     return (
                         <div
                             key={`${data.num}-${data.id}`}
-                            className="flex h-full w-full flex-col items-center justify-center gap-4 px-4"
+                            className="flex h-full w-full flex-col items-center gap-4"
                         >
                             <div className="relative aspect-3/4 w-32 max-w-full overflow-clip rounded-lg border-2 border-purple-400">
                                 <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple-400 px-2 font-bold leading-none lg:h-7 lg:text-lg">
