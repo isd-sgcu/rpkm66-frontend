@@ -11,6 +11,8 @@ type ModalId =
     | 'modal-8'
     | 'modal-9'
     | 'modal-10'
+    | 'modal-join-group'
+    | 'modal-join-error'
     | 'modal-leave-group';
 
 export interface AppContextProps {
