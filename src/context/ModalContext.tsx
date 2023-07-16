@@ -13,7 +13,8 @@ type ModalId =
     | 'modal-10'
     | 'modal-join-group'
     | 'modal-join-error'
-    | 'modal-leave-group';
+    | 'modal-leave-group'
+    | 'modal-kick-user';
 
 export interface AppContextProps {
     modalToOpen: ModalId | null;

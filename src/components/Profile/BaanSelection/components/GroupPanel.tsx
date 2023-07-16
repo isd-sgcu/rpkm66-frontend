@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { IShortUser } from '@/types/user';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { httpDelete } from '@/utils/axios';
 import { Modal } from '@/components/Modal';
 import { useAppContext } from '@/context/ModalContext';
@@ -36,6 +36,16 @@ export default function GroupPanel() {
         }
     }
 
+    const [removeUser, setRemoveUser] = useState<IShortUser>();
+
+    async function kickUser(id: string) {
+        const { status } = await httpDelete(`/group/members/${id}`);
+
+        if (status === 200) {
+            window.location.reload();
+        }
+    }
+
     return (
         <div className="flex flex-col gap-4 rounded-xl bg-white p-4 ring-8 ring-white/30">
             <Modal
@@ -54,8 +64,32 @@ export default function GroupPanel() {
                         คุณยืนยันการ
                         <span className="text-orange">
                             <br />
-                            ออกจากบ้านรับเพื่อน
+                            ออกจากกลุ่ม
                         </span>
+                    </h2>
+                </div>
+            </Modal>
+
+            <Modal
+                open={modalToOpen === 'modal-kick-user'}
+                onClose={(ans) => {
+                    if (ans === 2) {
+                        removeUser?.id && kickUser(removeUser.id);
+                    }
+                    closeModal();
+                }}
+                answer1="ยกเลิก"
+                answer2="ตกลง"
+            >
+                <div className="flex flex-col">
+                    <h2 className="text-2xl font-bold">
+                        ยืนยันการลบสมาชิก
+                        <span className="text-orange">
+                            <br />
+                            {removeUser?.firstname} {removeUser?.lastname}
+                            <br />
+                        </span>
+                        ออกจากกลุ่ม
                     </h2>
                 </div>
             </Modal>
@@ -81,7 +115,8 @@ export default function GroupPanel() {
                                         <button
                                             className="absolute right-0 top-0 z-10 flex h-8 w-8 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-pink-400 p-1"
                                             onClick={() => {
-                                                console.log('remove');
+                                                setRemoveUser(data);
+                                                openModal('modal-kick-user');
                                             }}
                                         >
                                             <XMarkIcon className="h-full font-bold text-white" />
