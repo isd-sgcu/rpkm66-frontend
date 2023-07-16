@@ -25,18 +25,18 @@ export default function GroupPanel() {
     }, [group]);
 
     return (
-        <div className="flex flex-col gap-4 rounded-xl bg-white p-4 ring-8 ring-white/30">
+        <div className="flex w-full flex-col gap-4 rounded-xl bg-white p-4 ring-8 ring-white/30">
             <p className="h-12 text-center text-xl font-bold text-purple-400 lg:text-3xl">
                 สมาชิกในกลุ่ม ({group?.members.length ?? 1}/3)
             </p>
-            <div className="flex h-full flex-col justify-center gap-4 lg:flex-row">
+            <div className="flex h-full flex-col justify-center gap-4 sm:flex-row">
                 {members.map((data) => {
                     return (
                         <div
                             className="relative flex h-full w-full flex-col items-center gap-4 px-4"
                             key={data.id}
                         >
-                            <div className="relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 border-purple-400 lg:w-28">
+                            <div className="relative aspect-3/4 w-32 max-w-full overflow-clip rounded-lg border-2 border-purple-400">
                                 <Image
                                     src={data.image_url}
                                     fill
