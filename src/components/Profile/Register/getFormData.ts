@@ -19,7 +19,7 @@ export function getFormData(user: IUser | undefined, wantBottle?: boolean) {
         nickname: form.nickname.value as string,
         phone: form.phone.value as string,
         title: form.nametitle.value as string,
-        want_bottle: wantBottle ?? (form.wantbottle.value as boolean),
+        want_bottle: wantBottle ?? (form.wantbottle.checked as boolean),
         id: user?.id ?? '',
     } satisfies RegisterDTO;
 

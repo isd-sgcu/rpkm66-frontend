@@ -22,4 +22,5 @@ export interface UserDTO {
     group_id?: string;
     baan_id?: string;
     is_got_ticket?: boolean;
+    want_bottle?: boolean;
 }

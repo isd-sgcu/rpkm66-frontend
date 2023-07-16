@@ -39,7 +39,6 @@ const ProfileEdit = () => {
                 registerFormId
             ) as HTMLFormElement;
 
-            const elements = [] as Element[];
             for (const element of form) {
                 switch (element.id) {
                     case 'nametitle':
@@ -84,10 +83,12 @@ const ProfileEdit = () => {
                         (element as HTMLInputElement).value =
                             user?.emerRelation;
                         break;
+                    case 'wantbottle':
+                        (element as HTMLInputElement).checked =
+                            user?.wantbottle;
+                        break;
                 }
             }
-
-            console.log({ user, form });
         }
     }, [user]);
 

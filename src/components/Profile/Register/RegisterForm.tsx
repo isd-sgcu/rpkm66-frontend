@@ -13,7 +13,7 @@ import { useToast } from '@/components/Toast';
 import { httpPost } from '@/utils/axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { registerFormId } from './constants';
+import { profilePicPlaceholderURL, registerFormId } from './constants';
 
 type RegisterFormProps = {
     /** This callback function is called after it pass validation*/
@@ -74,7 +74,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({
         const _error = [];
 
         // validate form
-        if (!e.currentTarget.image.files[0]) {
+        if (previewImage === profilePicPlaceholderURL) {
             _error.push('กรุณาอัปโหลดรูปภาพ');
         }
         if (
@@ -167,11 +167,16 @@ export const RegisterForm: FC<RegisterFormProps> = ({
         ) {
             _error.push('กรุณากรอกความสัมพันธ์กับผู้ติดต่อฉุกเฉิน');
         }
-        if (!e.currentTarget.tc.checked) {
-            _error.push('กรุณายอมรับเงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว');
-        }
-        if (!e.currentTarget.pp.checked) {
-            _error.push('กรุณายอมรับข้อตกลง');
+
+        if (!editPage) {
+            if (!e.currentTarget.tc.checked) {
+                _error.push(
+                    'กรุณายอมรับเงื่อนไขการใช้งานและนโยบายความเป็นส่วนตัว'
+                );
+            }
+            if (!e.currentTarget.pp.checked) {
+                _error.push('กรุณายอมรับข้อตกลง');
+            }
         }
 
         setError(_error);
@@ -188,7 +193,9 @@ export const RegisterForm: FC<RegisterFormProps> = ({
             noValidate={true}
             id={registerFormId}
         >
-            <h1 className="mb-2 mt-12 text-3xl font-bold">ลงทะเบียน</h1>
+            <h1 className="mb-2 mt-12 text-3xl font-bold">
+                {editPage ? 'แก้ไขข้อมูล' : 'ลงทะเบียน'}
+            </h1>
             <div className="flex w-10/12 flex-col items-center justify-start pt-6 lg:flex-row-reverse lg:justify-between">
                 <label
                     htmlFor="image"
@@ -459,7 +466,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({
                 type="submit"
                 className="my-10 mb-16 rounded-full bg-pink-400 px-14 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
             >
-                ลงทะเบียน
+                {editPage ? 'แก้ไขข้อมูล' : 'ลงทะเบียน'}
             </button>
         </form>
     );

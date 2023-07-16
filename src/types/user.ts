@@ -29,4 +29,5 @@ export interface IUser {
     groupId: string;
     isGotTicket: boolean;
     baanId?: string;
+    wantbottle: boolean;
 }
