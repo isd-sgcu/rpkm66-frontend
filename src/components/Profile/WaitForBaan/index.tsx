@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import Rocket from '@/public/images/rocket.svg';
-import { useAuth } from '@/context/AuthContext';
 
 const WaitForBaanselection: NextPage = () => {
     return (
