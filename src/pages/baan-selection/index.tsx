@@ -58,21 +58,21 @@ const BaanChoosing = () => {
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>([
         //Baans that the user chooses
         {
-            id: -1,
+            id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
             num: 1,
         },
         {
-            id: -1,
+            id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
             num: 2,
         },
         {
-            id: -1,
+            id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
@@ -103,7 +103,7 @@ const BaanChoosing = () => {
     };
     const handleDrop = (e: DragEvent, n: number) => {
         //Handle event when dragging
-        if (selectedBaan[n - 1].id !== -1) return; //If there is already a data in the div (not null), exit function
+        if (selectedBaan[n - 1].id !== '') return; //If there is already a data in the div (not null), exit function
         const widget: SelectedBaanRank = JSON.parse(
             //Convert JSON string to SelectedBaanRank
             e.dataTransfer.getData('Data') as string
@@ -157,7 +157,7 @@ const BaanChoosing = () => {
                                 router.push('/profile');
                             }
                         }}
-                        disabled={selectedBaan.some((b) => b.id === -1)}
+                        disabled={selectedBaan.some((b) => b.id === '')}
                     >
                         บันทึกการเลือก
                     </button>

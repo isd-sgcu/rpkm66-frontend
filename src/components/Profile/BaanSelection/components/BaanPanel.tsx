@@ -8,14 +8,33 @@ import { useMemo } from 'react';
 const profilePic = '/images/pfp-placeholder.svg';
 
 export default function BaanPanel() {
-    const baan: SelectedBaan[] = [
-        { name: 'บ้านนอก', imgUrl: profilePic, size: 'M', num: 1 },
-        { name: 'บ้านโดต้าทู', imgUrl: profilePic, size: 'XL', num: 2 },
-        { name: 'บ้านไำดอไำด', imgUrl: profilePic, size: 'XL', num: 3 },
-    ];
-
     const router = useRouter();
     const { user, group, isAuthenticated } = useAuth();
+
+    const baans = useMemo(() => {
+        const gBaans = (group?.baans ?? []).map(
+            (baan, index) =>
+                ({
+                    id: baan.id,
+                    name: baan.name,
+                    imgUrl: baan.imageUrl,
+                    size: '69XL',
+                    num: index + 1,
+                } satisfies SelectedBaan & { id: string })
+        );
+
+        while (gBaans.length < 3) {
+            gBaans.push({
+                id: '-1',
+                name: '-',
+                imgUrl: profilePic,
+                size: '-',
+                num: gBaans.length + 1,
+            });
+        }
+
+        return gBaans;
+    }, [group?.baans]);
 
     const isNotGroupOwner = useMemo(
         () => !isAuthenticated || group?.leaderID !== user?.id,
@@ -28,14 +47,14 @@ export default function BaanPanel() {
                 บ้านรับเพื่อนที่เลือก
             </p>
             <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
-                {baan.map((data: SelectedBaan) => {
+                {baans.map((data) => {
                     return (
                         <div
-                            key={data.name}
+                            key={`${data.num}-${data.id}`}
                             className="flex h-full w-full flex-col items-center justify-center gap-4 px-4"
                         >
                             <div className="relative aspect-3/4 w-full rounded-lg border-2 border-purple lg:w-28">
-                                <p className="text-md absolute flex h-7 items-center justify-center rounded-br-lg rounded-tl-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
+                                <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg rounded-tl-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
                                     {data.num}
                                 </p>
                                 <Image fill src={data.imgUrl} alt={data.name} />

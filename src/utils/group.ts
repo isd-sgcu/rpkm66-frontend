@@ -15,7 +15,7 @@ const transformGroupDTOtoIGroup = (
     baans:
         group.baans?.map((val) => ({
             id: val.id,
-            name: val[`name_${locale.toLowerCase()}` as keyof ShortBaanDTO],
+            name: locale === 'TH' ? val.name_th : val.name_en,
             imageUrl: val.image_url,
         })) ?? [],
     token: group.token ?? '',
