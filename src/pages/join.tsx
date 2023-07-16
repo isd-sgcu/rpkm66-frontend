@@ -7,8 +7,8 @@ const JoinPage: NextPage = () => {
     const { query, replace } = useRouter();
     const [message, setMessage] = useState('Loading...');
 
-    const id = useMemo(
-        () => decodeURI((query.id as string | undefined) ?? ''),
+    const token = useMemo(
+        () => decodeURI((query.token as string | undefined) ?? ''),
         [query]
     );
 
@@ -28,10 +28,10 @@ const JoinPage: NextPage = () => {
     );
 
     useEffect(() => {
-        if (!id) return;
+        if (!token) return;
 
-        joinBaan(id);
-    }, [id, joinBaan]);
+        joinBaan(token);
+    }, [token, joinBaan]);
 
     return <div>{message}</div>;
 };
