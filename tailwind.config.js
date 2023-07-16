@@ -10,9 +10,13 @@ const config = {
     theme: {
         extend: {
             colors: {
-                purple: '#393061',
+                purple: {
+                    300: '#6B3BF1',
+                    400: '#393061',
+                },
                 pink: {
                     400: '#E95682',
+                    600: '#C03786',
                     800: '#A45BD0',
                 },
                 yellow: '#FFC32A',

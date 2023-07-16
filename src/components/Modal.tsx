@@ -1,5 +1,4 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { IBM_Plex_Sans_Thai } from 'next/font/google';
 import { Fragment, ReactNode } from 'react';
 
 export interface ModalProps {
@@ -9,13 +8,6 @@ export interface ModalProps {
     answer1?: string;
     answer2?: string;
 }
-
-const ibmPlexSansThai = IBM_Plex_Sans_Thai({
-    subsets: ['latin'],
-    weight: ['500', '600', '700'],
-    display: 'swap',
-    variable: '--font-ibm',
-});
 
 export const Modal = ({
     open,
@@ -29,7 +21,7 @@ export const Modal = ({
             <Transition.Root show={open} as={Fragment}>
                 <Dialog
                     as="div"
-                    className={`${ibmPlexSansThai.variable} relative z-50 font-ibm text-white`}
+                    className="relative z-50 text-white"
                     onClose={onClose}
                 >
                     <Transition.Child
@@ -41,7 +33,7 @@ export const Modal = ({
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-lg transition-opacity " />
+                        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-lg transition-opacity" />
                     </Transition.Child>
 
                     <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -69,7 +61,7 @@ export const Modal = ({
                                             className={` ${
                                                 `${answer1}` == ''
                                                     ? 'aria-hidden hidden'
-                                                    : 'inline-flex max-w-fit flex-1 justify-center rounded-3xl bg-[#C03786] px-8 py-2 text-lg font-semibold text-white shadow-sm transition-all hover:ring-2 hover:ring-[#C03786]/20 hover:ring-offset-4 hover:ring-offset-[#C03786]/50'
+                                                    : 'inline-flex max-w-fit flex-1 justify-center rounded-3xl bg-pink-600 px-8 py-2 text-lg font-semibold text-white shadow-sm transition-all hover:ring-2 hover:ring-pink-600/20 hover:ring-offset-4 hover:ring-offset-pink-600/50'
                                             } 
                                             `}
                                             onClick={onClose}
@@ -78,7 +70,7 @@ export const Modal = ({
                                         </button>
                                         <button
                                             type="button"
-                                            className="inline-flex max-w-fit flex-1 justify-center rounded-3xl bg-[#6B3BF1] px-8 py-2 text-lg font-semibold text-white shadow-sm transition-all hover:ring-2 hover:ring-[#6B3BF1]/20 hover:ring-offset-4 hover:ring-offset-[#6B3BF1]/50"
+                                            className="inline-flex max-w-fit flex-1 justify-center rounded-3xl bg-purple-300 px-8 py-2 text-lg font-semibold text-white shadow-sm transition-all hover:ring-2 hover:ring-purple-300/20 hover:ring-offset-4 hover:ring-offset-purple-300/50"
                                             onClick={onClose}
                                         >
                                             {answer2}
