@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import { convertSize, isAdded } from '@/utils/baan-selection/utility';
 import { IBaan } from '@/types/baan';
-const ListBaan = (props: any) => {
+import { SelectedBaanRank } from '@/utils/baan-selection/types';
+
+const ListBaan = (props: {
+    baan: IBaan[];
+    input: string;
+    selectedBaan: SelectedBaanRank[];
+}) => {
     return props.baan
         .filter(
             (e: IBaan) =>

@@ -15,13 +15,13 @@ const SelectedBaan = (props: any) => {
                 <p className="text-md absolute left-0 top-0 z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple-400 px-2 font-bold leading-none text-white lg:h-7 lg:text-lg">
                     {props.num}
                 </p>
-                {props.id === -1 ? (
+                {props.id === '' ? (
                     <p className="text-gray-500">Null</p>
                 ) : (
                     <Image src={props.imageUrl} alt={props.name} fill />
                 )}
             </div>
-            {props.id === -1 ? (
+            {props.id === '' ? (
                 <p>ท่านยังไม่ได้เลือกบ้าน</p>
             ) : (
                 <div className="flex flex-col items-center gap-2 lg:flex-row">
@@ -36,7 +36,7 @@ const SelectedBaan = (props: any) => {
                                 name: '',
                                 size: BaanSize._,
                                 imageUrl: '',
-                                id: -1,
+                                id: '',
                             };
                             props.setSelectedBaan(resetBaan);
                         }}

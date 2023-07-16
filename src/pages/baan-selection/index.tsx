@@ -1,34 +1,69 @@
-import React, { useState } from 'react';
+import { useEffect, useState, DragEvent } from 'react';
 import SelectedBaan from '@/components/baan-selection/SelectedBaan';
 import ListBaan from '@/components/baan-selection/ListBaan';
 import { BaanSize, IBaan } from '@/types/baan';
 import { SelectedBaanRank } from '@/utils/baan-selection/types';
-import { testBaanData } from '@/utils/baan-selection/testData';
 import FilterButton from '@/components/baan-selection/FilterButton';
 import SearchBar from '@/components/baan-selection/SearchBar';
+import { httpGet, httpPut } from '@/utils/axios';
+import { BaanDTO } from '@/dto/baanDTO';
+import { transformBaanDTOtoIBaan } from '@/utils/baan';
+import { useRouter } from 'next/router';
+
+function useAllBaans() {
+    const [allBaans, setAllBaans] = useState<IBaan[]>([]);
+    const { locale } = useRouter();
+
+    useEffect(() => {
+        async function fetchBaans() {
+            const { data } = await httpGet<BaanDTO[]>('/baan');
+            setAllBaans(
+                data.map((baan) =>
+                    transformBaanDTOtoIBaan(
+                        baan,
+                        (locale?.toUpperCase() as 'TH' | 'EN') || 'TH'
+                    )
+                )
+            );
+        }
+
+        fetchBaans();
+    }, [locale]);
+
+    return allBaans;
+}
 
 const BaanChoosing = () => {
+    const router = useRouter();
+
     const [input, setInput] = useState<string>(''); //Input in search-baan bar
     const [filter, setFilter] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
-    const [baan, setBaan] = useState<IBaan[]>(testBaanData); //The list of every baans in RPKM...
+
+    const allBaans = useAllBaans();
+    const [baan, setBaan] = useState<IBaan[]>([]); //The list of every baans in RPKM...
+
+    useEffect(() => {
+        setBaan(allBaans);
+    }, [setBaan, allBaans]);
+
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>([
         //Baans that the user chooses
         {
-            id: -1,
+            id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
             num: 1,
         },
         {
-            id: -1,
+            id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
             num: 2,
         },
         {
-            id: -1,
+            id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
@@ -37,16 +72,16 @@ const BaanChoosing = () => {
     ]);
 
     const filterBaan = (f: BaanSize, n: number) => {
-        setBaan(testBaanData);
+        setBaan(allBaans);
         if (filter == f) setFilter(BaanSize._);
         else {
             setFilter(f);
-            setBaan(testBaanData.filter((e: IBaan) => e.size == f));
+            setBaan(allBaans.filter((e: IBaan) => e.size == f));
         }
     };
 
-    const handleDrop = (e: React.DragEvent, n: number) => {
-        if (selectedBaan[n - 1].id !== -1) return;
+    const handleDrop = (e: DragEvent, n: number) => {
+        if (selectedBaan[n - 1].id !== '') return;
         const widget: SelectedBaanRank = JSON.parse(
             e.dataTransfer.getData('Data') as string
         );
@@ -77,9 +112,9 @@ const BaanChoosing = () => {
                                 return (
                                     <SelectedBaan
                                         key={e.num}
-                                        handleDrop={(
-                                            e: React.DragEvent<Element>
-                                        ) => handleDrop(e, index + 1)}
+                                        handleDrop={(e: DragEvent<Element>) =>
+                                            handleDrop(e, index + 1)
+                                        }
                                         setSelectedBaan={setSelectedBaan}
                                         {...e}
                                         baan={selectedBaan}
@@ -88,6 +123,22 @@ const BaanChoosing = () => {
                             }
                         )}
                     </div>
+
+                    <button
+                        className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                        onClick={async () => {
+                            const { status } = await httpPut('/group/select', {
+                                baans: selectedBaan.map((e) => e.id),
+                            });
+
+                            if (status === 200) {
+                                router.push('/profile');
+                            }
+                        }}
+                        disabled={selectedBaan.some((b) => b.id === '')}
+                    >
+                        บันทึกการเลือก
+                    </button>
                 </div>
                 <div className="flex h-full w-full flex-col border bg-black/50 p-8 backdrop-blur-sm max-xl:rounded-b-3xl xl:w-3/5 xl:rounded-r-3xl">
                     <div className="flex items-center gap-2">

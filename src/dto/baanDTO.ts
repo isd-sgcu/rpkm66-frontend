@@ -1,20 +1,20 @@
 import { BaanSize } from '@/types/baan';
 
 export interface ShortBaanDTO {
-    id: number;
-    nameEN: string;
-    nameTH: string;
-    imageUrl: string;
+    id: string;
+    name_en: string;
+    name_th: string;
+    image_url: string;
 }
 
 export interface BaanDTO extends ShortBaanDTO {
     size: BaanSize;
-    descriptionEN: string;
-    descriptionTH: string;
+    description_en: string;
+    description_th: string;
     facebook: string;
-    facebookUrl: string;
+    facebook_url: string;
     instagram: string;
-    instagramUrl: string;
+    instagram_url: string;
     line: string;
-    lineUrl: string;
+    line_url: string;
 }

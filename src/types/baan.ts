@@ -10,7 +10,7 @@ export enum BaanSize {
 }
 
 export interface IShortBaan {
-    id: number;
+    id: string;
     name: string;
     imageUrl: string;
 }

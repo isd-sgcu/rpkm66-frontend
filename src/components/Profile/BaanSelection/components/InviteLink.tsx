@@ -6,7 +6,7 @@ export default function InviteLink() {
 
     const inviteLink = `${
         process.env.NEXT_PUBLIC_APP_BASE_URL
-    }/?join=${encodeURIComponent(
+    }/join?token=${encodeURIComponent(
         group ? group.token : 'GROUP_TOKEN_NOT_FOUND'
     )}`;
 
