@@ -17,6 +17,7 @@ const transformGroupDTOtoIGroup = (
             id: val.id,
             name: locale === 'TH' ? val.name_th : val.name_en,
             imageUrl: val.image_url,
+            size: val.baan_size,
         })) ?? [],
     token: group.token ?? '',
 });
