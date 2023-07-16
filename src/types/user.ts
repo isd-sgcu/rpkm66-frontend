@@ -2,7 +2,7 @@ export interface IShortUser {
     id: string;
     firstname: string;
     lastname: string;
-    imageUrl: string;
+    image_url: string;
 }
 
 export interface IUser {

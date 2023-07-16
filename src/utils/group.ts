@@ -10,13 +10,13 @@ const transformGroupDTOtoIGroup = (
     locale: 'TH' | 'EN'
 ): IGroup => ({
     id: group.id,
-    leaderID: group.leaderID ?? '',
+    leaderID: group.leader_id ?? '',
     members: group.members ?? [],
     baans:
-        group.baans?.map((val: any) => ({
+        group.baans?.map((val) => ({
             id: val.id,
-            name: val[`name${locale}`],
-            imageUrl: val.imageUrl,
+            name: val[`name_${locale.toLowerCase()}` as keyof ShortBaanDTO],
+            imageUrl: val.image_url,
         })) ?? [],
     token: group.token ?? '',
 });
