@@ -7,44 +7,31 @@ const SelectedBaan = (props: any) => {
     return (
         <div
             key={props.num}
-            className="flex flex-col items-center text-sm lg:flex-row"
-            onDrop={props.handleDrop} //Handle the event that user drag new Baan to the div => Go to line 349...
+            className="flex flex-col items-center gap-2 text-sm text-purple lg:flex-row"
+            onDrop={props.handleDrop}
             onDragOver={(e) => e.preventDefault()}
         >
-            <div
-                className={`mx-4 my-3 flex h-20 w-20 items-center justify-center rounded-lg bg-white ring-2 ring-purple lg:h-24 lg:w-24`}
-            >
-                <div className="absolute flex h-5 w-5 -translate-x-8 -translate-y-8 items-center justify-center rounded-md bg-purple text-white lg:h-7 lg:w-7 lg:-translate-x-9 lg:-translate-y-9">
-                    <p>{props.num}</p>
-                </div>
+            <div className="relative flex aspect-square w-32 max-w-full items-center justify-center overflow-clip rounded-lg border-2 border-purple bg-white">
+                <p className="text-md absolute left-0 top-0 z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple px-2 font-bold leading-none text-white lg:h-7 lg:text-lg">
+                    {props.num}
+                </p>
                 {props.id === -1 ? (
                     <p className="text-gray-500">Null</p>
                 ) : (
-                    <Image
-                        src={props.imageUrl}
-                        alt={props.name}
-                        width={100}
-                        height={100}
-                        className="rounded-lg bg-black object-contain"
-                    />
+                    <Image src={props.imageUrl} alt={props.name} fill />
                 )}
             </div>
             {props.id === -1 ? (
-                <div className="flex w-[8.25rem] flex-col items-center justify-center lg:mx-3 lg:flex-row">
-                    <p>ท่านยังไม่ได้เลือกบ้าน</p>
-                </div>
+                <p>ท่านยังไม่ได้เลือกบ้าน</p>
             ) : (
-                <div className="flex flex-col items-center lg:flex-row">
-                    <p className="mx-3 mb-3 lg:mb-0 lg:w-28">{`${
-                        props.name
-                    } (${convertSize.get(props.size)})`}</p>
-                    <button //Event when clicking on the trash button
+                <div className="flex flex-col items-center gap-2 lg:flex-row">
+                    <p>{`${props.name} (${convertSize.get(props.size)})`}</p>
+                    <button
                         onClick={() => {
                             const resetBaan: SelectedBaanRank[] = [
                                 ...props.baan,
-                            ]; //Copy the data from the selected-baan
+                            ];
                             resetBaan[props.num - 1] = {
-                                //Clear the data inside the index to default
                                 ...resetBaan[props.num - 1],
                                 name: '',
                                 size: BaanSize._,
@@ -52,10 +39,9 @@ const SelectedBaan = (props: any) => {
                                 id: -1,
                             };
                             props.setSelectedBaan(resetBaan);
-                            // setSelectedBaan(resetBaan);
                         }}
                     >
-                        <TrashIcon width={20} height={20} />
+                        <TrashIcon className="w-5 hover:opacity-70" />
                     </button>
                 </div>
             )}

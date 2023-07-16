@@ -3,9 +3,9 @@ import { ChangeEvent } from 'react';
 
 const SearchBar = (props: any) => {
     return (
-        <form className="w-full text-black lg:w-full">
+        <form className="relative w-full text-purple">
             <label htmlFor="search">
-                <MagnifyingGlassIcon className="absolute h-5 w-5 translate-x-3 translate-y-[0.22rem] object-contain lg:h-6 lg:w-6 lg:translate-y-[0.35rem]" />
+                <MagnifyingGlassIcon className="absolute left-2 top-1/2 h-5 w-5 -translate-y-1/2 lg:h-6 lg:w-6" />
             </label>
             <input
                 type="text"
@@ -16,14 +16,9 @@ const SearchBar = (props: any) => {
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     props.setInput(e.target.value);
                 }}
-                className="w-full rounded-3xl bg-white py-1 pl-11 pr-4 text-sm ring-8 ring-white/20 max-[400px]:placeholder-white lg:text-lg"
+                className="w-full rounded-3xl bg-white py-1 pl-11 text-sm ring-8 ring-white/20 lg:text-lg"
             />
-            <button>
-                <HomeIcon
-                    color="#E95682D6"
-                    className="absolute -translate-x-8 -translate-y-[0.90rem] object-contain max-lg:h-5 max-lg:w-5 lg:-translate-x-11 lg:-translate-y-[1.3rem]"
-                />
-            </button>
+            <HomeIcon className="absolute right-4 top-1/2 w-5 -translate-y-1/2 text-pink-400 lg:w-6" />
         </form>
     );
 };

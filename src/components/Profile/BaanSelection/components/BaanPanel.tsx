@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { SelectedBaan } from '..';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -23,8 +24,8 @@ export default function BaanPanel() {
                             key={data.name}
                             className="flex h-full w-full flex-col items-center justify-center gap-4 px-4"
                         >
-                            <div className="relative aspect-3/4 w-full rounded-lg border-2 border-purple lg:w-28">
-                                <p className="text-md absolute flex h-7 items-center justify-center rounded-br-lg rounded-tl-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
+                            <div className="relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 border-purple lg:w-28">
+                                <p className="text-md absolute flex h-7 items-center justify-center rounded-br-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
                                     {data.num}
                                 </p>
                                 <Image fill src={data.imgUrl} alt={data.name} />
@@ -42,9 +43,11 @@ export default function BaanPanel() {
                     <CheckCircleIcon className="h-8" />
                     ระบบได้ทำการบันทึกเรียบร้อยแล้ว
                 </p>
-                <button className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
-                    เปลี่ยนอันดับ
-                </button>
+                <Link href="/baan-selection">
+                    <button className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
+                        เปลี่ยนอันดับ
+                    </button>
+                </Link>
             </div>
         </div>
     );

@@ -6,10 +6,4 @@
     .input {
         @apply mb-4 w-full rounded-full border-gray-100 bg-gray-100 p-2 px-3;
     }
-    .select-size-button {
-        @apply mr-6 w-fit rounded-lg px-2 py-1 text-xs ring-8 lg:px-4 lg:py-2 lg:text-sm;
-    }
-    .unclicked-size-button {
-        @apply bg-pink-400 ring-pink-400/30 transition-all duration-300 hover:bg-red-400;
-    }
 }
