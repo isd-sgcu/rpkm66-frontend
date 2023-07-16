@@ -1,5 +1,5 @@
 import { useAuth } from '@/context/AuthContext';
-import { StarIcon } from '@heroicons/react/24/solid';
+import { StarIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 
 const profilePic = '/images/pfp-placeholder.svg';
@@ -22,8 +22,14 @@ export default function ProfileInfoPanel() {
                     {user?.firstname} <br /> {user?.lastname}
                 </p>
 
-                <button className="mx-auto mt-8 w-36 rounded-lg bg-pink-400 py-2 text-xl ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
+                <button
+                    className="mx-auto mt-8 flex w-40 max-w-full items-center justify-center rounded-lg bg-purple-400 px-4 py-2 text-base ring-4 ring-purple-400/30 transition-all duration-500 hover:ring-8"
+                    onClick={() => {
+                        console.log('edit profile');
+                    }}
+                >
                     แก้ไขข้อมูล
+                    <PencilSquareIcon className="ml-2 inline-block h-5" />
                 </button>
             </div>
         </div>
