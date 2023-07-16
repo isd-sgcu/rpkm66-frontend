@@ -10,12 +10,7 @@ import Navbar from '@/components/Navbar';
 import { ToastProvider } from '@/components/Toast';
 import { AppContextProvider } from '@/context/ModalContext';
 
-const ibmPlexSansThai = IBM_Plex_Sans_Thai({
-    subsets: ['latin'],
-    weight: ['500', '600', '700'],
-    display: 'swap',
-    variable: '--font-ibm',
-});
+import { ibmPlexSansThai } from '@/components/font';
 
 function MetaData() {
     return (
