@@ -44,7 +44,7 @@ export default function BaanPanel() {
 
     return (
         <div className="flex flex-col rounded-xl bg-white p-4 ring-8 ring-white ring-opacity-25">
-            <p className="mb-4 text-center text-xl font-bold text-purple lg:text-3xl">
+            <p className="mb-4 text-center text-xl font-bold text-purple-400 lg:text-3xl">
                 บ้านรับเพื่อนที่เลือก
             </p>
             <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
@@ -54,13 +54,13 @@ export default function BaanPanel() {
                             key={`${data.num}-${data.id}`}
                             className="flex h-full w-full flex-col items-center justify-center gap-4 px-4"
                         >
-                            <div className="relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 border-purple lg:w-28">
-                                <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
+                            <div className="relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 border-purple-400 lg:w-28">
+                                <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple-400 px-2 font-bold leading-none lg:h-7 lg:text-lg">
                                     {data.num}
                                 </p>
                                 <Image fill src={data.imgUrl} alt={data.name} />
                             </div>
-                            <div className="flex select-none flex-col text-center text-xl leading-none text-purple lg:w-28">
+                            <div className="flex select-none flex-col text-center text-xl leading-none text-purple-400 lg:w-28">
                                 <p>{data.name}</p>
                                 <p>({data.size})</p>
                             </div>

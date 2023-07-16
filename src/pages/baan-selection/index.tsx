@@ -99,7 +99,7 @@ const BaanChoosing = () => {
     return (
         <div className="flex min-h-screen w-full items-center justify-center px-6 py-24">
             <div className="flex min-h-max w-full flex-col justify-center xl:flex-row">
-                <div className="flex w-full flex-col items-start gap-2 border bg-white px-8 py-10 text-purple max-xl:rounded-t-3xl xl:w-fit xl:items-start xl:justify-center xl:rounded-l-3xl">
+                <div className="flex w-full flex-col items-start gap-2 border bg-white px-8 py-10 text-purple-400 max-xl:rounded-t-3xl xl:w-fit xl:items-start xl:justify-center xl:rounded-l-3xl">
                     <h1 className="select-none text-3xl font-bold xl:text-5xl">
                         เลือกบ้าน
                     </h1>
@@ -148,7 +148,7 @@ const BaanChoosing = () => {
                         <SearchBar input={input} setInput={setInput} />
                     </div>
                     <FilterButton filter={filter} filterBaan={filterBaan} />
-                    <div className="grid w-full grid-flow-row auto-rows-auto grid-cols-1 gap-8 rounded-3xl bg-white p-4 text-purple ring-8 ring-white/40 sm:grid-cols-2 md:grid-cols-4 xl:h-96 xl:overflow-y-auto">
+                    <div className="grid w-full grid-flow-row auto-rows-auto grid-cols-1 gap-8 rounded-3xl bg-white p-4 text-purple-400 ring-8 ring-white/40 sm:grid-cols-2 md:grid-cols-4 xl:h-96 xl:overflow-y-auto">
                         <ListBaan
                             baan={baan}
                             selectedBaan={selectedBaan}

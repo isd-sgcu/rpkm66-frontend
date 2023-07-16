@@ -222,7 +222,7 @@ const Register = () => {
                                 alt="Bottle"
                             />
 
-                            <h1 className="text-center text-2xl font-bold text-purple">
+                            <h1 className="text-center text-2xl font-bold text-purple-400">
                                 ต้องการรับกระบอกน้ำ <br />
                                 Chula Zero Waste <br />
                                 ในงานรับเพื่อนก้าวใหม่หรือไม่
@@ -262,7 +262,7 @@ const Register = () => {
             )}
 
             <form
-                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple lg:mt-0 lg:w-2/3"
+                className="mt-40 flex w-full flex-col items-center justify-start rounded-t-3xl bg-white text-purple-400 lg:mt-0 lg:w-2/3"
                 onSubmit={onFormDone}
                 noValidate={true}
                 id="register-form"
@@ -280,7 +280,7 @@ const Register = () => {
                                 <span className="text-xs">แก้ไข</span>
                             </div>
                         </div>
-                        <span className="text-center text-sm font-extralight text-purple/50">
+                        <span className="text-center text-sm font-extralight text-purple-400/50">
                             รูปภาพจะต้องมีขนาดไม่เกิน 10MB
                         </span>
                         <input

@@ -18,7 +18,7 @@ export default function ProfileInfoPanel() {
                 />
             </div>
             <div className="flex flex-col">
-                <p className="select-none text-center text-3xl font-bold text-purple">
+                <p className="select-none text-center text-3xl font-bold text-purple-400">
                     {user?.firstname} <br /> {user?.lastname}
                 </p>
 
