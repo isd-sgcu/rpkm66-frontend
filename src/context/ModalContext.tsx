@@ -10,7 +10,8 @@ type ModalId =
     | 'modal-7'
     | 'modal-8'
     | 'modal-9'
-    | 'modal-10';
+    | 'modal-10'
+    | 'modal-leave-group';
 
 export interface AppContextProps {
     modalToOpen: ModalId | null;
