@@ -4,6 +4,7 @@ import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import { useMemo } from 'react';
+import Link from 'next/link';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -53,8 +54,8 @@ export default function BaanPanel() {
                             key={`${data.num}-${data.id}`}
                             className="flex h-full w-full flex-col items-center justify-center gap-4 px-4"
                         >
-                            <div className="relative aspect-3/4 w-full rounded-lg border-2 border-purple lg:w-28">
-                                <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg rounded-tl-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
+                            <div className="relative aspect-3/4 w-full max-w-xxs overflow-clip rounded-lg border-2 border-purple lg:w-28">
+                                <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple px-2 font-bold leading-none lg:h-7 lg:text-lg">
                                     {data.num}
                                 </p>
                                 <Image fill src={data.imgUrl} alt={data.name} />

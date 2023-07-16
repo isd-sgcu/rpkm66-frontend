@@ -35,6 +35,9 @@ const config = {
                 '5xl': '3rem',
                 '6xl': '4.5rem',
             },
+            maxWidth: {
+                xxs: '14rem',
+            },
         },
     },
     plugins: [],

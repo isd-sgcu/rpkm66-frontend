@@ -12,32 +12,28 @@ const ListBaan = (props: {
         .filter(
             (e: IBaan) =>
                 e.name.includes(props.input) && isAdded(props.selectedBaan, e)
-        ) //Filter when typing the search bar
+        )
         .map((e: IBaan) => {
             return (
                 <div
                     key={e.name}
-                    className="text-md flex flex-col items-center"
+                    className="text-md mx-auto flex h-min w-min flex-col items-center gap-2"
                 >
                     <div
-                        className={`mx-4 my-4 flex h-32 w-32 items-center justify-center rounded-xl bg-white ring-4 ring-purple lg:h-40 lg:w-40 min-[1600px]:h-56 min-[1600px]:w-56`}
+                        className="relative aspect-square w-36 max-w-full items-center justify-center overflow-clip rounded-xl bg-white ring-4 ring-purple"
                         draggable
                         onDragStart={(event) =>
                             event.dataTransfer.setData(
                                 'Data',
                                 JSON.stringify(e)
                             )
-                        } //Handle dragging event
+                        }
                     >
-                        <Image
-                            src={e.imageUrl}
-                            alt={e.name}
-                            width={300}
-                            height={300}
-                            className="rounded-xl bg-black object-contain"
-                        />
+                        <Image src={e.imageUrl} alt={e.name} fill />
                     </div>
-                    <p>{`${e.name} (${convertSize.get(e.size)})`}</p>
+                    <p>
+                        {e.name} ({convertSize.get(e.size)})
+                    </p>
                 </div>
             );
         });
