@@ -465,7 +465,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({
                 type="submit"
                 className="my-10 mb-16 rounded-full bg-pink-400 px-14 py-2 text-xl font-bold text-white ring-8 ring-pink-400/30 hover:bg-pink-400/80"
             >
-                {editPage ? 'แก้ไขข้อมูล' : 'ลงทะเบียน'}
+                {editPage ? 'ยืนยันการแก้ไขข้อมูล' : 'ลงทะเบียน'}
             </button>
         </form>
     );
