@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import { SelectedBaan } from '..';
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import { XCircleIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import { useMemo } from 'react';
-import Link from 'next/link';
+import { BaanSize, IShortBaan } from '@/types/baan';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -18,18 +17,18 @@ export default function BaanPanel() {
                 ({
                     id: baan.id,
                     name: baan.name,
-                    imgUrl: baan.imageUrl,
-                    size: '69XL',
+                    imageUrl: baan.imageUrl,
+                    size: baan.size,
                     num: index + 1,
-                } satisfies SelectedBaan & { id: string })
+                } satisfies IShortBaan & { num: number })
         );
 
         while (gBaans.length < 3) {
             gBaans.push({
                 id: '-1',
                 name: '-',
-                imgUrl: profilePic,
-                size: '-',
+                imageUrl: profilePic,
+                size: BaanSize._,
                 num: gBaans.length + 1,
             });
         }
@@ -58,7 +57,11 @@ export default function BaanPanel() {
                                 <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple-400 px-2 font-bold leading-none lg:h-7 lg:text-lg">
                                     {data.num}
                                 </p>
-                                <Image fill src={data.imgUrl} alt={data.name} />
+                                <Image
+                                    fill
+                                    src={data.imageUrl}
+                                    alt={data.name}
+                                />
                             </div>
                             <div className="relative z-0 flex select-none flex-col text-center text-lg leading-none text-purple-400">
                                 <p>{data.name}</p>

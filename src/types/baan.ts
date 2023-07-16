@@ -13,10 +13,10 @@ export interface IShortBaan {
     id: string;
     name: string;
     imageUrl: string;
+    size: BaanSize;
 }
 
 export interface IBaan extends IShortBaan {
-    size: BaanSize;
     description: string;
     facebook: string;
     facebookUrl: string;
