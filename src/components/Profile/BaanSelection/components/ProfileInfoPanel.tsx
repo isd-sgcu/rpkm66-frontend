@@ -11,7 +11,7 @@ export default function ProfileInfoPanel() {
                 <Image src={profilePic} fill alt="profile pic" />
             </div>
             <div className="flex flex-col">
-                <p className="select-none text-center text-3xl font-bold text-purple">
+                <p className="select-none text-center text-3xl font-bold text-purple-400">
                     แจฮยอน <br /> คงแก่การเรียน
                 </p>
                 <button className="mx-auto mt-8 w-36 rounded-lg bg-pink-400 py-2 text-xl ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
