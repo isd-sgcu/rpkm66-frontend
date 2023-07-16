@@ -9,6 +9,8 @@ export interface UserDTO {
     nickname?: string;
     email?: string;
     phone?: string;
+    emer_phone?: string;
+    emer_relation?: string;
     line_id?: string;
     disease?: string;
     allergy_food?: string;

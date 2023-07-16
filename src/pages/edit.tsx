@@ -6,6 +6,7 @@ import {
     RegisterForm,
     getFormData,
     profilePicPlaceholderURL,
+    registerFormId,
 } from '@/components/Profile/Register';
 
 const ProfileEdit = () => {
@@ -23,7 +24,7 @@ const ProfileEdit = () => {
         try {
             await httpPatch(`/user`, body);
             await refreshContext();
-            router.push('/wait-baan-selection');
+            router.push('/profile');
         } catch (_error: any) {
             console.error(_error);
             setError([_error]);
@@ -32,7 +33,61 @@ const ProfileEdit = () => {
 
     useEffect(() => {
         if (user) {
-            console.log({ user });
+            setPreviewImage(user.imageUrl || profilePicPlaceholderURL);
+
+            const form = document.getElementById(
+                registerFormId
+            ) as HTMLFormElement;
+
+            const elements = [] as Element[];
+            for (const element of form) {
+                switch (element.id) {
+                    case 'nametitle':
+                        (element as HTMLSelectElement).value = user?.title;
+                        break;
+                    case 'firstname':
+                        (element as HTMLInputElement).value = user?.firstname;
+                        break;
+                    case 'surname':
+                        (element as HTMLInputElement).value = user?.lastname;
+                        break;
+                    case 'nickname':
+                        (element as HTMLInputElement).value = user?.nickname;
+                        break;
+                    case 'phone':
+                        (element as HTMLInputElement).value = user?.phone;
+                        break;
+                    case 'email':
+                        (element as HTMLInputElement).value = user?.email;
+                        break;
+                    case 'lineId':
+                        (element as HTMLInputElement).value = user?.lineID;
+                        break;
+                    case 'diseases':
+                        (element as HTMLInputElement).value = user?.disease;
+                        break;
+                    case 'drugAllergy':
+                        (element as HTMLInputElement).value =
+                            user?.allergyMedicine;
+                        break;
+                    case 'foodAllergy':
+                        (element as HTMLInputElement).value = user?.allergyFood;
+                        break;
+                    case 'foodRestriction':
+                        (element as HTMLInputElement).value =
+                            user?.foodRestriction;
+                        break;
+                    case 'emergencyNo':
+                        (element as HTMLInputElement).value = user?.emerPhone;
+                        break;
+                    case 'emergencyRel':
+                        (element as HTMLInputElement).value =
+                            user?.emerRelation;
+                        break;
+                }
+            }
+
+            console.log({ user, form });
         }
     }, [user]);
 

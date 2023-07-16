@@ -16,6 +16,8 @@ export interface IUser {
     nickname: string;
     email: string;
     phone: string;
+    emerPhone: string;
+    emerRelation: string;
     lineID: string;
     disease: string;
     allergyFood: string;

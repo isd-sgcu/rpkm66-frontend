@@ -14,6 +14,8 @@ const transformUserDTOtoIUser = (user: UserDTO) => ({
     nickname: user.nickname ?? '',
     email: user.email ?? '',
     phone: user.phone ?? '',
+    emerPhone: user.emer_phone ?? '',
+    emerRelation: user.emer_relation ?? '',
     lineID: user.line_id ?? '',
     disease: user.disease ?? '',
     allergyFood: user.allergy_food ?? '',

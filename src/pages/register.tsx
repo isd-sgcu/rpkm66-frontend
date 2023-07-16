@@ -30,7 +30,7 @@ const Register = () => {
         try {
             await httpPatch(`/user`, body);
             await refreshContext();
-            router.push('/wait-baan-selection');
+            router.push('/profile');
         } catch (_error: any) {
             setBottleModal(false);
             console.error(_error);

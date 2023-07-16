@@ -301,7 +301,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({
                     placeholder="example@email.com"
                     required
                 />
-                <label htmlFor="lindId" className="mb-1">
+                <label htmlFor="lineId" className="mb-1">
                     LINE ID
                 </label>
                 <input
@@ -381,48 +381,55 @@ export const RegisterForm: FC<RegisterFormProps> = ({
                 />
             </div>
 
-            <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
-                <input
-                    type="checkbox"
-                    name="tc"
-                    id="tc"
-                    className="col-span-1 h-7 w-7 border-none bg-gray-100"
-                    required
-                />
-                <label htmlFor="tc" className="text-full col-span-11 text-left">
-                    ยอมรับ{' '}
-                    <Link
-                        href={'/terms-conditions'}
-                        className="underline hover:no-underline"
-                    >
-                        เงื่อนไขการใช้งาน
-                    </Link>{' '}
-                    และ{' '}
-                    <Link
-                        href={'/privacy-policy'}
-                        className="underline hover:no-underline"
-                    >
-                        นโยบายความเป็นส่วนตัว
-                    </Link>
-                </label>
-            </div>
+            {editPage || (
+                <>
+                    <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
+                        <input
+                            type="checkbox"
+                            name="tc"
+                            id="tc"
+                            className="col-span-1 h-7 w-7 border-none bg-gray-100"
+                            required
+                        />
+                        <label
+                            htmlFor="tc"
+                            className="text-full col-span-11 text-left"
+                        >
+                            ยอมรับ{' '}
+                            <Link
+                                href={'/terms-conditions'}
+                                className="underline hover:no-underline"
+                            >
+                                เงื่อนไขการใช้งาน
+                            </Link>{' '}
+                            และ{' '}
+                            <Link
+                                href={'/privacy-policy'}
+                                className="underline hover:no-underline"
+                            >
+                                นโยบายความเป็นส่วนตัว
+                            </Link>
+                        </label>
+                    </div>
 
-            <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
-                <input
-                    type="checkbox"
-                    name="pp"
-                    id="pp"
-                    className="col-span-1 h-7 w-7 border-none bg-gray-100"
-                    required
-                />
-                <label htmlFor="pp" className="col-span-11 text-left">
-                    ข้าพเจ้ายินยอมให้ส่งต่อข้อมูลให้คณะผู้จัดงานและบ้านรับเพื่อนเพื่อนำข้อมูลดังกล่าวไปใช้สำหรับเตรียมอาหาร
-                    ยาและเครื่องมือปฐมพยาบาลเบื้องต้นสำหรับนิสิตที่เข้าร่วมกิจกรรม
-                </label>
-            </div>
+                    <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
+                        <input
+                            type="checkbox"
+                            name="pp"
+                            id="pp"
+                            className="col-span-1 h-7 w-7 border-none bg-gray-100"
+                            required
+                        />
+                        <label htmlFor="pp" className="col-span-11 text-left">
+                            ข้าพเจ้ายินยอมให้ส่งต่อข้อมูลให้คณะผู้จัดงานและบ้านรับเพื่อนเพื่อนำข้อมูลดังกล่าวไปใช้สำหรับเตรียมอาหาร
+                            ยาและเครื่องมือปฐมพยาบาลเบื้องต้นสำหรับนิสิตที่เข้าร่วมกิจกรรม
+                        </label>
+                    </div>
+                </>
+            )}
 
             {editPage && (
-                <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-start justify-start gap-4">
+                <div className="mb-5 mt-3 grid w-10/12 grid-cols-12 items-center justify-start gap-4">
                     <input
                         type="checkbox"
                         name="wantbottle"
