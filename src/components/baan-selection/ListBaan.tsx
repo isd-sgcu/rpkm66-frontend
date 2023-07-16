@@ -14,7 +14,7 @@ const ListBaan = (props: any) => {
                     className="text-md mx-auto flex h-min w-min flex-col items-center gap-2"
                 >
                     <div
-                        className="relative aspect-square w-36 max-w-full items-center justify-center overflow-clip rounded-xl bg-white ring-4 ring-purple"
+                        className="relative aspect-square w-36 max-w-full items-center justify-center overflow-clip rounded-xl bg-white ring-4 ring-purple-400"
                         draggable
                         onDragStart={(event) =>
                             event.dataTransfer.setData(

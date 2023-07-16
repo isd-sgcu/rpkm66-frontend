@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 
 const SearchBar = (props: any) => {
     return (
-        <form className="relative w-full text-purple">
+        <form className="relative w-full text-purple-400">
             <label htmlFor="search">
                 <MagnifyingGlassIcon className="absolute left-2 top-1/2 h-5 w-5 -translate-y-1/2 lg:h-6 lg:w-6" />
             </label>

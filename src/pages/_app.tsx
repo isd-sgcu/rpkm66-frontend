@@ -8,6 +8,7 @@ import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { ToastProvider } from '@/components/Toast';
+import { AppContextProvider } from '@/context/ModalContext';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
     subsets: ['latin'],
@@ -64,12 +65,15 @@ export default function App({ Component, pageProps }: AppProps) {
         <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
             <ToastProvider>
                 <AuthProvider>
-                    <MetaData />
+                    <AppContextProvider>
+                        <MetaData />
 
-                    <Navbar />
-                    <Component {...pageProps} />
-                    <Background />
-                    <Footer />
+                        <Navbar />
+                        <Component {...pageProps} />
+
+                        <Background />
+                        <Footer />
+                    </AppContextProvider>
                 </AuthProvider>
             </ToastProvider>
 
