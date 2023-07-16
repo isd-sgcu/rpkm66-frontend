@@ -1,6 +1,16 @@
 import { createContext, useContext, ReactNode, useState } from 'react';
 
-type ModalId = 'modal-1' | 'modal-2' | 'modal-3' | 'modal-4';
+type ModalId =
+    | 'modal-1'
+    | 'modal-2'
+    | 'modal-3'
+    | 'modal-4'
+    | 'modal-5'
+    | 'modal-6'
+    | 'modal-7'
+    | 'modal-8'
+    | 'modal-9'
+    | 'modal-10';
 
 export interface AppContextProps {
     modalToOpen: ModalId | null;

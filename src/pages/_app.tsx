@@ -9,7 +9,7 @@ import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { ToastProvider } from '@/components/Toast';
-import { AppContextProvider } from '@/components/ModalContext';
+import { AppContextProvider } from '@/context/ModalContext';
 
 const ibmPlexSansThai = IBM_Plex_Sans_Thai({
     subsets: ['latin'],
