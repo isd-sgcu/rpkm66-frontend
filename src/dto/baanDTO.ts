@@ -5,9 +5,10 @@ export interface ShortBaanDTO {
     name_en: string;
     name_th: string;
     image_url: string;
+    baan_size: BaanSize;
 }
 
-export interface BaanDTO extends ShortBaanDTO {
+export interface BaanDTO extends Omit<ShortBaanDTO, 'baan_size'> {
     size: BaanSize;
     description_en: string;
     description_th: string;
