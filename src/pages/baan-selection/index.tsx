@@ -1,7 +1,7 @@
 import { useEffect, useState, DragEvent } from 'react';
 import SelectedBaan from '@/components/baan-selection/SelectedBaan';
 import ListBaan from '@/components/baan-selection/ListBaan';
-import { BaanSize, IBaan } from '@/types/baan';
+import { BaanSize, IBaan, IShortBaan } from '@/types/baan';
 import { SelectedBaanRank } from '@/utils/baan-selection/types';
 import FilterButton from '@/components/baan-selection/FilterButton';
 import SearchBar from '@/components/baan-selection/SearchBar';
@@ -9,6 +9,8 @@ import { httpGet, httpPut } from '@/utils/axios';
 import { BaanDTO } from '@/dto/baanDTO';
 import { transformBaanDTOtoIBaan } from '@/utils/baan';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/context/AuthContext';
+import { useToast } from '@/components/Toast';
 
 function useAllBaans() {
     const [allBaans, setAllBaans] = useState<IBaan[]>([]);
@@ -34,7 +36,9 @@ function useAllBaans() {
 }
 
 const BaanChoosing = () => {
+    const { group } = useAuth();
     const router = useRouter();
+    const toast = useToast();
 
     const [input, setInput] = useState<string>(''); //Input in search-baan bar
     const [filter, setFilter] = useState<BaanSize>(BaanSize._); //Check if the baan size filter is activated in which button
@@ -44,32 +48,48 @@ const BaanChoosing = () => {
 
     useEffect(() => {
         setBaan(allBaans);
-    }, [setBaan, allBaans]);
+        if (group?.baans) {
+            const gBaans = (group?.baans ?? []).map(
+                (baan, index) =>
+                    ({
+                        id: baan.id,
+                        name: baan.name,
+                        imageUrl: baan.imageUrl,
+                        size:
+                            {
+                                S: BaanSize.Small,
+                                M: BaanSize.Medium,
+                                L: BaanSize.Large,
+                                XL: BaanSize.ExtraLarge,
+                                XXL: BaanSize.ExtraExtraLarge,
+                            }[baan.size as unknown as string] ?? BaanSize._,
+                        num: index + 1,
+                    } satisfies IShortBaan & { num: number })
+            );
 
-    const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>([
-        //Baans that the user chooses
-        {
+            while (gBaans.length < 3) {
+                gBaans.push({
+                    id: '',
+                    name: '',
+                    imageUrl: '',
+                    size: BaanSize._,
+                    num: gBaans.length + 1,
+                });
+            }
+
+            setSelectedBaan(gBaans);
+        }
+    }, [allBaans, group?.baans]);
+
+    const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>(
+        Array.from({ length: 3 }, (_, index) => ({
             id: '',
             imageUrl: '',
             name: '',
             size: BaanSize._,
-            num: 1,
-        },
-        {
-            id: '',
-            imageUrl: '',
-            name: '',
-            size: BaanSize._,
-            num: 2,
-        },
-        {
-            id: '',
-            imageUrl: '',
-            name: '',
-            size: BaanSize._,
-            num: 3,
-        },
-    ]);
+            num: index + 1,
+        }))
+    );
 
     const filterBaan = (f: BaanSize, n: number) => {
         setBaan(allBaans);
@@ -78,6 +98,26 @@ const BaanChoosing = () => {
             setFilter(f);
             setBaan(allBaans.filter((e: IBaan) => e.size == f));
         }
+    };
+
+    const handleClick = (e: IBaan) => {
+        let isSuccessFul = false;
+        const data: SelectedBaanRank[] = [...selectedBaan];
+        data.forEach((element) => {
+            if (element.id === '' && !isSuccessFul) {
+                element.id = e.id;
+                element.imageUrl = e.imageUrl;
+                element.name = e.name;
+                element.size = e.size;
+                isSuccessFul = true;
+                return;
+            }
+        });
+        if (!isSuccessFul) {
+            toast?.setToast('error', 'คุณเลือกบ้านครบแล้ว');
+            return;
+        }
+        setSelectedBaan(data);
     };
 
     const handleDrop = (e: DragEvent, n: number) => {
@@ -125,7 +165,7 @@ const BaanChoosing = () => {
                     </div>
 
                     <button
-                        className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                        className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:cursor-not-allowed disabled:bg-pink-300"
                         onClick={async () => {
                             const { status } = await httpPut('/group/select', {
                                 baans: selectedBaan.map((e) => e.id),
@@ -153,6 +193,7 @@ const BaanChoosing = () => {
                             baan={baan}
                             selectedBaan={selectedBaan}
                             input={input}
+                            handleClick={handleClick}
                         />
                     </div>
                 </div>
