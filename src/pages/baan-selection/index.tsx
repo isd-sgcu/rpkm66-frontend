@@ -1,11 +1,37 @@
-import React, { ChangeEvent, useState } from 'react';
+import { useEffect, useState, DragEvent } from 'react';
 import SelectedBaan from '@/components/baan-selection/SelectedBaan';
 import ListBaan from '@/components/baan-selection/ListBaan';
 import { BaanSize, IBaan } from '@/types/baan';
 import { SelectedBaanRank } from '@/utils/baan-selection/types';
-import { testBaanData } from '@/utils/baan-selection/testData';
 import FilterButton from '@/components/baan-selection/FilterButton';
 import SearchBar from '@/components/baan-selection/SearchBar';
+import { httpGet } from '@/utils/axios';
+import { BaanDTO } from '@/dto/baanDTO';
+import { transformBaanDTOtoIBaan } from '@/utils/baan';
+import { useRouter } from 'next/router';
+
+function useAllBaans() {
+    const [allBaans, setAllBaans] = useState<IBaan[]>([]);
+    const { locale } = useRouter();
+
+    useEffect(() => {
+        async function fetchBaans() {
+            const { data } = await httpGet<BaanDTO[]>('/baan');
+            setAllBaans(
+                data.map((baan) =>
+                    transformBaanDTOtoIBaan(
+                        baan,
+                        (locale?.toUpperCase() as 'TH' | 'EN') || 'TH'
+                    )
+                )
+            );
+        }
+
+        fetchBaans();
+    }, [locale]);
+
+    return allBaans;
+}
 
 const BaanChoosing = () => {
     const [input, setInput] = useState<string>(''); //Input in search-baan bar
@@ -18,7 +44,15 @@ const BaanChoosing = () => {
         'unclicked-size-button',
         'unclicked-size-button',
     ]);
-    const [baan, setBaan] = useState<IBaan[]>(testBaanData); //The list of every baans in RPKM...
+
+    //The list of every baans in RPKM...
+    const allBaans = useAllBaans();
+    const [baan, setBaan] = useState<IBaan[]>([]);
+
+    useEffect(() => {
+        setBaan(allBaans);
+    }, [allBaans]);
+
     const [selectedBaan, setSelectedBaan] = useState<SelectedBaanRank[]>([
         //Baans that the user chooses
         {
@@ -46,7 +80,7 @@ const BaanChoosing = () => {
 
     const filterBaan = (f: BaanSize, n: number) => {
         //Handle when clicking on the filter button by size
-        setBaan(testBaanData); //Reset the data in Baan
+        setBaan(allBaans); //Reset the data in Baan
         const toToggle: string[] = [
             //Reset data in toggle
             'unclicked-size-button',
@@ -59,13 +93,13 @@ const BaanChoosing = () => {
         //If clicking on the same button, reset to default filter (every baan)
         else {
             setFill(f);
-            setBaan(testBaanData.filter((e: IBaan) => e.size == f)); //Filter baan by size button and change the button color
+            setBaan(allBaans.filter((e: IBaan) => e.size == f)); //Filter baan by size button and change the button color
             toToggle[n] =
                 'bg-red-500 ring-pink-200/30 transition-all duration-300';
         }
         setToggleColor(toToggle);
     };
-    const handleDrop = (e: React.DragEvent, n: number) => {
+    const handleDrop = (e: DragEvent, n: number) => {
         //Handle event when dragging
         if (selectedBaan[n - 1].id !== -1) return; //If there is already a data in the div (not null), exit function
         const widget: SelectedBaanRank = JSON.parse(
@@ -98,9 +132,9 @@ const BaanChoosing = () => {
                                 return (
                                     <SelectedBaan
                                         key={e.num}
-                                        handleDrop={(
-                                            e: React.DragEvent<Element>
-                                        ) => handleDrop(e, index + 1)}
+                                        handleDrop={(e: DragEvent<Element>) =>
+                                            handleDrop(e, index + 1)
+                                        }
                                         setSelectedBaan={setSelectedBaan}
                                         {...e}
                                         baan={selectedBaan}

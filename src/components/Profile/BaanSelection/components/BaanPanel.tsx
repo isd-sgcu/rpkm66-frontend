@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import { SelectedBaan } from '..';
-import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/router';
+import { useAuth } from '@/context/AuthContext';
+import { useMemo } from 'react';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -10,6 +13,14 @@ export default function BaanPanel() {
         { name: 'บ้านโดต้าทู', imgUrl: profilePic, size: 'XL', num: 2 },
         { name: 'บ้านไำดอไำด', imgUrl: profilePic, size: 'XL', num: 3 },
     ];
+
+    const router = useRouter();
+    const { user, group, isAuthenticated } = useAuth();
+
+    const isNotGroupOwner = useMemo(
+        () => !isAuthenticated || group?.leaderID !== user?.id,
+        [isAuthenticated, group, user]
+    );
 
     return (
         <div className="flex flex-col rounded-xl bg-white p-4 ring-8 ring-white ring-opacity-25">
@@ -37,12 +48,23 @@ export default function BaanPanel() {
                     );
                 })}
             </div>
-            <div className="mt-6 flex flex-col place-items-center items-center justify-center gap-2 text-center text-sm text-green">
-                <p className="relative flex items-center justify-center">
-                    <CheckCircleIcon className="h-8" />
-                    ระบบได้ทำการบันทึกเรียบร้อยแล้ว
-                </p>
-                <button className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
+            <div className="mt-6 flex flex-col place-items-center items-center justify-center gap-2 text-center text-sm">
+                {isNotGroupOwner ? (
+                    <p className="relative flex items-center justify-center text-pink-500">
+                        <XCircleIcon className="h-8" />
+                        หัวหน้ากลุ่มเท่านั้นที่สามารถเปลี่ยนบ้านได้
+                    </p>
+                ) : (
+                    <hr className="h-8" />
+                )}
+
+                <button
+                    className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                    onClick={() => {
+                        router.push('/baan-selection');
+                    }}
+                    disabled={isNotGroupOwner}
+                >
                     เปลี่ยนอันดับ
                 </button>
             </div>
