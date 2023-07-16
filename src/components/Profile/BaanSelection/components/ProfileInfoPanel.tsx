@@ -6,13 +6,15 @@ import { useRouter } from 'next/router';
 const profilePic = '/images/pfp-placeholder.svg';
 
 export default function ProfileInfoPanel() {
-    const { user } = useAuth();
+    const { user, group } = useAuth();
     const router = useRouter();
 
     return (
         <div className="flex min-h-full flex-col items-center justify-center gap-8 rounded-t-2xl bg-white p-12 xl:rounded-l-2xl xl:rounded-tr-none">
             <div className="relative aspect-3/4 w-full max-w-xxs rounded-lg ring-8 ring-gray-300">
-                <StarIcon className="absolute z-10 h-14 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow stroke-orange stroke-2 p-2" />
+                {group && group?.leaderID === user?.id && (
+                    <StarIcon className="absolute z-10 h-14 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow stroke-orange stroke-2 p-2" />
+                )}
                 <Image
                     src={user?.imageUrl || profilePic}
                     fill

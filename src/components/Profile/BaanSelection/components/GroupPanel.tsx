@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import { httpDelete } from '@/utils/axios';
 import { Modal } from '@/components/Modal';
 import { useAppContext } from '@/context/ModalContext';
+import { StarIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -69,11 +70,28 @@ export default function GroupPanel() {
                             className="relative flex w-full flex-col items-center gap-4 px-4"
                             key={data.id}
                         >
-                            <div className="relative aspect-3/4 w-32 max-w-full overflow-clip rounded-lg border-2 border-purple-400">
+                            <div className="relative aspect-3/4 w-32 max-w-full rounded-lg border-2 border-purple-400">
+                                {group && group?.leaderID === data.id && (
+                                    <StarIcon className="absolute z-10 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow stroke-orange stroke-2 p-1" />
+                                )}
+                                {group &&
+                                    !data.id.startsWith('placeholder-') &&
+                                    group?.leaderID === user?.id &&
+                                    data.id !== user?.id && (
+                                        <button
+                                            className="absolute right-0 top-0 z-10 flex h-8 w-8 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-pink-400 p-1"
+                                            onClick={() => {
+                                                console.log('remove');
+                                            }}
+                                        >
+                                            <XMarkIcon className="h-full font-bold text-white" />
+                                        </button>
+                                    )}
                                 <Image
                                     src={data.image_url}
                                     fill
                                     alt={data.firstname}
+                                    className="rounded-lg"
                                 />
                             </div>
                             <div className="relative z-0 flex select-none flex-col text-center text-lg leading-none text-purple-400">
