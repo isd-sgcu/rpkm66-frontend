@@ -1,5 +1,4 @@
 import { useAuth } from '@/context/AuthContext';
-import { httpGet } from '@/utils/axios';
 import { StarIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 
@@ -22,6 +21,7 @@ export default function ProfileInfoPanel() {
                 <div className="select-none text-center text-3xl font-bold text-purple">
                     {user?.firstname} <br /> {user?.lastname}
                 </div>
+
                 <button className="mx-auto mt-8 w-36 rounded-lg bg-pink-400 py-2 text-xl ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
                     แก้ไขข้อมูล
                 </button>

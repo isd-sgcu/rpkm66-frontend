@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { IShortUser } from '@/types/user';
 import { useMemo } from 'react';
-import { IGroup } from '@/types/group';
+import { httpDelete } from '@/utils/axios';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
 export default function GroupPanel() {
-    const { group } = useAuth();
+    const { user, group, isAuthenticated } = useAuth();
 
     const members = useMemo(() => {
         const gMembers = [...(group?.members ?? [])];
@@ -51,7 +51,17 @@ export default function GroupPanel() {
                     );
                 })}
             </div>
-            <button className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 hover:ring-8">
+            <button
+                className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                onClick={async () => {
+                    const { status } = await httpDelete('/group/leave');
+
+                    if (status === 200) {
+                        window.location.reload();
+                    }
+                }}
+                disabled={!isAuthenticated || group?.leaderID === user?.id}
+            >
                 ออกจากกลุ่ม
             </button>
         </div>
