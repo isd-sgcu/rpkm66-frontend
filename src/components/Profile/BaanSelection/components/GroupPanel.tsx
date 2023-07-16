@@ -25,15 +25,15 @@ export default function GroupPanel() {
     }, [group]);
 
     return (
-        <div className="flex w-full flex-col gap-4 rounded-xl bg-white p-4 ring-8 ring-white/30">
-            <p className="h-12 text-center text-xl font-bold text-purple-400 lg:text-3xl">
+        <div className="flex flex-col gap-4 rounded-xl bg-white p-4 ring-8 ring-white/30">
+            <p className="mb-4 text-center text-xl font-bold text-purple-400 lg:text-3xl">
                 สมาชิกในกลุ่ม ({group?.members.length ?? 1}/3)
             </p>
-            <div className="flex h-full flex-col justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
                 {members.map((data) => {
                     return (
                         <div
-                            className="relative flex h-full w-full flex-col items-center gap-4 px-4"
+                            className="relative flex w-full flex-col items-center gap-4 px-4"
                             key={data.id}
                         >
                             <div className="relative aspect-3/4 w-32 max-w-full overflow-clip rounded-lg border-2 border-purple-400">
@@ -51,19 +51,22 @@ export default function GroupPanel() {
                     );
                 })}
             </div>
-            <button
-                className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
-                onClick={async () => {
-                    const { status } = await httpDelete('/group/leave');
+            <div className="mt-6 flex flex-col place-items-center items-center justify-center gap-2 text-center text-sm">
+                <hr className="h-8" />
+                <button
+                    className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                    onClick={async () => {
+                        const { status } = await httpDelete('/group/leave');
 
-                    if (status === 200) {
-                        window.location.reload();
-                    }
-                }}
-                disabled={!isAuthenticated || group?.leaderID === user?.id}
-            >
-                ออกจากกลุ่ม
-            </button>
+                        if (status === 200) {
+                            window.location.reload();
+                        }
+                    }}
+                    disabled={!isAuthenticated || group?.leaderID === user?.id}
+                >
+                    ออกจากกลุ่ม
+                </button>
+            </div>
         </div>
     );
 }
