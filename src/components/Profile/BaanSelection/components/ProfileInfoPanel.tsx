@@ -1,11 +1,13 @@
 import { useAuth } from '@/context/AuthContext';
 import { StarIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
 export default function ProfileInfoPanel() {
     const { user } = useAuth();
+    const router = useRouter();
 
     return (
         <div className="flex min-h-full flex-col items-center justify-center gap-8 rounded-t-2xl bg-white p-12 xl:rounded-l-2xl xl:rounded-tr-none">
@@ -25,7 +27,7 @@ export default function ProfileInfoPanel() {
                 <button
                     className="mx-auto mt-8 flex w-40 max-w-full items-center justify-center rounded-lg bg-purple-400 px-4 py-2 text-base ring-4 ring-purple-400/30 transition-all duration-500 hover:ring-8"
                     onClick={() => {
-                        console.log('edit profile');
+                        router.push('/edit');
                     }}
                 >
                     แก้ไขข้อมูล
