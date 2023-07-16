@@ -54,7 +54,7 @@ export default function GroupPanel() {
             <div className="mt-6 flex flex-col place-items-center items-center justify-center gap-2 text-center text-sm">
                 <hr className="h-8" />
                 <button
-                    className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
+                    className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:cursor-not-allowed disabled:bg-pink-300"
                     onClick={async () => {
                         const { status } = await httpDelete('/group/leave');
 
