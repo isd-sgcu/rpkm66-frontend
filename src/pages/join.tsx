@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const JoinPage: NextPage = () => {
-    const { query, replace } = useRouter();
+    const { query, replace, isReady } = useRouter();
     const [message, setMessage] = useState('Loading...');
 
     const token = useMemo(
@@ -28,12 +28,21 @@ const JoinPage: NextPage = () => {
     );
 
     useEffect(() => {
-        if (!token) return;
+        if (!token) {
+            if (isReady) {
+                setMessage('Token not found');
+            }
+            return;
+        }
 
         joinBaan(token);
-    }, [token, joinBaan]);
+    }, [token, joinBaan, isReady]);
 
-    return <div>{message}</div>;
+    return (
+        <div className="flex min-h-screen w-full flex-col items-center justify-center">
+            <p>{message}</p>
+        </div>
+    );
 };
 
 export default JoinPage;
