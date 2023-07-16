@@ -53,7 +53,7 @@ export default function BaanPanel() {
                             key={`${data.num}-${data.id}`}
                             className="relative flex w-full flex-col items-center gap-4 px-4"
                         >
-                            <div className="relative aspect-3/4 w-32 max-w-full overflow-clip rounded-lg border-2 border-purple-400">
+                            <div className="relative aspect-square w-32 max-w-full overflow-clip rounded-lg border-2 border-purple-400">
                                 <p className="text-md absolute z-10 flex h-7 items-center justify-center rounded-br-lg bg-purple-400 px-2 font-bold leading-none lg:h-7 lg:text-lg">
                                     {data.num}
                                 </p>
