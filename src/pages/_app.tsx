@@ -8,9 +8,13 @@ import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { ToastProvider } from '@/components/Toast';
-import { AppContextProvider } from '@/context/ModalContext';
 
-import { ibmPlexSansThai } from '@/components/font';
+const ibmPlexSansThai = IBM_Plex_Sans_Thai({
+    subsets: ['latin'],
+    weight: ['500', '600', '700'],
+    display: 'swap',
+    variable: '--font-ibm',
+});
 
 function MetaData() {
     return (
@@ -60,15 +64,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
             <ToastProvider>
                 <AuthProvider>
-                    <AppContextProvider>
-                        <MetaData />
+                    <MetaData />
 
-                        <Navbar />
-                        <Component {...pageProps} />
-
-                        <Background />
-                        <Footer />
-                    </AppContextProvider>
+                    <Navbar />
+                    <Component {...pageProps} />
+                    <Background />
+                    <Footer />
                 </AuthProvider>
             </ToastProvider>
 

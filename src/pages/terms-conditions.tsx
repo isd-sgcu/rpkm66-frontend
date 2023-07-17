@@ -11,7 +11,7 @@ export async function getStaticProps() {
 const PrivacyPolicy = ({ source }: { source: any }) => {
     return (
         <div className="h-full w-full">
-            <article className="prose w-full list-disc whitespace-pre-line bg-purple-400/75 p-14 leading-loose backdrop-blur-lg">
+            <article className="prose w-full list-disc whitespace-pre-line bg-purple/75 p-14 leading-loose backdrop-blur-lg">
                 <div className="mx-auto w-full max-w-lg px-2">{source}</div>
             </article>
         </div>

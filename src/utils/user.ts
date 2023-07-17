@@ -14,8 +14,6 @@ const transformUserDTOtoIUser = (user: UserDTO) => ({
     nickname: user.nickname ?? '',
     email: user.email ?? '',
     phone: user.phone ?? '',
-    emerPhone: user.emer_phone ?? '',
-    emerRelation: user.emer_relation ?? '',
     lineID: user.line_id ?? '',
     disease: user.disease ?? '',
     allergyFood: user.allergy_food ?? '',
@@ -27,7 +25,6 @@ const transformUserDTOtoIUser = (user: UserDTO) => ({
     groupId: user.group_id ?? '',
     baanId: user.baan_id,
     isGotTicket: user.is_got_ticket ?? false,
-    wantbottle: user.want_bottle ?? false,
 });
 
 const getUserProfile = async (): Promise<IUser | null> => {
