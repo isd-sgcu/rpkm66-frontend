@@ -27,7 +27,7 @@ const FAQ = () => {
                             key={question.header}
                             className="flex flex-col gap-2 rounded-md bg-white px-8 py-8 shadow-md"
                         >
-                            <h2 className="text-xl font-semibold text-purple-400">
+                            <h2 className="text-xl font-semibold text-purple">
                                 {question.header}
                             </h2>
 

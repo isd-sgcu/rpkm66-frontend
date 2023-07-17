@@ -11,7 +11,7 @@ export interface Member {
 
 export interface GroupDTO {
     id: string;
-    leader_id: string;
+    leaderID: string;
     members: IShortUser[];
     baans: ShortBaanDTO[];
     token: string;
