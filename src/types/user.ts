@@ -2,7 +2,7 @@ export interface IShortUser {
     id: string;
     firstname: string;
     lastname: string;
-    imageUrl: string;
+    image_url: string;
 }
 
 export interface IUser {
@@ -16,6 +16,8 @@ export interface IUser {
     nickname: string;
     email: string;
     phone: string;
+    emerPhone: string;
+    emerRelation: string;
     lineID: string;
     disease: string;
     allergyFood: string;
@@ -27,4 +29,5 @@ export interface IUser {
     groupId: string;
     isGotTicket: boolean;
     baanId?: string;
+    wantbottle: boolean;
 }
