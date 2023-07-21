@@ -14,7 +14,7 @@ const Stamp = (props: any) => {
                 />
             </div>
             <button
-                className="my-4 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40"
+                className="my-4 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-16"
                 onClick={() => router.push('/redeem')}
             >
                 <CheckBadgeIcon className="mx-2 h-8 w-8" />
