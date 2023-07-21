@@ -1,7 +1,8 @@
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import placeHolderPicture from '@/public/images/pfp-placeholder.svg';
-const Stamp = () => {
+const Stamp = (props: any) => {
+    const router = props.router;
     return (
         <div className="my-8 flex w-4/5 flex-col items-center justify-center text-xl font-bold">
             <div className="relative aspect-square h-auto w-full max-w-full rounded-xl bg-white ring-4 ring-blue-950">
@@ -12,7 +13,10 @@ const Stamp = () => {
                     className="rounded-xl"
                 />
             </div>
-            <button className="my-4 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40">
+            <button
+                className="my-4 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40"
+                onClick={() => router.push('/redeem')}
+            >
                 <CheckBadgeIcon className="mx-2 h-8 w-8" />
                 <h1>Redeem Ticket</h1>
             </button>
