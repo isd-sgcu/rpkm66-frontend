@@ -22,7 +22,7 @@ const Profile = (props: any) => {
                 <h1>{user?.lastname || 'No Surname'}</h1>
                 <div className="my-3 flex h-auto w-32 justify-center rounded-xl border-2 border-pink-400 px-4 py-1 text-pink-400">
                     <HomeIcon className="h-4 w-4" />
-                    <p className="mx-1 text-sm">Baaaan</p>
+                    <p className="mx-1 text-sm">Homeless</p>
                 </div>
                 <button
                     className="mt-1 h-8 w-28 rounded-md bg-purple-400 ring-4 ring-gray-300"
