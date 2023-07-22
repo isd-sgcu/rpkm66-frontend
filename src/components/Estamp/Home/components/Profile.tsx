@@ -18,10 +18,12 @@ const Profile = () => {
                     />
                 </div>
             </div>
-            <div className="flex flex-col justify-center text-lg font-bold text-purple-400">
-                <h1>{user?.firstname ?? 'No First Name'}</h1>
-                <h1>{user?.lastname ?? 'No Surname'}</h1>
-                <div className="my-3 flex h-auto w-32 justify-center rounded-xl border-2 border-pink-400 px-4 py-1 text-pink-400">
+            <div className="flex flex-col items-center justify-center text-lg font-bold text-purple-400">
+                <div className="flex flex-col">
+                    <h1>{user?.firstname ?? 'No First Name'}</h1>
+                    <h1>{user?.lastname ?? 'No Surname'}</h1>
+                </div>
+                <div className="my-3 flex h-auto w-32 items-center justify-center rounded-xl border-2 border-pink-400 px-4 py-1 text-pink-400">
                     <HomeIcon className="h-4 w-4" />
                     <p className="mx-1 text-sm">{user?.baanId ?? 'Homeless'}</p>
                 </div>
