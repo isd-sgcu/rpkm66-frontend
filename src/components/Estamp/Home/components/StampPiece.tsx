@@ -55,9 +55,9 @@ const StampPiece: React.FC<StampInfo> = ({ stampId, check }) => {
     const [isStampCheck, checkStamp] = useState(check);
 
     // Find the picture that matches the provided stampId
-    const picture = stampPiecePicture.find(
-        (pic) => pic.alt === String(stampId)
-    );
+    const picture =
+        stampPiecePicture.find((pic) => pic.alt === String(stampId)) ??
+        stampPiecePicture[0];
 
     return (
         <div>
