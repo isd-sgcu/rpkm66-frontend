@@ -15,7 +15,7 @@ const Stamp = () => {
                 />
             </div>
             <button
-                className="my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-16"
+                className="my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8"
                 onClick={() => router.push('/')}
             >
                 <CheckBadgeIcon className="mx-2 h-8 w-8" />
