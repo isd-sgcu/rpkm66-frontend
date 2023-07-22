@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import { useMemo } from 'react';
 import { BaanSize, IShortBaan } from '@/types/baan';
+import DefaultButton from '@/components/DefaultButton';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -81,7 +82,17 @@ export default function BaanPanel() {
                     <hr className="h-8" />
                 )}
 
-                <button
+                {/* แก้ button */}
+                <DefaultButton
+                    additionalStyle="rounded-lg bg-pink-400 ring-pink-400/30 text-xl disabled:bg-pink-300 enabled:hover:ring-8 disabled:ring-4"
+                    content={<>เปลี่ยนอันดับ </>}
+                    onClick={() => {
+                        router.push('/baan-selection');
+                    }}
+                    disabled={isNotGroupOwner}
+                    // disabled=""
+                />
+                {/* <button
                     className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
                     onClick={() => {
                         router.push('/baan-selection');
@@ -89,7 +100,7 @@ export default function BaanPanel() {
                     disabled={isNotGroupOwner}
                 >
                     เปลี่ยนอันดับ
-                </button>
+                </button> */}
             </div>
         </div>
     );
