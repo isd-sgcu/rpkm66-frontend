@@ -2,9 +2,10 @@ import { HomeIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import placeHolder from '@/public/images/pfp-placeholder.svg';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
-const Profile = (props: any) => {
+import { useRouter } from 'next/router';
+const Profile = () => {
     const { user } = useAuth();
-    const router = props.router;
+    const router = useRouter();
     return (
         <div className="flex h-52 w-80 justify-center rounded-3xl bg-white ring-4 ring-white/40">
             <div className="justify-cente mx-8 flex items-center">
