@@ -6,14 +6,14 @@ const Accessibility = () => {
     return (
         <>
             <button
-                className="my-6 flex h-12 w-4/5 items-center justify-center rounded-xl bg-pink-400 text-xl font-bold ring-8 ring-pink-400/40 transition-all duration-300 ease-in-out hover:ring-16"
+                className="mt-10 flex h-12 w-4/5 items-center justify-center rounded-xl bg-pink-400 text-xl font-bold ring-8 ring-pink-400/40 transition-all duration-300 ease-in-out hover:ring-16 md:w-1/2"
                 onClick={() => router.push('/')}
             >
                 <QrCodeIcon className="mx-2 h-8 w-8" />
                 <h1>My E-Ticket</h1>
             </button>
             <button
-                className="my-2 flex h-12 w-4/5 items-center justify-center rounded-xl bg-green text-xl font-bold ring-8 ring-green/40 transition-all duration-300 ease-in-out hover:ring-16"
+                className="my-8 flex h-12 w-4/5 items-center justify-center rounded-xl bg-green text-xl font-bold ring-8 ring-green/40 transition-all duration-300 ease-in-out hover:ring-16 md:w-1/2"
                 onClick={() => router.push('/')}
             >
                 <CameraIcon className="mx-2 h-6 w-6" />
