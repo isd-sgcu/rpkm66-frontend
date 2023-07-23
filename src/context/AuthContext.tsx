@@ -79,24 +79,16 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         switch (router.pathname) {
             case '/':
                 if (user) {
-                    if (alreadyRegistered) router.push('/profile');
-                    else router.push('/register');
+                    router.push('/announce-baan');
                 }
                 break;
+            case '/announce-baan':
             case '/register':
-                if (!user) {
-                    router.push('/');
-                } else if (alreadyRegistered) {
-                    router.push('/profile');
-                }
-                break;
             case '/wait-baan-selection':
             case '/profile':
             case '/baan-selection':
                 if (!user) {
                     router.push('/');
-                } else if (!alreadyRegistered) {
-                    router.push('/register');
                 }
                 break;
             default:
