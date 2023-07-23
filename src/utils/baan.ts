@@ -19,6 +19,7 @@ export function transformBaanDTOtoIBaan(
         igUrl: baan.instagram_url,
     };
 }
+
 export async function getBaan(baanId: string): Promise<IBaan | null> {
     try {
         const res = await apiClient.get<BaanDTO>('/baan/' + baanId);

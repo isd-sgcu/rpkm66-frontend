@@ -32,8 +32,10 @@ function useGroupData() {
             } catch (err) {
                 setError(
                     (err as AxiosError).response?.status === 404
-                        ? 'ไม่พบกลุ่มนี้'
-                        : 'เกิดข้อผิดพลาดที่ไม่ทราบ'
+                        ? 'ไม่พบกลุ่มนี้ (404 Not Found)'
+                        : `ไม่สามารถดึงข้อมูลของกลุ่มนี้ได้ (${
+                              (err as AxiosError).response?.status
+                          } ${(err as AxiosError).response?.data})`
                 );
             }
         }
@@ -55,8 +57,10 @@ function useGroupData() {
             console.log({ err });
             setError(
                 (err as AxiosError).response?.status === 403
-                    ? 'สมาชิกในกลุ่มเต็มแล้ว หรือคุณเป็นหัวหน้ากลุ่มอยู่'
-                    : 'เกิดข้อผิดพลาดที่ไม่ทราบ'
+                    ? 'สมาชิกในกลุ่มเต็มแล้ว หรือคุณเป็นหัวหน้ากลุ่มอยู่ (403 Forbidden)'
+                    : `เกิดข้อผิดพลาดที่ไม่ทราบ (${
+                          (err as AxiosError).response?.status
+                      } ${(err as AxiosError).response?.data})`
             );
         }
     }, [replace, token]);
