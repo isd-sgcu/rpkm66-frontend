@@ -4,14 +4,15 @@ import Image from 'next/image';
 import { StampInfo } from '@/types/stamp';
 
 const StampPiece: React.FC<StampInfo> = ({ stampId, check, imgUrl }) => {
-    const [isStampCheck, checkStamp] = useState<boolean>(check);
+    const [isStampCheck, setStamp] = useState<boolean>(check);
     return (
         <div className="relative">
             <Image
                 src={imgUrl}
                 alt={stampId}
                 fill
-                className={`h-full w-full ${!isStampCheck && 'grayscale'}`}
+                onClick={() => setStamp(!isStampCheck)}
+                className={!isStampCheck ? 'grayscale' : ''}
             />
         </div>
     );

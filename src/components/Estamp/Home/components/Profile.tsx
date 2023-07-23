@@ -32,7 +32,7 @@ const Profile = () => {
                     <h1>{user?.firstname || 'No First Name'}</h1>
                     <h1>{user?.lastname || 'No Surname'}</h1>
                 </div>
-                <div className="my-3 flex h-auto w-32 items-center justify-center rounded-xl border-2 border-pink-400 px-4 py-1 text-pink-400">
+                <div className="my-3 flex h-auto w-32 justify-center rounded-xl border-2 border-pink-400 px-4 py-1 text-pink-400">
                     <HomeIcon className="h-4 w-4" />
                     <p className="mx-1 text-sm">{baanName || 'Homeless'}</p>
                 </div>
