@@ -9,11 +9,12 @@ import { stampPiecePicture } from '@/utils/estamp/stamps';
 const Stamp = () => {
     const router = useRouter();
     return (
-        <div className="my-4 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
+        <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
             <div className="relative aspect-square h-auto w-full max-w-full">
                 <Image
                     src={eStampBorder}
                     alt="background"
+                    fill
                     className="absolute -z-10"
                 />
                 <div className="flex-block grid h-full w-full grid-cols-3 gap-1 p-3">
