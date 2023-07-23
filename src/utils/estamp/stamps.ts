@@ -4,7 +4,7 @@ export const stampPiecePicture: StampInfo[] = [
     {
         stampId: 'E-Stamp-01',
         imgUrl: '/images/E-stamp/E-Stamp-01.svg',
-        check: false,
+        check: true,
     },
     {
         stampId: 'E-Stamp-02',

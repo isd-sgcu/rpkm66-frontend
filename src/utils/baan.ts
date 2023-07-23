@@ -1,5 +1,6 @@
 import { BaanDTO } from '@/dto/baanDTO';
 import { IBaan } from '@/types/baan';
+import { apiClient } from './axios';
 
 export function transformBaanDTOtoIBaan(
     baan: BaanDTO,
@@ -17,4 +18,12 @@ export function transformBaanDTOtoIBaan(
         ig: baan.instagram,
         igUrl: baan.instagram_url,
     };
+}
+export async function getBaan(baanId: string): Promise<IBaan | null> {
+    try {
+        const res = await apiClient.get<BaanDTO>('/baan/' + baanId);
+        return transformBaanDTOtoIBaan(res.data, 'TH');
+    } catch (err) {
+        return null;
+    }
 }
