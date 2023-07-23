@@ -11,6 +11,7 @@ const StampPiece: React.FC<StampInfo> = ({ stampId, check, imgUrl }) => {
                 src={imgUrl}
                 alt={stampId}
                 fill
+                priority
                 onClick={() => setStamp(!isStampCheck)}
                 className={!isStampCheck ? 'grayscale' : ''}
             />

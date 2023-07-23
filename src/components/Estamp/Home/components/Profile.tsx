@@ -23,7 +23,7 @@ const Profile = () => {
                         src={user?.imageUrl || placeHolder}
                         fill
                         alt="Photo"
-                        className="rounded-xl object-cover"
+                        className="relative rounded-xl object-cover"
                     />
                 </div>
             </div>
