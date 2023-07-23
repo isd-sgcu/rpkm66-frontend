@@ -17,7 +17,7 @@ const Stamp = () => {
                     fill
                     className="absolute -z-10"
                 />
-                <div className="flex-block grid h-full w-full grid-cols-3 gap-1 p-3">
+                <div className="flex-block grid h-full w-full grid-cols-2 gap-1 p-3">
                     {stampPiecePicture.map((e: StampInfo) => {
                         return (
                             <StampPiece
