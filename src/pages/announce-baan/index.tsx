@@ -88,11 +88,20 @@ const AnnounceBaan: NextPage = () => {
                 <div className="mx-auto flex flex-col items-center justify-center space-y-6 rounded-3xl bg-white px-6 py-8 text-purple-400">
                     <p className="text-purple w-full text-center text-xl font-semibold lg:text-3xl">
                         ขออภัย ท่านไม่ได้ทำการเลือกบ้าน
-                        <br /> หรือหากเกิดข้อผิดพลาด
                     </p>
                     <div className="space-y-2">
                         <div className="text-center text-xl font-semibold">
-                            กรุณาติดต่อเราที่
+                            หากเกิดข้อผิดพลาด กรุณา{' '}
+                            <Link
+                                href="https://airtable.com/appNLAPRBVMZBgGV9/shr7FWOUnTsw53DxV"
+                                className="underline hover:no-underline"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                ร้องเรียนปัญหา
+                            </Link>{' '}
+                            <br />
+                            หรือติดต่อเราที่
                         </div>
                         <div className="flex flex-row items-center justify-center gap-8">
                             <Link
