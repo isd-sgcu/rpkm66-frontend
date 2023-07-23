@@ -45,7 +45,7 @@ const Detail: Array<ArticleDetail> = [
 
 const Article: React.FC = () => {
     return (
-        <div className="">
+        <div>
             {Detail.map((article, index) => (
                 <button
                     key={index}
