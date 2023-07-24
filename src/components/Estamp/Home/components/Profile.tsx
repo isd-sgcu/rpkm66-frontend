@@ -10,10 +10,11 @@ const Profile = () => {
     const router = useRouter();
     const [baanName, setBaanName] = useState<string | null>(null);
     useEffect(() => {
-        async () => {
-            const data = await getBaan(user?.baanId || '');
-            setBaanName(data?.name ?? null);
-        };
+        async function getBaanName(userId: string) {
+            const baan = await getBaan(user?.baanId || '');
+            setBaanName(baan?.name || null);
+        }
+        getBaanName(user?.baanId || '');
     }, [baanName]);
     return (
         <div className="flex h-52 w-80 justify-center rounded-3xl bg-white ring-4 ring-white/40">
