@@ -1,24 +1,25 @@
 import { StampInfo } from '@/types/stamp';
+import placeHolderPic from '@/public/images/pfp-placeholder.svg';
 
 export const stampPiecePicture: StampInfo[] = [
     {
         stampId: 'E-Stamp-01',
-        imgUrl: '/images/E-stamp/E-Stamp-01.svg',
+        imgUrl: placeHolderPic,
         check: true,
     },
     {
         stampId: 'E-Stamp-02',
-        imgUrl: '/images/E-stamp/E-Stamp-02.svg',
+        imgUrl: placeHolderPic,
         check: false,
     },
     {
         stampId: 'E-Stamp-03',
-        imgUrl: '/images/E-stamp/E-Stamp-03.svg',
+        imgUrl: placeHolderPic,
         check: false,
     },
     {
         stampId: 'E-Stamp-04',
-        imgUrl: '/images/E-stamp/E-Stamp-04.svg',
+        imgUrl: placeHolderPic,
         check: true,
     },
 ];
