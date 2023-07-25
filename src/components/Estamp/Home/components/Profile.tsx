@@ -5,16 +5,17 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getBaan } from '@/utils/baan';
+import { IUser } from '@/types/user';
 const Profile = () => {
     const { user } = useAuth();
     const router = useRouter();
     const [baanName, setBaanName] = useState<string | null>(null);
     useEffect(() => {
-        async function getBaanName(userId: string) {
-            const baan = await getBaan(user?.baanId || '');
+        async function getBaanName(user: IUser | null): Promise<void> {
+            const baan = await getBaan(user?.id || '');
             setBaanName(baan?.name || null);
         }
-        getBaanName(user?.baanId || '');
+        getBaanName(user || null);
     }, [baanName]);
     return (
         <div className="flex h-52 w-80 justify-center rounded-3xl bg-white ring-4 ring-white/40">
