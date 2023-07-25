@@ -3,6 +3,8 @@ import Image from 'next/image';
 import SGCU from '@/public/images/logo-sgcu.svg';
 import Facebook from '@/public/images/facebook.svg';
 import Instagram from '@/public/images/instagram.svg';
+import Twitter from '@/public/images/twitter.svg';
+import Tiktok from '@/public/images/Tiktok.svg';
 
 const Footer = () => {
     return (
@@ -56,6 +58,36 @@ const Footer = () => {
                                     <Image
                                         src={Instagram}
                                         alt="Instagram"
+                                        width={40}
+                                        height={40}
+                                    />
+                                </button>
+                            </Link>
+
+                            <Link
+                                href="https://twitter.com/rubpuenkaomai?t=iBpKzuaUEwj-0CdSkiwmTw&s=09"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button className="shrink-0 px-3">
+                                    <Image
+                                        src={Twitter}
+                                        alt="Twitter"
+                                        width={40}
+                                        height={40}
+                                    />
+                                </button>
+                            </Link>
+
+                            <Link
+                                href="https://www.tiktok.com/@rubpuenkaomai2023?_t=8e5u3IvWury&_r=1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button className="shrink-0 px-3">
+                                    <Image
+                                        src={Tiktok}
+                                        alt="TikTok"
                                         width={40}
                                         height={40}
                                     />
