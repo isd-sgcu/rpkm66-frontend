@@ -12,7 +12,7 @@ const Profile = () => {
     const [baanName, setBaanName] = useState<string | null>(null);
     useEffect(() => {
         async function getBaanName(user: IUser | null): Promise<void> {
-            const baan = await getBaan(user?.id || '');
+            const baan = await getBaan(user?.baanId || '');
             setBaanName(baan?.name || null);
         }
         getBaanName(user || null);
