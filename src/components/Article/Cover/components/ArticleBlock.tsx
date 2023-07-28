@@ -33,22 +33,24 @@ function ArticleBlock({ article, index }: ArticleBlockProps) {
                 {article.preinfo}
             </div>
             <div
+                className="overflow-hidden text-left"
                 ref={fullInfoRef}
                 style={{
+                    transition: 'max-height 0.3s ease-in-out',
                     maxHeight: expanded
                         ? fullInfoRef.current?.scrollHeight + 'px'
                         : '0',
-                    overflow: 'hidden',
-                    transition: 'max-height 0.3s ease-in-out',
                 }}
             >
-                <Image
-                    src={article.img}
-                    width={200}
-                    height={200}
-                    alt={article.topic}
-                    className="my-4 w-full"
-                />
+                {article.img && (
+                    <Image
+                        src={article.img}
+                        width={200}
+                        height={200}
+                        alt={article.topic}
+                        className="my-4 w-full"
+                    />
+                )}
                 {article.fullinfo}
             </div>
         </button>
