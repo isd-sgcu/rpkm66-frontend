@@ -4,7 +4,7 @@ import SGCU from '@/public/images/logo-sgcu.svg';
 import Facebook from '@/public/images/facebook.svg';
 import Instagram from '@/public/images/instagram.svg';
 import Twitter from '@/public/images/twitter.svg';
-import Tiktok from '@/public/images/Tiktok.svg';
+import Tiktok from '@/public/images/tiktok.svg';
 
 const Footer = () => {
     return (
