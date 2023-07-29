@@ -30,8 +30,8 @@ function PhaseTwoNavbar() {
                         }`}
                     />
                 </Link>
-                {/* wait for link to be added */}
-                <Link href="/">
+                {/* wait for link to be added && bellIcon??*/}
+                {/* <Link href="/">
                     <BellIcon
                         className={`h-full w-12 hover:text-amber-400 ${
                             router.pathname === '/WAITTOADD'
@@ -39,7 +39,7 @@ function PhaseTwoNavbar() {
                                 : ''
                         }`}
                     />
-                </Link>
+                </Link> */}
                 {/* wait for link to be added */}
                 <Link href="/">
                     <HomeIcon
