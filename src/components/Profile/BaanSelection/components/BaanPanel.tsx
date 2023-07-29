@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import { useMemo } from 'react';
 import { BaanSize, IShortBaan } from '@/types/baan';
-import DefaultButton from '@/components/DefaultButton';
+import Button from '@/components/Button';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -83,7 +83,7 @@ export default function BaanPanel() {
                 )}
 
                 {/* แก้ button */}
-                <DefaultButton
+                <Button
                     additionalStyle="rounded-lg bg-pink-400 ring-pink-400/30 text-xl disabled:bg-pink-300 enabled:hover:ring-8 disabled:ring-4"
                     content={<>เปลี่ยนอันดับ </>}
                     onClick={() => {

@@ -1,4 +1,4 @@
-import DefaultButton from '@/components/DefaultButton';
+import Button from '@/components/Button';
 import { useAuth } from '@/context/AuthContext';
 import { StarIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
@@ -27,7 +27,7 @@ export default function ProfileInfoPanel() {
                     {user?.firstname} <br /> {user?.lastname}
                 </p>
                 {/* แก้ Button */}
-                <DefaultButton
+                <Button
                     additionalStyle="rounded-lg bg-purple-400 ring-purple-400/30"
                     content={
                         <>
@@ -40,16 +40,6 @@ export default function ProfileInfoPanel() {
                     }}
                     disabled=""
                 />
-
-                {/* <button
-                    className="mx-auto mt-8 flex w-40 max-w-full items-center justify-center rounded-lg bg-purple-400 px-4 py-2 text-base ring-4 ring-purple-400/30 transition-all duration-500 hover:ring-8"
-                    onClick={() => {
-                        router.push('/edit');
-                    }}
-                >
-                    แก้ไขข้อมูล
-                    <PencilSquareIcon className="ml-2 inline-block h-5" />
-                </button> */}
             </div>
         </div>
     );

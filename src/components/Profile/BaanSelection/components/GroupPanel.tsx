@@ -6,7 +6,7 @@ import { httpDelete } from '@/utils/axios';
 import { Modal } from '@/components/Modal';
 import { useAppContext } from '@/context/ModalContext';
 import { StarIcon, XMarkIcon } from '@heroicons/react/24/solid';
-import DefaultButton from '@/components/DefaultButton';
+import Button from '@/components/Button';
 
 const profilePic = '/images/pfp-placeholder.svg';
 
@@ -141,20 +141,12 @@ export default function GroupPanel() {
             <div className="mt-6 flex flex-col place-items-center items-center justify-center gap-2 text-center text-sm">
                 <hr className="h-8" />
                 {/* แก้ button */}
-                <DefaultButton
+                <Button
                     additionalStyle="rounded-lg bg-pink-400 ring-pink-400/30 text-xl disabled:bg-pink-300"
                     content={<>ออกจากกลุ่ม </>}
                     onClick={() => openModal('modal-leave-group')}
                     disabled={!isAuthenticated || group?.leaderID === user?.id}
-                    // disabled=""
                 />
-                {/* <button
-                    className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:cursor-not-allowed disabled:bg-pink-300"
-                    onClick={() => openModal('modal-leave-group')}
-                    disabled={!isAuthenticated || group?.leaderID === user?.id}
-                >
-                    ออกจากกลุ่ม
-                </button> */}
             </div>
         </div>
     );

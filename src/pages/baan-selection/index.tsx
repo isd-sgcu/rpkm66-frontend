@@ -11,7 +11,7 @@ import { transformBaanDTOtoIBaan } from '@/utils/baan';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/Toast';
-import DefaultButton from '@/components/DefaultButton';
+import Button from '@/components/Button';
 
 function useAllBaans() {
     const [allBaans, setAllBaans] = useState<IBaan[]>([]);
@@ -166,7 +166,7 @@ const BaanChoosing = () => {
                     </div>
 
                     {/* แก้ button */}
-                    <DefaultButton
+                    <Button
                         additionalStyle="rounded-lg bg-pink-400 mt-6 ring-4 ring-pink-400/30 text-xl disabled:bg-pink-300 disabled:ring-4"
                         content={<>บันทึกการเลือก </>}
                         onClick={async () => {
@@ -179,23 +179,7 @@ const BaanChoosing = () => {
                             }
                         }}
                         disabled={selectedBaan.some((b) => b.id === '')}
-                        // disabled=""
                     />
-                    {/* <button
-                        className="mx-auto mt-6 rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:cursor-not-allowed disabled:bg-pink-300"
-                        onClick={async () => {
-                            const { status } = await httpPut('/group/select', {
-                                baans: selectedBaan.map((e) => e.id),
-                            });
-
-                            if (status === 200) {
-                                router.push('/profile');
-                            }
-                        }}
-                        disabled={selectedBaan.some((b) => b.id === '')}
-                    >
-                        บันทึกการเลือก
-                    </button> */}
                 </div>
                 <div className="flex min-h-full w-full flex-col border bg-black/50 p-8 backdrop-blur-sm max-xl:rounded-b-3xl xl:w-3/5 xl:rounded-r-3xl">
                     <div className="flex items-center gap-2">

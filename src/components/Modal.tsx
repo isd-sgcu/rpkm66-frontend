@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
-import DefaultButton from './DefaultButton';
+import Button from './Button';
 import { ibmPlexSansThai } from './font';
 
 export interface ModalProps {
@@ -60,37 +60,18 @@ export const Modal = ({
                                     </div>
                                     <div className="mt-6 flex flex-row justify-center gap-6">
                                         {/* แก้ button */}
-                                        <DefaultButton
+                                        <Button
                                             content={answer1}
                                             additionalStyle="bg-pink-600 mx-0 shadow-sm rounded-3xl font-semibold text-lg hover:ring-2 hover:ring-pink-600/20 hover:ring-offset-4 hover:ring-offset-pink-600/50"
                                             onClick={() => onClose(1)}
                                             disabled=""
                                         />
-                                        <DefaultButton
+                                        <Button
                                             content={answer2}
                                             additionalStyle="bg-purple-300 mx-0 shadow-sm rounded-3xl font-semibold text-lg hover:ring-2 hover:ring-purple-600/20 hover:ring-offset-4 hover:ring-offset-purple-600/50"
                                             onClick={() => onClose(2)}
                                             disabled=""
                                         />
-                                        {/* <button
-                                            type="button"
-                                            className={` ${
-                                                `${answer1}` == ''
-                                                    ? 'aria-hidden hidden'
-                                                    : 'inline-flex max-w-fit flex-1 justify-center rounded-3xl bg-pink-600 px-8 py-2 text-lg font-semibold text-white shadow-sm transition-all hover:ring-2 hover:ring-pink-600/20 hover:ring-offset-4 hover:ring-offset-pink-600/50'
-                                            } 
-                                            `}
-                                            onClick={() => onClose(1)}
-                                        >
-                                            {answer1}
-                                        </button> */}
-                                        {/* <button
-                                            type="button"
-                                            className="inline-flex max-w-fit flex-1 justify-center rounded-3xl bg-purple-300 px-8 py-2 text-lg font-semibold text-white shadow-sm transition-all hover:ring-2 hover:ring-purple-300/20 hover:ring-offset-4 hover:ring-offset-purple-300/50"
-                                            onClick={() => onClose(2)}
-                                        >
-                                            {answer2}
-                                        </button> */}
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
