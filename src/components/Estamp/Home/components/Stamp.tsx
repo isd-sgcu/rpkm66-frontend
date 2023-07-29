@@ -1,7 +1,6 @@
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import eStampBorder from '@/public/images/eStampBorder.svg';
 import StampPiece from './StampPiece';
 import { StampInfo } from '@/types/stamp';
 import { stampPiecePicture } from '@/utils/estamp/stamps';
@@ -12,7 +11,7 @@ const Stamp = () => {
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
             <div className="relative aspect-square h-auto w-full max-w-full">
                 <Image
-                    src={eStampBorder}
+                    src={'/images/eStampBorder.svg'}
                     alt="background"
                     fill
                     className="absolute -z-10"
