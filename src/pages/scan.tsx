@@ -44,7 +44,7 @@ function Scan() {
                     <XMarkIcon className="h-6 w-6 rounded-sm bg-white bg-opacity-50 text-white" />
                 </button>
             </div>
-            <div className="inset-0 flex w-full items-center justify-center bg-black">
+            <div className="flex w-full items-center justify-center bg-black">
                 <div className="h-64 w-full rounded-t-2xl bg-white p-8 text-center">
                     {showModal ? (
                         <div className="grid">
