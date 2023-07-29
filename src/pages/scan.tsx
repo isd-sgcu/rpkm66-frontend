@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
@@ -9,10 +9,7 @@ function Scan() {
     const [data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
 
-    const handleScanResult = (
-        result: { text: React.SetStateAction<string> },
-        error: any
-    ) => {
+    const handleScanResult = (result: any, error: any) => {
         if (result) {
             setData(result.text);
             setShowModal(true);
