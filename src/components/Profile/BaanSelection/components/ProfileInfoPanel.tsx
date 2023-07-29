@@ -38,7 +38,7 @@ export default function ProfileInfoPanel() {
                     onClick={() => {
                         router.push('/edit');
                     }}
-                    disabled=""
+                    disabled={false}
                 />
             </div>
         </div>

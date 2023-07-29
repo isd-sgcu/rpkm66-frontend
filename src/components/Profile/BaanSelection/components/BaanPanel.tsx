@@ -90,17 +90,7 @@ export default function BaanPanel() {
                         router.push('/baan-selection');
                     }}
                     disabled={isNotGroupOwner}
-                    // disabled=""
                 />
-                {/* <button
-                    className="mx-auto rounded-lg bg-pink-400 px-3 py-2 text-xl text-white ring-4 ring-pink-400/30 transition-all duration-500 enabled:hover:ring-8 disabled:bg-pink-300"
-                    onClick={() => {
-                        router.push('/baan-selection');
-                    }}
-                    disabled={isNotGroupOwner}
-                >
-                    เปลี่ยนอันดับ
-                </button> */}
             </div>
         </div>
     );

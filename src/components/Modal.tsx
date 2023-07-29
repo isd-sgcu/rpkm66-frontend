@@ -64,13 +64,13 @@ export const Modal = ({
                                             content={answer1}
                                             additionalStyle="bg-pink-600 mx-0 shadow-sm rounded-3xl font-semibold text-lg hover:ring-2 hover:ring-pink-600/20 hover:ring-offset-4 hover:ring-offset-pink-600/50"
                                             onClick={() => onClose(1)}
-                                            disabled=""
+                                            disabled={false}
                                         />
                                         <Button
                                             content={answer2}
                                             additionalStyle="bg-purple-300 mx-0 shadow-sm rounded-3xl font-semibold text-lg hover:ring-2 hover:ring-purple-600/20 hover:ring-offset-4 hover:ring-offset-purple-600/50"
                                             onClick={() => onClose(2)}
-                                            disabled=""
+                                            disabled={false}
                                         />
                                     </div>
                                 </Dialog.Panel>
