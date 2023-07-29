@@ -6,7 +6,7 @@ import { IBM_Plex_Sans_Thai } from 'next/font/google';
 import Script from 'next/script';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
-import Navbar from '@/components/PhaseTwoNavbar';
+import Navbar from '@/components/Navbar';
 import { ToastProvider } from '@/components/Toast';
 import { AppContextProvider } from '@/context/ModalContext';
 
