@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function Scan() {
     const [data, setData] = useState('');
@@ -20,6 +22,8 @@ function Scan() {
         }
     };
 
+    const router = useRouter();
+
     return (
         <div className="flex flex-col items-center justify-center">
             <div className="relative w-full">
@@ -33,27 +37,23 @@ function Scan() {
                     animate={{ opacity: [0.25, 0.5, 1, 0.5, 0.25] }}
                     transition={{ duration: 1, repeat: Infinity }}
                 ></motion.div>
-                <div className="absolute right-0 top-0 mr-4 mt-4">
-                    <button>
-                        <XMarkIcon className="h-6 w-6 rounded-sm bg-white bg-opacity-50 text-white" />
-                    </button>
-                </div>
+                <button
+                    className="absolute right-0 top-0 mr-4 mt-4"
+                    onClick={() => router.back()}
+                >
+                    <XMarkIcon className="h-6 w-6 rounded-sm bg-white bg-opacity-50 text-white" />
+                </button>
             </div>
             <div className="inset-0 flex w-full items-center justify-center bg-black">
                 <div className="h-64 w-full rounded-t-2xl bg-white p-8 text-center">
-                    {/* {data && (
-                        <a href={data} className="break-all text-black">
-                            {data}
-                        </a>
-                    )} */}
                     {showModal ? (
                         <div className="grid">
-                            <a
+                            <Link
                                 href={data}
                                 className="truncate text-left text-blue-500"
                             >
                                 {data}
-                            </a>
+                            </Link>
                             <p className="text-left text-sm text-gray-500">
                                 Tap here to open the link
                             </p>
