@@ -8,7 +8,7 @@ function PhaseTwoNavbar() {
     const router = useRouter();
 
     return (
-        <nav className="sticky top-0 z-40 flex h-11 w-full justify-between bg-black/50 px-2 py-2 backdrop-blur-sm md:px-5 lg:h-20 lg:px-10 lg:py-4">
+        <nav className="sticky top-0 z-40 flex h-11 w-full justify-between bg-black/50 p-2 backdrop-blur-sm md:px-5 lg:h-20 lg:px-10 lg:py-4">
             <div className="relative h-full w-12">
                 <Link href="/">
                     <Image
@@ -26,7 +26,7 @@ function PhaseTwoNavbar() {
                         className={`h-full w-12 hover:text-amber-400 ${
                             router.pathname === '/article-page'
                                 ? 'text-amber-400'
-                                : 'hover:text-amber-400'
+                                : ''
                         }`}
                     />
                 </Link>
@@ -36,7 +36,7 @@ function PhaseTwoNavbar() {
                         className={`h-full w-12 hover:text-amber-400 ${
                             router.pathname === '/WAITTOADD'
                                 ? 'text-amber-400'
-                                : 'hover:text-amber-400'
+                                : ''
                         }`}
                     />
                 </Link>
@@ -44,9 +44,7 @@ function PhaseTwoNavbar() {
                 <Link href="/">
                     <HomeIcon
                         className={`h-full w-12 hover:text-amber-400 ${
-                            router.pathname === '/'
-                                ? 'text-amber-400'
-                                : 'hover:text-amber-400'
+                            router.pathname === '/' ? 'text-amber-400' : ''
                         }`}
                     />
                 </Link>
