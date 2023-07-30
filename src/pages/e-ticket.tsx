@@ -4,7 +4,9 @@ import Image from 'next/image';
 
 // using https://www.npmjs.com/package/react-qr-code
 
-const ETicket = (qrcode: string) => {
+const qrcode = 'mockexampletest';
+
+const ETicket = () => {
     return (
         <div className="min-h-screen flex-col">
             <Link href="https://freshmen2023.sgcu.in.th/profile">
