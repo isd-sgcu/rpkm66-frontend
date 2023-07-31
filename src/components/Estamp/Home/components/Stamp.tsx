@@ -5,9 +5,12 @@ import StampPiece from './StampPiece';
 import { UserEstampEvent } from '@/types/estamp';
 import { getUserStamp, stampPiecePicture } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
-import { httpGet } from '@/utils/axios';
+import { useAuth } from '@/context/AuthContext';
+import { useToast } from '@/components/Toast';
 
 const Stamp = () => {
+    const { isAuthenticated } = useAuth();
+    const toast = useToast();
     const router = useRouter();
     const [userStamp, setUserStamp] = useState<UserEstampEvent[] | null>([]);
     useEffect(() => {
@@ -15,7 +18,9 @@ const Stamp = () => {
             const data = await getUserStamp();
             setUserStamp(data ?? null);
         }
-        fetchUserEstamp();
+        isAuthenticated
+            ? fetchUserEstamp()
+            : toast?.setToast('error', 'Please login to view your estamp');
     }, [userStamp]);
 
     return (

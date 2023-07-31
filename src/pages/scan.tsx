@@ -6,11 +6,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useToast } from '@/components/Toast';
 import { httpPost } from '@/utils/axios';
+import { useAuth } from '@/context/AuthContext';
 
 function Scan() {
+    const { isAuthenticated } = useAuth();
     const [data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
     const toast = useToast();
+    const router = useRouter();
     const checkIn = async (token: any) => {
         const { status } = await httpPost('/estamp/' + token.text, {
             token: token.text,
@@ -25,14 +28,14 @@ function Scan() {
         if (token) {
             setData(token.text);
             setShowModal(true);
-            checkIn(token);
+            isAuthenticated
+                ? checkIn(token)
+                : toast?.setToast('error', 'Please login to scan QR code');
         }
         if (error) {
             console.info(error);
         }
     };
-
-    const router = useRouter();
 
     return (
         <div className="flex flex-col items-center justify-center">

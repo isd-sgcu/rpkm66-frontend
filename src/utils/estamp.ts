@@ -47,9 +47,3 @@ export async function getUserStamp(): Promise<UserEstampEvent[] | null> {
         return null;
     }
 }
-export async function recieveStamp(token: string): Promise<void> {
-    const { status } = await httpPost('/estamp/' + token, {});
-    if (status === 200) {
-        window.location.reload();
-    }
-}
