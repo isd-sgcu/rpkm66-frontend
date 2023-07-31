@@ -3,7 +3,13 @@ import Image from 'next/image';
 import SGCU from '@/public/images/logo-sgcu.svg';
 import Facebook from '@/public/images/facebook.svg';
 import Instagram from '@/public/images/instagram.svg';
-
+import Twitter from '@/public/images/twitter.svg';
+import Tiktok from '@/public/images/tiktok.svg';
+import Major from '@/public/images/Major.png';
+import Fourgle from '@/public/images/fourgle.jpg';
+import Ptt from '@/public/images/Ptt.png';
+import ParkOrigin from '@/public/images/ParkOrigin.png';
+import ThaiBev from '@/public/images/ThaiBev.png';
 const Footer = () => {
     return (
         <footer className="relative w-full">
@@ -30,7 +36,39 @@ const Footer = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="mb-2 flex items-center justify-center p-4 lg:mt-5 lg:p-3">
+                    <div className="order-2 flex flex-col items-center text-center">
+                        <p className="mb-1 font-normal">ขอขอบคุณ</p>
+                        {/* size base on figma */}
+                        <div className="mb-4 flex h-fit w-fit items-center justify-items-center gap-5">
+                            <Image
+                                src={Major}
+                                width={30}
+                                height={50}
+                                className="object-contain"
+                                alt="Major"
+                            />
+                            <Image src={Ptt} width={40} height={30} alt="Ptt" />
+                            <Image
+                                src={ThaiBev}
+                                width={50}
+                                height={20}
+                                alt="ThaiBev"
+                            />
+                            <Image
+                                src={Fourgle}
+                                width={50}
+                                height={50}
+                                alt="Fourgle"
+                            />
+                            <Image
+                                src={ParkOrigin}
+                                width={75}
+                                height={20}
+                                alt="ParkOrigin"
+                            />
+                        </div>
+                    </div>
+                    <div className="order-1 flex items-center justify-center p-4 md:mb-0 lg:order-2 lg:mb-2 lg:mt-5 lg:p-3">
                         <div>
                             <Link
                                 href="https://www.facebook.com/chulafreshmen"
@@ -56,6 +94,36 @@ const Footer = () => {
                                     <Image
                                         src={Instagram}
                                         alt="Instagram"
+                                        width={40}
+                                        height={40}
+                                    />
+                                </button>
+                            </Link>
+
+                            <Link
+                                href="https://twitter.com/rubpuenkaomai?t=iBpKzuaUEwj-0CdSkiwmTw&s=09"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button className="shrink-0 px-3">
+                                    <Image
+                                        src={Twitter}
+                                        alt="Twitter"
+                                        width={40}
+                                        height={40}
+                                    />
+                                </button>
+                            </Link>
+
+                            <Link
+                                href="https://www.tiktok.com/@rubpuenkaomai2023?_t=8e5u3IvWury&_r=1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button className="shrink-0 px-3">
+                                    <Image
+                                        src={Tiktok}
+                                        alt="TikTok"
                                         width={40}
                                         height={40}
                                     />
