@@ -5,6 +5,7 @@ import StampPiece from './StampPiece';
 import { UserEstampEvent } from '@/types/estamp';
 import { getUserStamp, stampPiecePicture } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
+import { httpGet } from '@/utils/axios';
 
 const Stamp = () => {
     const router = useRouter();

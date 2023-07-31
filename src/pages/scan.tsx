@@ -4,15 +4,28 @@ import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useToast } from '@/components/Toast';
+import { httpPost } from '@/utils/axios';
 
 function Scan() {
     const [data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
-
-    const handleScanResult = (result: any, error: any) => {
-        if (result) {
-            setData(result.text);
+    const toast = useToast();
+    const checkIn = async (token: any) => {
+        const { status } = await httpPost('/estamp/' + token.text, {
+            token: token.text,
+        });
+        if (status === 200) {
+            router.push('/estamp-home');
+        } else {
+            toast?.setToast('error', 'QR Code is invalid');
+        }
+    };
+    const handleScanResult = (token: any, error: any) => {
+        if (token) {
+            setData(token.text);
             setShowModal(true);
+            checkIn(token);
         }
         if (error) {
             console.info(error);
