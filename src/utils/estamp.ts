@@ -39,11 +39,3 @@ export const stampPiecePicture: UserEstampEvent[] = [
         taken_at: 0,
     },
 ];
-export async function getUserStamp(): Promise<UserEstampEvent[] | null> {
-    try {
-        const { data } = await httpGet<UserEstampEvent[]>('/estamp/my');
-        return data;
-    } catch (err) {
-        return null;
-    }
-}

@@ -3,16 +3,25 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
 import { UserEstampEvent } from '@/types/estamp';
-import { getUserStamp, stampPiecePicture } from '@/utils/estamp';
+import { stampPiecePicture } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/Toast';
+import { httpGet } from '@/utils/axios';
 
 const Stamp = () => {
     const { isAuthenticated } = useAuth();
     const toast = useToast();
     const router = useRouter();
     const [userStamp, setUserStamp] = useState<UserEstampEvent[] | null>([]);
+    const getUserStamp = async () => {
+        try {
+            const { data } = await httpGet<UserEstampEvent[]>('/estamp/my');
+            return data;
+        } catch (err) {
+            return null;
+        }
+    };
     useEffect(() => {
         async function fetchUserEstamp(): Promise<void> {
             const data = await getUserStamp();

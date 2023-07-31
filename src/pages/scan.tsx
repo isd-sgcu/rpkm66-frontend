@@ -19,6 +19,7 @@ function Scan() {
             token: token.text,
         });
         if (status === 200) {
+            toast?.setToast('success', 'Check in successfully');
             router.push('/estamp-home');
         } else {
             toast?.setToast('error', 'QR Code is invalid');
