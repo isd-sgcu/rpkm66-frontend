@@ -1,19 +1,20 @@
-import React from 'react';
-import { useState } from 'react';
 import Image from 'next/image';
-import { StampInfo } from '@/types/stamp';
+import { EstampEvent } from '@/types/estamp';
+import React from 'react';
 
-const StampPiece: React.FC<StampInfo> = ({ stampId, check, imgUrl }) => {
-    const [isStampCheck, setStamp] = useState<boolean>(check);
+const StampPiece: React.FC<{
+    stamp: EstampEvent;
+    is_taken: boolean;
+    image: string;
+}> = ({ stamp, is_taken, image }) => {
     return (
         <div className="relative">
             <Image
-                src={imgUrl}
-                alt={stampId}
+                src={image}
+                alt={stamp.id}
                 fill
                 priority
-                onClick={() => setStamp(!isStampCheck)}
-                className={!isStampCheck ? 'grayscale' : ''}
+                className={is_taken ? 'visible' : 'invisible'}
             />
         </div>
     );

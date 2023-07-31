@@ -2,36 +2,57 @@ import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
-import { StampInfo } from '@/types/stamp';
-import { stampPiecePicture } from '@/utils/estamp/stamps';
+import { UserEstampEvent } from '@/types/estamp';
+import { getUserStamp, stampPiecePicture } from '@/utils/estamp';
+import { useEffect, useState } from 'react';
 
 const Stamp = () => {
     const router = useRouter();
+    const [userStamp, setUserStamp] = useState<UserEstampEvent[] | null>([]);
+    useEffect(() => {
+        async function fetchUserEstamp(): Promise<void> {
+            const data = await getUserStamp();
+            setUserStamp(data ?? null);
+        }
+        fetchUserEstamp();
+    }, [userStamp]);
+
     return (
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
-            <div className="relative aspect-square h-auto w-full max-w-full">
+            <Image
+                src={'/images/EstampBorder.svg'}
+                alt="border"
+                width={300}
+                height={300}
+                className="absolute -z-20 aspect-square h-auto w-4/5 -translate-y-14 md:w-1/2"
+            />
+            <div className="relative flex aspect-square h-auto w-full max-w-full items-center justify-center">
+                <h1 className="absolute z-20 text-5xl text-white">REDEEMED</h1>
                 <Image
-                    src={'/images/eStampBorder.svg'}
+                    src={'/images/estamp-bg.svg'}
                     alt="background"
                     fill
-                    className="absolute -z-10"
+                    className={`absolute -z-10 ${
+                        stampPiecePicture.some((e) => !e.is_taken) &&
+                        'grayscale'
+                    }`}
                 />
                 <div className="flex-block grid h-full w-full grid-cols-2 gap-1 p-3">
-                    {stampPiecePicture.map((e: StampInfo) => {
+                    {stampPiecePicture.map((e: UserEstampEvent) => {
                         return (
                             <StampPiece
-                                key={e.stampId}
-                                stampId={e.stampId}
-                                check={e.check}
-                                imgUrl={e.imgUrl}
+                                key={e.stamp.id}
+                                {...e}
+                                image="/images/pfp-placeholder.svg"
                             />
                         );
                     })}
                 </div>
             </div>
             <button
-                className="my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8"
+                className={`my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8 disabled:opacity-80 disabled:hover:ring-4`}
                 onClick={() => router.push('/')}
+                disabled={stampPiecePicture.some((e) => !e.is_taken)}
             >
                 <CheckBadgeIcon className="mx-2 h-8 w-8" />
                 <h1>Redeem Ticket</h1>

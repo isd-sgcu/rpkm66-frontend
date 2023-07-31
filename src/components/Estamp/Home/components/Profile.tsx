@@ -16,7 +16,7 @@ const Profile = () => {
             setBaanName(baan?.name || null);
         }
         getBaanName(user || null);
-    }, [baanName]);
+    }, [user]);
     return (
         <div className="flex h-52 w-80 justify-center rounded-3xl bg-white ring-4 ring-white/40">
             <div className="justify-cente mx-8 flex items-center">
@@ -31,12 +31,12 @@ const Profile = () => {
             </div>
             <div className="flex flex-col items-center justify-center text-lg font-bold text-purple-400">
                 <div className="flex flex-col">
-                    <h1>{user?.firstname || 'No First Name'}</h1>
-                    <h1>{user?.lastname || 'No Surname'}</h1>
+                    <h1>{user?.firstname || 'Null'}</h1>
+                    <h1>{user?.lastname || 'Null'}</h1>
                 </div>
                 <div className="my-3 flex h-auto w-32 justify-center rounded-xl border-2 border-pink-400 px-4 py-1 text-pink-400">
                     <HomeIcon className="h-4 w-4" />
-                    <p className="mx-1 text-sm">{baanName || 'Homeless'}</p>
+                    <p className="mx-1 text-sm">{baanName || 'ไม่มีบ้าน'}</p>
                 </div>
                 <button
                     className="mt-1 h-8 w-28 rounded-md bg-purple-400 ring-4 ring-gray-300"
