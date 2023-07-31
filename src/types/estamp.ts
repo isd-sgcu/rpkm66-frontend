@@ -4,7 +4,10 @@ export interface EstampEvent {
     name: string;
 }
 export interface UserEstampEvent {
-    stamp: EstampEvent;
+    event: EstampEvent;
     is_taken: boolean;
     taken_at: number;
+}
+export interface EstampDTO {
+    events: UserEstampEvent[];
 }

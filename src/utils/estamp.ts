@@ -3,7 +3,7 @@ import { httpGet, httpPost } from './axios';
 
 export const stampPiecePicture: UserEstampEvent[] = [
     {
-        stamp: {
+        event: {
             id: 'E-Stamp-01',
             name: 'Event 1',
             info: 'Event 1',
@@ -12,7 +12,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
         taken_at: 0,
     },
     {
-        stamp: {
+        event: {
             id: 'E-Stamp-02',
             name: 'Event 2',
             info: 'Event 2',
@@ -21,7 +21,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
         taken_at: 0,
     },
     {
-        stamp: {
+        event: {
             id: 'E-Stamp-03',
             name: 'Event 3',
             info: 'Event 3',
@@ -30,7 +30,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
         taken_at: 0,
     },
     {
-        stamp: {
+        event: {
             id: 'E-Stamp-04',
             name: 'Event 4',
             info: 'Event 4',

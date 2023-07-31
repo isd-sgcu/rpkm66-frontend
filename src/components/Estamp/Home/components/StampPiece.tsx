@@ -3,15 +3,15 @@ import { EstampEvent } from '@/types/estamp';
 import React from 'react';
 
 const StampPiece: React.FC<{
-    stamp: EstampEvent;
+    event: EstampEvent;
     is_taken: boolean;
     image: string;
-}> = ({ stamp, is_taken, image }) => {
+}> = ({ event, is_taken, image }) => {
     return (
         <div className="relative">
             <Image
                 src={image}
-                alt={stamp.id}
+                alt={event.id}
                 fill
                 priority
                 className={is_taken ? 'visible' : 'invisible'}

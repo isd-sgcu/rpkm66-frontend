@@ -2,7 +2,7 @@ import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
-import { UserEstampEvent } from '@/types/estamp';
+import { EstampDTO, UserEstampEvent } from '@/types/estamp';
 import { stampPiecePicture } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -16,7 +16,7 @@ const Stamp = () => {
     const [userStamp, setUserStamp] = useState<UserEstampEvent[] | null>([]);
     const getUserStamp = async () => {
         try {
-            const { data } = await httpGet<UserEstampEvent[]>('/estamp/my');
+            const { data } = await httpGet<EstampDTO>('/estamp/my');
             return data;
         } catch (err) {
             return null;
@@ -25,7 +25,7 @@ const Stamp = () => {
     useEffect(() => {
         async function fetchUserEstamp(): Promise<void> {
             const data = await getUserStamp();
-            setUserStamp(data ?? null);
+            setUserStamp(data?.events ?? null);
         }
         isAuthenticated
             ? fetchUserEstamp()
@@ -56,7 +56,7 @@ const Stamp = () => {
                     {stampPiecePicture.map((e: UserEstampEvent) => {
                         return (
                             <StampPiece
-                                key={e.stamp.id}
+                                key={e.event.id}
                                 {...e}
                                 image="/images/pfp-placeholder.svg"
                             />
