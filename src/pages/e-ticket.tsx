@@ -6,10 +6,26 @@ import {
 } from '@heroicons/react/24/solid';
 import Button from '@/components/Button';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
+import { toJpeg } from 'html-to-image';
 
 const ETicket = () => {
     const { user } = useAuth();
     const router = useRouter();
+    const imageRef = useRef<HTMLDivElement>(null);
+    const saveImage = () => {
+        toJpeg(imageRef.current as HTMLElement, { quality: 0.95 }).then(
+            (dataUrl: string) => {
+                const link = document.createElement('a');
+                link.download = `${user?.firstname || '__'}-${
+                    user?.lastname || '__'
+                }-e-ticket.jpeg`;
+                link.href = dataUrl;
+                link.click();
+                link.remove();
+            }
+        );
+    };
 
     return (
         <div className="flex min-h-screen w-full flex-col">
@@ -19,7 +35,7 @@ const ETicket = () => {
             >
                 <ArrowUturnLeftIcon className="ml-6 h-9 w-9 md:h-12 md:w-12" />
             </button>
-            <div className="flex items-center justify-center">
+            <div ref={imageRef} className="flex items-center justify-center">
                 <Image
                     src="/images/ticket.svg"
                     width={350}
@@ -60,10 +76,7 @@ const ETicket = () => {
                         <p className="font-bold">Save Image</p>
                     </div>
                 }
-                // wait for saveImage method
-                onClick={() => {
-                    router.push('/');
-                }}
+                onClick={saveImage}
                 additionalStyle="mt-10 mb-20 py-2 w-80 rounded-lg bg-pink-400 ring-pink-400/30 ring-4"
             />
         </div>
