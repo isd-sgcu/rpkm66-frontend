@@ -55,7 +55,7 @@ const ETicket = () => {
                         <div className="mt-9 flex items-center">
                             <div className="relative bottom-2 right-12">
                                 <QRCode
-                                    value="https://qr-service.vercel.app/api/code?text=https://freshmen2023.sgcu.in.th/&size=300"
+                                    value={user?.id || 'No User'}
                                     size={127}
                                     fgColor="#3C415F"
                                 />
