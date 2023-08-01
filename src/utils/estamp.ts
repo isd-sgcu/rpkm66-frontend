@@ -1,6 +1,6 @@
-import { UserEstampEvent } from '@/types/estamp';
-import { httpGet, httpPost } from './axios';
+import { EstampStyle, UserEstampEvent } from '@/types/estamp';
 
+//For testing only
 export const stampPiecePicture: UserEstampEvent[] = [
     {
         event: {
@@ -37,5 +37,24 @@ export const stampPiecePicture: UserEstampEvent[] = [
         },
         is_taken: false,
         taken_at: 0,
+    },
+];
+//Implement data here
+export const stampPieceStyle: EstampStyle[] = [
+    {
+        imgUrl: '/images/pfp-placeholder.svg',
+        style: '',
+    },
+    {
+        imgUrl: '/images/pfp-placeholder.svg',
+        style: '',
+    },
+    {
+        imgUrl: '/images/pfp-placeholder.svg',
+        style: '',
+    },
+    {
+        imgUrl: '/images/pfp-placeholder.svg',
+        style: '',
     },
 ];

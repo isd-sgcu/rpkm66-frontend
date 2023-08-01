@@ -6,7 +6,8 @@ const StampPiece: React.FC<{
     event: EstampEvent;
     is_taken: boolean;
     image: string;
-}> = ({ event, is_taken, image }) => {
+    position: string;
+}> = ({ event, is_taken, image, position }) => {
     return (
         <div className="relative">
             <Image
@@ -14,7 +15,7 @@ const StampPiece: React.FC<{
                 alt={event.id}
                 fill
                 priority
-                className={is_taken ? 'visible' : 'invisible'}
+                className={`${is_taken ? 'visible' : 'invisible'} ${position}`}
             />
         </div>
     );

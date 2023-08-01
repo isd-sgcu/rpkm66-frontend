@@ -2,12 +2,14 @@ import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
-import { EstampDTO, UserEstampEvent } from '@/types/estamp';
+import { UserEstampEvent } from '@/types/estamp';
 import { stampPiecePicture } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/Toast';
 import { httpGet } from '@/utils/axios';
+import { EstampDTO } from '@/dto/estampDTO';
+import { stampPieceStyle } from '@/utils/estamp';
 
 const Stamp = () => {
     const { isAuthenticated } = useAuth();
@@ -53,15 +55,18 @@ const Stamp = () => {
                     }`}
                 />
                 <div className="flex-block grid h-full w-full grid-cols-2 gap-1 p-3">
-                    {stampPiecePicture.map((e: UserEstampEvent) => {
-                        return (
-                            <StampPiece
-                                key={e.event.id}
-                                {...e}
-                                image="/images/pfp-placeholder.svg"
-                            />
-                        );
-                    })}
+                    {stampPiecePicture.map(
+                        (e: UserEstampEvent, index: number) => {
+                            return (
+                                <StampPiece
+                                    key={e.event.id}
+                                    {...e}
+                                    image={stampPieceStyle[index].imgUrl}
+                                    position={stampPieceStyle[index].style}
+                                />
+                            );
+                        }
+                    )}
                 </div>
             </div>
             <button

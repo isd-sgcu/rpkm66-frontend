@@ -8,6 +8,7 @@ export interface UserEstampEvent {
     is_taken: boolean;
     taken_at: number;
 }
-export interface EstampDTO {
-    events: UserEstampEvent[];
+export interface EstampStyle {
+    imgUrl: string;
+    style: string;
 }
