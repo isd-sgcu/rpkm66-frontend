@@ -21,6 +21,7 @@
         "autoprefixer": "10.4.14",
         "axios": "1.4.0",
         "clsx": "1.2.1",
+        "dom-to-image": "2.6.0",
         "framer-motion": "10.12.18",
         "html-to-image": "1.11.11",
         "next": "13.4.7",

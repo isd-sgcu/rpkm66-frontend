@@ -20,6 +20,9 @@ dependencies:
   clsx:
     specifier: 1.2.1
     version: 1.2.1
+  dom-to-image:
+    specifier: 2.6.0
+    version: 2.6.0
   framer-motion:
     specifier: 10.12.18
     version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
@@ -1497,6 +1500,10 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dom-to-image@2.6.0:
+    resolution: {integrity: sha512-Dt0QdaHmLpjURjU7Tnu3AgYSF2LuOmksSGsUcE6ItvJoCWTBEmiMXcqBdNSAm9+QbbwD7JMoVsuuKX6ZVQv1qA==}
+    dev: false
 
   /dot-prop@5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
