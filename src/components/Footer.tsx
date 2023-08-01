@@ -10,6 +10,7 @@ import Fourgle from '@/public/images/fourgle.jpg';
 import Ptt from '@/public/images/Ptt.png';
 import ParkOrigin from '@/public/images/ParkOrigin.png';
 import ThaiBev from '@/public/images/ThaiBev.png';
+import WuaLuanLuan from '@/public/images/Wua.png';
 const Footer = () => {
     return (
         <footer className="relative w-full">
@@ -65,6 +66,12 @@ const Footer = () => {
                                 width={75}
                                 height={20}
                                 alt="ParkOrigin"
+                            />
+                            <Image
+                                src={WuaLuanLuan}
+                                width={40}
+                                height={50}
+                                alt="WuaLuanLuan"
                             />
                         </div>
                     </div>
