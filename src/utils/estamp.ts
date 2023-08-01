@@ -8,7 +8,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
             name: 'Event 1',
             info: 'Event 1',
         },
-        is_taken: false,
+        is_taken: true,
         taken_at: 0,
     },
     {
@@ -17,7 +17,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
             name: 'Event 2',
             info: 'Event 2',
         },
-        is_taken: false,
+        is_taken: true,
         taken_at: 0,
     },
     {
@@ -26,7 +26,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
             name: 'Event 3',
             info: 'Event 3',
         },
-        is_taken: false,
+        is_taken: true,
         taken_at: 0,
     },
     {
@@ -35,7 +35,7 @@ export const stampPiecePicture: UserEstampEvent[] = [
             name: 'Event 4',
             info: 'Event 4',
         },
-        is_taken: false,
+        is_taken: true,
         taken_at: 0,
     },
 ];

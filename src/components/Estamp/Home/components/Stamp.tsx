@@ -50,15 +50,17 @@ const Stamp = () => {
                     }`}
                 />
                 <div className="flex-block grid h-full w-full grid-cols-2 gap-1 p-3">
-                    {userStamp?.map((e: UserEstampEvent, index: number) => {
-                        return (
-                            <StampPiece
-                                key={e.event.id}
-                                {...e}
-                                image="/images/pfp-placeholder.svg"
-                            />
-                        );
-                    })}
+                    {stampPiecePicture.map(
+                        (e: UserEstampEvent, index: number) => {
+                            return (
+                                <StampPiece
+                                    key={e.event.id}
+                                    {...e}
+                                    image="/images/pfp-placeholder.svg"
+                                />
+                            );
+                        }
+                    )}
                 </div>
             </div>
             <button

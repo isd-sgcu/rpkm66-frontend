@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
@@ -9,6 +9,7 @@ import { httpPost } from '@/utils/axios';
 import { useAuth } from '@/context/AuthContext';
 
 function Scan() {
+    const { isAuthenticated, isReady } = useAuth();
     const [data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
     const toast = useToast();
@@ -17,10 +18,10 @@ function Scan() {
         const { status } = await httpPost('/estamp/' + token.text, {});
         if (status === 200) {
             toast?.setToast('success', 'Check in successfully');
-            router.push('/estamp-home');
         } else {
             toast?.setToast('error', 'QR Code is invalid');
         }
+        router.push('/estamp-home');
     };
     const handleScanResult = (token: any, error: any) => {
         if (token) {
@@ -32,6 +33,13 @@ function Scan() {
             console.info(error);
         }
     };
+    useEffect(() => {
+        if (!isReady) return;
+        if (!isAuthenticated) {
+            toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
+            router.push('/login');
+        }
+    }, [isAuthenticated, isReady]);
 
     return (
         <div className="flex flex-col items-center justify-center">
