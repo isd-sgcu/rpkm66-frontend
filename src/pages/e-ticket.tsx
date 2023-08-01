@@ -1,36 +1,84 @@
+import { useAuth } from '@/context/AuthContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+    ArrowUturnLeftIcon,
+    ArrowDownTrayIcon,
+} from '@heroicons/react/24/solid';
+import Sponsor from '@/components/Sponsor';
+import Ticket from '@/public/images/ticket.svg';
+import Button from '@/components/Button';
+import { useRouter } from 'next/router';
+import { useRef } from 'react';
 
 // using https://github.com/dephraiim/qrcode
 // example: https://qr-service.vercel.app/api/code?text=https://freshmen2023.sgcu.in.th/&size=200
 
 const ETicket = () => {
+    const { user } = useAuth();
+    const router = useRouter();
+
     return (
-        <div className="min-h-screen">
-            <div>
-                <Link href="https://freshmen2023.sgcu.in.th/profile">
-                    <button className="justify-left relative h-10 w-10 rounded-lg px-16 py-16">
-                        <div className="">
-                            <Image
-                                //change icon to arrow-uturn-left in heroicons.com
-                                src={'/images/icons8-instagram.svg'}
-                                alt="Go back"
-                                fill
-                            />
+        <>
+            <Link href="https://freshmen2023.sgcu.in.th/profile">
+                <ArrowUturnLeftIcon className="w-2- ml-6 h-20" />
+            </Link>
+            <div className="flex h-auto min-h-screen flex-col items-center justify-items-center">
+                <Image
+                    src={Ticket}
+                    className="absolute"
+                    width={380}
+                    height={335}
+                    alt="ticket"
+                />
+                <div className="relative top-10 flex min-h-screen flex-col items-center">
+                    <p className="mb-72 mt-24 text-7xl">
+                        {user?.firstname || 'เฟซ'}
+                    </p>
+                    {/* <p className="text-xs">YOU ARE INVITED TO</p>
+                    <p className="mb-0 text-3xl">FRESHMEN</p>
+                    <p className="mb-6 mt-0 text-5xl">NIGHT</p>
+                    <span className="mb-6 rounded-lg bg-white px-6 text-xl text-black backdrop-blur-md">
+                        06 AUG 2023
+                    </span> */}
+                    {/* <Sponsor /> */}
+                    <div className="mt-9 flex items-center">
+                        <Image
+                            alt="E-ticket QR Code"
+                            //please change the QR Code
+                            className="relative bottom-2 right-12"
+                            width={127}
+                            height={127}
+                            src="https://qr-service.vercel.app/api/code?text=https://freshmen2023.sgcu.in.th/&size=300"
+                        />
+                        <div className="relative left-5 top-4 flex flex-col gap-1 text-center text-blue-950">
+                            <p className="text-4xl">
+                                {user?.firstname || 'เฟซ'}
+                            </p>
+                            <p>{user?.firstname || 'ปิยวุฒิ ไสวดี'}</p>
                         </div>
-                    </button>
-                </Link>
-            </div>
-            <div className="flex w-full items-center justify-center">
-                <div className="mx-8 my-24 rounded-3xl bg-white px-6 py-8">
-                    <img
-                        alt="E-ticket QR Code"
-                        //please change the QR Code
-                        src="https://qr-service.vercel.app/api/code?text=https://freshmen2023.sgcu.in.th/&size=300"
+                    </div>
+                    <Button
+                        content={
+                            <>
+                                <ArrowDownTrayIcon
+                                    width={40}
+                                    height={40}
+                                    className="inline-block"
+                                />
+                                <p>Save Image</p>
+                            </>
+                        }
+                        // wait for saveImage method
+                        onClick={() => {
+                            router.push('/');
+                        }}
+                        additionalStyle="gap-4 mt-10 mb-20 py-2 flex w-full px-32 rounded-lg bg-pink-400 ring-pink-400/30"
+                        disabled={false}
                     />
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
