@@ -35,13 +35,6 @@ const ETicket = () => {
                     <p className="mb-72 mt-24 text-7xl">
                         {user?.firstname || 'เฟซ'}
                     </p>
-                    {/* <p className="text-xs">YOU ARE INVITED TO</p>
-                    <p className="mb-0 text-3xl">FRESHMEN</p>
-                    <p className="mb-6 mt-0 text-5xl">NIGHT</p>
-                    <span className="mb-6 rounded-lg bg-white px-6 text-xl text-black backdrop-blur-md">
-                        06 AUG 2023
-                    </span> */}
-                    {/* <Sponsor /> */}
                     <div className="mt-9 flex items-center">
                         <Image
                             alt="E-ticket QR Code"
