@@ -7,12 +7,14 @@ import {
 } from '@heroicons/react/24/solid';
 import Button from '@/components/Button';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { toPng } from 'html-to-image';
+import { useToast } from '@/components/Toast';
 
 const ETicket = () => {
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
     const router = useRouter();
+    const toast = useToast();
     const imageRef = useRef<HTMLDivElement>(null);
     const saveImage = () => {
         toPng(imageRef.current as HTMLElement, { quality: 0.95 }).then(
@@ -27,6 +29,12 @@ const ETicket = () => {
             }
         );
     };
+    useEffect(() => {
+        if (!isAuthenticated) {
+            toast?.setToast('error', 'Please login to the website!');
+            router.push('/');
+        }
+    }, []);
 
     return (
         <>
