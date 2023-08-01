@@ -46,9 +46,9 @@ const ETicket = () => {
                         />
                         <div className="relative left-5 top-4 flex flex-col gap-1 text-center text-blue-950">
                             <p className="text-4xl">
-                                {user?.firstname || 'เฟซ'}
+                                {user?.firstname || 'Null'}
                             </p>
-                            <p>{user?.firstname || 'ปิยวุฒิ ไสวดี'}</p>
+                            <p>{user?.firstname || 'Null'}</p>
                         </div>
                     </div>
                     <Button
