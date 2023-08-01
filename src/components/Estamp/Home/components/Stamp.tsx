@@ -12,7 +12,7 @@ import { EstampDTO } from '@/dto/estampDTO';
 import { stampPieceStyle } from '@/utils/estamp';
 
 const Stamp = () => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, isReady } = useAuth();
     const toast = useToast();
     const router = useRouter();
     const [userStamp, setUserStamp] = useState<UserEstampEvent[] | null>([]);
@@ -29,10 +29,11 @@ const Stamp = () => {
             const data = await getUserStamp();
             setUserStamp(data?.events ?? null);
         }
+        if (!isReady) return;
         isAuthenticated
             ? fetchUserEstamp()
-            : toast?.setToast('error', 'Please login to view your estamp');
-    }, [userStamp]);
+            : toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
+    }, [isAuthenticated, isReady]);
 
     return (
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
@@ -55,18 +56,15 @@ const Stamp = () => {
                     }`}
                 />
                 <div className="flex-block grid h-full w-full grid-cols-2 gap-1 p-3">
-                    {stampPiecePicture.map(
-                        (e: UserEstampEvent, index: number) => {
-                            return (
-                                <StampPiece
-                                    key={e.event.id}
-                                    {...e}
-                                    image={stampPieceStyle[index].imgUrl}
-                                    position={stampPieceStyle[index].style}
-                                />
-                            );
-                        }
-                    )}
+                    {userStamp?.map((e: UserEstampEvent, index: number) => {
+                        return (
+                            <StampPiece
+                                key={e.event.id}
+                                {...e}
+                                image="/images/pfp-placeholder.svg"
+                            />
+                        );
+                    })}
                 </div>
             </div>
             <button

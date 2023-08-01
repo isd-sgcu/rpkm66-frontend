@@ -9,15 +9,12 @@ import { httpPost } from '@/utils/axios';
 import { useAuth } from '@/context/AuthContext';
 
 function Scan() {
-    const { isAuthenticated } = useAuth();
     const [data, setData] = useState('');
     const [showModal, setShowModal] = useState(false);
     const toast = useToast();
     const router = useRouter();
     const checkIn = async (token: any) => {
-        const { status } = await httpPost('/estamp/' + token.text, {
-            token: token.text,
-        });
+        const { status } = await httpPost('/estamp/' + token.text, {});
         if (status === 200) {
             toast?.setToast('success', 'Check in successfully');
             router.push('/estamp-home');
@@ -29,9 +26,7 @@ function Scan() {
         if (token) {
             setData(token.text);
             setShowModal(true);
-            isAuthenticated
-                ? checkIn(token)
-                : toast?.setToast('error', 'Please login to scan QR code');
+            checkIn(token);
         }
         if (error) {
             console.info(error);
