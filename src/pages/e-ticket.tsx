@@ -4,7 +4,6 @@ import {
     ArrowUturnLeftIcon,
     ArrowDownTrayIcon,
 } from '@heroicons/react/24/solid';
-import Ticket from '@/public/images/ticket.svg';
 import Button from '@/components/Button';
 import { useRouter } from 'next/router';
 
@@ -25,7 +24,7 @@ const ETicket = () => {
 
             <div className="flex h-auto min-h-screen flex-col items-center justify-items-center">
                 <Image
-                    src={Ticket}
+                    src="/images/ticket.svg"
                     width={350}
                     height={400}
                     className="absolute"
