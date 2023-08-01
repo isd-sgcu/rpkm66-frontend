@@ -9,7 +9,6 @@ import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/Toast';
 import { httpGet } from '@/utils/axios';
 import { EstampDTO } from '@/dto/estampDTO';
-import { stampPieceStyle } from '@/utils/estamp';
 
 const Stamp = () => {
     const { isAuthenticated, isReady } = useAuth();
@@ -37,17 +36,12 @@ const Stamp = () => {
 
     return (
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
-            <Image
-                src={'/images/EstampBorder.svg'}
-                alt="border"
-                width={300}
-                height={300}
-                className="absolute -z-20 aspect-square h-auto w-4/5 -translate-y-14 md:w-1/2"
-            />
             <div className="relative flex aspect-square h-auto w-full max-w-full items-center justify-center">
-                <h1 className="absolute z-20 text-5xl text-white">REDEEMED</h1>
+                <h1 className="absolute z-20 text-4xl text-white md:text-6xl">
+                    REDEEMED
+                </h1>
                 <Image
-                    src={'/images/estamp-bg.svg'}
+                    src={'/images/estamp-background.png'}
                     alt="background"
                     fill
                     className={`absolute -z-10 ${
