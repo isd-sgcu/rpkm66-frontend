@@ -1,4 +1,4 @@
-import Image from 'next/Image';
+import Image from 'next/image';
 import Major from '@/public/images/Major.png';
 import Fourgle from '@/public/images/fourgle.jpg';
 import Ptt from '@/public/images/Ptt.png';
