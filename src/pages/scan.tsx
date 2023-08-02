@@ -32,6 +32,7 @@ function Scan() {
         if (error) {
             console.info(error);
         }
+        setData('');
     };
     useEffect(() => {
         if (!isReady) return;

@@ -46,7 +46,7 @@ const Stamp = () => {
     useEffect(() => {
         async function fetchRedeemStatus(): Promise<void> {
             const data = await getRedeemStatus();
-            setIsRedeemed(data?.redeemed || null);
+            setIsRedeemed(data?.redeemed ?? null);
         }
         fetchRedeemStatus();
         console.log(isRedeemed);
