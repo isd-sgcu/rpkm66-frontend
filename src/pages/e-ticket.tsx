@@ -12,7 +12,7 @@ import { toPng } from 'html-to-image';
 import { useToast } from '@/components/Toast';
 
 const ETicket = () => {
-    const { user, isAuthenticated } = useAuth();
+    const { user, isAuthenticated, isReady } = useAuth();
     const router = useRouter();
     const toast = useToast();
     const imageRef = useRef<HTMLDivElement>(null);
@@ -30,11 +30,12 @@ const ETicket = () => {
         );
     };
     useEffect(() => {
+        if (!isReady) return;
         if (!isAuthenticated) {
             toast?.setToast('error', 'Please login to the website!');
-            router.push('/');
+            router.push('/login');
         }
-    }, []);
+    }, [isAuthenticated, isReady]);
 
     return (
         <>
@@ -61,18 +62,18 @@ const ETicket = () => {
                             {user?.firstname || 'Null'}
                         </p>
                         <div className="mt-9 flex items-center">
-                            <div className="relative bottom-2 right-12">
+                            <div className="relative bottom-2 right-8">
                                 <QRCode
                                     value={user?.id || 'No User'}
                                     size={127}
                                     fgColor="#3C415F"
                                 />
                             </div>
-                            <div className="relative left-3 top-2 flex flex-col gap-1 text-center text-blue-950">
+                            <div className="relative left-4 top-2 flex flex-col gap-1 text-center text-blue-950">
                                 <p className="text-4xl">
-                                    {user?.firstname || 'Test'}
+                                    {user?.firstname || ''}
                                 </p>
-                                <p>{user?.firstname || 'Test'}</p>
+                                <p>{user?.firstname || ''}</p>
                             </div>
                         </div>
                     </div>
