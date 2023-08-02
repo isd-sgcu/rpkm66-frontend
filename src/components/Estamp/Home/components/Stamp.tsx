@@ -80,7 +80,7 @@ const Stamp = () => {
                     </div>
                 </div>
                 <button
-                    className={`my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8 disabled:opacity-80 disabled:hover:ring-4`}
+                    className={`my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow text-xl font-bold ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8 disabled:opacity-80 disabled:hover:ring-4`}
                     onClick={async () => {
                         const { status } = await httpPost('/estamp/redeem', {});
                         if (status === 200) {
