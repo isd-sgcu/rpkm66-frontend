@@ -1,6 +1,5 @@
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
 import { EstampEvent, UserEstampEvent } from '@/types/estamp';
 import { stampPiecePicture, stampPieceStyle } from '@/utils/estamp';
@@ -49,7 +48,6 @@ const Stamp = () => {
             setIsRedeemed(data?.redeemed ?? null);
         }
         fetchRedeemStatus();
-        console.log(isRedeemed);
     }, [isRedeemed]);
     return (
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
