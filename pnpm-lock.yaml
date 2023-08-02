@@ -50,6 +50,9 @@ dependencies:
   react-qr-reader:
     specifier: 3.0.0-beta-1
     version: 3.0.0-beta-1(react-dom@18.2.0)(react@18.2.0)
+  tailwind-merge:
+    specifier: 1.14.0
+    version: 1.14.0
   tailwindcss:
     specifier: 3.3.2
     version: 3.3.2(ts-node@10.9.1)
@@ -4509,6 +4512,10 @@ packages:
       '@pkgr/utils': 2.4.1
       tslib: 2.6.0
     dev: true
+
+  /tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
+    dev: false
 
   /tailwindcss@3.3.2(ts-node@10.9.1):
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
