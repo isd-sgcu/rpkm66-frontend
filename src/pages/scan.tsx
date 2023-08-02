@@ -10,10 +10,20 @@ import { useAuth } from '@/context/AuthContext';
 
 function Scan() {
     const { isAuthenticated, isReady } = useAuth();
+    useEffect(() => {
+        if (!isReady) return;
+        if (!isAuthenticated) {
+            toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
+            router.push('/login');
+        }
+    }, [isAuthenticated, isReady]);
+
     const [data, setData] = useState<string | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
+
     const toast = useToast();
     const router = useRouter();
+
     const checkIn = async (token: string) => {
         const { status } = await httpPost('/estamp/' + token, {});
         if (status === 200) {
@@ -23,6 +33,7 @@ function Scan() {
         }
         router.push('/estamp-home');
     };
+
     const handleScanResult = (token: any, error: any) => {
         if (token) {
             setData(token.text);
@@ -32,19 +43,13 @@ function Scan() {
             console.info(error);
         }
     };
+
     useEffect(() => {
         if (data !== null) {
             checkIn(data);
             setData(null);
         }
     }, [data]);
-    useEffect(() => {
-        if (!isReady) return;
-        if (!isAuthenticated) {
-            toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
-            router.push('/login');
-        }
-    }, [isAuthenticated, isReady]);
 
     return (
         <div className="flex flex-col items-center justify-center">

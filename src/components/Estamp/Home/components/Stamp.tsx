@@ -1,56 +1,50 @@
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
 import { EstampEvent, UserEstampEvent } from '@/types/estamp';
 import { stampPiecePicture, stampPieceStyle } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/Toast';
-import { httpGet, httpPost } from '@/utils/axios';
-import { EstampDTO } from '@/dto/estampDTO';
+import { httpPost } from '@/utils/axios';
+import { getRedeemStatus, getUserStamp } from '@/api/stamp';
 
 const Stamp = () => {
     const { isAuthenticated, isReady } = useAuth();
+    useEffect(() => {
+        const fetchUserEstamp = async (): Promise<void> => {
+            const { status, data } = await getUserStamp();
+
+            if (status === 'error') {
+                toast?.setToast('error', 'เกิดข้อผิดพลาดในการโหลด E-Stamp');
+            } else {
+                setUserStamp(data?.events ?? []);
+            }
+        };
+
+        if (!isReady) return;
+
+        fetchUserEstamp();
+    }, [isAuthenticated, isReady]);
+
     const toast = useToast();
     const [userStamp, setUserStamp] = useState<UserEstampEvent[] | null>([]);
     const [isRedeemed, setIsRedeemed] = useState<boolean | null>(null);
-    const getUserStamp = async () => {
-        try {
-            const { data } = await httpGet<EstampDTO>('/estamp/my');
-            return data;
-        } catch (err) {
-            return null;
-        }
-    };
-    const getRedeemStatus = async () => {
-        try {
-            const { data } = await httpGet<{ redeemed: boolean }>(
-                '/estamp/redeem'
-            );
-            return data;
-        } catch (err) {
-            return null;
-        }
-    };
+
     useEffect(() => {
-        async function fetchUserEstamp(): Promise<void> {
-            const data = await getUserStamp();
-            setUserStamp(data?.events ?? []);
-        }
-        if (!isReady) return;
-        isAuthenticated
-            ? fetchUserEstamp()
-            : toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
-    }, [isAuthenticated, isReady]);
-    useEffect(() => {
-        async function fetchRedeemStatus(): Promise<void> {
-            const data = await getRedeemStatus();
-            setIsRedeemed(data?.redeemed ?? null);
-        }
+        const fetchRedeemStatus = async (): Promise<void> => {
+            const { status, data } = await getRedeemStatus();
+
+            if (status === 'error') {
+                toast?.setToast('error', 'เกิดข้อผิดพลาดในการโหลด E-Stamp');
+            } else {
+                setIsRedeemed(data?.redeemed ?? null);
+            }
+        };
+
         fetchRedeemStatus();
-        console.log(isRedeemed);
     }, [isRedeemed]);
+
     return (
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
             <div className="relative flex aspect-square h-auto w-full max-w-full items-center justify-center">
@@ -90,7 +84,9 @@ const Stamp = () => {
                         window.location.reload();
                     }
                 }}
-                disabled={(userStamp?.length ?? 0) < 4}
+                disabled={
+                    (userStamp?.length ?? 0) < 4 || isRedeemed ? true : false
+                }
             >
                 <CheckBadgeIcon className="mx-2 h-8 w-8" />
                 <h1>Redeem Ticket</h1>
