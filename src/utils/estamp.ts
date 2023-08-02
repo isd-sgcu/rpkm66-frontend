@@ -1,60 +1,40 @@
-import { EstampStyle, UserEstampEvent } from '@/types/estamp';
+import { EstampEvent, EstampStyle } from '@/types/estamp';
 
-//For testing only
-export const stampPiecePicture: UserEstampEvent[] = [
+//Don't remove this pls
+export const stampPiecePicture: EstampEvent[] = [
     {
-        event: {
-            id: 'E-Stamp-01',
-            name: 'Event 1',
-            info: 'Event 1',
-        },
-        is_taken: true,
-        taken_at: 0,
+        id: 'E-Stamp-01',
+        name: 'Event 1',
+        info: 'Event 1',
     },
     {
-        event: {
-            id: 'E-Stamp-02',
-            name: 'Event 2',
-            info: 'Event 2',
-        },
-        is_taken: true,
-        taken_at: 0,
+        id: 'E-Stamp-02',
+        name: 'Event 2',
+        info: 'Event 2',
     },
     {
-        event: {
-            id: 'E-Stamp-03',
-            name: 'Event 3',
-            info: 'Event 3',
-        },
-        is_taken: true,
-        taken_at: 0,
+        id: 'E-Stamp-03',
+        name: 'Event 3',
+        info: 'Event 3',
     },
     {
-        event: {
-            id: 'E-Stamp-04',
-            name: 'Event 4',
-            info: 'Event 4',
-        },
-        is_taken: true,
-        taken_at: 0,
+        id: 'E-Stamp-04',
+        name: 'Event 4',
+        info: 'Event 4',
     },
 ];
-//Implement data here
 export const stampPieceStyle: EstampStyle[] = [
     {
-        imgUrl: '/images/pfp-placeholder.svg',
-        style: '',
+        imgUrl: '/images/moon.png',
+        style: 'translate-x-2 w-[120%] h-[120%]',
     },
     {
-        imgUrl: '/images/pfp-placeholder.svg',
-        style: '',
+        imgUrl: '/images/earth.png',
     },
     {
-        imgUrl: '/images/pfp-placeholder.svg',
-        style: '',
+        imgUrl: '/images/jupiter.png',
     },
     {
-        imgUrl: '/images/pfp-placeholder.svg',
-        style: '',
+        imgUrl: '/images/mars.png',
     },
 ];

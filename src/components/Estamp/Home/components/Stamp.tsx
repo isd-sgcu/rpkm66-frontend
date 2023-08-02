@@ -2,8 +2,8 @@ import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import StampPiece from './StampPiece';
-import { UserEstampEvent } from '@/types/estamp';
-import { stampPiecePicture } from '@/utils/estamp';
+import { EstampEvent, UserEstampEvent } from '@/types/estamp';
+import { stampPiecePicture, stampPieceStyle } from '@/utils/estamp';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/Toast';
@@ -26,14 +26,13 @@ const Stamp = () => {
     useEffect(() => {
         async function fetchUserEstamp(): Promise<void> {
             const data = await getUserStamp();
-            setUserStamp(data?.events ?? null);
+            setUserStamp(data?.events ?? []);
         }
         if (!isReady) return;
         isAuthenticated
             ? fetchUserEstamp()
             : toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
     }, [isAuthenticated, isReady]);
-
     return (
         <div className="my-3 flex w-4/5 flex-col items-center justify-center text-xl font-bold md:w-1/2">
             <div className="relative flex aspect-square h-auto w-full max-w-full items-center justify-center">
@@ -45,18 +44,19 @@ const Stamp = () => {
                     alt="background"
                     fill
                     className={`absolute -z-10 ${
-                        stampPiecePicture.some((e) => !e.is_taken) &&
-                        'grayscale'
+                        userStamp?.length !== 4 && 'grayscale'
                     }`}
                 />
                 <div className="flex-block grid h-full w-full grid-cols-2 gap-1 p-3">
                     {stampPiecePicture.map(
-                        (e: UserEstampEvent, index: number) => {
+                        (stampPiece: EstampEvent, index: number) => {
                             return (
                                 <StampPiece
-                                    key={e.event.id}
-                                    {...e}
-                                    image="/images/pfp-placeholder.svg"
+                                    key={stampPiece.id}
+                                    id={stampPiece.id}
+                                    style={stampPieceStyle[index].style}
+                                    imgUrl={stampPieceStyle[index].imgUrl}
+                                    isVisible={index < (userStamp?.length || 0)}
                                 />
                             );
                         }
@@ -66,7 +66,7 @@ const Stamp = () => {
             <button
                 className={`my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8 disabled:opacity-80 disabled:hover:ring-4`}
                 onClick={() => router.push('/')}
-                disabled={stampPiecePicture.some((e) => !e.is_taken)}
+                disabled={userStamp?.length !== 4}
             >
                 <CheckBadgeIcon className="mx-2 h-8 w-8" />
                 <h1>Redeem Ticket</h1>

@@ -10,5 +10,5 @@ export interface UserEstampEvent {
 }
 export interface EstampStyle {
     imgUrl: string;
-    style: string;
+    style?: string;
 }

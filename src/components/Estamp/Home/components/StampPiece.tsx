@@ -3,18 +3,19 @@ import { EstampEvent } from '@/types/estamp';
 import React from 'react';
 
 const StampPiece: React.FC<{
-    event: EstampEvent;
-    is_taken: boolean;
-    image: string;
-}> = ({ event, is_taken, image }) => {
+    id: string;
+    isVisible: boolean;
+    imgUrl: string;
+    style?: string;
+}> = ({ id, isVisible, imgUrl, style }) => {
     return (
-        <div className="relative">
+        <div className={`${style} relative`}>
             <Image
-                src={image}
-                alt={event.id}
+                src={imgUrl}
+                alt={id}
                 fill
                 priority
-                className={`${is_taken ? 'visible' : 'invisible'}`}
+                className={`${isVisible ? 'visible' : 'invisible'}`}
             />
         </div>
     );
