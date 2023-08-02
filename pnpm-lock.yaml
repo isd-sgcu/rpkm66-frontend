@@ -20,9 +20,15 @@ dependencies:
   clsx:
     specifier: 1.2.1
     version: 1.2.1
+  dom-to-image:
+    specifier: 2.6.0
+    version: 2.6.0
   framer-motion:
     specifier: 10.12.18
     version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+  html-to-image:
+    specifier: 1.11.11
+    version: 1.11.11
   next:
     specifier: 13.4.7
     version: 13.4.7(react-dom@18.2.0)(react@18.2.0)
@@ -1495,6 +1501,10 @@ packages:
       esutils: 2.0.3
     dev: true
 
+  /dom-to-image@2.6.0:
+    resolution: {integrity: sha512-Dt0QdaHmLpjURjU7Tnu3AgYSF2LuOmksSGsUcE6ItvJoCWTBEmiMXcqBdNSAm9+QbbwD7JMoVsuuKX6ZVQv1qA==}
+    dev: false
+
   /dot-prop@5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
     engines: {node: '>=8'}
@@ -2374,6 +2384,10 @@ packages:
     dependencies:
       lru-cache: 6.0.0
     dev: true
+
+  /html-to-image@1.11.11:
+    resolution: {integrity: sha512-9gux8QhvjRO/erSnDPv28noDZcPZmYE7e1vFsBLKLlRlKDSqNJYebj6Qz1TGd5lsRV+X+xYyjCKjuZdABinWjA==}
+    dev: false
 
   /human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
