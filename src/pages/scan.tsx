@@ -10,12 +10,12 @@ import { useAuth } from '@/context/AuthContext';
 
 function Scan() {
     const { isAuthenticated, isReady } = useAuth();
-    const [data, setData] = useState('');
-    const [showModal, setShowModal] = useState(false);
+    const [data, setData] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
     const toast = useToast();
     const router = useRouter();
-    const checkIn = async (token: any) => {
-        const { status } = await httpPost('/estamp/' + token.text, {});
+    const checkIn = async (token: string) => {
+        const { status } = await httpPost('/estamp/' + token, {});
         if (status === 200) {
             toast?.setToast('success', 'Check in successfully');
         } else {
@@ -27,13 +27,17 @@ function Scan() {
         if (token) {
             setData(token.text);
             setShowModal(true);
-            checkIn(token);
         }
         if (error) {
             console.info(error);
         }
-        setData('');
     };
+    useEffect(() => {
+        if (data !== null) {
+            checkIn(data);
+            setData(null);
+        }
+    }, [data]);
     useEffect(() => {
         if (!isReady) return;
         if (!isAuthenticated) {
@@ -67,7 +71,7 @@ function Scan() {
                     {showModal ? (
                         <div className="grid">
                             <Link
-                                href={data}
+                                href={data?.includes('http') ? data : '/'}
                                 className="truncate text-left text-blue-500"
                             >
                                 {data}
