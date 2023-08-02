@@ -18,6 +18,7 @@ function Scan() {
         }
     }, [isAuthenticated, isReady]);
 
+    const [isScanned, setIsScanned] = useState<boolean>(false);
     const [data, setData] = useState<string | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -45,7 +46,8 @@ function Scan() {
     };
 
     useEffect(() => {
-        if (data !== null) {
+        if (data && !isScanned) {
+            setIsScanned(true);
             checkIn(data);
             setData(null);
         }
