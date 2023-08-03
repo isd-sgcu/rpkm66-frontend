@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
@@ -54,7 +54,7 @@ function Scan() {
     }, [data]);
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex min-h-screen flex-col items-center justify-center">
             <div className="relative w-full">
                 <QrReader
                     className="bg-black"
@@ -74,7 +74,7 @@ function Scan() {
                 </button>
             </div>
             <div className="flex w-full items-center justify-center bg-black">
-                <div className="h-64 w-full rounded-t-2xl bg-white p-8 text-center">
+                <div className="h-64 w-full bg-white p-8 text-center">
                     {showModal ? (
                         <div className="grid">
                             <Link
