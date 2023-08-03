@@ -1,11 +1,11 @@
-import Accessibility from '@/components/Estamp/Home/components/Accessibility';
-import Profile from '@/components/Estamp/Home/components/Profile';
-import Stamp from '@/components/Estamp/Home/components/Stamp';
+import Accessibility from '@/components/WalkRally/Home/components/Accessibility';
+import Profile from '@/components/WalkRally/Home/components/Profile';
+import Stamp from '@/components/WalkRally/Home/components/Stamp';
 import { useAuth } from '@/context/AuthContext';
 import Consent from '../Consent';
 import { useEffect, useState } from 'react';
 
-const EstampHome = () => {
+const WalkRally = () => {
     const { isAuthenticated, isReady } = useAuth();
     const [isConsent, setIsConsent] = useState<boolean | null>(null);
 
@@ -43,4 +43,4 @@ const EstampHome = () => {
     );
 };
 
-export default EstampHome;
+export default WalkRally;

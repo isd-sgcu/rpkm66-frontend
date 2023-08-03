@@ -80,7 +80,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         switch (router.pathname) {
             case '/':
                 if (user) {
-                    router.push('/announce-baan');
+                    router.push('/walk-rally');
                 }
                 break;
             case '/announce-baan':
