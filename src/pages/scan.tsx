@@ -32,7 +32,7 @@ function Scan() {
         } else {
             toast?.setToast('error', 'QR Code is invalid');
         }
-        router.push('/estamp-home');
+        router.push('/walk-rally');
     };
 
     const handleScanResult = (token: any, error: any) => {
