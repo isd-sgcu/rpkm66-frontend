@@ -24,9 +24,9 @@ const Button = ({
         ),
         variants: {
             color: {
-                pink: 'bg-pink-400 ring-pink-400/40 disabled:opacity-80 disabled:hover:ring-4',
-                green: 'bg-green ring-green/40 disabled:opacity-80 disabled:hover:ring-4',
-                yellow: 'bg-yellow ring-yellow/40 disabled:opacity-80 disabled:hover:ring-4',
+                pink: 'text-white bg-pink-400 ring-pink-400/40 disabled:opacity-80 disabled:hover:ring-4',
+                green: 'text-white bg-green ring-green/40 disabled:opacity-80 disabled:hover:ring-4',
+                yellow: 'text-white bg-yellow ring-yellow/40 disabled:opacity-80 disabled:hover:ring-4',
             },
         },
     });

@@ -3,11 +3,16 @@ import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
+import NotAllowed from '@/components/NotAllowed';
 
 function Scan() {
+    const { isAuthenticated, isReady, user } = useAuth();
     const [data, setData] = useState<string | null>(null);
     const [isScanned, setIsScanned] = useState<boolean>(false);
     const router = useRouter();
+
     const handleScanResult = (token: any, error: any) => {
         if (token) {
             setData(token.text);
@@ -16,6 +21,7 @@ function Scan() {
             console.info(error);
         }
     };
+
     useEffect(() => {
         if (data && !isScanned) {
             //Call api
@@ -23,6 +29,9 @@ function Scan() {
             setData(null);
         }
     }, [data]);
+
+    if (!isAuthenticated || !isReady || user?.studentID.startsWith('66'))
+        return <NotAllowed />;
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center">
