@@ -11,6 +11,7 @@ import { ToastProvider } from '@/components/Toast';
 import { AppContextProvider } from '@/context/ModalContext';
 
 import { ibmPlexSansThai } from '@/components/font';
+import PhaseTwoNavbar from '@/components/PhaseTwoNavbar';
 
 function MetaData() {
     return (
@@ -63,7 +64,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     <AppContextProvider>
                         <MetaData />
 
-                        <Navbar />
+                        <PhaseTwoNavbar />
                         <Component {...pageProps} />
 
                         <Background />
