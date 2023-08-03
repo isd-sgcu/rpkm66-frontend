@@ -1,6 +1,6 @@
 import GameContainer from './lib/GameContainer';
 import { useState } from 'react';
-import GameScene from './lib/Game';
+import GameScene from './lib/Scene';
 
 const GameLogic = () => {
     const [page, setPage] = useState<string>('Game01');

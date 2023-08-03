@@ -8,8 +8,8 @@ function PhaseTwoNavbar() {
     const router = useRouter();
 
     return (
-        <nav className="sticky top-0 z-40 flex h-11 w-full justify-between bg-black/50 p-2 backdrop-blur-sm md:px-5 lg:h-20 lg:px-10 lg:py-4">
-            <div className="relative h-full w-12">
+        <nav className="sticky top-0 z-40 flex w-full justify-between bg-black/50 p-4 backdrop-blur-sm md:px-5 lg:h-20 lg:px-10 lg:py-4">
+            <div className="relative h-8 w-8">
                 <Link href="/">
                     <Image
                         src={Favicon}
@@ -19,32 +19,23 @@ function PhaseTwoNavbar() {
                     />
                 </Link>
             </div>
-            <div className="relative flex h-full gap-8">
-                {/* wait for link to be added */}
-                <Link href="/">
+            <div className="relative flex flex-row gap-6">
+                <Link href="/articles">
                     <NewspaperIcon
-                        className={`h-full w-12 hover:text-amber-400 ${
-                            router.pathname === '/article-page'
+                        className={`h-8 w-8 hover:text-amber-400 ${
+                            router.pathname === '/articles'
                                 ? 'text-amber-400'
                                 : ''
                         }`}
                     />
                 </Link>
-                {/* wait for link to be added && bellIcon??*/}
-                {/* <Link href="/">
-                    <BellIcon
-                        className={`h-full w-12 hover:text-amber-400 ${
-                            router.pathname === '/WAITTOADD'
+
+                <Link href="/walk-rally">
+                    <HomeIcon
+                        className={`h-8 w-8 hover:text-amber-400 ${
+                            router.pathname === '/walk-rally'
                                 ? 'text-amber-400'
                                 : ''
-                        }`}
-                    />
-                </Link> */}
-                {/* wait for link to be added */}
-                <Link href="/">
-                    <HomeIcon
-                        className={`h-full w-12 hover:text-amber-400 ${
-                            router.pathname === '/' ? 'text-amber-400' : ''
                         }`}
                     />
                 </Link>

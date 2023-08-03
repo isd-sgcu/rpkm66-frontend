@@ -1,9 +1,9 @@
-import Scene from './Game';
 import type { NextPage } from 'next';
 import Button from '@/components/Button';
-import { Question } from './Game';
 import type { Dispatch, SetStateAction } from 'react';
 import GameBackground from './GameBackground';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Question } from '../types/scene';
 
 function ChoicesButton({
     choices,
@@ -74,18 +74,29 @@ export default function GameContainer({
     setPage: Dispatch<SetStateAction<string>>;
 }) {
     return (
-        <div className="relative flex min-h-screen w-full place-content-center items-center overflow-x-hidden font-ibm font-bold text-white">
-            <GameBackground bg={scene.bg} />
-            <div className="mb-40 block">
-                <h1 className="mx-auto text-center text-lg  ">
-                    {scene.message}
-                </h1>
-                {ChoicesButton({
-                    choices: scene.choices,
-                    goto: scene.goto,
-                    setPage: setPage,
-                })}
-            </div>
-        </div>
+        <AnimatePresence>
+            <motion.div
+                key={scene.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                    duration: 0.5,
+                }}
+                className="relative flex min-h-screen w-full cursor-pointer place-content-center items-center overflow-x-hidden font-ibm font-bold text-white"
+            >
+                <GameBackground bg={scene.bg} />
+                <div className="mb-40 block">
+                    <h1 className="mx-auto text-center text-lg">
+                        {scene.message}
+                    </h1>
+                    {ChoicesButton({
+                        choices: scene.choices,
+                        goto: scene.goto,
+                        setPage: setPage,
+                    })}
+                </div>
+            </motion.div>
+        </AnimatePresence>
     );
 }

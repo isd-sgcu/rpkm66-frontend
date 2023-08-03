@@ -1,20 +1,21 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import scene4 from '@/public/images/gameBG/scene4.svg';
-import scene15 from '@/public/images/gameBG/scene15.svg';
-import scene17 from '@/public/images/gameBG/scene17.svg';
-import scene19 from '@/public/images/gameBG/scene19.svg';
-import scene21 from '@/public/images/gameBG/scene21.svg';
-import scene24 from '@/public/images/gameBG/scene24.svg';
-import scene25 from '@/public/images/gameBG/scene25.svg';
-import scene29 from '@/public/images/gameBG/scene29.svg';
-import scene30 from '@/public/images/gameBG/scene30.svg';
-import scene32 from '@/public/images/gameBG/scene32.svg';
-import scene33 from '@/public/images/gameBG/scene33.svg';
-import scene34 from '@/public/images/gameBG/scene34.svg';
-import scene37 from '@/public/images/gameBG/scene37.svg';
-import scene42 from '@/public/images/gameBG/scene48.svg';
-import scene48 from '@/public/images/gameBG/scene34.svg';
+import scene4 from '@/public/images/game/gameBG/scene4.svg';
+import scene15 from '@/public/images/game/gameBG/scene15.svg';
+import scene17 from '@/public/images/game/gameBG/scene17.svg';
+import scene19 from '@/public/images/game/gameBG/scene19.svg';
+import scene21 from '@/public/images/game/gameBG/scene21.svg';
+import scene24 from '@/public/images/game/gameBG/scene24.svg';
+import scene25 from '@/public/images/game/gameBG/scene25.svg';
+import scene29 from '@/public/images/game/gameBG/scene29.svg';
+import scene30 from '@/public/images/game/gameBG/scene30.svg';
+import scene32 from '@/public/images/game/gameBG/scene32.svg';
+import scene33 from '@/public/images/game/gameBG/scene33.svg';
+import scene34 from '@/public/images/game/gameBG/scene34.svg';
+import scene37 from '@/public/images/game/gameBG/scene37.svg';
+import scene42 from '@/public/images/game/gameBG/scene42.svg';
+import scene48 from '@/public/images/game/gameBG/scene48.svg';
+
 export default function GameBackground(bg: any) {
     switch (bg.bg) {
         case '1':
@@ -161,6 +162,10 @@ export default function GameBackground(bg: any) {
                     sizes="(min-width: 1024px) 0, 100vw"
                     className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
                 />
+            );
+        default:
+            return (
+                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-full w-full select-none bg-black object-cover object-top" />
             );
     }
 }

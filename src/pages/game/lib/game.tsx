@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import React from 'react';
 export interface Question {
     message: string;
 }
