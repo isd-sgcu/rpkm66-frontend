@@ -23,5 +23,9 @@ export default function GameBackground(bg: any) {
                     className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
                 />
             );
+        default:
+            return (
+                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-full w-full select-none bg-black object-cover object-top" />
+            );
     }
 }
