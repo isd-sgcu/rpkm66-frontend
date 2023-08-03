@@ -9,6 +9,7 @@ import { useToast } from '@/components/Toast';
 import { httpPost } from '@/utils/axios';
 import { getRedeemStatus, getUserStamp } from '@/api/stamp';
 import Container from './Container';
+import Button from './Button';
 
 const Stamp = () => {
     const { isAuthenticated, isReady } = useAuth();
@@ -46,9 +47,17 @@ const Stamp = () => {
         fetchRedeemStatus();
     }, [isRedeemed]);
 
+    const handleRedeem = async () => {
+        const { status } = await httpPost('/estamp/redeem', {});
+        if (status === 200) {
+            toast?.setToast('success', 'Redeem Success');
+            window.location.reload();
+        }
+    };
+
     return (
         <Container className="flex flex-col items-center justify-center">
-            <div className="w-full md:w-1/2">
+            <div className="w-full space-y-6 md:w-1/2">
                 <div className="relative flex aspect-square h-auto w-full max-w-full items-center justify-center">
                     {isRedeemed && (
                         <h1 className="absolute z-20 text-4xl text-white md:text-4xl">
@@ -79,15 +88,9 @@ const Stamp = () => {
                         )}
                     </div>
                 </div>
-                <button
-                    className={`my-8 flex h-12 w-full items-center justify-center rounded-xl bg-yellow ring-4 ring-yellow/40 transition-all duration-300 ease-in-out hover:ring-8 disabled:opacity-80 disabled:hover:ring-4`}
-                    onClick={async () => {
-                        const { status } = await httpPost('/estamp/redeem', {});
-                        if (status === 200) {
-                            toast?.setToast('success', 'Redeem Success');
-                            window.location.reload();
-                        }
-                    }}
+                <Button
+                    color="yellow"
+                    onClick={handleRedeem}
                     disabled={
                         (userStamp?.length ?? 0) < 4 || isRedeemed
                             ? true
@@ -96,7 +99,7 @@ const Stamp = () => {
                 >
                     <CheckBadgeIcon className="mx-2 h-8 w-8" />
                     <h1>Redeem Ticket</h1>
-                </button>
+                </Button>
             </div>
         </Container>
     );

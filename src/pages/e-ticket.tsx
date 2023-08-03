@@ -42,7 +42,7 @@ const ETicket = () => {
             <div className="flex min-h-screen w-full flex-col">
                 <button
                     className="my-6"
-                    onClick={() => router.push('/estamp-home')}
+                    onClick={() => router.push('/walk-rally')}
                 >
                     <ArrowUturnLeftIcon className="ml-6 h-9 w-9 md:h-12 md:w-12" />
                 </button>
