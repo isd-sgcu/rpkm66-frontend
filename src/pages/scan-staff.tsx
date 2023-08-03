@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 function Scan() {
     const [data, setData] = useState<string | null>(null);
+    const [isScanned, setIsScanned] = useState<boolean>(false);
     const router = useRouter();
     const handleScanResult = (token: any, error: any) => {
         if (token) {
@@ -16,8 +17,9 @@ function Scan() {
         }
     };
     useEffect(() => {
-        if (data !== null) {
+        if (data && !isScanned) {
             //Call api
+            setIsScanned(true);
             setData(null);
         }
     }, [data]);
