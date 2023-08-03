@@ -449,7 +449,7 @@ const GameScene: Scene = {
     Game45: {
         bg: '19',
         message: (
-            <p className="text-black">
+            <p className="text-white">
                 อันที่จริงตอนนี้ยานของคุณควร
                 <br />
                 ได้ลงจอดบนดาวดวงใหม่

@@ -4,10 +4,12 @@ import Link from 'next/link';
 import Button from './Button';
 
 const Accessibility = () => {
+    const hasPlayed = localStorage.getItem('hasPlayed');
+
     return (
         <Container className="my-6 space-y-6">
             <div>
-                <Link href="/e-ticket">
+                <Link href={hasPlayed ? '/e-ticket' : '/game'}>
                     <Button color="pink">
                         <QrCodeIcon className="mx-2 h-8 w-8" />
                         <h1>E-Ticket</h1>

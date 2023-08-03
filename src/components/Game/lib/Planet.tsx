@@ -3,6 +3,10 @@ import { planets } from '../utils/planet';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import React from 'react';
 import Image from 'next/image';
+import Button from '@/components/WalkRally/Home/components/Button';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 const Bar: React.FC<{ description: string }> = ({ description }) => {
     return (
         <div className="my-4 flex w-4/5 items-center rounded-lg bg-white text-xs text-black ring-4 ring-white/40">
@@ -14,9 +18,11 @@ const Bar: React.FC<{ description: string }> = ({ description }) => {
     );
 };
 const Planet: React.FC<{ num: number }> = ({ num }) => {
+    const router = useRouter();
+
     const { user } = useAuth();
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center">
+        <div className="mx-auto my-10 flex min-h-screen max-w-sm flex-col items-center justify-center rounded-lg border border-white/20 bg-slate-800/30 p-4 backdrop-blur-lg">
             <div className="my-4">
                 <Image
                     src={planets[num].imgUrl}
@@ -37,6 +43,19 @@ const Planet: React.FC<{ num: number }> = ({ num }) => {
                 <Bar description={planets[num].detail as string} />
             )}
             <Bar description={planets[num].personalDes} />
+
+            <Button
+                onClick={() => {
+                    localStorage.setItem('planet', num.toString());
+                    localStorage.setItem('hasPlayed', 'true');
+
+                    router.push('/e-ticket');
+                }}
+                color="pink"
+                className="mt-4 px-12"
+            >
+                <h1 className="text-lg">ต่อไป</h1>
+            </Button>
         </div>
     );
 };
