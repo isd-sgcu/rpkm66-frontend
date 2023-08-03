@@ -1,6 +1,7 @@
 import { ArticleDetail } from '@/utils/article-page/types';
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
+import clsx from 'clsx';
 
 interface ArticleBlockProps {
     article: ArticleDetail;
@@ -16,19 +17,23 @@ function ArticleBlock({ article, index }: ArticleBlockProps) {
     }
 
     return (
-        <button
-            onClick={handleButtonClick}
+        <div
             key={index}
             className="transition-height mb-5 flex max-w-2xl flex-col rounded-lg bg-white p-6 text-[#333333] duration-300"
         >
-            <div key={index} className="flex font-bold">
+            <div
+                key={index}
+                className="mb-2 flex cursor-pointer select-none font-bold"
+                onClick={handleButtonClick}
+            >
                 {article.topic}
                 <article.icon className="ml-1 h-5 w-5" />
             </div>
             <div
-                className={`${
-                    expanded ? 'hidden' : 'visible'
-                } break-all text-left opacity-80`}
+                className={clsx(
+                    expanded ? 'hidden' : 'visible',
+                    'prose text-left opacity-80'
+                )}
             >
                 {article.preinfo}
             </div>
@@ -53,7 +58,7 @@ function ArticleBlock({ article, index }: ArticleBlockProps) {
                 )}
                 {article.fullinfo}
             </div>
-        </button>
+        </div>
     );
 }
 
