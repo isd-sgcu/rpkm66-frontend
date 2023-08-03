@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import Button from '@/components/Button';
-import { Question } from './Scene';
 import type { Dispatch, SetStateAction } from 'react';
 import GameBackground from './GameBackground';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Question } from '../types/scene';
 
 function ChoicesButton({
     choices,
