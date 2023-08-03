@@ -26,13 +26,17 @@ function Scan() {
     const router = useRouter();
 
     const checkIn = async (token: string) => {
-        const { status } = await httpPost('/estamp/' + token, {});
-        if (status === 200) {
-            toast?.setToast('success', 'Check in successfully');
-        } else {
-            toast?.setToast('error', 'QR Code is invalid');
+        try {
+            const { status } = await httpPost('/estamp/' + token, {});
+            if (status === 200) {
+                toast?.setToast('success', 'Check in successfully');
+            } else {
+                toast?.setToast('error', 'QR Code is invalid');
+            }
+            router.push('/walk-rally');
+        } catch {
+            toast?.setToast('error', 'There was an error');
         }
-        router.push('/walk-rally');
     };
 
     const handleScanResult = (token: any, error: any) => {

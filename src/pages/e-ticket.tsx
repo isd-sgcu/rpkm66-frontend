@@ -17,17 +17,17 @@ const ETicket = () => {
     const toast = useToast();
     const imageRef = useRef<HTMLDivElement>(null);
     const saveImage = () => {
-        toPng(imageRef.current as HTMLElement, { quality: 0.95 }).then(
-            (dataUrl: string) => {
-                const link = document.createElement('a');
-                link.download = `${user?.firstname || '__'}-${
-                    user?.lastname || '__'
-                }-e-ticket.png`;
-                link.href = dataUrl;
-                link.click();
-                link.remove();
-            }
-        );
+        // toPng(imageRef.current as HTMLElement, { quality: 0.95 }).then(
+        //     (dataUrl: string) => {
+        //         const link = document.createElement('a');
+        //         link.download = `${user?.firstname || '__'}-${
+        //             user?.lastname || '__'
+        //         }-e-ticket.png`;
+        //         link.href = dataUrl;
+        //         link.click();
+        //         link.remove();
+        //     }
+        // );
     };
     useEffect(() => {
         if (!isReady) return;
@@ -58,27 +58,30 @@ const ETicket = () => {
                         alt="ticket"
                     />
                     <div className="flex flex-col items-center">
-                        <p className="mb-64 mt-24 text-8xl">
+                        <p className="mb-64 mt-12 text-[5.5rem]">
                             {user?.firstname || 'Null'}
                         </p>
                         <div className="mt-9 flex items-center">
-                            <div className="relative bottom-2 right-8">
+                            <div className="relative bottom-2 right-12">
                                 <QRCode
                                     value={user?.id || 'No User'}
-                                    size={127}
+                                    size={92}
                                     fgColor="#3C415F"
                                 />
                             </div>
-                            <div className="relative left-4 top-2 flex flex-col gap-1 text-center text-blue-950">
+                            <div className="relative left-8 top-2 flex flex-col gap-1 text-center text-blue-950">
                                 <p className="text-4xl">
-                                    {user?.firstname || ''}
+                                    {user?.nickname || ''}
                                 </p>
-                                <p>{user?.firstname || ''}</p>
+                                <p>
+                                    {`${user?.firstname} ${user?.lastname}` ||
+                                        ''}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Button
+                {/* <Button
                     content={
                         <div className="flex items-center justify-center">
                             <ArrowDownTrayIcon
@@ -91,7 +94,7 @@ const ETicket = () => {
                     }
                     onClick={saveImage}
                     additionalStyle="mt-10 mb-20 py-2 w-80 rounded-lg bg-pink-400 ring-pink-400/30 ring-4"
-                />
+                /> */}
             </div>
         </>
     );
