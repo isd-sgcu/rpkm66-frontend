@@ -32,8 +32,9 @@ function ArticleBlock({ article, index }: ArticleBlockProps) {
             <div
                 className={clsx(
                     expanded ? 'hidden' : 'visible',
-                    'prose text-left opacity-80'
+                    'prose cursor-pointer select-none text-left opacity-80'
                 )}
+                onClick={handleButtonClick}
             >
                 {article.preinfo}
             </div>
