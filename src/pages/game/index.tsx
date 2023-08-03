@@ -1,9 +1,9 @@
-import GameContainer from './lib/GameContainer';
+import GameContainer from '@/components/Game/lib/GameContainer';
 import { useState } from 'react';
-import GameScene from './lib/Scene';
+import GameScene from '@/components/Game/lib/Scene';
 import { useAuth } from '@/context/AuthContext';
-import Planet from './lib/Planet';
-import Score from './lib/Score';
+import Planet from '@/components/Game/lib/Planet';
+import Score from '@/components/Game/lib/Score';
 
 // import CollectScore from './lib/CollectScore'
 
@@ -45,9 +45,8 @@ const GameLogic = () => {
             </div>
         );
     } else if (page === 'Game50') {
-        console.log(Score(4));
         const planetNum = Score(4);
-        return <Planet num={planetNum}></Planet>;
+        return <Planet num={planetNum as number}></Planet>;
     }
     return (
         <div>
