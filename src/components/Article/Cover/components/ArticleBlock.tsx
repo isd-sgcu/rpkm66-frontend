@@ -19,7 +19,7 @@ function ArticleBlock({ article, index }: ArticleBlockProps) {
     return (
         <div
             key={index}
-            className="transition-height mb-5 flex max-w-2xl flex-col rounded-lg bg-white p-6 text-[#333333] duration-300"
+            className="transition-height mb-5 flex w-[90vw] max-w-2xl flex-col rounded-lg bg-white p-6 text-[#333333] duration-300"
         >
             <div
                 key={index}
