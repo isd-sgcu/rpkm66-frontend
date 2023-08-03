@@ -6,14 +6,14 @@ import Button from './Button';
 const Accessibility = () => {
     return (
         <Container className="my-6 space-y-6">
-            {/* <div>
+            <div>
                 <Link href="/e-ticket">
                     <Button color="pink">
                         <QrCodeIcon className="mx-2 h-8 w-8" />
                         <h1>My E-Ticket</h1>
                     </Button>
                 </Link>
-            </div> */}
+            </div>
             <div>
                 <Link href="/scan">
                     <Button color="green">
