@@ -52,6 +52,8 @@ const Stamp = () => {
         if (status === 200) {
             toast?.setToast('success', 'Redeem Success');
             window.location.reload();
+        } else if (status === 429) {
+            toast?.setToast('error', 'E-Stamp is now full.');
         }
     };
 
