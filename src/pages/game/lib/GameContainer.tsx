@@ -4,6 +4,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import GameBackground from './GameBackground';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Question } from '../types/scene';
+import Score from './Score';
 
 function ChoicesButton({
     choices,
@@ -35,6 +36,7 @@ function ChoicesButton({
                     onClick={() => {
                         console.log(goto);
                         setPage(goto);
+                        Score(choices[0].score);
                     }}
                     additionalStyle="mx-4 bg-pink-400 w-fit px-2 shadow-md border-pink-600 border-4 rounded-xl"
                 />
@@ -43,6 +45,7 @@ function ChoicesButton({
                     onClick={() => {
                         console.log(goto);
                         setPage(goto);
+                        Score(choices[1].score);
                     }}
                     additionalStyle="mx-4 bg-pink-400 w-fit px-2 shadow-md border-pink-600 border-4 rounded-xl"
                 />

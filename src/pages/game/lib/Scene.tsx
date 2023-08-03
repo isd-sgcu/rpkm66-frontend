@@ -1,5 +1,6 @@
-import type { NextPage } from 'next';
+import React from 'react';
 import { Scene } from '../types/scene';
+
 const GameScene: Scene = {
     Game01: {
         bg: '1',
@@ -9,6 +10,7 @@ const GameScene: Scene = {
         choices: [
             {
                 message: 'Ready?',
+                score: 0,
             },
         ],
         goto: 'Game02',
@@ -51,9 +53,11 @@ const GameScene: Scene = {
         choices: [
             {
                 message: 'ตื่นเต้นกับภารกิจ',
+                score: 0,
             },
             {
                 message: 'สงบนิ่งอย่างบอกไม่ถูก',
+                score: 0,
             },
         ],
         goto: 'Game07',
@@ -84,9 +88,11 @@ const GameScene: Scene = {
         choices: [
             {
                 message: 'จากข้อมูลแล้วยานลำนี้มีสมรรถนะดีที่สุดจากทั้งหมด',
+                score: 1,
             },
             {
                 message: 'ทุกคนรวมถึงตัวคุณเองลงความเห็นแล้วว่าเหมาะสมที่สุด',
+                score: 0,
             },
         ],
         goto: 'Game09',
@@ -110,9 +116,11 @@ const GameScene: Scene = {
             {
                 message:
                     'คู่มือความปลอดภัย เพื่ออ่านทบทวนอีกครั้ง เผื่อเกิดเหตุฉุกเฉิน',
+                score: 0,
             },
             {
                 message: 'พระ',
+                score: 2,
             },
         ],
         goto: 'Game12',
@@ -166,10 +174,12 @@ const GameScene: Scene = {
             {
                 message:
                     'สงสัยว่ามันคือกลุ่มดาวอะไร ใหญ่แค่ไหน อยู่ไกลเท่าไหร่ อยากค้นคว้าจัง',
+                score: 0,
             },
             {
                 message:
                     'สวยมาก! เป็นวิวที่ไม่มีทาง ได้เห็นจากโลกแน่ๆ เหมือนฝันเลย',
+                score: 2,
             },
         ],
         goto: 'Game19',
@@ -246,9 +256,11 @@ const GameScene: Scene = {
         choices: [
             {
                 message: 'มุ่งหน้าตามแผนเดิม',
+                score: 3,
             },
             {
                 message: 'ตัดสินใจปรับแผนการณ์',
+                score: 0,
             },
         ],
         goto: 'Game28',
@@ -263,7 +275,7 @@ const GameScene: Scene = {
             </p>
         ),
         choices: [],
-        goto: 'Game27',
+        goto: 'Game29',
     },
     Game29: {
         bg: '29',
@@ -289,9 +301,11 @@ const GameScene: Scene = {
         choices: [
             {
                 message: 'เข้าไปใกล้เพื่อสำรวจ',
+                score: 0,
             },
             {
                 message: 'หลบหนีเพื่อความปลอดภัย',
+                score: 1,
             },
         ],
         goto: 'Game32',
@@ -367,10 +381,12 @@ const GameScene: Scene = {
             {
                 message:
                     'ที่จะได้สานสัมพันธ์กับเพื่อนใหม่ ๆ ได้ทำความรู้จักสถาบัน เพื่อเตรียมพร้อมท่องอวกาศ ในครั้งถัด ๆ ไป',
+                score: 1,
             },
             {
                 message:
                     'ความสนุก ม่วนจอย ที่จะได้รับอย่างจัดเต็ม โดยเฉพาะกับ concert freshy night ',
+                score: 0,
             },
         ],
         goto: 'Game39',
@@ -409,9 +425,11 @@ const GameScene: Scene = {
         choices: [
             {
                 message: 'กำลังคิดหาคำตอบว่าเราอาบน้ำบนยานอวกาศได้อย่างไร',
+                score: 1,
             },
             {
                 message: 'นึกถึงบรรยากาศเงียบสงบในวันฝนตก',
+                score: 0,
             },
         ],
         goto: 'Game43',
@@ -443,10 +461,12 @@ const GameScene: Scene = {
             {
                 message:
                     'ถึงทรัพยากรจะยังเหลือ แต่สำหรับคุณ นี่ถือเป็นเรื่องน่ากังวล',
+                score: 3,
             },
             {
                 message:
                     'แต่ก็ไม่แย่ซะทีเดียว ใช้โอกาสนี้ท่องเอกภพ อีกสักหน่อย',
+                score: 0,
             },
         ],
         goto: 'Game46',
@@ -475,14 +495,9 @@ const GameScene: Scene = {
         choices: [],
         goto: 'Game48',
     },
-    //scene 48 api get name
     Game48: {
         bg: '48',
-        message: (
-            <p className="text-white">
-                ขอแสดงความยินดีกับคุณ แจฮยอน คงแก่การเรียน
-            </p>
-        ),
+        message: <p></p>,
         choices: [],
         goto: 'Game49',
     },
@@ -491,6 +506,12 @@ const GameScene: Scene = {
         message: <p className="text-white">ดาวของคุณถูกค้นพบแล้ว</p>,
         choices: [],
         goto: 'Game50',
+    },
+    Game50: {
+        bg: 'null',
+        message: <p></p>,
+        choices: [],
+        goto: '',
     },
 };
 export default GameScene;
