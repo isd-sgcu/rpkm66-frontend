@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import scene4 from '@/public/images/gameBG/scene4.svg';
-import scene7 from '@/public/images/gameBG/scene17.svg';
+import scene7 from '@/public/images/game/gameBG/scene17.svg';
 export default function GameBackground(bg: any) {
     switch (bg.bg) {
         case '1':
@@ -17,7 +16,7 @@ export default function GameBackground(bg: any) {
         case '4':
             return (
                 <Image
-                    src={scene4}
+                    src="/images/game/gameBG/scene4.svg"
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
                     className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"

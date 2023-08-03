@@ -52,11 +52,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
                 window.location.href = '/';
                 return;
             }
-            if (!userProfile.studentID.startsWith('66')) {
-                localStorage.clear();
-                window.location.href = '/only-107';
-                return;
-            }
 
             const groupProfile = await getGroupProfile(router.locale);
             if (groupProfile) {
@@ -71,16 +66,19 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, [router]);
 
     useEffect(() => {
-        const alreadyRegistered = user && user.email && user.email !== '';
-
         if (isFetching.current) {
             return;
         }
 
         switch (router.pathname) {
             case '/':
-                if (user) {
-                    router.push('/announce-baan');
+                if (user?.studentID && user?.studentID.startsWith('66')) {
+                    router.push('/walk-rally');
+                } else if (
+                    user?.studentID &&
+                    !user?.studentID.startsWith('66')
+                ) {
+                    router.push('/staff');
                 }
                 break;
             case '/announce-baan':

@@ -40,7 +40,7 @@ const Footer = () => {
                     <div className="order-2 flex flex-col items-center text-center">
                         <p className="mb-1 font-normal">ขอขอบคุณ</p>
                         {/* size base on figma */}
-                        <div className="mb-4 flex h-fit w-fit items-center justify-items-center gap-5">
+                        <div className="mb-4 flex h-fit w-fit flex-wrap items-center justify-center gap-5 px-8">
                             <Image
                                 src={Major}
                                 width={30}

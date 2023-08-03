@@ -1,17 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useToast } from '@/components/Toast';
+import { httpPost } from '@/utils/axios';
+import { useAuth } from '@/context/AuthContext';
 
 function Scan() {
-    const [data, setData] = useState('');
-    const [showModal, setShowModal] = useState(false);
+    const { isAuthenticated, isReady } = useAuth();
+    useEffect(() => {
+        if (!isReady) return;
+        if (!isAuthenticated) {
+            toast?.setToast('error', 'กรุณาเข้าสู่ระบบ');
+            router.push('/login');
+        }
+    }, [isAuthenticated, isReady]);
 
-    const handleScanResult = (result: any, error: any) => {
-        if (result) {
-            setData(result.text);
+    const [isScanned, setIsScanned] = useState<boolean>(false);
+    const [data, setData] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
+
+    const toast = useToast();
+    const router = useRouter();
+
+    const checkIn = async (token: string) => {
+        const { status } = await httpPost('/estamp/' + token, {});
+        if (status === 200) {
+            toast?.setToast('success', 'Check in successfully');
+        } else {
+            toast?.setToast('error', 'QR Code is invalid');
+        }
+        router.push('/walk-rally');
+    };
+
+    const handleScanResult = (token: any, error: any) => {
+        if (token) {
+            setData(token.text);
             setShowModal(true);
         }
         if (error) {
@@ -19,10 +45,16 @@ function Scan() {
         }
     };
 
-    const router = useRouter();
+    useEffect(() => {
+        if (data && !isScanned) {
+            setIsScanned(true);
+            checkIn(data);
+            setData(null);
+        }
+    }, [data]);
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex min-h-screen flex-col items-center justify-center">
             <div className="relative w-full">
                 <QrReader
                     className="bg-black"
@@ -42,11 +74,11 @@ function Scan() {
                 </button>
             </div>
             <div className="flex w-full items-center justify-center bg-black">
-                <div className="h-64 w-full rounded-t-2xl bg-white p-8 text-center">
+                <div className="h-64 w-full bg-white p-8 text-center">
                     {showModal ? (
                         <div className="grid">
                             <Link
-                                href={data}
+                                href={data?.includes('http') ? data : '/'}
                                 className="truncate text-left text-blue-500"
                             >
                                 {data}
