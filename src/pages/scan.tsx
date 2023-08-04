@@ -29,7 +29,7 @@ function Scan() {
         try {
             // check-in qr code
             if (token === 'rpkm66-check-in') {
-                const { status } = await httpPost('/checkin/', {});
+                const { status } = await httpPost('/checkin', {});
                 if (status === 200) {
                     toast?.setToast('success', 'Check-in successfully');
                 } else {
