@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { EstampEvent } from '@/types/estamp';
 import React from 'react';
 
 const StampPiece: React.FC<{
@@ -15,7 +14,7 @@ const StampPiece: React.FC<{
                 alt={id}
                 fill
                 priority
-                className={`${isVisible ? 'visible' : 'invisible'}`}
+                className={isVisible ? 'visible' : 'invisible'}
             />
         </div>
     );

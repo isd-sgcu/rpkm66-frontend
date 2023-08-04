@@ -78,7 +78,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
                     user?.studentID &&
                     !user?.studentID.startsWith('66')
                 ) {
-                    router.push('/staff');
+                    router.push('/only-107');
                 }
                 break;
             case '/announce-baan':

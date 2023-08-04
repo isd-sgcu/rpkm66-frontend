@@ -10,6 +10,7 @@ import { AppContextProvider } from '@/context/ModalContext';
 
 import { ibmPlexSansThai } from '@/components/font';
 import PhaseTwoNavbar from '@/components/PhaseTwoNavbar';
+import { useRouter } from 'next/router';
 
 function MetaData() {
     return (
@@ -55,6 +56,8 @@ function MetaData() {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
+    const router = useRouter();
+
     return (
         <main className={`${ibmPlexSansThai.variable} font-ibm text-white`}>
             <ToastProvider>
@@ -62,11 +65,13 @@ export default function App({ Component, pageProps }: AppProps) {
                     <AppContextProvider>
                         <MetaData />
 
-                        <PhaseTwoNavbar />
+                        {!router.pathname.startsWith('/game') && (
+                            <PhaseTwoNavbar />
+                        )}
                         <Component {...pageProps} />
 
                         <Background />
-                        <Footer />
+                        {!router.pathname.startsWith('/game') && <Footer />}
                     </AppContextProvider>
                 </AuthProvider>
             </ToastProvider>
