@@ -22,11 +22,11 @@ export default function GameBackground(bg: any) {
             return <></>;
         case '2':
             return (
-                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-full w-full select-none bg-white object-cover object-top" />
+                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-screen w-screen select-none bg-white object-cover object-top" />
             );
         case '3':
             return (
-                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-full w-full select-none bg-black object-cover object-top" />
+                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-screen w-screen select-none bg-black object-cover object-top" />
             );
         case '4':
             return (
@@ -34,7 +34,7 @@ export default function GameBackground(bg: any) {
                     src={scene4}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '15':
@@ -43,7 +43,7 @@ export default function GameBackground(bg: any) {
                     src={scene15}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '17':
@@ -52,7 +52,7 @@ export default function GameBackground(bg: any) {
                     src={scene17}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '19':
@@ -61,7 +61,7 @@ export default function GameBackground(bg: any) {
                     src={scene19}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '21':
@@ -70,7 +70,7 @@ export default function GameBackground(bg: any) {
                     src={scene21}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '24':
@@ -79,7 +79,7 @@ export default function GameBackground(bg: any) {
                     src={scene24}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '25':
@@ -88,7 +88,7 @@ export default function GameBackground(bg: any) {
                     src={scene25}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '29':
@@ -97,7 +97,7 @@ export default function GameBackground(bg: any) {
                     src={scene29}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '30':
@@ -106,7 +106,7 @@ export default function GameBackground(bg: any) {
                     src={scene30}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '32':
@@ -115,7 +115,7 @@ export default function GameBackground(bg: any) {
                     src={scene32}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '33':
@@ -124,7 +124,7 @@ export default function GameBackground(bg: any) {
                     src={scene33}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '34':
@@ -133,7 +133,7 @@ export default function GameBackground(bg: any) {
                     src={scene34}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '37':
@@ -142,7 +142,7 @@ export default function GameBackground(bg: any) {
                     src={scene37}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '42':
@@ -151,7 +151,7 @@ export default function GameBackground(bg: any) {
                     src={scene42}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         case '48':
@@ -160,12 +160,12 @@ export default function GameBackground(bg: any) {
                     src={scene48}
                     alt=""
                     sizes="(min-width: 1024px) 0, 100vw"
-                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-full w-full select-none object-cover"
+                    className="pointer-events-none fixed left-0 top-0 -z-40 block h-screen w-screen select-none object-cover"
                 />
             );
         default:
             return (
-                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-full w-full select-none bg-black object-cover object-top" />
+                <div className="pointer-events-none fixed left-0 top-0 -z-40 h-screen w-screen select-none bg-black object-cover object-top" />
             );
     }
 }

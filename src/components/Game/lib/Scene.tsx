@@ -313,7 +313,7 @@ const GameScene: Scene = {
     Game32: {
         bg: '32',
         message: (
-            <p className="text-white">วินาทีนั้น แสงก็พุ่งมาอยู่ตรงหน้า</p>
+            <p className="text-black">วินาทีนั้น แสงก็พุ่งมาอยู่ตรงหน้า</p>
         ),
         choices: [],
         goto: 'Game33',
