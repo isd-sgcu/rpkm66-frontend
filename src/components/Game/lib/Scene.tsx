@@ -412,7 +412,7 @@ const GameScene: Scene = {
     Game42: {
         bg: '42',
         message: (
-            <p className="text-black">
+            <p className="mt-48 text-black">
                 ขอบคุณเทคโนโลยีล้ำสมัย
                 <br />
                 ที่ทำให้การอาบน้ำเป็นไปได้ในยานอวกาศ

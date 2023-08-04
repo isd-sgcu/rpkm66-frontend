@@ -27,13 +27,27 @@ function Scan() {
 
     const checkIn = async (token: string) => {
         try {
-            const { status } = await httpPost('/estamp/' + token, {});
-            if (status === 200) {
-                toast?.setToast('success', 'Check in successfully');
-            } else {
-                toast?.setToast('error', 'QR Code is invalid');
+            // check-in qr code
+            if (token === 'rpkm66-check-in') {
+                const { status } = await httpPost('/checkin/', {});
+                if (status === 200) {
+                    toast?.setToast('success', 'Check-in successfully');
+                } else {
+                    toast?.setToast('error', 'QR Code is invalid');
+                }
+                router.push('/walk-rally');
             }
-            router.push('/walk-rally');
+
+            // estamp qr code
+            else {
+                const { status } = await httpPost('/estamp/' + token, {});
+                if (status === 200) {
+                    toast?.setToast('success', 'Successfully received E-Stamp');
+                } else {
+                    toast?.setToast('error', 'QR Code is invalid');
+                }
+                router.push('/walk-rally');
+            }
         } catch {
             toast?.setToast('error', 'There was an error');
         }

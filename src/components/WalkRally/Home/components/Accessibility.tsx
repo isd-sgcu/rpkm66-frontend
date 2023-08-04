@@ -20,7 +20,7 @@ const Accessibility = () => {
                 <Link href="/scan">
                     <Button color="green">
                         <CameraIcon className="mx-2 h-6 w-6" />
-                        <h1>Check-in / Check-out</h1>
+                        <h1>Check-in / Check-out / Walk Rally</h1>
                     </Button>
                 </Link>
             </div>
