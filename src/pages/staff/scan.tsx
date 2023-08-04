@@ -6,12 +6,15 @@ import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 import NotAllowed from '@/components/NotAllowed';
+import { useToast } from '@/components/Toast';
+import { httpPost } from '@/utils/axios';
 
 function Scan() {
     const { isAuthenticated, isReady, user } = useAuth();
     const [data, setData] = useState<string | null>(null);
     const [isScanned, setIsScanned] = useState<boolean>(false);
     const router = useRouter();
+    const toast = useToast();
 
     const handleScanResult = (token: any, error: any) => {
         if (token) {
@@ -22,9 +25,23 @@ function Scan() {
         }
     };
 
+    const checkIn = async (token: string) => {
+        const { status } = await httpPost(
+            '/staff/checkin_freshy_night/' + token,
+            {}
+        );
+        if (status === 200) {
+            toast?.setToast('success', 'Checked in successfully');
+        } else if (status === 400) {
+            toast?.setToast('error', 'Bad request');
+        } else if (status === 401) {
+            toast?.setToast('error', 'Unauthorized');
+        }
+    };
+
     useEffect(() => {
         if (data && !isScanned) {
-            //Call api
+            checkIn(data);
             setIsScanned(true);
             setData(null);
         }
