@@ -5,11 +5,9 @@ import { useAuth } from '@/context/AuthContext';
 import Planet from '@/components/Game/lib/Planet';
 import Score from '@/components/Game/lib/Score';
 
-// import CollectScore from './lib/CollectScore'
-
 const GameLogic = () => {
     const { user } = useAuth();
-    const [page, setPage] = useState<string>('Game40');
+    const [page, setPage] = useState<string>('Game01');
     <GameContainer
         scene={{
             id: page,
@@ -49,6 +47,7 @@ const GameLogic = () => {
         return <Planet num={planetNum as number}></Planet>;
     }
     return (
+        //  <Planet num={2}></Planet>
         <div>
             <GameContainer
                 scene={{
