@@ -38,7 +38,7 @@ const Planet: React.FC<{ num: number }> = ({ num }) => {
                     {user?.firstname || ''} {user?.lastname || ''}
                 </h2>
             </div>
-            <Bar description={planets[0].planetDes} />
+            <Bar description={planets[num].planetDes} />
             {planets[num].detail && (
                 <Bar description={planets[num].detail as string} />
             )}

@@ -30,7 +30,7 @@ function ChoicesButton({
         );
     } else if (choices.length === 2) {
         return (
-            <div className="mx-auto my-10 flex flex-col justify-center gap-4 text-sm">
+            <div className="mx-auto my-10 flex justify-center text-sm font-extralight">
                 <Button
                     content={choices[0].message}
                     onClick={() => {
@@ -38,7 +38,7 @@ function ChoicesButton({
                         setPage(goto);
                         Score(choices[0].score);
                     }}
-                    additionalStyle="mx-4 bg-pink-400 w-fit px-2 shadow-md border-pink-600 border-4 rounded-xl"
+                    additionalStyle="font-extralight text-s mx-5 bg-pink-400 px-2 shadow-md border-pink-600 border-4 rounded-xl"
                 />
                 <Button
                     content={choices[1].message}
@@ -47,7 +47,7 @@ function ChoicesButton({
                         setPage(goto);
                         Score(choices[1].score);
                     }}
-                    additionalStyle="mx-4 bg-pink-400 w-fit px-2 shadow-md border-pink-600 border-4 rounded-xl"
+                    additionalStyle="text-s mx-5 bg-pink-400 px-2 shadow-md border-pink-600 border-4 rounded-xl"
                 />
             </div>
         );
