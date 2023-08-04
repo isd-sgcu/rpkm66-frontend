@@ -7,7 +7,7 @@ import Score from '@/components/Game/lib/Score';
 
 const GameLogic = () => {
     const { user } = useAuth();
-    const [page, setPage] = useState<string>('Game45');
+    const [page, setPage] = useState<string>('Game01');
     <GameContainer
         scene={{
             id: page,

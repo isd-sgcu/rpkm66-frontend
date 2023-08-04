@@ -30,7 +30,7 @@ function ChoicesButton({
         );
     } else if (choices.length === 2) {
         return (
-            <div className="mx-auto my-10 flex justify-center text-sm font-extralight">
+            <div className="w- mx-auto my-10 flex justify-center gap-2 text-sm font-extralight">
                 <Button
                     content={choices[0].message}
                     onClick={() => {
