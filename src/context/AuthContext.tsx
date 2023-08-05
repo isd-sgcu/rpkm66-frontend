@@ -21,6 +21,7 @@ export interface IAuthContext {
     user?: IUser;
     group?: IGroup;
     login: () => void;
+    loginWithGoogle: () => void;
     logout: () => void;
     refreshContext: () => Promise<void>;
 }
@@ -81,6 +82,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
                     router.push('/only-107');
                 }
                 break;
+            case '/login/choose':
+                if (isAuthenticated) {
+                    router.push('/');
+                }
+                break;
             case '/announce-baan':
             case '/register':
             case '/wait-baan-selection':
@@ -107,6 +113,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         window.location.href = `${process.env.NEXT_PUBLIC_SSO_BASE_URL}/login?service=${process.env.NEXT_PUBLIC_APP_BASE_URL}/login`;
     }, []);
 
+    const loginWithGoogle = useCallback(() => {
+        window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/google`;
+    }, []);
+
     const logout = useCallback(() => {
         localStorage.clear();
         window.location.href = '/login';
@@ -121,8 +131,18 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
             login,
             logout,
             refreshContext,
+            loginWithGoogle,
         }),
-        [isReady, isAuthenticated, user, group, login, logout, refreshContext]
+        [
+            isReady,
+            isAuthenticated,
+            user,
+            group,
+            login,
+            logout,
+            refreshContext,
+            loginWithGoogle,
+        ]
     );
 
     return (
