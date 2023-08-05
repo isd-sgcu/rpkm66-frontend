@@ -4,6 +4,7 @@ import Rocket from '@/public/images/rocket.svg';
 import RocketSmoke from '@/public/images/rocket-smoke.svg';
 import { useAuth } from '@/context/AuthContext';
 import { shimmer, toBase64 } from '@/utils/shimmer';
+import Link from 'next/link';
 
 const Home = () => {
     const { login } = useAuth();
@@ -35,12 +36,12 @@ const Home = () => {
             <h2 className="z-0 mt-2 select-none text-5xl font-bold lg:text-8xl">
                 2023
             </h2>
-            <button
+            <Link
+                href="/login/choose"
                 className="z-0 mt-6 select-none rounded-3xl bg-pink-400 px-6 py-3 text-2xl font-bold ring-8 ring-pink-400/30 transition-all duration-500 hover:scale-105 hover:ring-16 focus:outline-none lg:mt-16 lg:px-20 lg:py-4 lg:text-3xl lg:ring-16 lg:hover:ring-24"
-                onClick={login}
             >
-                เข้าสู่ระบบด้วย Chula SSO
-            </button>
+                เข้าสู่ระบบ
+            </Link>
         </main>
     );
 };

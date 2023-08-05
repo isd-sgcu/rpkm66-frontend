@@ -72,4 +72,32 @@ const getAccessToken = async () => {
     return accessToken;
 };
 
+// Google AUth
+
+export const exchangeGoogleCodeForToken = async (
+    code: string
+): Promise<ICredential | number | null> => {
+    let res: AxiosResponse;
+    try {
+        res = await authClient.post<ICredential>(
+            `/auth/google?code=${code}`,
+            {}
+        );
+    } catch (err) {
+        const error = err as AxiosError;
+        throw error;
+        // return error.response?.status ?? null;
+    }
+
+    const expiresOn = new Date();
+    expiresOn.setSeconds(expiresOn.getSeconds() + res.data.expires_in);
+    return {
+        accessToken: res.data.access_token,
+        refreshToken: res.data.refresh_token,
+        expiresOn,
+    };
+};
+
+// export const renewGoogleAccessToken = async (refreshToken: string) => {
+
 export { exchangeTicketForToken, getAccessToken };
