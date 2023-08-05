@@ -89,6 +89,18 @@ export default function GameContainer({
                 className="relative flex min-h-screen w-full cursor-pointer place-content-center items-center overflow-x-hidden font-ibm font-bold text-white"
             >
                 <GameBackground bg={scene.bg} />
+                <div className="absolute right-8 top-8">
+                    {Number(scene.id.slice(-2)) < 48 && (
+                        <button
+                            onClick={() => {
+                                setPage('Game48');
+                            }}
+                            className="rounded-lg bg-white px-6 py-3 text-pink-600 ring-4 ring-pink-400/50 transition-all duration-500 hover:ring-16"
+                        >
+                            ข้าม
+                        </button>
+                    )}
+                </div>
                 <div className="mb-40 block">
                     <h1 className="mx-auto text-center text-lg">
                         {scene.message}
