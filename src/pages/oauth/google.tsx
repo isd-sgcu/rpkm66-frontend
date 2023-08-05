@@ -21,7 +21,7 @@ export default function Google() {
 
     useEffect(() => {
         if (isReady) {
-            if (query?.ticket) {
+            if (query?.code) {
                 setMessage('Logging in...');
                 handleLogin(query.code as string);
             } else {
