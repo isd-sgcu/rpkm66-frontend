@@ -1,6 +1,14 @@
 import React from 'react';
 import { Scene } from '../types/scene';
 
+const GoToNextScene = () => {
+    return (
+        <p className="mt-4 animate-pulse text-center text-sm text-opacity-25">
+            แตะเพื่อไปต่อ
+        </p>
+    );
+};
+
 const GameScene: Scene = {
     Game01: {
         bg: '1',
@@ -18,20 +26,32 @@ const GameScene: Scene = {
     Game02: {
         bg: '2',
         message: (
-            <p className="text-black">เบื้องหน้าคุณคือจอโฮโลแกรมสว่างวาบ</p>
+            <div className="text-black">
+                <p>เบื้องหน้าคุณคือจอโฮโลแกรมสว่างวาบ</p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game03',
     },
     Game03: {
         bg: '3',
-        message: <p className="text-white">กำลังเชื่อมต่อระบบ</p>,
+        message: (
+            <div className="text-white">
+                <p>กำลังเชื่อมต่อระบบ</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game04',
     },
     Game04: {
         bg: '4',
-        message: <></>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game05',
     },
@@ -42,6 +62,7 @@ const GameScene: Scene = {
                 อีกไม่กี่อึดใจข้างหน้า
                 <br />
                 ยานบินลำนี้จะพาคุณท่องเอกภพอันไร้พรมแดน
+                <GoToNextScene />
             </p>
         ),
         choices: [],
@@ -69,6 +90,7 @@ const GameScene: Scene = {
                 ต้องเป็นอย่างนั้นอยู่แล้ว
                 <br />
                 คุณทุ่มแรงกับภารกิจนี้ไปไม่น้อย
+                <GoToNextScene />
             </p>
         ),
         choices: [],
@@ -99,13 +121,23 @@ const GameScene: Scene = {
     },
     Game09: {
         bg: '4',
-        message: <p className="text-black">เอาล่ะ ใกล้ได้เวลาออกเดินทางแล้ว</p>,
+        message: (
+            <div className="text-black">
+                <p className="text-black">เอาล่ะ ใกล้ได้เวลาออกเดินทางแล้ว</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game10',
     },
     Game10: {
         bg: '4',
-        message: <p className="text-black">จริงสิ คุณพกไอนั่นมาด้วย</p>,
+        message: (
+            <div className="text-black">
+                <p className="text-black">จริงสิ คุณพกไอนั่นมาด้วย</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game11',
     },
@@ -127,43 +159,68 @@ const GameScene: Scene = {
     },
     Game12: {
         bg: '4',
-        message: <p className="text-black">ได้เวลาแล้ว</p>,
+        message: (
+            <div className="text-black">
+                <p className="text-black">ได้เวลาแล้ว</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game13',
     },
     Game13: {
         bg: '4',
         message: (
-            <p className="text-black">
-                ออกเดินทางในอีก
-                <br />
-                3.. 2.. 1..
-            </p>
+            <div className="text-black">
+                <p className="text-black">
+                    ออกเดินทางในอีก
+                    <br />
+                    3.. 2.. 1..
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game14',
     },
     Game14: {
         bg: '4',
-        message: <p className="text-black"></p>,
+        message: (
+            <div className="text-black">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game15',
     },
     Game15: {
         bg: '15',
-        message: <p className="text-white">คุณหลุดจากชั้นบรรยากาศโลกแล้ว</p>,
+        message: (
+            <div className="text-white">
+                <p>คุณหลุดจากชั้นบรรยากาศโลกแล้ว</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game16',
     },
     Game16: {
         bg: '15',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game17',
     },
     Game17: {
         bg: '17',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game18',
     },
@@ -186,50 +243,77 @@ const GameScene: Scene = {
     },
     Game19: {
         bg: '19',
-        message: <p className="text-white">โหมดการบินอัตโนมัติทำงาน</p>,
+        message: (
+            <div className="text-white">
+                <p>โหมดการบินอัตโนมัติทำงาน</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game20',
     },
     Game20: {
         bg: '19',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game21',
     },
     Game21: {
         bg: '21',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game22',
     },
     Game22: {
         bg: '21',
         message: (
-            <p className="text-white">
-                บางอย่างผิดปกติ
-                <br />
-                คุณรีบปรี่เข้าไปหน้าแผงควบคุมทันที
-            </p>
+            <div className="text-white">
+                <p>
+                    บางอย่างผิดปกติ
+                    <br />
+                    คุณรีบปรี่เข้าไปหน้าแผงควบคุมทันที
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game23',
     },
     Game23: {
         bg: '21',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game24',
     },
     Game24: {
         bg: '24',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game25',
     },
     Game25: {
         bg: '25',
         message: (
-            <p className="text-white">คุณรอดพ้นอุปสรรคครั้งใหญ่นั้นมาได้</p>
+            <div className="text-white">
+                <p>คุณรอดพ้นอุปสรรคครั้งใหญ่นั้นมาได้</p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game26',
@@ -237,13 +321,16 @@ const GameScene: Scene = {
     Game26: {
         bg: '15',
         message: (
-            <p className="text-white">
-                แต่ก็ชักจะไม่แน่ใจแล้วว่า
-                <br />
-                ทางข้างหน้าคือทางเดียวกับ
-                <br />
-                ที่คุณและทีมได้วางแผนไว้
-            </p>
+            <div className="text-white">
+                <p>
+                    แต่ก็ชักจะไม่แน่ใจแล้วว่า
+                    <br />
+                    ทางข้างหน้าคือทางเดียวกับ
+                    <br />
+                    ที่คุณและทีมได้วางแผนไว้
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game27',
@@ -268,11 +355,14 @@ const GameScene: Scene = {
     Game28: {
         bg: '15',
         message: (
-            <p className="text-white">
-                คุณวางมือที่ชื้นเหงื่อลงบนแผงควบคุม
-                <br />
-                รอบขมับเต้นตุบ ๆ จากความเครียด
-            </p>
+            <div className="text-white">
+                <p className="">
+                    คุณวางมือที่ชื้นเหงื่อลงบนแผงควบคุม
+                    <br />
+                    รอบขมับเต้นตุบ ๆ จากความเครียด
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game29',
@@ -280,18 +370,25 @@ const GameScene: Scene = {
     Game29: {
         bg: '29',
         message: (
-            <p className="text-white">
-                ยังไม่ทันจะได้หายใจทั่วท้อง
-                <br />
-                แสงบางอย่างก็ปรากฎหน้ายานของคุณ
-            </p>
+            <div className="text-white">
+                <p className="">
+                    ยังไม่ทันจะได้หายใจทั่วท้อง
+                    <br />
+                    แสงบางอย่างก็ปรากฎหน้ายานของคุณ
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game30',
     },
     Game30: {
         bg: '30',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game31',
     },
@@ -313,7 +410,10 @@ const GameScene: Scene = {
     Game32: {
         bg: '32',
         message: (
-            <p className="text-black">วินาทีนั้น แสงก็พุ่งมาอยู่ตรงหน้า</p>
+            <div className="text-black">
+                <p>วินาทีนั้น แสงก็พุ่งมาอยู่ตรงหน้า</p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game33',
@@ -321,18 +421,25 @@ const GameScene: Scene = {
     Game33: {
         bg: '33',
         message: (
-            <p className="text-white">
-                คุณจึงได้รู้ว่ามันคือ
-                <br />
-                สัญญาณขอความช่วยเหลือของยานอีกลํา
-            </p>
+            <div className="text-white">
+                <p>
+                    คุณจึงได้รู้ว่ามันคือ
+                    <br />
+                    สัญญาณขอความช่วยเหลือของยานอีกลํา
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game34',
     },
     Game34: {
         bg: '34',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />s
+            </div>
+        ),
         choices: [],
         goto: 'Game36',
     },
@@ -340,11 +447,14 @@ const GameScene: Scene = {
     Game36: {
         bg: '34',
         message: (
-            <p className="text-white">
-                คุณตัดสินใจอยู่ช่วยพวกเขาจนถึงที่สุด
-                <br />
-                กระทั่งทุกอย่างผ่านพ้นด้วยดี
-            </p>
+            <div className="text-white">
+                <p className="">
+                    คุณตัดสินใจอยู่ช่วยพวกเขาจนถึงที่สุด
+                    <br />
+                    กระทั่งทุกอย่างผ่านพ้นด้วยดี
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game37',
@@ -352,24 +462,27 @@ const GameScene: Scene = {
     Game37: {
         bg: '37',
         message: (
-            <p className="text-white">
-                พวกเขาจึงเสนอมอบบัตรเชิญร่วมงาน
-                <br />
-                “Freshmen night”
-                <br />
-                แก่คุณเป็นการตอบแทน
-                <br />
-                เป็นงานสุดยิ่งใหญ่อลังการ
-                <br />
-                ที่เปิดโอกาสให้นักท่องอวกาศทุกคนในสถาบัน
-                <br />
-                ไม่จำกัดฝ่าย ได้ร่วมสนุกและเพลิดเพลินไปกับ
-                <br />
-                คํ่าคืนที่งานรับเพื่อนก้าวใหม่จะมอบให้พวกคุณ
-                <br />
-                ในวันที่ 6 สิงหาคม พ.ศ.2566 ที่จะถึงนี้
-                <br />
-            </p>
+            <div className="text-white">
+                <p className="">
+                    พวกเขาจึงเสนอมอบบัตรเชิญร่วมงาน
+                    <br />
+                    “Freshmen night”
+                    <br />
+                    แก่คุณเป็นการตอบแทน
+                    <br />
+                    เป็นงานสุดยิ่งใหญ่อลังการ
+                    <br />
+                    ที่เปิดโอกาสให้นักท่องอวกาศทุกคนในสถาบัน
+                    <br />
+                    ไม่จำกัดฝ่าย ได้ร่วมสนุกและเพลิดเพลินไปกับ
+                    <br />
+                    คํ่าคืนที่งานรับเพื่อนก้าวใหม่จะมอบให้พวกคุณ
+                    <br />
+                    ในวันที่ 6 สิงหาคม พ.ศ.2566 ที่จะถึงนี้
+                    <br />
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game38',
@@ -393,19 +506,33 @@ const GameScene: Scene = {
     },
     Game39: {
         bg: '34',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game40',
     },
     Game40: {
         bg: '19',
-        message: <p className="text-white">โหมดการบินอัตโนมัติทำงาน</p>,
+        message: (
+            <div className="text-white">
+                <p>โหมดการบินอัตโนมัติทำงาน</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game41',
     },
     Game41: {
         bg: '19',
-        message: <p className="text-white">จบเรื่องวุ่น ๆ สักที</p>,
+        message: (
+            <div className="text-white">
+                <p>จบเรื่องวุ่น ๆ สักที</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game42',
     },
@@ -436,13 +563,22 @@ const GameScene: Scene = {
     },
     Game43: {
         bg: '19',
-        message: <p className="text-white">ได้เวลาปฏิบัติงาน</p>,
+        message: (
+            <div className="text-white">
+                <p>ได้เวลาปฏิบัติงาน</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game44',
     },
     Game44: {
         bg: '19',
-        message: <p className="text-white"></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game45',
     },
@@ -474,11 +610,14 @@ const GameScene: Scene = {
     Game46: {
         bg: '19',
         message: (
-            <p className="text-white">
-                จังหวะนั้นเอง
-                <br />
-                คุณเพิ่งสังเกตเห็นจุดแปลกปลอมนอกหน้าต่าง
-            </p>
+            <div className="text-white">
+                <p>
+                    จังหวะนั้นเอง
+                    <br />
+                    คุณเพิ่งสังเกตเห็นจุดแปลกปลอมนอกหน้าต่าง
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game47',
@@ -486,30 +625,46 @@ const GameScene: Scene = {
     Game47: {
         bg: '19',
         message: (
-            <p className="text-white">
-                พร้อม ๆ กับแจ้งเตือนสำคัญ
-                <br />
-                ที่ผุดขึ้นมาบนหน้าจอโฮโลแกรม
-            </p>
+            <div className="text-white">
+                <p>
+                    พร้อม ๆ กับแจ้งเตือนสำคัญ
+                    <br />
+                    ที่ผุดขึ้นมาบนหน้าจอโฮโลแกรม
+                </p>
+                <GoToNextScene />
+            </div>
         ),
         choices: [],
         goto: 'Game48',
     },
     Game48: {
         bg: '48',
-        message: <p></p>,
+        message: (
+            <div>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game49',
     },
     Game49: {
         bg: '48',
-        message: <p className="text-white">ดาวของคุณถูกค้นพบแล้ว</p>,
+        message: (
+            <div className="text-white">
+                <p>ดาวของคุณถูกค้นพบแล้ว</p>
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: 'Game50',
     },
     Game50: {
         bg: 'null',
-        message: <p></p>,
+        message: (
+            <div className="text-white">
+                <GoToNextScene />
+            </div>
+        ),
         choices: [],
         goto: '',
     },
