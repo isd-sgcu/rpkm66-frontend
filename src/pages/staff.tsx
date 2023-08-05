@@ -8,6 +8,7 @@ import Link from 'next/link';
 import NotAllowed from '@/components/NotAllowed';
 import { useToast } from '@/components/Toast';
 import { httpPost } from '@/utils/axios';
+import Button from '@/components/WalkRally/Home/components/Button';
 
 function Scan() {
     const { isAuthenticated, isReady, user } = useAuth();
@@ -15,6 +16,28 @@ function Scan() {
     const [isScanned, setIsScanned] = useState<boolean>(false);
     const router = useRouter();
     const toast = useToast();
+
+    const [canAccess, setCanAccess] = useState<boolean>(false);
+    const [password, setPassword] = useState<string>('');
+
+    const handleSavePassword = () => {
+        if (password === 'lmao123456-thee') {
+            localStorage.setItem('access', 'true');
+            setCanAccess(true);
+            toast?.setToast('success', 'Logged in successfully');
+        } else {
+            toast?.setToast('error', 'Wrong password');
+        }
+    };
+
+    useEffect(() => {
+        const access = localStorage.getItem('access');
+        if (access === 'true') {
+            setCanAccess(true);
+        } else {
+            setCanAccess(false);
+        }
+    }, []);
 
     const handleScanResult = (token: any, error: any) => {
         if (token) {
@@ -49,6 +72,30 @@ function Scan() {
 
     if (!isAuthenticated || !isReady || user?.studentID.startsWith('66'))
         return <NotAllowed />;
+
+    if (!canAccess) {
+        return (
+            <div className="mx-8 flex min-h-screen flex-col items-center justify-center">
+                <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-6 rounded-lg bg-white p-8 text-black shadow-lg">
+                    <h2 className="text-2xl font-bold">Login for Staff</h2>
+                    <div className="space-y-4">
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                            className="w-full rounded-lg border border-black px-4 py-2 outline-none"
+                        />
+                        <Button
+                            onClick={() => handleSavePassword()}
+                            color="pink"
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-center">
