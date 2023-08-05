@@ -40,12 +40,6 @@ const Footer = () => {
                             </p>
                         </div>
                     </div>
-                    <button
-                        onClick={isAuthenticated ? logout : login}
-                        className="text-enter cursor-pointer pb-4 pt-6 text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
-                    >
-                        {isAuthenticated ? 'ออกจาก' : 'เข้าสู่'}ระบบ
-                    </button>
                     <div className="order-2 flex flex-col items-center text-center">
                         <p className="mb-1 font-normal">ขอขอบคุณ</p>
                         {/* size base on figma */}
@@ -148,6 +142,13 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+
+                <button
+                    onClick={isAuthenticated ? logout : login}
+                    className="w-full cursor-pointer pb-4 pt-6 text-center text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                >
+                    {isAuthenticated ? 'ออกจาก' : 'เข้าสู่'}ระบบ
+                </button>
             </div>
             <div className="flex w-full items-center justify-center gap-4 bg-black p-3">
                 <Link
