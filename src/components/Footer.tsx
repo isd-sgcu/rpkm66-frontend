@@ -11,7 +11,10 @@ import Ptt from '@/public/images/Ptt.png';
 import ParkOrigin from '@/public/images/ParkOrigin.png';
 import ThaiBev from '@/public/images/ThaiBev.png';
 import WuaLuanLuan from '@/public/images/Wua.png';
+import { useAuth } from '@/context/AuthContext';
 const Footer = () => {
+    const { login, logout, isAuthenticated } = useAuth();
+
     return (
         <footer className="relative w-full">
             <div className="relative m-0 w-full bg-gray-900 pt-3 lg:p-4">
@@ -37,6 +40,12 @@ const Footer = () => {
                             </p>
                         </div>
                     </div>
+                    <button
+                        onClick={isAuthenticated ? logout : login}
+                        className="text-enter cursor-pointer pb-4 pt-6 text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    >
+                        {isAuthenticated ? 'ออกจาก' : 'เข้าสู่'}ระบบ
+                    </button>
                     <div className="order-2 flex flex-col items-center text-center">
                         <p className="mb-1 font-normal">ขอขอบคุณ</p>
                         {/* size base on figma */}
@@ -142,17 +151,23 @@ const Footer = () => {
             </div>
             <div className="flex w-full items-center justify-center gap-4 bg-black p-3">
                 <Link
-                    className="text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    className="cursor-pointer text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
                     href="/terms-conditions"
                 >
                     เงื่อนไขการใช้งาน
                 </Link>
 
                 <Link
-                    className="text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    className="cursor-pointer text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
                     href="/privacy-policy"
                 >
                     นโยบายความเป็นส่วนตัว
+                </Link>
+                <Link
+                    className="cursor-pointer text-xs font-light text-gray-200 underline underline-offset-2 hover:no-underline"
+                    href="/pdpa"
+                >
+                    นโยบายคุ้มครองข้อมูลส่วนบุคคล
                 </Link>
             </div>
         </footer>
