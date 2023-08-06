@@ -21,7 +21,7 @@ function Scan() {
     const [password, setPassword] = useState<string>('');
 
     const handleSavePassword = () => {
-        if (password === 'lmao123456-thee') {
+        if (password === process.env.NEXT_PUBLIC_STAFF_PASSWORD) {
             localStorage.setItem('access', 'true');
             setCanAccess(true);
             toast?.setToast('success', 'Logged in successfully');
