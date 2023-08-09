@@ -18,25 +18,6 @@ function Navbar() {
                     />
                 </Link>
             </div>
-            <div className="flex items-center gap-2 text-xs lg:gap-8 lg:text-lg">
-                <Link href="/faq" className="underline hover:no-underline">
-                    คำถามที่พบบ่อย
-                </Link>
-                <Link
-                    href="https://airtable.com/appNLAPRBVMZBgGV9/shr7FWOUnTsw53DxV"
-                    className="underline hover:no-underline"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    ร้องเรียนปัญหา
-                </Link>
-                <button
-                    className="rounded-3xl bg-orange px-3 py-1 text-xs ring-4 ring-orange/30 transition-all duration-500 hover:scale-105 hover:ring-8 lg:px-6 lg:py-2 lg:text-lg lg:ring-8 lg:hover:ring-16"
-                    onClick={user ? logout : login}
-                >
-                    {user ? 'ออกจากระบบ' : 'เข้าสู่ระบบ'}
-                </button>
-            </div>
         </nav>
     );
 }
