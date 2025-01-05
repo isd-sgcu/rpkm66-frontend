@@ -2,6 +2,13 @@
 
 Frontend interface for the RubPuenKaoMai 2023 website.
 
+## Screenshots
+
+![Screenshot of the homepage on desktop](public/images/screenshots/screenshot-homepage-desktop.png)
+<img src="public/images/screenshots/screenshot-homepage-mobile.png" alt="Screenshot of the homepage on mobile" width="25%"/>
+![Screenshot of the e-ticket page](public/images/screenshots/screenshot-e-ticket.png)
+![Screenshot of the register page](public/images/screenshots/screenshot-register.png)
+
 ## Prerequisites
 
 Please install the following.
